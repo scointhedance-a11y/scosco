@@ -367,6 +367,7 @@
     if (name !== 'search' && document.activeElement !== top) top.value = '';
     var out = fn(r.parts.slice(1), r.params);
     view.innerHTML = out.html;
+    view.setAttribute('data-ready', '1');
     if (keepScroll !== true) window.scrollTo(0, 0);
     if (out.after) out.after();
   }
