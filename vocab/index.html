@@ -1,0 +1,828 @@
+<title>単語ストック</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one narrow column like a pocket word book; the flashcard is the only raised object, highlighter marks state. */
+:root {
+  --bg: #eceff3;
+  --paper: #fbfcfd;
+  --ink: #18202e;
+  --muted: #5d6779;
+  --line: #d3d9e2;
+  --accent: #2b47c9;
+  --accent-ink: #ffffff;
+  --mark: #f6dc3c;
+  --mark-soft: #fbefa0;
+  --good: #1f7a4d;
+  --warn: #a8641a;
+  --bad: #b3352f;
+  --shadow: 0 1px 2px rgb(24 32 46 / .06), 0 8px 24px rgb(24 32 46 / .08);
+  --f-head: "Literata", "Georgia", "Hiragino Mincho ProN", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151c; --paper: #1a2029; --ink: #e6e9ef; --muted: #98a2b4; --line: #2c3441;
+    --accent: #7d93ff; --accent-ink: #0c1020; --mark: #c9ad1c; --mark-soft: #4a4220;
+    --good: #5cc28f; --warn: #e0a256; --bad: #ef7b73;
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 24px rgb(0 0 0 / .35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151c; --paper: #1a2029; --ink: #e6e9ef; --muted: #98a2b4; --line: #2c3441;
+  --accent: #7d93ff; --accent-ink: #0c1020; --mark: #c9ad1c; --mark-soft: #4a4220;
+  --good: #5cc28f; --warn: #e0a256; --bad: #ef7b73;
+  --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 8px 24px rgb(0 0 0 / .35);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 15px; line-height: 1.65;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 20px 48px;
+}
+.app { max-width: 680px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { text-wrap: balance; margin: 0; }
+
+/* header */
+.top { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { display: flex; flex-direction: column; }
+.brand h1 { font-family: var(--f-body); font-weight: 700; font-size: 22px; letter-spacing: .04em; }
+.brand h1 .hl { background: linear-gradient(transparent 58%, var(--mark) 58%); padding: 0 2px; }
+.brand small { color: var(--muted); font-size: 12px; }
+.stats { display: flex; gap: 18px; font-variant-numeric: tabular-nums; }
+.stat { display: flex; flex-direction: column; align-items: flex-end; }
+.stat b { font-family: var(--f-mono); font-weight: 500; font-size: 20px; line-height: 1.2; }
+.stat span { font-size: 11px; color: var(--muted); letter-spacing: .06em; }
+.stat.due b { color: var(--accent); }
+
+/* tabs */
+.tabs { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
+.tab { background: none; border: 0; padding: 10px 4px; font-weight: 500; color: var(--muted); border-bottom: 3px solid transparent; margin-bottom: -1px; }
+.tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.tab .n { font-family: var(--f-mono); font-size: 12px; margin-left: 4px; color: var(--accent); }
+
+.notice { background: var(--mark-soft); border-radius: 6px; padding: 10px 14px; font-size: 13px; }
+.notice.err { background: transparent; border: 1px solid var(--bad); color: var(--bad); }
+
+/* buttons */
+.btn { border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 9px 16px; font-weight: 500; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.ghost { background: transparent; border-color: transparent; color: var(--muted); padding-inline: 8px; }
+.btn.danger { color: var(--bad); }
+.btn:disabled { opacity: .5; cursor: default; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* review */
+.review-intro { display: flex; flex-direction: column; gap: 14px; padding: 24px 0 8px; }
+.review-intro h2 { font-family: var(--f-head); font-weight: 500; font-size: 28px; line-height: 1.3; }
+.review-intro p { margin: 0; color: var(--muted); }
+.mix { display: flex; gap: 16px; font-size: 13px; color: var(--muted); flex-wrap: wrap; }
+.mix b { font-family: var(--f-mono); color: var(--ink); font-weight: 500; }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+
+.progress { height: 3px; background: var(--line); border-radius: 2px; overflow: hidden; }
+.progress i { display: block; height: 100%; background: var(--accent); transition: width .25s; }
+.sessionbar { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; gap: 8px; }
+
+.card { background: var(--paper); border-radius: 14px; box-shadow: var(--shadow); padding: 28px 24px 22px; min-height: 280px; display: flex; flex-direction: column; gap: 14px; cursor: pointer; }
+.card.revealed { cursor: default; }
+.card .head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.headword { font-family: var(--f-head); font-weight: 700; font-size: clamp(30px, 8vw, 42px); line-height: 1.15; overflow-wrap: anywhere; }
+.headword.ja { font-family: var(--f-body); font-size: clamp(24px, 6vw, 32px); }
+.ipa { font-family: var(--f-mono); font-size: 14px; color: var(--muted); }
+.pos { font-size: 11px; border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; color: var(--muted); }
+.say { border: 0; background: none; color: var(--accent); font-size: 13px; padding: 2px 4px; }
+.tap { margin-top: auto; text-align: center; color: var(--muted); font-size: 13px; }
+.answer { border-top: 1px dashed var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.meaning { font-size: 19px; font-weight: 500; }
+.meaning mark, .hlword { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inherit; }
+.ex { font-family: var(--f-head); font-size: 16px; line-height: 1.55; }
+.exja { color: var(--muted); font-size: 13px; }
+.meta { font-size: 13px; color: var(--muted); }
+.meta b { color: var(--ink); font-weight: 500; }
+.grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.grade { border: 1px solid var(--line); background: var(--paper); border-radius: 10px; padding: 10px 4px 8px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.grade span { font-weight: 700; }
+.grade small { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.grade.again span { color: var(--bad); }
+.grade.hard span { color: var(--warn); }
+.grade.good span { color: var(--good); }
+.grade.easy span { color: var(--accent); }
+.kbd { font-size: 11px; color: var(--muted); text-align: center; }
+
+/* forms */
+.panel { display: flex; flex-direction: column; gap: 16px; }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; align-self: flex-start; }
+.seg button { border: 0; background: var(--paper); padding: 7px 14px; font-size: 13px; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.field label { font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.field input, .field textarea, .field select { width: 100%; border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 9px 12px; }
+.field textarea { resize: vertical; min-height: 64px; }
+.field input.big { font-family: var(--f-head); font-size: 22px; font-weight: 500; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .grid2 { grid-template-columns: 1fr; } }
+.wordline { display: flex; gap: 8px; align-items: flex-end; }
+.wordline .field { flex: 1; }
+.hint { font-size: 12px; color: var(--muted); margin: 0; }
+.status { font-size: 13px; min-height: 1.4em; color: var(--muted); }
+.status.ok { color: var(--good); }
+.status.bad { color: var(--bad); }
+
+/* list */
+.listtools { display: flex; gap: 8px; flex-wrap: wrap; }
+.listtools input { flex: 1 1 200px; min-width: 0; border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 9px 12px; }
+.listtools select { border: 1px solid var(--line); background: var(--paper); border-radius: 8px; padding: 8px 10px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { border: 1px solid var(--line); background: transparent; border-radius: 999px; padding: 3px 12px; font-size: 12px; color: var(--muted); }
+.chip[aria-pressed="true"] { border-color: var(--ink); color: var(--ink); background: var(--paper); }
+.words { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.words li { border-bottom: 1px solid var(--line); }
+.wrow { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; text-align: left; background: none; border: 0; padding: 12px 2px; }
+.wrow .w { font-family: var(--f-head); font-weight: 700; font-size: 18px; overflow-wrap: anywhere; }
+.wrow .m { grid-column: 1; color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.wrow .st { grid-row: 1 / span 2; grid-column: 2; align-self: center; display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.pill { font-size: 11px; border-radius: 999px; padding: 1px 9px; font-weight: 500; white-space: nowrap; }
+.pill.new { background: var(--mark-soft); color: var(--ink); }
+.pill.learning { border: 1px solid var(--accent); color: var(--accent); }
+.pill.mastered { background: var(--good); color: var(--paper); }
+.pill.sample { border: 1px dashed var(--muted); color: var(--muted); }
+.due { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.detail { padding: 4px 2px 16px; display: flex; flex-direction: column; gap: 10px; }
+.empty { padding: 32px 4px; color: var(--muted); display: flex; flex-direction: column; gap: 10px; }
+.empty h3 { color: var(--ink); font-size: 17px; }
+.confirm { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--bad); }
+.foot { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <h1><span class="hl">単語</span>ストック</h1>
+      <small>出会った英単語をためて、忘れる前に復習する</small>
+    </div>
+    <div class="stats" aria-label="学習状況">
+      <div class="stat"><b id="st-total">–</b><span>登録</span></div>
+      <div class="stat due"><b id="st-due">–</b><span>今日の復習</span></div>
+      <div class="stat"><b id="st-mastered">–</b><span>習得</span></div>
+    </div>
+  </header>
+
+  <div id="notice" class="notice" hidden></div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tab-review" data-view="review" aria-selected="true">復習<span class="n" id="tab-due"></span></button>
+    <button class="tab" role="tab" id="tab-add" data-view="add" aria-selected="false">追加</button>
+    <button class="tab" role="tab" id="tab-list" data-view="list" aria-selected="false">単語帳<span class="n" id="tab-total"></span></button>
+  </nav>
+
+  <!-- REVIEW -->
+  <section id="view-review" class="panel"></section>
+
+  <!-- ADD -->
+  <section id="view-add" class="panel" hidden>
+    <div class="seg" role="group" aria-label="追加方法">
+      <button id="mode-one" aria-pressed="true">1語ずつ</button>
+      <button id="mode-bulk" aria-pressed="false">まとめて</button>
+    </div>
+
+    <form id="form-one" class="panel" autocomplete="off">
+      <div class="wordline">
+        <div class="field">
+          <label for="f-word">英単語・フレーズ</label>
+          <input id="f-word" class="big" required placeholder="e.g. meticulous" autocapitalize="off" spellcheck="false">
+        </div>
+        <button type="button" class="btn" id="btn-ai" hidden>AIで調べる</button>
+      </div>
+      <div class="status" id="ai-status"></div>
+      <div class="field">
+        <label for="f-meaning">意味</label>
+        <input id="f-meaning" placeholder="細心の、几帳面な">
+      </div>
+      <div class="grid2">
+        <div class="field"><label for="f-pos">品詞</label><input id="f-pos" placeholder="形容詞"></div>
+        <div class="field"><label for="f-ipa">発音記号</label><input id="f-ipa" placeholder="/məˈtɪkjələs/"></div>
+      </div>
+      <div class="field"><label for="f-example">例文</label><textarea id="f-example" rows="2" placeholder="She kept meticulous records of every expense."></textarea></div>
+      <div class="field"><label for="f-exampleJa">例文の訳</label><input id="f-exampleJa"></div>
+      <div class="grid2">
+        <div class="field"><label for="f-synonyms">類義語</label><input id="f-synonyms" placeholder="careful, thorough"></div>
+        <div class="field"><label for="f-source">出会った場所</label><input id="f-source" placeholder="記事・本・ドラマなど"></div>
+      </div>
+      <div class="field"><label for="f-note">メモ</label><textarea id="f-note" rows="2"></textarea></div>
+      <div class="row">
+        <button type="submit" class="btn primary" id="btn-save">ストックする</button>
+        <button type="reset" class="btn ghost">クリア</button>
+      </div>
+      <div class="status" id="save-status"></div>
+    </form>
+
+    <form id="form-bulk" class="panel" hidden autocomplete="off">
+      <div class="field">
+        <label for="f-bulk">1行に1語。意味がわかる場合は「=」か「,」かタブで区切って書けます。</label>
+        <textarea id="f-bulk" rows="9" spellcheck="false" placeholder="ubiquitous&#10;mitigate = 和らげる&#10;take for granted, 当然と思う&#10;nuance"></textarea>
+      </div>
+      <label class="toggle" id="bulk-ai-wrap" hidden><input type="checkbox" id="f-bulk-ai" checked> 意味が書いていない語はAIで意味・例文を補う</label>
+      <div class="field"><label for="f-bulk-source">出会った場所（全語共通・任意）</label><input id="f-bulk-source"></div>
+      <div class="row"><button type="submit" class="btn primary" id="btn-bulk">まとめてストック</button></div>
+      <div class="status" id="bulk-status"></div>
+    </form>
+  </section>
+
+  <!-- LIST -->
+  <section id="view-list" class="panel" hidden>
+    <div class="listtools">
+      <input id="q" type="search" placeholder="単語・意味で検索" aria-label="検索">
+      <select id="sort" aria-label="並び順">
+        <option value="new">追加が新しい順</option>
+        <option value="old">追加が古い順</option>
+        <option value="az">A → Z</option>
+        <option value="due">復習が近い順</option>
+        <option value="hard">苦手な順</option>
+      </select>
+    </div>
+    <div class="chips" role="group" aria-label="絞り込み">
+      <button class="chip" data-f="all" aria-pressed="true">すべて</button>
+      <button class="chip" data-f="new" aria-pressed="false">新規</button>
+      <button class="chip" data-f="learning" aria-pressed="false">学習中</button>
+      <button class="chip" data-f="mastered" aria-pressed="false">習得</button>
+      <button class="chip" data-f="due" aria-pressed="false">今日の復習</button>
+    </div>
+    <ul class="words" id="words"></ul>
+    <div class="foot">
+      <span id="list-count"></span>
+      <span class="row">
+        <button class="btn ghost" id="btn-clear-samples" hidden>サンプルを削除</button>
+        <button class="btn ghost" id="btn-export" hidden>CSVで書き出す</button>
+      </span>
+    </div>
+  </section>
+</div>
+
+<script>
+(() => {
+  const DAY = 864e5;
+  const NEW_PER_SESSION = 20;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const norm = (s) => String(s || "").trim().toLowerCase().replace(/\s+/g, " ");
+
+  const S = {
+    db: null, col: null, sample: null, downloads: null, canWrite: true,
+    words: [], ready: false, view: "review",
+    session: null, // {queue:[ids], done, total, revealed}
+    reverse: false,
+    filter: "all", q: "", sort: "new", open: null, editing: null, confirmDel: null,
+  };
+  try { S.reverse = localStorage.getItem("ws.reverse") === "1"; } catch {}
+
+  // ---------- spaced repetition (SM-2 style) ----------
+  const startOfDay = (t) => { const d = new Date(t); d.setHours(0, 0, 0, 0); return d.getTime(); };
+  const dueOf = (w) => w.due ?? w.created ?? 0;
+  const isDue = (w, now = Date.now()) => dueOf(w) <= now;
+  const statusOf = (w) => (!w.reps && !w.last) ? "new" : (w.interval >= 21 ? "mastered" : "learning");
+  const STATUS_JA = { new: "新規", learning: "学習中", mastered: "習得" };
+
+  function schedule(w, g, now = Date.now()) {
+    let ease = w.ease ?? 2.5, iv = w.interval ?? 0, reps = w.reps ?? 0, lapses = w.lapses ?? 0, due;
+    if (g === "again") {
+      ease = Math.max(1.3, ease - 0.2); reps = 0; iv = 0; if (w.last) lapses++;
+      due = now + 10 * 60e3;
+    } else {
+      if (g === "hard") { ease = Math.max(1.3, ease - 0.15); iv = reps === 0 ? 1 : Math.max(1, Math.round(iv * 1.2)); }
+      else if (g === "good") { iv = reps === 0 ? 1 : reps === 1 ? 3 : Math.max(iv + 1, Math.round(iv * ease)); }
+      else { ease += 0.15; iv = reps === 0 ? 4 : Math.max(iv + 2, Math.round(iv * ease * 1.3)); }
+      reps++;
+      due = startOfDay(now) + iv * DAY;
+    }
+    return { ease: Math.round(ease * 100) / 100, interval: iv, reps, lapses, due, last: now };
+  }
+  const ivLabel = (iv) => iv === 0 ? "10分" : iv < 30 ? iv + "日" : iv < 365 ? Math.round(iv / 30) + "か月" : (iv / 365).toFixed(1) + "年";
+  function dueLabel(w) {
+    const d = dueOf(w), now = Date.now();
+    if (d <= now) return "今日";
+    const days = Math.round((startOfDay(d) - startOfDay(now)) / DAY);
+    return days <= 0 ? "今日" : days === 1 ? "明日" : days + "日後";
+  }
+
+  // ---------- speech ----------
+  function speak(text) {
+    try {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-US"; u.rate = 0.9;
+      const v = speechSynthesis.getVoices().find((v) => /^en(-|_)US/i.test(v.lang));
+      if (v) u.voice = v;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    } catch {}
+  }
+  const canSpeak = "speechSynthesis" in window;
+
+  // ---------- notice ----------
+  function notice(msg, err) {
+    const n = $("notice");
+    n.hidden = !msg; n.textContent = msg || ""; n.classList.toggle("err", !!err);
+  }
+  function dbErr(e) {
+    if (e?.code === "quota_exceeded") return "保存容量の上限に達しました。使わなくなった単語を削除してください。";
+    if (e?.code === "invalid_argument" && !S.canWrite) return "このページでは閲覧のみできます。";
+    return "保存できませんでした。通信状態を確認して、もう一度お試しください。";
+  }
+
+  // ---------- tabs ----------
+  function setView(v) {
+    S.view = v;
+    for (const t of document.querySelectorAll(".tab")) t.setAttribute("aria-selected", String(t.dataset.view === v));
+    for (const name of ["review", "add", "list"]) $("view-" + name).hidden = name !== v;
+    if (v === "review") renderReview();
+    if (v === "list") { S.editing = null; renderList(); }
+    if (v === "add") setTimeout(() => $("f-word").focus(), 0);
+  }
+  document.querySelectorAll(".tab").forEach((t) => t.addEventListener("click", () => setView(t.dataset.view)));
+  if (["review", "add", "list"].includes(location.hash.slice(1))) S.view = location.hash.slice(1);
+
+  // ---------- stats ----------
+  function renderStats() {
+    const now = Date.now();
+    const total = S.ready ? S.words.length : null;
+    const due = S.ready ? S.words.filter((w) => isDue(w, now)).length : null;
+    const mastered = S.ready ? S.words.filter((w) => statusOf(w) === "mastered").length : null;
+    $("st-total").textContent = total ?? "–";
+    $("st-due").textContent = due ?? "–";
+    $("st-mastered").textContent = mastered ?? "–";
+    $("tab-due").textContent = due ? due : "";
+    $("tab-total").textContent = total ? total : "";
+  }
+
+  // ---------- review ----------
+  function buildQueue() {
+    const now = Date.now();
+    const due = S.words.filter((w) => isDue(w, now));
+    const old = due.filter((w) => statusOf(w) !== "new").sort((a, b) => dueOf(a) - dueOf(b));
+    const fresh = due.filter((w) => statusOf(w) === "new").sort((a, b) => (a.created ?? 0) - (b.created ?? 0)).slice(0, NEW_PER_SESSION);
+    // interleave new words among reviews
+    const q = [];
+    let i = 0, j = 0;
+    while (i < old.length || j < fresh.length) {
+      for (let k = 0; k < 2 && i < old.length; k++) q.push(old[i++].id);
+      if (j < fresh.length) q.push(fresh[j++].id);
+    }
+    return q;
+  }
+  const byId = (id) => S.words.find((w) => w.id === id);
+
+  function renderReview() {
+    const el = $("view-review");
+    if (!S.ready) { el.innerHTML = `<div class="review-intro"><p>単語帳を読み込んでいます…</p></div>`; return; }
+    const ses = S.session;
+    if (ses) {
+      while (ses.queue.length && !byId(ses.queue[0])) ses.queue.shift();
+      if (!ses.queue.length) { S.session = null; S.lastDone = ses.done; return renderReview(); }
+      return renderCard(el, ses);
+    }
+    const now = Date.now();
+    const due = S.words.filter((w) => isDue(w, now));
+    const newCount = due.filter((w) => statusOf(w) === "new").length;
+    const revCount = due.length - newCount;
+    const todayStart = startOfDay(now);
+    const doneToday = S.words.filter((w) => (w.last ?? 0) >= todayStart).length;
+    const next = S.words.filter((w) => !isDue(w, now)).sort((a, b) => dueOf(a) - dueOf(b))[0];
+
+    if (!S.words.length) {
+      el.innerHTML = `<div class="empty">
+        <h3>まだ単語がありません</h3>
+        <p>記事やドラマで知らない単語に出会ったら「追加」からストックしましょう。追加した単語は翌日から忘却曲線に合わせて復習に出てきます。</p>
+        <div><button class="btn primary" data-go="add">最初の単語を追加</button></div></div>`;
+      el.querySelector("[data-go]").onclick = () => setView("add");
+      return;
+    }
+    const lastDone = S.lastDone; S.lastDone = null;
+    const toQueue = Math.min(due.length, revCount + Math.min(newCount, NEW_PER_SESSION));
+    el.innerHTML = `<div class="review-intro">
+      ${lastDone ? `<div class="notice">おつかれさまでした。${lastDone}回答えました。</div>` : ""}
+      <h2>${toQueue ? `今日の復習は <span class="hlword">${toQueue}語</span>` : "今日の復習はすべて終わりました"}</h2>
+      <div class="mix">
+        <span>復習 <b>${revCount}</b></span>
+        <span>新しい単語 <b>${Math.min(newCount, NEW_PER_SESSION)}</b>${newCount > NEW_PER_SESSION ? `（残り${newCount - NEW_PER_SESSION}語は次回）` : ""}</span>
+        <span>今日答えた単語 <b>${doneToday}</b></span>
+      </div>
+      ${!toQueue && next ? `<p>次の復習は${dueLabel(next)}（${esc(next.word)}）。</p>` : ""}
+      <div class="row">
+        ${toQueue ? `<button class="btn primary" id="btn-start">復習をはじめる</button>` : ""}
+        <button class="btn" id="btn-cram">全単語からランダムに20語</button>
+      </div>
+      <label class="toggle"><input type="checkbox" id="f-reverse" ${S.reverse ? "checked" : ""}> 日本語 → 英語 で出題する</label>
+    </div>`;
+    $("btn-start")?.addEventListener("click", () => startSession(buildQueue()));
+    $("btn-cram").onclick = () => {
+      const ids = S.words.map((w) => w.id).sort(() => Math.random() - 0.5).slice(0, 20);
+      startSession(ids, true);
+    };
+    $("f-reverse").onchange = (e) => { S.reverse = e.target.checked; try { localStorage.setItem("ws.reverse", S.reverse ? "1" : "0"); } catch {} };
+  }
+
+  function startSession(queue, cram = false) {
+    if (!queue.length) return;
+    S.session = { queue, done: 0, total: queue.length, revealed: false, cram };
+    renderReview();
+  }
+
+  function renderCard(el, ses) {
+    const w = byId(ses.queue[0]);
+    const rev = S.reverse && w.meaning;
+    const pct = Math.round((ses.done / Math.max(ses.total, ses.done + ses.queue.length)) * 100);
+    const g = {};
+    for (const k of ["again", "hard", "good", "easy"]) g[k] = ivLabel(schedule(w, k).interval);
+    const speakBtn = canSpeak ? `<button class="say" data-say="${esc(w.word)}" aria-label="発音を聞く">▶ 発音</button>` : "";
+    const front = rev
+      ? `<div class="head"><span class="headword ja">${esc(w.meaning)}</span>${w.pos ? `<span class="pos">${esc(w.pos)}</span>` : ""}</div>`
+      : `<div class="head"><span class="headword">${esc(w.word)}</span>${w.ipa ? `<span class="ipa">${esc(w.ipa)}</span>` : ""}${speakBtn}</div>`;
+    const answer = ses.revealed ? `<div class="answer">
+        ${rev ? `<div class="head"><span class="headword">${esc(w.word)}</span>${w.ipa ? `<span class="ipa">${esc(w.ipa)}</span>` : ""}${speakBtn}</div>`
+              : `<div class="meaning">${w.pos ? `<span class="pos">${esc(w.pos)}</span> ` : ""}${esc(w.meaning) || "<span class='meta'>意味が未入力です</span>"}</div>`}
+        ${w.example ? `<div><div class="ex">${highlight(w.example, w.word)} ${canSpeak ? `<button class="say" data-say="${esc(w.example)}" aria-label="例文を聞く">▶</button>` : ""}</div>${w.exampleJa ? `<div class="exja">${esc(w.exampleJa)}</div>` : ""}</div>` : ""}
+        ${w.synonyms ? `<div class="meta">類義語 <b>${esc(w.synonyms)}</b></div>` : ""}
+        ${w.note ? `<div class="meta">${esc(w.note)}</div>` : ""}
+        ${w.source ? `<div class="meta">出会った場所：${esc(w.source)}</div>` : ""}
+      </div>` : `<div class="tap">タップ（またはスペースキー）で答えを見る</div>`;
+
+    el.innerHTML = `
+      <div class="sessionbar"><span>${ses.cram ? "ランダム復習" : "今日の復習"}　残り ${ses.queue.length}</span><button class="btn ghost" id="btn-quit">中断する</button></div>
+      <div class="progress"><i style="width:${pct}%"></i></div>
+      <article class="card ${ses.revealed ? "revealed" : ""}" id="card" tabindex="0" aria-live="polite">
+        ${w.isSample ? `<span class="pill sample" style="align-self:flex-start">サンプル</span>` : ""}
+        ${front}
+        ${answer}
+      </article>
+      ${ses.revealed ? `<div class="grades">
+        <button class="grade again" data-g="again"><span>もう一度</span><small>${g.again}</small></button>
+        <button class="grade hard" data-g="hard"><span>難しい</span><small>${g.hard}</small></button>
+        <button class="grade good" data-g="good"><span>覚えた</span><small>${g.good}</small></button>
+        <button class="grade easy" data-g="easy"><span>簡単</span><small>${g.easy}</small></button>
+      </div><div class="kbd">キーボード: 1 もう一度 · 2 難しい · 3 覚えた · 4 簡単　／　ボタンの下は次に出てくるまでの間隔</div>` : ""}`;
+
+    $("btn-quit").onclick = () => { S.lastDone = ses.done || null; S.session = null; renderReview(); };
+    $("card").onclick = (e) => { if (e.target.closest("[data-say]")) return; if (!ses.revealed) reveal(); };
+    el.querySelectorAll("[data-say]").forEach((b) => b.onclick = (e) => { e.stopPropagation(); speak(b.dataset.say); });
+    el.querySelectorAll("[data-g]").forEach((b) => b.onclick = () => grade(b.dataset.g));
+  }
+  function highlight(text, word) {
+    const safe = esc(text);
+    const stem = String(word || "").trim().split(/\s+/)[0];
+    if (!stem || stem.length < 3) return safe;
+    const base = stem.length > 4 ? stem.replace(/(e|y|ed|ing|s)$/i, "") : stem;
+    const re = new RegExp("\\b(" + base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "[a-z]*)", "gi");
+    return safe.replace(re, "<mark>$1</mark>");
+  }
+  function reveal() {
+    const ses = S.session; if (!ses) return;
+    ses.revealed = true; renderReview();
+  }
+  async function grade(g) {
+    const ses = S.session; if (!ses || !ses.revealed) return;
+    const id = ses.queue.shift();
+    const w = byId(id);
+    ses.done++; ses.revealed = false;
+    if (g === "again") ses.queue.push(id);
+    renderReview();
+    if (!w || !S.canWrite) return;
+    try { await S.col.doc(id).update(schedule(w, g)); }
+    catch (e) { notice(dbErr(e), true); }
+  }
+  document.addEventListener("keydown", (e) => {
+    if (S.view !== "review" || !S.session) return;
+    if (e.target.matches("input, textarea, select")) return;
+    if (!S.session.revealed && (e.key === " " || e.key === "Enter")) { e.preventDefault(); reveal(); return; }
+    const map = { "1": "again", "2": "hard", "3": "good", "4": "easy" };
+    if (S.session.revealed && map[e.key]) { e.preventDefault(); grade(map[e.key]); }
+  });
+
+  // ---------- AI lookup ----------
+  const ONE_PROMPT = (word) => `You are an English–Japanese learner's dictionary. The learner is a Japanese native speaker collecting English words they did not know.
+For the English word or phrase "${word}", reply with only one JSON object, no other text:
+{"word": "the headword, corrected for spelling if needed, lowercase unless it is a proper noun",
+ "meaning": "主な日本語訳。最もよく使う意味から、2〜3個まで「、」で区切る",
+ "pos": "品詞を日本語で（名詞・動詞・形容詞・副詞・句動詞・イディオムなど）",
+ "ipa": "American IPA between slashes",
+ "example": "one natural, everyday English example sentence using the word",
+ "exampleJa": "その例文の自然な日本語訳",
+ "synonyms": "2-3 English synonyms, comma separated, or empty string",
+ "note": "使い方のコツを日本語で1文（ニュアンス、よく一緒に使う語、語源など）"}`;
+  const BULK_PROMPT = (words) => `You are an English–Japanese learner's dictionary for a Japanese native speaker.
+For each English word or phrase in this list, give a dictionary entry. Reply with only a JSON array, one object per input item, in the same order, no other text.
+Each object: {"word": "the input item exactly as given", "meaning": "主な日本語訳、2〜3個まで「、」区切り", "pos": "品詞（日本語）", "ipa": "American IPA between slashes", "example": "one natural English example sentence", "exampleJa": "例文の日本語訳", "synonyms": "2-3 English synonyms, comma separated", "note": "使い方のコツを日本語で1文"}
+List:
+${words.map((w) => "- " + w).join("\n")}`;
+  const AI_FIELDS = ["meaning", "pos", "ipa", "example", "exampleJa", "synonyms", "note"];
+  function aiErr(e) {
+    const c = e?.code;
+    if (c === "not_granted") return "AIの利用が許可されませんでした。手で入力して保存できます。";
+    if (c === "rate_limited") return "AIへの問い合わせが混み合っています。少し待ってからもう一度お試しください。";
+    if (c === "cancelled") return "";
+    return "AIから結果を受け取れませんでした。もう一度お試しいただくか、手で入力してください。";
+  }
+
+  async function aiLookup() {
+    const word = $("f-word").value.trim();
+    const st = $("ai-status");
+    if (!word) { st.className = "status bad"; st.textContent = "先に英単語を入力してください。"; $("f-word").focus(); return; }
+    const btn = $("btn-ai"); btn.disabled = true;
+    st.className = "status"; st.textContent = `「${word}」を調べています…`;
+    try {
+      const r = await S.sample.json(ONE_PROMPT(word), { modelTier: "quick" });
+      if (!r || typeof r !== "object") throw { code: "invalid_json" };
+      for (const k of AI_FIELDS) {
+        const el = $("f-" + k);
+        if (r[k] && !el.value.trim()) el.value = String(r[k]);
+      }
+      if (r.word && norm(r.word) !== norm(word)) st.textContent = `入力しました。綴りは「${r.word}」の可能性があります。`;
+      else st.textContent = "入力しました。内容を確認してからストックしてください。";
+      st.className = "status ok";
+    } catch (e) {
+      st.className = "status bad"; st.textContent = aiErr(e);
+    } finally { btn.disabled = false; }
+  }
+  $("btn-ai").onclick = aiLookup;
+
+  // ---------- add one ----------
+  const FIELDS = ["word", "meaning", "pos", "ipa", "example", "exampleJa", "synonyms", "source", "note"];
+  const findWord = (word) => S.words.find((w) => norm(w.word) === norm(word));
+  function newDoc(data) {
+    const now = Date.now();
+    return { ...data, created: now, due: now, ease: 2.5, interval: 0, reps: 0, lapses: 0 };
+  }
+  $("f-word").addEventListener("input", () => {
+    const hit = findWord($("f-word").value);
+    const st = $("save-status");
+    if (hit) { st.className = "status bad"; st.textContent = `「${hit.word}」はすでにストックされています（${hit.meaning || "意味未入力"}）。`; }
+    else if (st.textContent.startsWith("「")) { st.textContent = ""; }
+  });
+  $("form-one").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const st = $("save-status");
+    if (!S.col) { st.className = "status bad"; st.textContent = "保存先に接続できていません。"; return; }
+    const data = {};
+    for (const k of FIELDS) data[k] = $("f-" + k).value.trim();
+    if (!data.word) return;
+    if (findWord(data.word)) { st.className = "status bad"; st.textContent = `「${data.word}」はすでにストックされています。`; return; }
+    $("btn-save").disabled = true;
+    try {
+      await S.col.add(newDoc(data));
+      st.className = "status ok"; st.textContent = `「${data.word}」をストックしました。`;
+      const keepSource = $("f-source").value;
+      $("form-one").reset(); $("f-source").value = keepSource; $("ai-status").textContent = "";
+      $("f-word").focus();
+    } catch (err) { st.className = "status bad"; st.textContent = dbErr(err); }
+    finally { $("btn-save").disabled = false; }
+  });
+  $("form-one").addEventListener("reset", () => { $("ai-status").textContent = ""; $("save-status").textContent = ""; });
+  $("f-word").addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && !$("btn-ai").hidden && !$("f-meaning").value.trim()) { e.preventDefault(); aiLookup(); }
+  });
+
+  // ---------- add bulk ----------
+  function setMode(bulk) {
+    $("mode-one").setAttribute("aria-pressed", String(!bulk));
+    $("mode-bulk").setAttribute("aria-pressed", String(bulk));
+    $("form-one").hidden = bulk; $("form-bulk").hidden = !bulk;
+  }
+  $("mode-one").onclick = () => setMode(false);
+  $("mode-bulk").onclick = () => setMode(true);
+
+  function parseBulk(text) {
+    const out = [], seen = new Set();
+    for (const raw of text.split(/\r?\n/)) {
+      const line = raw.trim(); if (!line) continue;
+      const m = line.match(/^(.+?)\s*(?:=|\t|,|，|：|:)\s*(.+)$/);
+      const word = (m ? m[1] : line).trim().replace(/^[-・*•\d.)\s]+/, "");
+      if (!word || seen.has(norm(word))) continue;
+      seen.add(norm(word));
+      out.push({ word, meaning: m ? m[2].trim() : "" });
+    }
+    return out;
+  }
+  $("form-bulk").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const st = $("bulk-status");
+    if (!S.col) { st.className = "status bad"; st.textContent = "保存先に接続できていません。"; return; }
+    const items = parseBulk($("f-bulk").value);
+    const dup = items.filter((i) => findWord(i.word));
+    const todo = items.filter((i) => !findWord(i.word));
+    if (!todo.length) { st.className = "status bad"; st.textContent = items.length ? "すべてストック済みの単語でした。" : "単語を1行に1つずつ入力してください。"; return; }
+    const source = $("f-bulk-source").value.trim();
+    $("btn-bulk").disabled = true; st.className = "status";
+    let aiNote = "";
+    const useAi = S.sample && $("f-bulk-ai").checked;
+    const need = useAi ? todo.filter((i) => !i.meaning) : [];
+    for (let k = 0; k < need.length; k += 25) {
+      const chunk = need.slice(k, k + 25);
+      st.textContent = `AIで${chunk.length}語の意味を調べています…（${k + chunk.length}/${need.length}）`;
+      try {
+        const arr = await S.sample.json(BULK_PROMPT(chunk.map((c) => c.word)), { modelTier: "quick" });
+        const list = Array.isArray(arr) ? arr : [];
+        chunk.forEach((c, idx) => {
+          const r = list.find((x) => x && norm(x.word) === norm(c.word)) || list[idx];
+          if (r && typeof r === "object") for (const f of AI_FIELDS) if (r[f]) c[f] = String(r[f]);
+        });
+      } catch (err) { aiNote = aiErr(err) + " 意味が空の単語はあとで単語帳から編集できます。"; break; }
+    }
+    let ok = 0;
+    for (const it of todo) {
+      st.textContent = `ストックしています…（${ok + 1}/${todo.length}）`;
+      const data = {}; for (const k of FIELDS) data[k] = (it[k] || "").trim();
+      if (source) data.source = source;
+      try { await S.col.add(newDoc(data)); ok++; }
+      catch (err) { st.className = "status bad"; st.textContent = dbErr(err); $("btn-bulk").disabled = false; return; }
+    }
+    st.className = "status ok";
+    st.textContent = `${ok}語をストックしました。` + (dup.length ? ` ストック済みの${dup.length}語（${dup.slice(0, 5).map((d) => d.word).join(", ")}${dup.length > 5 ? " ほか" : ""}）は飛ばしました。` : "") + (aiNote ? " " + aiNote : "");
+    $("f-bulk").value = "";
+    $("btn-bulk").disabled = false;
+  });
+
+  // ---------- list ----------
+  document.querySelectorAll(".chip").forEach((c) => c.onclick = () => {
+    S.filter = c.dataset.f;
+    document.querySelectorAll(".chip").forEach((x) => x.setAttribute("aria-pressed", String(x === c)));
+    renderList();
+  });
+  $("q").addEventListener("input", (e) => { S.q = e.target.value; renderList(); });
+  $("sort").addEventListener("change", (e) => { S.sort = e.target.value; renderList(); });
+
+  function visibleWords() {
+    const now = Date.now(), q = norm(S.q);
+    let ws = S.words.filter((w) => {
+      if (S.filter === "due" && !isDue(w, now)) return false;
+      if (["new", "learning", "mastered"].includes(S.filter) && statusOf(w) !== S.filter) return false;
+      if (q && !(norm(w.word).includes(q) || norm(w.meaning).includes(q) || norm(w.note).includes(q) || norm(w.source).includes(q))) return false;
+      return true;
+    });
+    const cmp = {
+      new: (a, b) => (b.created ?? 0) - (a.created ?? 0),
+      old: (a, b) => (a.created ?? 0) - (b.created ?? 0),
+      az: (a, b) => norm(a.word).localeCompare(norm(b.word)),
+      due: (a, b) => dueOf(a) - dueOf(b),
+      hard: (a, b) => ((b.lapses ?? 0) - (a.lapses ?? 0)) || ((a.ease ?? 2.5) - (b.ease ?? 2.5)),
+    }[S.sort];
+    return ws.sort(cmp);
+  }
+
+  function renderList() {
+    if (S.view !== "list" || S.editing) return;
+    const ul = $("words");
+    if (!S.ready) { ul.innerHTML = `<li class="empty"><p>単語帳を読み込んでいます…</p></li>`; return; }
+    const ws = visibleWords();
+    $("list-count").textContent = S.words.length ? `${ws.length} / ${S.words.length}語` : "";
+    $("btn-clear-samples").hidden = !S.canWrite || !S.words.some((w) => w.isSample);
+    $("btn-export").hidden = !S.downloads || !S.words.length;
+    if (!S.words.length) {
+      ul.innerHTML = `<li class="empty"><h3>単語帳は空です</h3><p>「追加」タブから単語をストックすると、ここに一覧で並びます。検索、絞り込み、編集もここでできます。</p></li>`;
+      return;
+    }
+    if (!ws.length) { ul.innerHTML = `<li class="empty"><p>条件に合う単語がありません。</p></li>`; return; }
+    ul.innerHTML = ws.map((w) => {
+      const st = statusOf(w);
+      const open = S.open === w.id;
+      return `<li>
+        <button class="wrow" data-open="${w.id}" aria-expanded="${open}">
+          <span class="w">${esc(w.word)}</span>
+          <span class="m">${w.pos ? esc(w.pos) + "　" : ""}${esc(w.meaning) || "意味未入力"}</span>
+          <span class="st">${w.isSample ? `<span class="pill sample">サンプル</span>` : `<span class="pill ${st}">${STATUS_JA[st]}</span>`}<span class="due">復習 ${dueLabel(w)}</span></span>
+        </button>
+        ${open ? detailHtml(w) : ""}
+      </li>`;
+    }).join("");
+    ul.querySelectorAll("[data-open]").forEach((b) => b.onclick = () => {
+      S.open = S.open === b.dataset.open ? null : b.dataset.open; S.confirmDel = null; renderList();
+    });
+    bindDetail(ul);
+  }
+
+  function detailHtml(w) {
+    const last = w.last ? new Date(w.last).toLocaleDateString("ja-JP") : "未回答";
+    const added = w.created ? new Date(w.created).toLocaleDateString("ja-JP") : "";
+    return `<div class="detail">
+      <div class="head">${w.ipa ? `<span class="ipa">${esc(w.ipa)}</span>` : ""}${canSpeak ? `<button class="say" data-say="${esc(w.word)}">▶ 発音</button>` : ""}</div>
+      ${w.example ? `<div><div class="ex">${highlight(w.example, w.word)}</div>${w.exampleJa ? `<div class="exja">${esc(w.exampleJa)}</div>` : ""}</div>` : ""}
+      ${w.synonyms ? `<div class="meta">類義語 <b>${esc(w.synonyms)}</b></div>` : ""}
+      ${w.note ? `<div class="meta">${esc(w.note)}</div>` : ""}
+      ${w.source ? `<div class="meta">出会った場所：${esc(w.source)}</div>` : ""}
+      <div class="meta">追加 ${added}　最終復習 ${last}　間隔 ${ivLabel(w.interval ?? 0)}　忘れた回数 ${w.lapses ?? 0}</div>
+      ${S.canWrite ? (S.confirmDel === w.id
+        ? `<div class="confirm">「${esc(w.word)}」を削除します。元に戻せません。<button class="btn danger" data-del="${w.id}">削除する</button><button class="btn ghost" data-cancel>やめる</button></div>`
+        : `<div class="row"><button class="btn" data-edit="${w.id}">編集</button><button class="btn ghost" data-reset="${w.id}">学習状況をリセット</button><button class="btn ghost danger" data-askdel="${w.id}">削除</button></div>`) : ""}
+    </div>`;
+  }
+
+  function bindDetail(root) {
+    root.querySelectorAll("[data-say]").forEach((b) => b.onclick = () => speak(b.dataset.say));
+    root.querySelectorAll("[data-askdel]").forEach((b) => b.onclick = () => { S.confirmDel = b.dataset.askdel; renderList(); });
+    root.querySelectorAll("[data-cancel]").forEach((b) => b.onclick = () => { S.confirmDel = null; renderList(); });
+    root.querySelectorAll("[data-del]").forEach((b) => b.onclick = async () => {
+      b.disabled = true;
+      try { await S.col.doc(b.dataset.del).delete(); S.open = null; S.confirmDel = null; }
+      catch (e) { notice(dbErr(e), true); b.disabled = false; }
+    });
+    root.querySelectorAll("[data-reset]").forEach((b) => b.onclick = async () => {
+      b.disabled = true;
+      try { await S.col.doc(b.dataset.reset).update({ ease: 2.5, interval: 0, reps: 0, lapses: 0, due: Date.now(), last: null }); }
+      catch (e) { notice(dbErr(e), true); }
+      b.disabled = false;
+    });
+    root.querySelectorAll("[data-edit]").forEach((b) => b.onclick = () => openEditor(b.dataset.edit, b.closest("li")));
+  }
+
+  function openEditor(id, li) {
+    const w = byId(id); if (!w) return;
+    S.editing = id;
+    const f = (k, label, tag = "input") => tag === "textarea"
+      ? `<div class="field"><label for="e-${k}">${label}</label><textarea id="e-${k}" rows="2">${esc(w[k])}</textarea></div>`
+      : `<div class="field"><label for="e-${k}">${label}</label><input id="e-${k}" value="${esc(w[k])}"></div>`;
+    li.querySelector(".detail").innerHTML = `<form class="panel" id="edit-form" autocomplete="off">
+      ${f("word", "英単語・フレーズ")}${f("meaning", "意味")}
+      <div class="grid2">${f("pos", "品詞")}${f("ipa", "発音記号")}</div>
+      ${f("example", "例文", "textarea")}${f("exampleJa", "例文の訳")}
+      <div class="grid2">${f("synonyms", "類義語")}${f("source", "出会った場所")}</div>
+      ${f("note", "メモ", "textarea")}
+      <div class="row"><button class="btn primary" type="submit">保存</button><button class="btn ghost" type="button" id="edit-cancel">キャンセル</button></div>
+      <div class="status" id="edit-status"></div></form>`;
+    $("e-word").focus();
+    $("edit-cancel").onclick = () => { S.editing = null; renderList(); };
+    $("edit-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const data = {}; for (const k of FIELDS) data[k] = $("e-" + k).value.trim();
+      if (!data.word) return;
+      const other = S.words.find((x) => x.id !== id && norm(x.word) === norm(data.word));
+      if (other) { $("edit-status").className = "status bad"; $("edit-status").textContent = `「${other.word}」は別の項目として登録済みです。`; return; }
+      data.isSample = false;
+      try { await S.col.doc(id).update(data); S.editing = null; renderList(); }
+      catch (err) { $("edit-status").className = "status bad"; $("edit-status").textContent = dbErr(err); }
+    };
+  }
+
+  $("btn-clear-samples").onclick = async () => {
+    const b = $("btn-clear-samples"); b.disabled = true;
+    try { for (const w of S.words.filter((w) => w.isSample)) await S.col.doc(w.id).delete(); }
+    catch (e) { notice(dbErr(e), true); }
+    b.disabled = false;
+  };
+
+  $("btn-export").onclick = async () => {
+    const cols = ["word", "meaning", "pos", "ipa", "example", "exampleJa", "synonyms", "source", "note", "status", "interval", "lapses", "created"];
+    const cell = (v) => { const s = String(v ?? ""); return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s; };
+    const rows = [...S.words].sort((a, b) => (a.created ?? 0) - (b.created ?? 0)).map((w) => cols.map((c) =>
+      c === "status" ? STATUS_JA[statusOf(w)] : c === "created" ? (w.created ? new Date(w.created).toISOString().slice(0, 10) : "") : w[c]).map(cell).join(","));
+    const csv = "﻿" + [cols.join(","), ...rows].join("\r\n");
+    try { await S.downloads.save({ filename: `word-stock-${new Date().toISOString().slice(0, 10)}.csv`, data: csv }); }
+    catch (e) { if (e?.code === "unavailable") $("btn-export").hidden = true; }
+  };
+
+  // ---------- render all ----------
+  function renderAll() {
+    renderStats();
+    if (S.view === "review") renderReview();
+    if (S.view === "list") renderList();
+  }
+
+  // ---------- boot ----------
+  setView(S.view);
+  renderStats();
+  (async () => {
+    const c = window.claude;
+    if (!c || typeof c.use !== "function") {
+      notice("このページは claude.ai で開くと単語を保存できます。", true);
+      return;
+    }
+    const use = (n) => c.use(n).catch(() => null);
+    const [db, user, sample, downloads] = await Promise.all([use("db"), use("user"), use("sample"), use("downloads")]);
+    S.sample = sample; S.downloads = downloads;
+    if (sample) { $("btn-ai").hidden = false; $("bulk-ai-wrap").hidden = false; }
+    if (!db) {
+      notice("単語の保存先に接続できませんでした。claude.ai にサインインした状態で開き直してください。", true);
+      return;
+    }
+    S.db = db; S.col = db.collection("words");
+    if (user) { const w = await user.can("data.write"); S.canWrite = w !== false; }
+    if (!S.canWrite) notice("閲覧のみのモードです。単語の追加や復習結果の保存はできません。");
+    S.col.onSnapshot((snap) => {
+      S.words = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      S.ready = true;
+      renderAll();
+    }, (e) => {
+      if (e?.code !== "revoked") notice("単語帳の読み込みが止まりました。ページを開き直してください。", true);
+    });
+  })();
+})();
+</script>
