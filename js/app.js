@@ -309,6 +309,28 @@
     setTimeout(function () { el.remove(); }, 1800);
   }
 
+  // 画面内の確認ダイアログ（confirm/alert が使えない環境向け）
+  function dialog(msg, opts) {
+    opts = opts || {};
+    var wrap = document.createElement('div');
+    wrap.className = 'dialog-wrap';
+    wrap.innerHTML = '<div class="dialog card" role="dialog" aria-modal="true"><p style="white-space:pre-line">' + esc(msg) + '</p>' +
+      (opts.body || '') +
+      '<div class="row" style="justify-content:flex-end;margin-top:14px">' +
+      (opts.onYes ? '<button class="btn ghost" data-d="no">キャンセル</button><button class="btn' + (opts.danger ? ' danger' : '') + '" data-d="yes">' + esc(opts.yes || 'OK') + '</button>' : '<button class="btn" data-d="no">閉じる</button>') +
+      '</div></div>';
+    document.body.appendChild(wrap);
+    wrap.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-d]');
+      if (!b && e.target !== wrap) return;
+      wrap.remove();
+      if (b && b.getAttribute('data-d') === 'yes' && opts.onYes) opts.onYes();
+    });
+    var first = wrap.querySelector('[data-d="yes"]') || wrap.querySelector('[data-d]');
+    if (first) first.focus();
+    return wrap;
+  }
+
   function dailyTerm() {
     if (!TERMS.length) return null;
     var d = new Date();
@@ -1007,6 +1029,7 @@
       '<p class="small muted">解いた問題 ' + p.answered + ' / ' + p.total + '、最新の正解 ' + p.correct + ' 問、お気に入り ' + state.saved.length + ' 件。記録はこの端末のブラウザにだけ保存されます。</p>' +
       '<div class="row"><button class="btn ghost" data-action="export">記録をファイルに保存</button>' +
       '<label class="btn ghost" style="cursor:pointer">記録を読み込む<input type="file" id="import-record" accept=".json,application/json" hidden></label>' +
+      '<button class="btn ghost" data-action="paste-record">記録を貼り付けて読み込む</button>' +
       '<button class="btn danger" data-action="reset-stats">クイズ記録を消す</button></div></section>' +
       '<section class="card stack-sm"><h2>資料（コンテンツ）の追加</h2>' +
       '<p class="small muted">決められた形式のJSONファイル（1セクション、または複数セクションの配列）を読み込むと、この端末に用語とクイズが追加されます。形式は docs/CONTENT_GUIDE.md を参照してください。全員に配るには content/sections/ に置いて tools/build.py を実行します。</p>' +
@@ -1085,34 +1108,53 @@
       }
       buildIndex();
       render();
-      if (errors.length) alert('読み込めなかったもの:\n' + errors.join('\n'));
+      if (errors.length) dialog('読み込めなかったもの:\n' + errors.join('\n'));
       if (added) toast(added + ' セクションを追加しました');
     });
   }
 
   function importRecord(file) {
     if (!file) return;
-    readFile(file).then(function (text) {
-      var data;
-      try { data = JSON.parse(text); } catch (e) { alert('記録ファイルを読めませんでした'); return; }
-      if (!data || typeof data !== 'object' || !data.stats) { alert('学習記録のファイルではありません'); return; }
-      Object.keys(data.stats).forEach(function (k) { state.stats[k] = data.stats[k]; });
-      (data.saved || []).forEach(function (k) { if (state.saved.indexOf(k) < 0) state.saved.push(k); });
-      saveState();
-      render();
-      toast('学習記録を読み込みました');
-    });
+    readFile(file).then(importRecordText);
   }
 
   function exportRecord() {
     var data = { app: '水処理ナビ', exported: new Date().toISOString(), stats: state.stats, saved: state.saved };
-    var blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'water-navi-record-' + new Date().toISOString().slice(0, 10) + '.json';
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+    var text = JSON.stringify(data);
+    if (!window.WT_EMBED) {
+      try {
+        var blob = new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' });
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'water-navi-record-' + new Date().toISOString().slice(0, 10) + '.json';
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 0);
+      } catch (e) { /* 下のコピー欄で代用 */ }
+    }
+    var w = dialog('学習記録です。下の文字をコピーしてメモ等に保存してください。別の端末では「記録を貼り付けて読み込む」で戻せます。', {
+      body: '<textarea id="rec-text" readonly style="width:100%;height:120px;margin-top:8px;font-size:.75rem">' + esc(text) + '</textarea>' +
+        '<button class="btn ghost" id="rec-copy" style="margin-top:8px">コピー</button>'
+    });
+    w.querySelector('#rec-copy').addEventListener('click', function (e) {
+      e.stopPropagation();
+      var ta = w.querySelector('#rec-text');
+      var done = function () { toast('コピーしました'); };
+      try {
+        navigator.clipboard.writeText(text).then(done, function () { ta.select(); });
+      } catch (err) { ta.select(); }
+    });
+  }
+
+  function importRecordText(text) {
+    var data;
+    try { data = JSON.parse(text); } catch (e) { dialog('記録を読めませんでした。コピーした文字をそのまま貼り付けてください。'); return; }
+    if (!data || typeof data !== 'object' || !data.stats) { dialog('学習記録ではありません'); return; }
+    Object.keys(data.stats).forEach(function (k) { state.stats[k] = data.stats[k]; });
+    (data.saved || []).forEach(function (k) { if (state.saved.indexOf(k) < 0) state.saved.push(k); });
+    saveState();
+    render();
+    toast('学習記録を読み込みました');
   }
 
   function viewNotFound() {
@@ -1167,21 +1209,29 @@
       case 'export':
         exportRecord();
         break;
+      case 'paste-record': {
+        var pw = dialog('保存しておいた学習記録の文字を貼り付けてください。', {
+          body: '<textarea id="rec-in" style="width:100%;height:120px;margin-top:8px;font-size:.75rem"></textarea>',
+          yes: '読み込む',
+          onYes: function () { importRecordText(pw.querySelector('#rec-in').value); }
+        });
+        pw.querySelector('#rec-in').focus();
+        break;
+      }
       case 'reset-stats':
-        if (confirm('クイズの記録（正解・不正解の履歴）をすべて消します。よろしいですか？')) {
-          state.stats = {};
-          saveState();
-          render();
-          toast('クイズの記録を消しました');
-        }
+        dialog('クイズの記録（正解・不正解の履歴）をすべて消します。よろしいですか？', {
+          yes: '消す', danger: true,
+          onYes: function () { state.stats = {}; saveState(); render(); toast('クイズの記録を消しました'); }
+        });
         break;
       case 'remove-imported':
-        if (confirm('追加した資料「' + secLabel(SEC[id] || { title: id }) + '」を削除しますか？')) {
-          state.imported = state.imported.filter(function (s) { return s.id !== id; });
-          saveState();
-          buildIndex();
-          render();
-        }
+        dialog('追加した資料「' + secLabel(SEC[id] || { title: id }) + '」を削除しますか？', {
+          yes: '削除', danger: true,
+          onYes: function () {
+            state.imported = state.imported.filter(function (s) { return s.id !== id; });
+            saveState(); buildIndex(); render();
+          }
+        });
         break;
     }
   });
@@ -1220,7 +1270,7 @@
   render();
 
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol) &&
-      document.documentElement.getAttribute('data-single-file') !== '1') {
+      document.documentElement.getAttribute('data-single-file') !== '1' && !window.WT_SINGLE) {
     navigator.serviceWorker.register('sw.js').catch(function () { /* オフライン対応なしで動作を続ける */ });
   }
 })();

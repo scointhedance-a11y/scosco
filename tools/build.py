@@ -136,10 +136,20 @@ def main():
     html = re.sub(r'<script src="([^"]+)"></script>', inline_script, html)
     html = re.sub(r'<link rel="manifest"[^>]*>\n?', "", html)
     html = html.replace('data-single-file="0"', 'data-single-file="1"')
+    html = html.replace("<script>\nwindow.addEventListener('error'", "<script>window.WT_SINGLE = true;</script>\n<script>\nwindow.addEventListener('error'", 1)
     out = ROOT / "dist" / "water-app.html"
     out.parent.mkdir(exist_ok=True)
     out.write_text(html, encoding="utf-8")
     print(f"書き出し: dist/water-app.html ({out.stat().st_size // 1024} KB)")
+
+    # claude.ai アーティファクト公開用（doctype/html/head/body は公開時に付くので外す。confirm・ダウンロード不可の環境）
+    art = html.replace("<script>\nwindow.addEventListener('error'", "<script>window.WT_SINGLE = true; window.WT_EMBED = true;</script>\n<script>\nwindow.addEventListener('error'", 1)
+    art = re.sub(r"<!doctype html>\s*<html[^>]*>\s*<head>\s*", "", art, count=1, flags=re.I)
+    art = re.sub(r'<meta charset="utf-8">\s*<meta name="viewport"[^>]*>\s*', "", art, count=1)
+    art = re.sub(r"</head>\s*<body>\s*", "", art, count=1)
+    art = re.sub(r"\s*</body>\s*</html>\s*$", "\n", art)
+    (ROOT / "dist" / "artifact.html").write_text(art, encoding="utf-8")
+    print("書き出し: dist/artifact.html")
 
 
 if __name__ == "__main__":
