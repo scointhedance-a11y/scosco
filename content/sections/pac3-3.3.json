@@ -1,0 +1,395 @@
+{
+  "id": "pac3-3.3",
+  "book": "PAC-3 冷却水技術マニュアル",
+  "section": "3.3",
+  "title": "開放循環冷却水系（冷却塔と基本計算）",
+  "titleEn": "Open Recirculating Systems",
+  "summary": [
+    "冷却塔は湿式（蒸発式）・乾式・ハイブリッド（湿乾式）に分類される。湿式は空気の流れ方で向流（カウンターフロー）・直交流（クロスフロー）、通風方式で機械通風（押込・誘引）・自然通風に分かれる。",
+    "主な構成部品：散水装置（デッキ・ノズル）、充填材（スプラッシュ型／フィルム型）、ピット（ベイスン）、エリミネータ、ルーバ、セル、ファン。",
+    "冷却塔は理論上湿球温度までしか冷やせない。冷却水出口温度と湿球温度の差をアプローチ、出入口温度差をレンジ（ΔT）という。",
+    "基本の水収支：補給水量 MU = ブロー量 BD + 蒸発量 E。濃縮倍数 CR = 循環水濃度 ÷ 補給水濃度 = MU ÷ BD。",
+    "蒸発量の概算：ΔT 5.56℃（10°F）ごとに循環水量の約0.85%。BD = E ÷ (CR − 1)、MU = E × CR ÷ (CR − 1)。",
+    "保有水量は推測せずトレーサー試験（TRASAR等）で求める。半減期（HTI）= 0.693 × 保有水量 ÷ ブロー量。",
+    "サイドストリームろ過は従来、循環水量の1〜5%が目安。SSを1〜3日で95%除去するには保有水量の約3倍の水をろ過する必要がある。"
+  ],
+  "terms": [
+    {
+      "id": "crossflow-counterflow",
+      "term": "向流式・直交流式冷却塔",
+      "reading": "こうりゅうしき ちょっこうりゅうしき",
+      "en": "Counterflow / Crossflow tower",
+      "aliases": ["カウンターフロー", "クロスフロー", "向流", "直交流"],
+      "definition": "湿式冷却塔の空気の流し方による分類。向流式は落下する水に対して空気が下から上へ流れ、直交流式は落下する水を横切るように空気が流れる。",
+      "related": ["cooling-tower", "mechanical-draft"]
+    },
+    {
+      "id": "mechanical-draft",
+      "term": "機械通風（押込通風・誘引通風）",
+      "reading": "きかいつうふう",
+      "en": "Mechanical draft (Forced / Induced draft)",
+      "aliases": ["押込通風", "誘引通風", "フォースドドラフト", "インデュースドドラフト"],
+      "definition": "ファンで空気を流す冷却塔。誘引通風（induced）は塔上部のファンで空気を吸い出し、押込通風（forced）は空気を押し込む。産業用で最も一般的なのは塔頂にプロペラファンを設けた誘引通風式。",
+      "field": "押込通風は乾いた空気を扱うのでファン羽根の腐食は少ないが、排気の湿った空気が吸込側に回り込み（リサーキュレーション）、冬季にファン周りが着氷しやすい。",
+      "related": ["natural-draft", "cooling-tower"]
+    },
+    {
+      "id": "natural-draft",
+      "term": "自然通風冷却塔",
+      "reading": "しぜんつうふう",
+      "en": "Natural draft tower",
+      "aliases": ["双曲線冷却塔", "ハイパボリック"],
+      "definition": "塔内外の空気密度差で通風する冷却塔。双曲線型（ハイパボリック）と大気式がある。ファンが不要で運転・保守費がかからず、白煙（プルーム）の再循環も少ない。主に発電所で使用。",
+      "related": ["mechanical-draft", "cooling-tower"]
+    },
+    {
+      "id": "film-fill",
+      "term": "フィルム型充填材",
+      "reading": "ふぃるむがたじゅうてんざい",
+      "en": "Film fill (non-splash fill)",
+      "aliases": ["フィルムフィル", "非スプラッシュ型充填材"],
+      "definition": "水を液滴にせず薄い膜として広い面積に流下させる充填材。圧損が小さく通風量を増やせる（低L/G）ため高効率。",
+      "field": "油や微生物で汚れると目詰まりしやすい。重油汚染や微生物汚染の可能性を考慮して選定する。",
+      "related": ["tower-fill", "splash-fill"]
+    },
+    {
+      "id": "splash-fill",
+      "term": "スプラッシュ型充填材",
+      "reading": "すぷらっしゅがたじゅうてんざい",
+      "en": "Splash fill",
+      "aliases": ["スプラッシュフィル", "スプラッシュバー"],
+      "definition": "木やプラスチックの桟（バー）を段状に並べ、落下する水を何度も液滴に砕いて蒸発を促す充填材。",
+      "related": ["tower-fill", "film-fill"]
+    },
+    {
+      "id": "drift",
+      "term": "飛散水（ドリフト）",
+      "reading": "ひさんすい",
+      "en": "Drift",
+      "aliases": ["ドリフト", "キャリーオーバー（冷却塔）", "飛散"],
+      "definition": "冷却塔の排気に同伴して塔外に出ていく水滴。蒸発と違い溶解物を含んだまま失われるため、計算上はブロー量に含める。",
+      "related": ["drift-eliminator", "blowdown"]
+    },
+    {
+      "id": "drift-eliminator",
+      "term": "エリミネータ（飛散防止装置）",
+      "reading": "えりみねーた",
+      "en": "Drift eliminator",
+      "aliases": ["デミスタ", "エリミ"],
+      "definition": "冷却塔上部で排気の流れを急激に曲げ、慣性で水滴を板に衝突させて回収する装置。",
+      "related": ["drift", "cooling-tower"]
+    },
+    {
+      "id": "louver",
+      "term": "ルーバ",
+      "reading": "るーば",
+      "en": "Louver",
+      "aliases": ["ルーバー"],
+      "definition": "冷却塔の空気取入口の外側に斜めに設けた板。水しぶきが塔外に出るのを防ぎ、直交流式では空気の流れを均一にする。",
+      "related": ["cooling-tower"]
+    },
+    {
+      "id": "cold-well",
+      "term": "コールドウェル",
+      "reading": "こーるどうぇる",
+      "en": "Cold well",
+      "aliases": ["吸込ピット"],
+      "definition": "冷却塔ピットのうち、スクリーンと循環ポンプが設置される部分。ポンプの吸込水頭を確保するため深くなっていることが多い。",
+      "related": ["tower-basin"]
+    },
+    {
+      "id": "wet-bulb-temperature",
+      "term": "湿球温度",
+      "reading": "しっきゅうおんど",
+      "en": "Wet-bulb temperature",
+      "aliases": ["WBT"],
+      "definition": "蒸発冷却で到達できる理論上の最低温度。湿度が高いほど乾球温度に近づき、蒸発量が減る。湿式冷却塔は理論上湿球温度までしか水を冷やせない。",
+      "related": ["approach-temperature", "cooling-range"]
+    },
+    {
+      "id": "approach-temperature",
+      "term": "アプローチ",
+      "reading": "あぷろーち",
+      "en": "Approach temperature",
+      "aliases": ["アプローチ温度"],
+      "definition": "冷却塔出口（冷水）温度と湿球温度の差。湿球温度まで冷やすには巨大な塔が必要なため、実際には湿球温度に近い温度を目標に設計される。",
+      "formula": "アプローチ = 冷却塔出口水温 − 湿球温度",
+      "related": ["wet-bulb-temperature", "cooling-range"]
+    },
+    {
+      "id": "cooling-range",
+      "term": "レンジ（冷却塔温度差 ΔT）",
+      "reading": "れんじ",
+      "en": "Range / Temperature drop (ΔT)",
+      "aliases": ["温度差", "ΔT", "冷却幅"],
+      "definition": "冷却塔の入口（戻り）水温と出口（供給）水温の差。蒸発量の概算に使う。",
+      "formula": "ΔT = 戻り水温 TR − 供給水温 TS",
+      "related": ["approach-temperature", "evaporation-rate"]
+    },
+    {
+      "id": "evaporation-rate",
+      "term": "蒸発量",
+      "reading": "じょうはつりょう",
+      "en": "Evaporation rate (E)",
+      "aliases": ["蒸発損失", "E"],
+      "definition": "冷却塔で蒸発して失われる水量。循環水量とΔTから概算する。",
+      "formula": "E ≒ 循環水量 R × 0.85% × (ΔT ÷ 5.56℃)",
+      "field": "例：R=1135 m³/h、ΔT=11.3℃ → 0.85%×(11.3/5.56)≒1.7% → E≒19.6 m³/h。提案書や問題解析など正確さが必要な場合は気温・湿度を考慮して計算する。",
+      "related": ["evaporation-cooling", "cooling-range", "makeup-water"]
+    },
+    {
+      "id": "recirculation-rate",
+      "term": "循環水量",
+      "reading": "じゅんかんすいりょう",
+      "en": "Recirculation rate (R)",
+      "aliases": ["循環量", "R"],
+      "definition": "循環ポンプで系内を回す水量。トレーサー試験、流量計、ポンプ性能、塔の水理などから求める。",
+      "field": "ポンプの銘板値をそのまま使うのは危険。絞り弁や配管抵抗で実流量は大きく異なることが多い。",
+      "related": ["evaporation-rate", "time-per-cycle"]
+    },
+    {
+      "id": "cycles-of-concentration",
+      "term": "濃縮倍数",
+      "reading": "のうしゅくばいすう",
+      "en": "Cycles of concentration (COC) / Concentration ratio (CR)",
+      "aliases": ["濃縮度", "COC", "CR", "サイクル"],
+      "definition": "循環水中のあるイオン濃度を補給水中の同じイオン濃度で割った値。補給水量÷ブロー量でも求められる。",
+      "formula": "CR = 循環水中濃度 ÷ 補給水中濃度 = MU ÷ BD",
+      "field": "測定には溶解度が高く安定し、測定しやすいイオン（Mg、シリカなど）を使う。塩素や硫酸を注入している系ではCl⁻やSO4²⁻は使えない。Caの濃縮倍数がMgより一貫して低ければ、Caがスケールとして析出していると判断できる。",
+      "related": ["blowdown", "makeup-water", "conductivity"]
+    },
+    {
+      "id": "makeup-water",
+      "term": "補給水",
+      "reading": "ほきゅうすい",
+      "en": "Makeup water (MU)",
+      "aliases": ["MU", "補給水量"],
+      "definition": "蒸発とブローで失われた水を補うために系に加える水。入る水量と出る水量は等しい。",
+      "formula": "MU = BD + E = E × CR ÷ (CR − 1)",
+      "related": ["blowdown", "evaporation-rate", "cycles-of-concentration"]
+    },
+    {
+      "id": "blowdown",
+      "term": "ブロー（ブローダウン）",
+      "reading": "ぶろー",
+      "en": "Blowdown (Bleed-off)",
+      "aliases": ["ブローダウン", "ブリードオフ", "BD", "強制ブロー"],
+      "definition": "蒸発以外の理由で系から失われる水の総称。意図的な排水のほか、漏水・製品への同伴・飛散（ドリフト）も含めて計算する。濃縮倍数を管理し、スケール成分の過度な濃縮を防ぐ。",
+      "formula": "BD = E ÷ (CR − 1)",
+      "related": ["cycles-of-concentration", "makeup-water", "drift"]
+    },
+    {
+      "id": "holding-capacity",
+      "term": "保有水量",
+      "reading": "ほゆうすいりょう",
+      "en": "Holding capacity (System volume)",
+      "aliases": ["系内保有水量", "システム容量"],
+      "definition": "系内に存在する水の総量。大部分は冷却塔ピットにあるが、正確にはトレーサー（TRASAR）試験やイオン濃度試験で求める。",
+      "field": "推測値を使うと殺菌剤の注入量を誤り、効果不足やコスト過大を招く。",
+      "related": ["hti", "time-per-cycle"]
+    },
+    {
+      "id": "time-per-cycle",
+      "term": "循環時間（1サイクル時間）",
+      "reading": "じゅんかんじかん",
+      "en": "Time per cycle",
+      "aliases": [],
+      "definition": "系内の水がポンプ吐出から系を一巡してポンプ吸込に戻るまでの時間。",
+      "formula": "循環時間 = 保有水量 ÷ 循環水量",
+      "related": ["holding-capacity", "recirculation-rate"]
+    },
+    {
+      "id": "hti",
+      "term": "半減期（HTI）",
+      "reading": "はんげんき",
+      "en": "Holding time index (HTI)",
+      "aliases": ["HTI", "滞留時間指数", "薬品半減期"],
+      "definition": "系に加えた薬品（または補給水）が当初濃度の50%に減るまでの時間。",
+      "formula": "HTI = 0.693 × 保有水量 ÷ ブロー量",
+      "field": "HTIが長すぎるとポリリン酸がオルトリン酸に戻りリン酸カルシウム析出を招く。短すぎると薬品使用量・コストが増える。遅効性殺菌剤をショット注入する際の投入量計算にも使う。",
+      "related": ["holding-capacity", "blowdown", "polyphosphate"]
+    },
+    {
+      "id": "sidestream-filtration",
+      "term": "サイドストリームろ過",
+      "reading": "さいどすとりーむろか",
+      "en": "Sidestream filtration",
+      "aliases": ["側流ろ過", "サイドろ過"],
+      "definition": "循環水の一部をろ過器やサイクロンなどのSS除去装置に通し、系内の懸濁物質濃度を下げてファウリングを防止する方法。",
+      "formula": "従来の目安：循環水量の1〜5%。95%のSS除去には保有水量の約3倍の通水が必要（1日に保有水量相当をろ過すれば3日で95%除去）。",
+      "field": "圧力式ろ過器のろ過速度は 7〜12 (m³/h)/m²。上向流ろ過器の逆洗は 約24 (m³/h)/m²。",
+      "related": ["fouling", "suspended-solids"]
+    },
+    {
+      "id": "evaporative-condenser",
+      "term": "蒸発式凝縮器",
+      "reading": "じょうはつしきぎょうしゅくき",
+      "en": "Evaporative condenser",
+      "aliases": ["エバコン", "蒸発凝縮器"],
+      "definition": "小型の蒸発式冷却塔の中に蛇管コイルを入れ、コイル外面に水を流して内部の流体を冷却・凝縮させる装置。冷凍（特にアンモニア冷凍）で多用される。",
+      "field": "亜鉛めっき材が多く白さびが問題。コイル外面のスケール（フィン付管は特に）も大きな課題。メーカーは亜鉛めっき保護のため酸注入を制限することが多いが、高pHは白さびを悪化させる、という相反する条件への対応が必要。間欠運転時の休止中の腐食・微生物にも注意。",
+      "related": ["white-rust", "scale"]
+    },
+    {
+      "id": "fin-fan-cooler",
+      "term": "フィンファンクーラ（空冷式熱交換器）",
+      "reading": "ふぃんふぁんくーら",
+      "en": "Fin-fan cooler",
+      "aliases": ["エアフィンクーラ", "空冷器"],
+      "definition": "最も広く使われる乾式冷却装置。多くはプロセス流体を直接フィン付管に流して空冷し、冷却水を使わない。性能は入口空気の乾球温度のみに左右され、湿式に比べ冷水温度が11〜17℃高くなる。",
+      "related": ["dry-cooling-tower", "hybrid-cooling-tower"]
+    },
+    {
+      "id": "hybrid-cooling-tower",
+      "term": "ハイブリッド（湿乾式）冷却塔",
+      "reading": "はいぶりっど れいきゃくとう",
+      "en": "Hybrid (Wet-dry) cooling tower",
+      "aliases": ["湿乾式冷却塔", "白煙防止塔"],
+      "definition": "乾式部と湿式部を組み合わせた冷却塔。目的は①水使用量の削減、②排気の湿分を下げて白煙（プルーム）を抑えること。",
+      "related": ["cooling-tower", "fin-fan-cooler"]
+    },
+    {
+      "id": "spray-pond",
+      "term": "スプレーポンド",
+      "reading": "すぷれーぽんど",
+      "en": "Spray pond",
+      "aliases": [],
+      "definition": "大きな池の水面上で温水をノズルから噴霧して蒸発冷却する設備。気水接触時間が短く効率は低く、水損失も多いが、ポンプ揚程が小さく動力費は安い。広い面積が必要なため主に電力業界で見られる。",
+      "related": ["cooling-tower"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q3.3-01",
+      "type": "choice",
+      "q": "冷却塔の出口水温と湿球温度の差を何というか。",
+      "choices": ["レンジ", "アプローチ", "L/G比", "ΔT"],
+      "answer": 1,
+      "explanation": "アプローチ = 出口水温 − 湿球温度。レンジ（ΔT）は塔の出入口温度差。"
+    },
+    {
+      "id": "q3.3-02",
+      "type": "choice",
+      "q": "循環水量 1000 m³/h、冷却塔の温度差 ΔT が 5.56℃ のとき、概算の蒸発量はどれか（0.85%/5.56℃ の経験則を使用）。",
+      "choices": ["約0.85 m³/h", "約8.5 m³/h", "約85 m³/h", "約17 m³/h"],
+      "answer": 1,
+      "explanation": "1000 × 0.85% × (5.56/5.56) = 8.5 m³/h。"
+    },
+    {
+      "id": "q3.3-03",
+      "type": "choice",
+      "q": "蒸発量 E = 20 m³/h、濃縮倍数 CR = 5 のとき、ブロー量 BD はいくらか。",
+      "choices": ["4 m³/h", "5 m³/h", "16 m³/h", "25 m³/h"],
+      "answer": 1,
+      "explanation": "BD = E ÷ (CR − 1) = 20 ÷ 4 = 5 m³/h。補給水量はMU = BD + E = 25 m³/h。"
+    },
+    {
+      "id": "q3.3-04",
+      "type": "choice",
+      "q": "蒸発量 E = 19.6 m³/h、濃縮倍数 CR = 3 のとき、補給水量 MU に最も近いものはどれか。",
+      "choices": ["約9.8 m³/h", "約19.6 m³/h", "約29.4 m³/h", "約58.8 m³/h"],
+      "answer": 2,
+      "explanation": "MU = E × CR ÷ (CR − 1) = 19.6 × 3 ÷ 2 = 29.4 m³/h。BD = 29.4 − 19.6 = 9.8 m³/h。"
+    },
+    {
+      "id": "q3.3-05",
+      "type": "choice",
+      "q": "保有水量 327 m³、ブロー量 9.8 m³/h の系の半減期（HTI）に最も近いものはどれか。",
+      "choices": ["約12時間", "約23時間", "約33時間", "約46時間"],
+      "answer": 1,
+      "explanation": "HTI = 0.693 × 327 ÷ 9.8 ≒ 23時間。"
+    },
+    {
+      "id": "q3.3-06",
+      "type": "tf",
+      "q": "塩素と硫酸を注入している系では、濃縮倍数の算出に塩化物イオンや硫酸イオンを用いるのが最も適切である。",
+      "answer": false,
+      "explanation": "注入薬品由来のイオンが加わるため使えない。MgやシリカなどM補給水由来で安定したイオンを用いる。"
+    },
+    {
+      "id": "q3.3-07",
+      "type": "choice",
+      "q": "Caの濃縮倍数がMgの濃縮倍数より一貫して低い場合、何が疑われるか。",
+      "choices": ["Caがスケールとして析出している", "補給水にMgが混入している", "ブロー量が多すぎる", "蒸発量が少ない"],
+      "answer": 0,
+      "explanation": "MgはCaより溶けやすい。Caの倍数だけが低いのはCaが系内で析出していることを示す。"
+    },
+    {
+      "id": "q3.3-08",
+      "type": "tf",
+      "q": "計算上のブロー量には、意図的な排水だけでなく漏水や飛散（ドリフト）なども含める。",
+      "answer": true,
+      "explanation": "蒸発以外で失われる水はすべてブローとして扱う。"
+    },
+    {
+      "id": "q3.3-09",
+      "type": "tf",
+      "q": "循環水量はポンプの銘板値を使えば十分正確に把握できる。",
+      "answer": false,
+      "explanation": "絞り弁や配管抵抗で実流量は銘板値から大きくずれることが多い。トレーサー試験や流量計で確認する。"
+    },
+    {
+      "id": "q3.3-10",
+      "type": "choice",
+      "q": "HTI（半減期）が長すぎる系で問題となりやすいことはどれか。",
+      "choices": ["ポリリン酸がオルトリン酸に戻り、リン酸カルシウムが析出する", "薬品コストが増大する", "濃縮倍数が自動的に下がる", "蒸発量が増える"],
+      "answer": 0,
+      "explanation": "長いHTIはポリリン酸の加水分解（リバージョン）→リン酸三カルシウム析出を招く。短いHTIは薬品使用量増が問題。"
+    },
+    {
+      "id": "q3.3-11",
+      "type": "choice",
+      "q": "保有水量を推測値で済ませた場合に起こりやすい問題はどれか。",
+      "choices": ["殺菌剤注入量の誤りによる効果不足やコスト過大", "冷却塔の着氷", "ファンの振動", "湿球温度の上昇"],
+      "answer": 0,
+      "explanation": "保有水量はトレーサー試験で求める。推測は殺菌剤投入量を誤る原因となる。"
+    },
+    {
+      "id": "q3.3-12",
+      "type": "choice",
+      "q": "サイドストリームろ過で系内SSを95%除去するには、保有水量の約何倍の水をろ過する必要があるか。",
+      "choices": ["約1倍", "約3倍", "約10倍", "約0.5倍"],
+      "answer": 1,
+      "explanation": "約3倍。1日に保有水量相当をろ過すれば3日で95%除去できる。"
+    },
+    {
+      "id": "q3.3-13",
+      "type": "choice",
+      "q": "押込通風（フォースドドラフト）冷却塔の主な欠点はどれか。",
+      "choices": ["排気の湿った空気が吸込側に回り込み、冬季に着氷する", "ファン羽根が激しく腐食する", "自然通風より電力を使わない", "散水が不均一になる"],
+      "answer": 0,
+      "explanation": "押込通風は乾いた空気を扱うため羽根の腐食は少ないが、排気の再循環と冬季の着氷が欠点。"
+    },
+    {
+      "id": "q3.3-14",
+      "type": "tf",
+      "q": "フィルム型充填材は圧損が小さく高効率だが、油や微生物による汚染で性能低下しやすいので選定時に考慮が必要である。",
+      "answer": true,
+      "explanation": "充填材は運転コスト、重油・微生物汚染の可能性、性能低下時の影響を考えて選ぶ。"
+    },
+    {
+      "id": "q3.3-15",
+      "type": "choice",
+      "q": "蒸発式凝縮器（エバコン）で特に問題となる腐食はどれか。",
+      "choices": ["亜鉛めっきの白さび", "ステンレスの応力腐食割れ", "銅の脱亜鉛", "チタンの水素脆化"],
+      "answer": 0,
+      "explanation": "亜鉛めっきのコイル・塔体が多く、白さびが典型的な問題。高pHで悪化し、強酸はめっきを侵すので処理設計が難しい。"
+    },
+    {
+      "id": "q3.3-16",
+      "type": "choice",
+      "q": "冷却塔の散水デッキにカバーを設けることが推奨される主な理由はどれか。",
+      "choices": ["日光を遮り藻類の増殖を防ぐ", "蒸発量を増やす", "ファンの負荷を下げる", "飛散を増やす"],
+      "answer": 0,
+      "explanation": "デッキが日光にさらされると藻類が繁殖し、オリフィスの閉塞や散水不均一の原因になる。"
+    },
+    {
+      "id": "q3.3-17",
+      "type": "choice",
+      "q": "ハイブリッド（湿乾式）冷却塔の採用目的として正しい組み合わせはどれか。",
+      "choices": ["水使用量の削減と白煙（プルーム）抑制", "スケール防止と殺菌", "騒音低減と防食", "ファン動力ゼロ化と防錆"],
+      "answer": 0,
+      "explanation": "乾式部で熱負荷の一部を処理し、補給水・ブロー量を減らすとともに排気湿分を下げて白煙を抑える。"
+    }
+  ]
+}

@@ -1,0 +1,457 @@
+{
+  "id": "pac3-3.2",
+  "book": "PAC-3 冷却水技術マニュアル",
+  "section": "3.2",
+  "title": "基礎概念（水の性質・化学・伝熱）",
+  "titleEn": "Basic Concepts",
+  "summary": [
+    "水は豊富・無毒で、比熱が大きく、0〜100℃の広い範囲で液体であり、蒸発潜熱が比熱の約1000倍と大きい。一方、熱伝導率が低く、優れた溶媒であることが冷却用途での弱点となる。",
+    "pHが低いと腐食性、高いとスケール析出傾向。アルカリ度が低いと腐食性、高いとスケール傾向。硬度（Ca・Mg）は逆溶解度を示し、高温部でスケール化する。",
+    "異なるイオンを足し引きするには「mg/L as CaCO3」換算を使う。CaCO3の当量は50.1。全陽イオン＝全陰イオン（電気的中性）で分析値をチェックできる。",
+    "電気伝導率は温度1℃あたり約2%上昇する。溶解固形物の目安にはなるが、温度一定・イオン組成一定の場合に限る。",
+    "管内の流れはレイノルズ数で判断する：約2100未満は層流、4000〜10000以上で完全乱流。層流は断熱層として働き、粒子も沈積しやすい。",
+    "熱量の基本式 Q = M·Cp·ΔT。冷却塔では循環水量の約1%（5.6℃≒10°F低下あたり）が蒸発する（実際は0.65〜1%）。"
+  ],
+  "terms": [
+    {
+      "id": "specific-heat",
+      "term": "比熱",
+      "reading": "ひねつ",
+      "en": "Specific heat (Heat capacity)",
+      "aliases": ["熱容量"],
+      "definition": "単位質量の物質の温度を1度上げるのに必要な熱量。水は約1 kcal/kg・℃（1 Btu/lb・°F）で、ほとんどの液体より大きい。",
+      "formula": "Q = M × Cp × ΔT",
+      "related": ["latent-heat", "heat-balance"]
+    },
+    {
+      "id": "latent-heat",
+      "term": "蒸発潜熱",
+      "reading": "じょうはつせんねつ",
+      "en": "Latent heat of vaporization",
+      "aliases": ["潜熱", "気化熱"],
+      "definition": "液体を同じ温度のまま気体に変えるのに必要な熱量。水は約539.6 kcal/kg（970 Btu/lb）で比熱の約1000倍。冷却水温度（40〜50℃）では約569〜575 kcal/kg。水温が低いほど潜熱は大きい。",
+      "field": "1 kgの水が蒸発すると、約57 kgの水を50℃→40℃に冷やせる。これが冷却塔の原理。",
+      "related": ["evaporation-cooling", "specific-heat"]
+    },
+    {
+      "id": "thermal-conductivity",
+      "term": "熱伝導率",
+      "reading": "ねつでんどうりつ",
+      "en": "Thermal conductivity",
+      "aliases": [],
+      "definition": "物質が熱を伝える能力。水は熱伝導率が低く、滞留した水の層は断熱材として働く。ただし流れによる対流伝熱には非常に優れる。",
+      "field": "伝熱面に付いたバイオフィルム（大部分が水）は断熱層となり、熱交換効率を大きく下げる。",
+      "related": ["laminar-flow", "biofilm"]
+    },
+    {
+      "id": "ph",
+      "term": "pH",
+      "reading": "ぴーえいち",
+      "en": "pH",
+      "aliases": ["水素イオン指数", "ペーハー"],
+      "definition": "水素イオン濃度の常用対数にマイナスをつけた値。pH7が中性、7より大きいとアルカリ性、小さいと酸性。",
+      "field": "pHが低い水は腐食性が強く、高い水はスケールを析出しやすい。多くの処理プログラムは限られたpH範囲で効果を発揮するよう設計されている。",
+      "formula": "pH = −log10[H⁺]",
+      "related": ["alkalinity", "lsi"]
+    },
+    {
+      "id": "alkalinity",
+      "term": "アルカリ度",
+      "reading": "あるかりど",
+      "en": "Alkalinity",
+      "aliases": ["Mアルカリ度", "Pアルカリ度", "酸消費量"],
+      "definition": "厳密には水の酸消費能力。実務的には炭酸イオン・重炭酸イオン・水酸化物イオンの量（mg/L as CaCO3）の合計。",
+      "field": "アルカリ度が低いと腐食性、高いとスケール析出傾向。pH 4.3〜10.3では重炭酸イオンが主体、pH 8.3以上で炭酸イオンが生成する。",
+      "related": ["ph", "hardness", "as-caco3", "carbonate-equilibrium"]
+    },
+    {
+      "id": "hardness",
+      "term": "硬度",
+      "reading": "こうど",
+      "en": "Hardness",
+      "aliases": ["全硬度", "カルシウム硬度", "マグネシウム硬度"],
+      "definition": "水中に溶けているカルシウムとマグネシウムの濃度。通常 mg/L as CaCO3 で表し、両者を合計して全硬度とする。",
+      "field": "Ca・Mgの化合物の多くは逆溶解度（温度が高いほど溶けにくい）を示すため、熱交換器など高温部でスケールになる。",
+      "related": ["inverse-solubility", "scale", "as-caco3"]
+    },
+    {
+      "id": "conductivity",
+      "term": "電気伝導率",
+      "reading": "でんきでんどうりつ",
+      "en": "Conductivity",
+      "aliases": ["導電率", "EC", "電導度", "μS/cm"],
+      "definition": "水の電気の通しやすさ。溶解しているイオンの量と種類で決まる。単位は μS/cm（マイクロジーメンス、旧μmho）。",
+      "field": "温度1℃上昇あたり約2%増加する。溶解固形物の濃縮度の目安として濃縮倍数管理やブロー制御に使われるが、温度一定・イオン組成一定のときのみ有効な概算値。",
+      "related": ["cycles-of-concentration", "tds"]
+    },
+    {
+      "id": "as-caco3",
+      "term": "CaCO3換算（mg/L as CaCO3）",
+      "reading": "たんさんかるしうむかんさん",
+      "en": "mg/L as CaCO3",
+      "aliases": ["炭酸カルシウム換算", "as CaCO3", "当量換算"],
+      "definition": "異なるイオン種の濃度を炭酸カルシウム当量に換算して表す方法。換算することで、CaとMgを足して全硬度を出したり、陽イオン合計と陰イオン合計を比較したりできる。",
+      "formula": "as CaCO3 濃度 = 物質の濃度 × (50.1 ÷ その物質の当量)",
+      "field": "例：FeCl3 50 mg/L → 当量54.1、係数 50.1/54.1=0.93、0.93×50 = 46.5 mg/L as CaCO3。Ca as Ca ×2.5、Mg as Mg ×4.1 で as CaCO3 になる。",
+      "related": ["equivalent-weight", "electroneutrality", "hardness"]
+    },
+    {
+      "id": "equivalent-weight",
+      "term": "当量",
+      "reading": "とうりょう",
+      "en": "Equivalent weight",
+      "aliases": ["グラム当量"],
+      "definition": "物質の分子量（式量）を、解離したときの陽イオン（または陰イオン）の総電荷数で割った値。例：MgSO4 = 120.4 ÷ 2 = 60.2、CaCO3 = 100.09 ÷ 2 = 50.1。",
+      "related": ["as-caco3"]
+    },
+    {
+      "id": "electroneutrality",
+      "term": "電気的中性（イオンバランス）",
+      "reading": "でんきてきちゅうせい",
+      "en": "Electroneutrality",
+      "aliases": ["イオンバランス", "カチオン・アニオンバランス"],
+      "definition": "水試料は全体として電荷を持たないため、陽イオンの電荷合計と陰イオンの電荷合計は等しくなるという性質。as CaCO3 に換算して両者を比較することで水質分析結果の妥当性を確認できる。",
+      "related": ["as-caco3"]
+    },
+    {
+      "id": "inverse-solubility",
+      "term": "逆溶解度",
+      "reading": "ぎゃくようかいど",
+      "en": "Inverse solubility",
+      "aliases": ["逆溶解性"],
+      "definition": "温度が上がるほど溶解度が下がる性質。多くの固体は高温ほど溶けやすいが、炭酸カルシウムやケイ酸マグネシウムなどは逆。このため冷却水系では最も熱い伝熱面でスケールが析出する。",
+      "related": ["scale", "hardness", "calcium-carbonate-scale"]
+    },
+    {
+      "id": "common-ion-effect",
+      "term": "共通イオン効果",
+      "reading": "きょうつういおんこうか",
+      "en": "Common ion effect",
+      "aliases": [],
+      "definition": "難溶性塩の飽和溶液に、その塩と共通のイオンを持つ物質を加えると溶解度が下がり沈殿が増える現象。例：硫酸バリウム飽和溶液に硫酸ナトリウムを加えると硫酸バリウムがさらに析出する。",
+      "related": ["scale"]
+    },
+    {
+      "id": "suspended-solids",
+      "term": "懸濁物質（SS）",
+      "reading": "けんだくぶっしつ",
+      "en": "Suspended solids",
+      "aliases": ["SS", "濁質", "浮遊物質"],
+      "definition": "水に溶けずに分散している粒子（石炭・ほこり・粘土・鉄・沈殿物など）。濁りの原因。溶解物質と違い均一に分布せず、静置すると沈降する。",
+      "field": "高濃度のSSは①ファウリング・スケールを促進、②処理薬品を吸着・消費、③金属表面を摩耗、④流れを妨げ局部腐食やホットスポットを生む。",
+      "related": ["fouling", "colloid", "tds"]
+    },
+    {
+      "id": "colloid",
+      "term": "コロイド",
+      "reading": "ころいど",
+      "en": "Colloid",
+      "aliases": ["コロイド粒子"],
+      "definition": "非常に小さく、十分な電荷を帯びているため凝集・沈降しにくい懸濁粒子。",
+      "related": ["suspended-solids"]
+    },
+    {
+      "id": "tds",
+      "term": "溶解固形物（TDS）",
+      "reading": "ようかいこけいぶつ",
+      "en": "Total dissolved solids (TDS)",
+      "aliases": ["TDS", "全溶解固形物", "蒸発残留物"],
+      "definition": "イオンや分子として水に溶けている物質の総量。溶解物質は水を濁らせず、拡散により均一に分布する。",
+      "related": ["conductivity", "suspended-solids"]
+    },
+    {
+      "id": "carbonate-equilibrium",
+      "term": "炭酸平衡",
+      "reading": "たんさんへいこう",
+      "en": "Carbonate equilibrium",
+      "aliases": ["炭酸系", "炭酸-重炭酸平衡"],
+      "definition": "CO2が水に溶けて炭酸（H2CO3）となり、重炭酸イオン（HCO3⁻）、炭酸イオン（CO3²⁻）へと解離する平衡。pH 4.3〜10.3では重炭酸イオンが主体、pH 8.3以上で炭酸イオンが生じる。この平衡が冷却水のpHを安定させる緩衝作用となる。",
+      "related": ["alkalinity", "ph"]
+    },
+    {
+      "id": "ammonia-contamination",
+      "term": "アンモニア混入",
+      "reading": "あんもにあこんにゅう",
+      "en": "Ammonia contamination",
+      "aliases": ["NH3", "アンモニウム"],
+      "definition": "高pH・高温ではアンモニウムイオンがアンモニアガスとなり冷却塔で放散される。低pHではアンモニウムイオンとして水中に残る。",
+      "field": "アンモニアは処理プログラムを妨害し、微生物の栄養源となり、銅・亜鉛系材料を侵食する。塩素を消費してクロラミンを作るため塩素要求量も増える。",
+      "related": ["chlorine-demand", "process-leak"]
+    },
+    {
+      "id": "hydrogen-sulfide",
+      "term": "硫化水素",
+      "reading": "りゅうかすいそ",
+      "en": "Hydrogen sulfide (H2S)",
+      "aliases": ["H2S"],
+      "definition": "製鉄・石油精製プロセスや硫酸塩還元菌から混入する酸性ガス。アンモニアと逆に、pHが高いほど溶けやすく、低pHで放散される。",
+      "field": "pHを下げて腐食性を高め、亜鉛系防食剤と反応する。毒性も強い。",
+      "related": ["srb", "process-leak"]
+    },
+    {
+      "id": "cathodic-control",
+      "term": "カソード支配",
+      "reading": "かそーどしはい",
+      "en": "Cathodic control",
+      "aliases": [],
+      "definition": "冷却水中の腐食では、カソードへの酸素の拡散が最も遅い（律速）段階であるため、腐食速度はカソード反応に支配されているという考え方。",
+      "related": ["corrosion", "cathode", "anode"]
+    },
+    {
+      "id": "laminar-flow",
+      "term": "層流",
+      "reading": "そうりゅう",
+      "en": "Laminar flow",
+      "aliases": ["粘性底層", "層流底層"],
+      "definition": "水の分子が管壁に平行な層をなして流れる状態。速度分布は放物線状。管内ではレイノルズ数約2100未満で層流となる。乱流下でも管壁近傍には薄い層流底層（粘性底層）が残る。",
+      "field": "伝熱上好ましくない：各層が断熱層になり、粒子も沈積しやすい。",
+      "related": ["turbulent-flow", "reynolds-number"]
+    },
+    {
+      "id": "turbulent-flow",
+      "term": "乱流",
+      "reading": "らんりゅう",
+      "en": "Turbulent flow",
+      "aliases": ["プラグフロー"],
+      "definition": "流れが渦を伴い分子の動きが不規則になった状態。時間平均の速度分布は栓（プラグ）状。対流による熱移動が非常に効率的で、粒子を浮遊状態に保ち、壁面の高いせん断力が付着を防ぐ。",
+      "field": "経験則：流れの向きが変わる箇所の下流8D・上流2Dでは流速に関係なく乱流になる。管束の入口・出口部と中央部で汚れ方が違う理由になる。",
+      "related": ["laminar-flow", "reynolds-number", "air-rumbling"]
+    },
+    {
+      "id": "reynolds-number",
+      "term": "レイノルズ数",
+      "reading": "れいのるずすう",
+      "en": "Reynolds number (Re)",
+      "aliases": ["Re"],
+      "definition": "流体を前に進める慣性力と、流れを遅くする粘性力の比を表す無次元数。円管ではRe＜約2100で層流、4000〜10000以上で完全乱流。",
+      "formula": "Re = d × V × ρ ÷ μ（d:管内径, V:平均流速, ρ:密度, μ:粘度）",
+      "related": ["laminar-flow", "turbulent-flow"]
+    },
+    {
+      "id": "heat-balance",
+      "term": "熱収支（ヒートバランス）",
+      "reading": "ねつしゅうし",
+      "en": "Heat balance",
+      "aliases": ["エネルギー収支", "熱量計算"],
+      "definition": "エネルギー保存則に基づき、一方の流体が失った熱量は他方が得た熱量に等しいとして温度・流量・熱量を求める計算。",
+      "formula": "Q = M × Cp × ΔT（相変化を伴う場合は Q = M × ΔHv）",
+      "field": "例：2271 m³/h の水が48.9℃→65.6℃に加熱 → Q = 2,271,000 kg/h × 1 × 16.7 ≒ 3,800万 kcal/h。2つの流れの混合温度は (流量A×温度A＋流量B×温度B)÷合計流量 で求められる。",
+      "related": ["specific-heat", "latent-heat", "enthalpy"]
+    },
+    {
+      "id": "enthalpy",
+      "term": "エンタルピー（顕熱）",
+      "reading": "えんたるぴー",
+      "en": "Enthalpy / Sensible heat",
+      "aliases": ["顕熱", "熱含量"],
+      "definition": "物質1 kgあたりが持つ熱量。0℃の水の顕熱を0とすると、水のエンタルピー（kcal/kg）は摂氏温度と同じ数値になる。",
+      "formula": "h = Cp × T（℃）、米国単位では h = Cp × (T − 32)",
+      "related": ["heat-balance", "specific-heat"]
+    },
+    {
+      "id": "evaporation-cooling",
+      "term": "蒸発冷却",
+      "reading": "じょうはつれいきゃく",
+      "en": "Evaporative cooling",
+      "aliases": ["蒸発"],
+      "definition": "水の一部が蒸発するときに残りの水から蒸発潜熱を奪うことで水を冷却する仕組み。冷却塔は充填材で水を細かくして表面積を広げ、空気を流して蒸発を促す。",
+      "field": "温度差5.6℃（10°F）につき循環水量の約1%が蒸発する。実際は気温・湿度により0.65〜1%程度。",
+      "related": ["cooling-tower", "latent-heat", "evaporation-rate"]
+    },
+    {
+      "id": "surface-tension",
+      "term": "表面張力",
+      "reading": "ひょうめんちょうりょく",
+      "en": "Surface tension",
+      "aliases": [],
+      "definition": "液体が表面積を最小にしようとする力。純水は20℃で72.8 dyn/cmと水素結合のため大きい。温度が上がると小さくなる。",
+      "field": "表面張力を下げると冷却塔効率や汚れ防止に役立つ場合があるが、気液界面の物質移動係数が下がり逆に効率が落ちることもある。",
+      "related": ["cooling-tower"]
+    },
+    {
+      "id": "thermal-pollution",
+      "term": "熱汚染（温排水）",
+      "reading": "ねつおせん",
+      "en": "Thermal pollution",
+      "aliases": ["温排水"],
+      "definition": "冷却に使った温かい水を河川・湖へ戻すことで水温が上がり、溶存酸素が減って水生生物が窒息死する環境問題。気体の溶解度は温度上昇とともに下がるため起こる。",
+      "related": ["once-through-system"]
+    },
+    {
+      "id": "stainless-steel",
+      "term": "ステンレス鋼",
+      "reading": "すてんれすこう",
+      "en": "Stainless steel",
+      "aliases": ["SUS", "オーステナイト系ステンレス"],
+      "definition": "クロムを10.5%以上含む鉄合金。オーステナイト系はニッケルも含み、マルテンサイト系・フェライト系はニッケルをほとんど含まない。",
+      "field": "表面が平滑で腐食しにくいため、軟鋼に比べスケール・汚れが付きにくい。ただし塩化物による孔食・応力腐食割れに注意。",
+      "related": ["mild-steel", "chloride-scc"]
+    },
+    {
+      "id": "mild-steel",
+      "term": "軟鋼（炭素鋼）",
+      "reading": "なんこう",
+      "en": "Mild steel / Carbon steel",
+      "aliases": ["炭素鋼", "SS材", "カーボンスチール"],
+      "definition": "鉄を主成分とし炭素を1.7%以下（通常はずっと少ない）含む鋼。1.7%を超えると鋳鉄。冷却水系で最も多く使われる材料。",
+      "field": "表面がやや粗く腐食しやすいため、ステンレスや非鉄金属に比べ汚れ・スケールが付きやすい。",
+      "related": ["stainless-steel", "corrosion"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q3.2-01",
+      "type": "choice",
+      "q": "水の蒸発潜熱は比熱のおよそ何倍か。",
+      "choices": ["約10倍", "約100倍", "約1000倍", "約10000倍"],
+      "answer": 2,
+      "explanation": "潜熱 約540〜570 kcal/kg に対し比熱 1 kcal/kg・℃。約1000倍なので、蒸発は極めて効率的な除熱方法となる。"
+    },
+    {
+      "id": "q3.2-02",
+      "type": "choice",
+      "q": "冷却用途における水の「好ましくない性質」として挙げられている2つはどれか。",
+      "choices": ["低い熱伝導率と優れた溶解力", "高い比熱と大きな潜熱", "無毒性と豊富さ", "高い表面張力と高い密度"],
+      "answer": 0,
+      "explanation": "熱伝導率が低いこと、何でも溶かしてしまう溶媒能力が腐食・スケールの原因になることが欠点。"
+    },
+    {
+      "id": "q3.2-03",
+      "type": "tf",
+      "q": "一般に、アルカリ度が高い水ほど腐食性が強く、アルカリ度が低い水ほどスケールを析出しやすい。",
+      "answer": false,
+      "explanation": "逆。アルカリ度が低いと腐食性、高いとスケール析出傾向。pHも同様。"
+    },
+    {
+      "id": "q3.2-04",
+      "type": "choice",
+      "q": "電気伝導率は水温が1℃上がるとおよそ何%増加するか。",
+      "choices": ["約0.2%", "約2%", "約10%", "変化しない"],
+      "answer": 1,
+      "explanation": "経験則として約2%/℃。伝導率で濃縮度を推定する場合は温度補正が重要。"
+    },
+    {
+      "id": "q3.2-05",
+      "type": "choice",
+      "q": "炭酸カルシウム（CaCO3）の当量はいくつか。",
+      "choices": ["25.0", "50.1", "100.1", "40.1"],
+      "answer": 1,
+      "explanation": "分子量100.09 ÷ 電荷2 = 50.1。as CaCO3 換算の基準となる。"
+    },
+    {
+      "id": "q3.2-06",
+      "type": "choice",
+      "q": "FeCl3 50 mg/L を CaCO3 換算すると約何 mg/L か（FeCl3の当量=54.1）。",
+      "choices": ["約27 mg/L", "約46.5 mg/L", "約54 mg/L", "約93 mg/L"],
+      "answer": 1,
+      "explanation": "係数 = 50.1 ÷ 54.1 = 0.93。0.93 × 50 = 46.5 mg/L as CaCO3。"
+    },
+    {
+      "id": "q3.2-07",
+      "type": "tf",
+      "q": "CaとMgをそれぞれ mg/L as Ca、mg/L as Mg で表したままでも、そのまま足し算して全硬度を求めることができる。",
+      "answer": false,
+      "explanation": "単位の基準が異なるため足せない。両方を mg/L as CaCO3 に換算してから合計する。"
+    },
+    {
+      "id": "q3.2-08",
+      "type": "choice",
+      "q": "温度が上がるほど溶解度が下がる（逆溶解度を示す）物質はどれか。",
+      "choices": ["塩化アンモニウム", "硫酸アルミニウム", "炭酸カルシウム", "塩化ナトリウム"],
+      "answer": 2,
+      "explanation": "炭酸カルシウムやケイ酸マグネシウムは逆溶解度を示し、高温の伝熱面でスケール化する。NaClは温度でほとんど変わらない。"
+    },
+    {
+      "id": "q3.2-09",
+      "type": "choice",
+      "q": "重炭酸イオン（HCO3⁻）が主体となるpH範囲はどれか。",
+      "choices": ["pH 2〜4", "pH 4.3〜10.3", "pH 10.3以上のみ", "pH 7ちょうど"],
+      "answer": 1,
+      "explanation": "pH 4.3〜10.3では重炭酸イオンが主体、pH 8.3以上で炭酸イオンが生成する。"
+    },
+    {
+      "id": "q3.2-10",
+      "type": "tf",
+      "q": "アンモニアは高pH・高温条件ではガスとなり、冷却塔で放散されやすい。",
+      "answer": true,
+      "explanation": "高pHではNH4⁺がNH3ガスに変わり、冷却塔で放散される。低pHではアンモニウムイオンとして残る。"
+    },
+    {
+      "id": "q3.2-11",
+      "type": "choice",
+      "q": "冷却水に混入したアンモニアの悪影響として誤っているものはどれか。",
+      "choices": ["微生物の栄養源になる", "銅・亜鉛系材料を侵す", "処理プログラムを妨害する", "炭酸カルシウムスケールを溶解して除去する"],
+      "answer": 3,
+      "explanation": "アンモニアは栄養源・銅亜鉛系材料の侵食・処理妨害を起こす。スケールを除去する効果はない。"
+    },
+    {
+      "id": "q3.2-12",
+      "type": "tf",
+      "q": "硫化水素やシアン化水素はアンモニアとは逆に、pHが高いほど水に溶けやすい。",
+      "answer": true,
+      "explanation": "酸性ガスなので高pHで溶けやすく、低pHで放散される。pH低下による腐食促進、亜鉛系防食剤との反応、強い毒性が問題。"
+    },
+    {
+      "id": "q3.2-13",
+      "type": "choice",
+      "q": "冷却水中の腐食で律速段階（最も遅い反応）とされるものはどれか。",
+      "choices": ["鉄のイオン化", "カソードへの酸素の拡散", "水素ガスの発生", "電子の移動"],
+      "answer": 1,
+      "explanation": "カソードへの酸素拡散が律速のため、冷却水系の腐食は「カソード支配」といわれる。"
+    },
+    {
+      "id": "q3.2-14",
+      "type": "choice",
+      "q": "滑らかな円管内で流れが層流となるレイノルズ数の目安はどれか。",
+      "choices": ["約2100未満", "約4000〜10000", "約50000以上", "約100未満のみ"],
+      "answer": 0,
+      "explanation": "Re＜約2100で層流、4000〜10000以上で完全乱流。"
+    },
+    {
+      "id": "q3.2-15",
+      "type": "tf",
+      "q": "伝熱の観点では層流が望ましい。各層が熱を効率よく運ぶからである。",
+      "answer": false,
+      "explanation": "層流は各層が断熱層となり伝熱上好ましくない。粒子も沈積しやすい。乱流が望ましい。"
+    },
+    {
+      "id": "q3.2-16",
+      "type": "choice",
+      "q": "流れの向きが変わる箇所（エルボ等）の前後で、流速に関係なく乱流となる範囲の経験則はどれか。",
+      "choices": ["下流8D・上流2D", "下流2D・上流8D", "下流20D・上流10D", "前後1Dのみ"],
+      "answer": 0,
+      "explanation": "下流8管径・上流2管径。熱交換器管束の入口・出口部と中央部で付着状況が違う理由になる。"
+    },
+    {
+      "id": "q3.2-17",
+      "type": "choice",
+      "q": "冷却塔で水温が約5.6℃（10°F）下がるとき、循環水量のおよそ何%が蒸発するか。",
+      "choices": ["約0.1%", "約1%", "約5%", "約10%"],
+      "answer": 1,
+      "explanation": "熱収支から約0.97〜1.05%。実際は気温・湿度により0.65〜1%程度。"
+    },
+    {
+      "id": "q3.2-18",
+      "type": "choice",
+      "q": "流量350 gpm・63℃の流れAと、流量150 gpm・43℃の流れBを混合したときの温度に最も近いものはどれか。",
+      "choices": ["約49℃", "約53℃", "約57℃", "約60℃"],
+      "answer": 2,
+      "explanation": "(350×63 + 150×43) ÷ 500 ≒ 57℃。流量加重平均で求める。"
+    },
+    {
+      "id": "q3.2-19",
+      "type": "tf",
+      "q": "ステンレス鋼はクロムを10.5%以上含む鉄合金である。",
+      "answer": true,
+      "explanation": "クロム10.5%以上。オーステナイト系はニッケルも含む。"
+    },
+    {
+      "id": "q3.2-20",
+      "type": "choice",
+      "q": "懸濁物質（SS）が高濃度であることの悪影響として挙げられていないものはどれか。",
+      "choices": ["ファウリング・スケールの促進", "処理薬品の吸着・消費", "金属表面の摩耗", "電気伝導率の大幅な上昇"],
+      "answer": 3,
+      "explanation": "SSの悪影響は汚れ促進・薬品消費・摩耗・流れの阻害（局部腐食・ホットスポット）。伝導率は主に溶解イオンで決まる。"
+    }
+  ]
+}

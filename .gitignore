@@ -1,0 +1,7 @@
+# 原本資料（社外秘）はリポジトリに入れない
+*.pdf
+*.xlsx
+*.xls
+*.docx
+__pycache__/
+.DS_Store

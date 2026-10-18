@@ -1,0 +1,14 @@
+{
+  "name": "水処理ナビ",
+  "short_name": "水処理ナビ",
+  "description": "水処理技術の学習クイズと現場で引ける用語辞書・計算ツール",
+  "lang": "ja",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f7f8",
+  "theme_color": "#0e6a7d",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
