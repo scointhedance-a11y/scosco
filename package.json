@@ -1,0 +1,7 @@
+{
+  "name": "shindanshi-quiz",
+  "private": true,
+  "scripts": {
+    "test": "node tests/validate.js"
+  }
+}
