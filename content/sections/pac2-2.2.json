@@ -1,0 +1,280 @@
+{
+  "id": "pac2-2.2",
+  "book": "PAC-2 ボイラ水技術マニュアル",
+  "section": "2.2",
+  "title": "基礎概念と計算（物質収支・濃縮倍数・熱量）",
+  "titleEn": "Basic Concepts and Calculations",
+  "summary": [
+    "ボイラで蒸気が発生すると、溶解固形物はボイラ水に残って濃縮する。濃縮しすぎるとスケール・腐食・蒸気純度の問題が起こるため、濃縮水を抜く（ブロー）し、その分と失われた蒸気・復水を補給水で補う。",
+    "物質収支：入る水＝出る水。全補給水 TM = 蒸気損失 SL＋復水損失 CL＋ブロー損失 BL。FW = 蒸気＋BD、FW = MU＋RC（＋脱気器蒸気−ベント）、蒸気 = RC＋NRC。",
+    "ブロー率・補給水率は給水基準で表すのが一般的。%BD = 給水中濃度／ボイラ水中濃度×100、%MU = 給水中濃度／補給水中濃度×100。濃縮倍数 COC = 100／%BD。",
+    "導電率でブロー率を測るときは、給水は全薬品注入後に採水し、ボイラ水は中和してから測る（OHアルカリ度で導電率が高く出るため）。純水補給で導電率が使えない場合は TRASAR などの不揮発・非反応トレーサを使う。",
+    "BD = FW − 蒸気 という差し引き計算は、大きな数同士の差で、2台の流量計の誤差を拾うため精度が悪い。分析値（濃縮倍数）と蒸気流量から求めるほうが良い。",
+    "最適化：まず蒸気・復水の損失をなくし、次にブローを最小化する。制限因子（例：シリカ）を前処理で下げると、別の因子（TDS）まで濃縮でき、ブロー削減で燃料・水・排水コストが下がる。",
+    "飽和蒸気と同温の水のエンタルピー差が、凝縮時に利用できる熱量。復水の回収熱は「復水のエンタルピー − 補給水のエンタルピー」で評価する（100℃未満の水は 温度℃×4.1868 kJ/kg）。",
+    "単位：1 kWh = 3412 Btu = 860 kcal = 3600 kJ。kWは「仕事率（パワー）」でエネルギーではない。1 hp = 0.7457 kW。"
+  ],
+  "terms": [
+    {
+      "id": "boiler-blowdown",
+      "term": "ボイラブロー",
+      "reading": "ぼいらぶろー",
+      "en": "Boiler blowdown (BD)",
+      "aliases": ["ブロー", "缶水ブロー", "BD"],
+      "definition": "ボイラ水中で濃縮した溶解固形物が過剰にならないよう、意図的にボイラ水を抜くこと。抜いた分は補給水で補う。連続ブロー（蒸気ドラム）と間欠ブロー（下部ドラム・ヘッダ）がある。",
+      "formula": "%BD = 給水中濃度 ÷ ボイラ水中濃度 × 100",
+      "field": "ブローが少なすぎるとスケール・キャリーオーバー、多すぎると熱と水と薬品の無駄。制限因子（シリカ・導電率・アルカリ度）で決める。",
+      "related": ["boiler-coc", "blowdown-heat-recovery", "blowdown"]
+    },
+    {
+      "id": "boiler-coc",
+      "term": "濃縮倍数（ボイラ）",
+      "reading": "のうしゅくばいすう",
+      "en": "Cycles of concentration (COC) / Concentration ratio (CR)",
+      "aliases": ["濃縮倍率", "COC", "CR"],
+      "definition": "ボイラ水中の溶解固形物濃度と給水中の濃度の比。給水基準のブロー率の逆数に等しい。",
+      "formula": "COC = ボイラ水濃度 ÷ 給水濃度 = 100 ÷ %BD = (蒸気流量 + BD流量) ÷ BD流量",
+      "field": "給水サンプルは全薬品注入後の点で採ること。ボイラ水は中和してから導電率を測る。",
+      "related": ["boiler-blowdown", "cycles-of-concentration", "trasar"]
+    },
+    {
+      "id": "makeup-percent",
+      "term": "補給水率",
+      "reading": "ほきゅうすいりつ",
+      "en": "Percent makeup (%MU)",
+      "definition": "給水に占める補給水の割合。流量が分からなくても、給水・補給水・復水の濃度から計算できる。",
+      "formula": "%MU = 給水濃度 ÷ 補給水濃度 × 100（復水が純水とみなせる場合）／ %MU = (TDS_FW − TDS_C)×100 ÷ (TDS_MU − TDS_C)",
+      "field": "例：給水TDS 165、補給水TDS 220 → %MU = 75%、復水回収率は25%。",
+      "related": ["condensate-return-rate", "feedwater", "makeup-water"]
+    },
+    {
+      "id": "returned-condensate",
+      "term": "回収復水（RC）",
+      "reading": "かいしゅうふくすい",
+      "en": "Returned condensate (RC)",
+      "aliases": ["RC"],
+      "definition": "ボイラに戻ってくる復水。蒸気量のうち戻らない分を非回収復水（NRC）という。",
+      "formula": "蒸気 = RC + NRC、RC = FW − MU",
+      "related": ["condensate-return-rate", "steam-condensate"]
+    },
+    {
+      "id": "condensate-return-rate",
+      "term": "復水回収率",
+      "reading": "ふくすいかいしゅうりつ",
+      "en": "Condensate return rate",
+      "definition": "給水（または蒸気量）に占める回収復水の割合。工場では蒸気・復水の30〜80%が失われることも珍しくない。主な損失はプロセスでの消費、製品漏れ込みによる汚染廃棄、配管漏れ。",
+      "formula": "回収率(給水基準) = 100 − %MU",
+      "field": "回収率が上がれば燃料・補給水・前処理コスト・ブローすべてが減る。汚染で捨てている復水がないか確認する。",
+      "related": ["returned-condensate", "makeup-percent"]
+    },
+    {
+      "id": "boiler-mass-balance",
+      "term": "ボイラの物質収支",
+      "reading": "ぼいらのぶっしつしゅうし",
+      "en": "Boiler mass balance",
+      "aliases": ["水収支"],
+      "definition": "ボイラに入る水と出る水・蒸気は等しいという関係。正確な水質分析と1〜2箇所の実測流量があれば、他の流量（給水・補給水・ブロー・復水）を計算できる。",
+      "formula": "FW = S + BD ／ FW = MU + RC + DA − V ／ S = RC + NRC ／ TM = SL + CL + BL",
+      "field": "多くの工場は蒸気流量と補給水量は計っているがブロー量は計っていない。濃縮倍数から BD = S ÷ (COC − 1) で求める。",
+      "related": ["boiler-coc", "feedwater", "boiler-blowdown"]
+    },
+    {
+      "id": "flash-tank",
+      "term": "フラッシュタンク",
+      "reading": "ふらっしゅたんく",
+      "en": "Flash tank",
+      "aliases": ["ブローフラッシュタンク"],
+      "definition": "高圧のブロー水を減圧して一部を低圧蒸気として取り出す容器。蒸気は脱気器や低圧プロセスへ送り、残った熱水はさらに熱交換器で補給水の予熱に使う。",
+      "related": ["blowdown-heat-recovery", "boiler-blowdown"]
+    },
+    {
+      "id": "blowdown-heat-recovery",
+      "term": "ブロー熱回収",
+      "reading": "ぶろーねつかいしゅう",
+      "en": "Blowdown heat recovery",
+      "definition": "ブロー水の熱をフラッシュタンク（低圧蒸気回収）や熱交換器（補給水予熱）で回収すること。小規模・低圧ボイラではブロー水はそのまま排水されることが多い。",
+      "related": ["flash-tank", "boiler-blowdown"]
+    },
+    {
+      "id": "steam-trap",
+      "term": "スチームトラップ",
+      "reading": "すちーむとらっぷ",
+      "en": "Steam trap",
+      "aliases": ["トラップ"],
+      "definition": "蒸気は通さず復水だけを排出する自動弁。背圧を保ちながら復水を回収系へ流す。復水回収系はトラップ・回収タンク（大気または低圧蒸気へベント）・ポンプで構成される。",
+      "field": "トラップの吹き抜けは蒸気損失、詰まりはウォーターハンマーや加熱不良の原因。",
+      "related": ["steam-condensate", "returned-condensate"]
+    },
+    {
+      "id": "limiting-factor",
+      "term": "制限因子（ブロー）",
+      "reading": "せいげんいんし",
+      "en": "Limiting (controlling) factor",
+      "definition": "ボイラ水の各管理項目（シリカ・TDS・アルカリ度など）のうち、最も早く管理上限に達して最大濃縮倍数を決めてしまう項目。",
+      "field": "例：給水シリカ1.5 ppm・上限30 ppmなら最大20倍（5%ブロー）。前処理でシリカを下げればTDS基準の26.7倍（3.75%ブロー）まで上げられる。",
+      "related": ["boiler-coc", "silica-boiler"]
+    },
+    {
+      "id": "saturated-steam",
+      "term": "飽和蒸気",
+      "reading": "ほうわじょうき",
+      "en": "Saturated steam",
+      "definition": "ある圧力でちょうど沸点（飽和温度）にある蒸気。凝縮すると、飽和蒸気と同温の水のエンタルピー差（潜熱）を放出する。蒸気は圧力により約488〜2560 kJ/kg（210〜1100 Btu/lb）を放出する。",
+      "field": "例：150℃で凝縮 → 2746.5 − 632.2 = 2114.3 kJ/kg が利用できる。",
+      "related": ["superheated-steam", "enthalpy", "latent-heat"]
+    },
+    {
+      "id": "condensate-heat-value",
+      "term": "復水の回収熱量",
+      "reading": "ふくすいのかいしゅうねつりょう",
+      "en": "Heat value of condensate",
+      "definition": "復水が補給水の代わりになることで得られる熱。基準は補給水のエンタルピーなので、両者のエンタルピー差で評価する。",
+      "formula": "回収熱 = h(復水) − h(補給水)。100℃未満の水は h ≒ 温度℃ × 4.1868 kJ/kg",
+      "field": "例：復水65℃、補給水15℃ → 272 − 62.8 = 209.2 kJ/kg。",
+      "related": ["steam-condensate", "enthalpy"]
+    },
+    {
+      "id": "energy-vs-power",
+      "term": "エネルギーと仕事率（kWh と kW）",
+      "reading": "えねるぎーとしごとりつ",
+      "en": "Energy vs. power",
+      "definition": "エネルギー（仕事・熱）は kWh・kJ・kcal・Btu、仕事率（単位時間あたりのエネルギー）は kW・hp・kJ/h。kW をエネルギーと誤解しやすい。",
+      "formula": "1 kWh = 3600 kJ = 860 kcal = 3412 Btu ／ 1 hp = 0.7457 kW = 2544 Btu/h ／ 1 kcal = 4.1868 kJ",
+      "related": ["condensate-heat-value"]
+    },
+    {
+      "id": "soot-blowing",
+      "term": "スートブロー",
+      "reading": "すーとぶろー",
+      "en": "Soot blowing",
+      "definition": "ボイラの燃焼ガス側の伝熱面に付いたすすや灰を蒸気などで吹き飛ばす操作。蒸気を消費するため、大型発電所でも数少ない蒸気損失の一つになる。",
+      "related": ["boiler-mass-balance"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q2.2-01",
+      "type": "choice",
+      "q": "給水のTDSが165 mg/L、ボイラブロー水のTDSが1320 mg/Lのとき、ブロー率（給水基準）は何%か。",
+      "choices": ["8%", "12.5%", "15%", "25%"],
+      "answer": 1,
+      "explanation": "%BD = 165 ÷ 1320 × 100 = 12.5%。濃縮倍数は 100 ÷ 12.5 = 8 倍。"
+    },
+    {
+      "id": "q2.2-02",
+      "type": "choice",
+      "q": "ブロー率が5%のとき、濃縮倍数はいくつか。",
+      "choices": ["5倍", "10倍", "20倍", "50倍"],
+      "answer": 2,
+      "explanation": "COC = 100 ÷ %BD = 100 ÷ 5 = 20 倍。"
+    },
+    {
+      "id": "q2.2-03",
+      "type": "choice",
+      "q": "給水のTDSが165 mg/L、補給水のTDSが220 mg/L（復水は純水とみなす）のとき、補給水率は何%か。",
+      "choices": ["25%", "50%", "75%", "133%"],
+      "answer": 2,
+      "explanation": "%MU = 165 ÷ 220 × 100 = 75%。残りの25%が回収復水。"
+    },
+    {
+      "id": "q2.2-04",
+      "type": "choice",
+      "q": "蒸気流量 1000 t/h、ブロー率（給水基準）12.5%のとき、給水流量はおよそいくらか。",
+      "choices": ["875 t/h", "1000 t/h", "1125 t/h", "1143 t/h"],
+      "answer": 3,
+      "explanation": "FW = S + 0.125FW より FW = S ÷ (1 − 0.125) = 1000 ÷ 0.875 ≒ 1143 t/h。BD は約143 t/h。"
+    },
+    {
+      "id": "q2.2-05",
+      "type": "tf",
+      "q": "導電率でボイラ水の濃縮倍数を測る場合、ボイラ水サンプルは中和してから測定する。",
+      "answer": true,
+      "explanation": "OH（水酸化物）アルカリ度は導電率を大きく押し上げるため、そのまま測るとブロー率が低く（濃縮倍数が高く）算出されてしまう。"
+    },
+    {
+      "id": "q2.2-06",
+      "type": "choice",
+      "q": "濃縮倍数算出のための給水サンプルの採取場所として正しいものはどれか。",
+      "choices": ["すべての薬品を注入した後", "薬品注入前の補給水", "脱気器の入口", "復水タンク"],
+      "answer": 0,
+      "explanation": "溶解固形物で%BDを求めるときは、全薬品注入後の給水を採る必要がある（薬品の固形分も濃縮するため）。"
+    },
+    {
+      "id": "q2.2-07",
+      "type": "choice",
+      "q": "純水（脱塩水）補給で導電率が使えないとき、濃縮倍数を求める方法として挙げられているものはどれか。",
+      "choices": ["不揮発・非反応・非析出のトレーサ（TRASAR）の濃度比", "ボイラ水の温度", "蒸気圧力の変化", "給水の溶存酸素"],
+      "answer": 0,
+      "explanation": "給水とボイラ水中のTRASAR濃度比が濃縮倍数を表す。"
+    },
+    {
+      "id": "q2.2-08",
+      "type": "tf",
+      "q": "ブロー量を「給水流量 − 蒸気流量」で求める方法は、最も精度の高い方法である。",
+      "answer": false,
+      "explanation": "大きな数の差から小さな数を求めるうえ、校正のずれた2台の流量計の誤差を拾うため、誤差が大きくなる。"
+    },
+    {
+      "id": "q2.2-09",
+      "type": "choice",
+      "q": "全補給水 TM を表す式として正しいものはどれか。",
+      "choices": ["TM = 蒸気損失 + 復水損失 + ブロー損失", "TM = 蒸気量 − ブロー量", "TM = 給水 + 回収復水", "TM = ブロー量 × 濃縮倍数"],
+      "answer": 0,
+      "explanation": "TM = SL + CL + BL。蒸気（スートブロー含む）・復水（排水含む）・ブローとして失われた分を補給する。"
+    },
+    {
+      "id": "q2.2-10",
+      "type": "choice",
+      "q": "給水シリカ1.5 ppm、ボイラ水シリカ上限30 ppmのとき、シリカで決まる最大濃縮倍数はいくつか。",
+      "choices": ["15倍", "20倍", "26.7倍", "30倍"],
+      "answer": 1,
+      "explanation": "30 ÷ 1.5 = 20倍（5%ブロー）。この場合シリカが制限因子となる。"
+    },
+    {
+      "id": "q2.2-11",
+      "type": "choice",
+      "q": "150℃で飽和蒸気が凝縮するときに利用できる熱量はどれか（飽和蒸気 2746.5 kJ/kg、水 632.2 kJ/kg）。",
+      "choices": ["632.2 kJ/kg", "2114.3 kJ/kg", "2746.5 kJ/kg", "3378.7 kJ/kg"],
+      "answer": 1,
+      "explanation": "飽和蒸気と同温の水のエンタルピー差 2746.5 − 632.2 = 2114.3 kJ/kg が利用可能な熱。"
+    },
+    {
+      "id": "q2.2-12",
+      "type": "choice",
+      "q": "復水65℃、補給水15℃のとき、復水を回収することで得られる熱量はおよそいくらか。",
+      "choices": ["62.8 kJ/kg", "209 kJ/kg", "272 kJ/kg", "335 kJ/kg"],
+      "answer": 1,
+      "explanation": "(65 − 15) × 4.1868 ≒ 209 kJ/kg。基準は補給水のエンタルピーなので差で評価する。"
+    },
+    {
+      "id": "q2.2-13",
+      "type": "tf",
+      "q": "kW（キロワット）はエネルギーの単位である。",
+      "answer": false,
+      "explanation": "kW は仕事率（パワー）の単位。エネルギーは kWh。最も誤解されやすい関係と説明されている。"
+    },
+    {
+      "id": "q2.2-14",
+      "type": "choice",
+      "q": "1 kWh に等しいエネルギーはどれか。",
+      "choices": ["860 kcal", "4.1868 kJ", "0.7457 kJ", "550 kcal"],
+      "answer": 0,
+      "explanation": "1 kWh = 860 kcal = 3600 kJ = 3412 Btu。"
+    },
+    {
+      "id": "q2.2-15",
+      "type": "choice",
+      "q": "ボイラシステム最適化の第一歩として挙げられているものはどれか。",
+      "choices": ["実用的な範囲で蒸気と復水の損失をなくす", "ブロー率を上げる", "薬品注入量を増やす", "ボイラ圧力を下げる"],
+      "answer": 0,
+      "explanation": "まず蒸気・復水損失をなくし、次に制限因子に合わせてブローを最小化する。"
+    },
+    {
+      "id": "q2.2-16",
+      "type": "tf",
+      "q": "一般的な工場では、蒸気・復水の30〜80%が失われることも珍しくない。",
+      "answer": true,
+      "explanation": "大型発電所では損失はわずかだが、工場ではプロセス消費・汚染廃棄・配管漏れなどで大きな損失が出る。"
+    }
+  ]
+}

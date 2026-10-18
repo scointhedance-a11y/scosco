@@ -1,0 +1,509 @@
+{
+  "id": "pac2-2.4",
+  "book": "PAC-2 ボイラ水技術マニュアル",
+  "section": "2.4",
+  "title": "イオン交換（軟化・脱アルカリ・脱塩）",
+  "titleEn": "Ion Exchange",
+  "summary": [
+    "石灰軟化・清澄・ろ過では除けないイオンを、イオン交換で「無害なイオンへの置き換え」または「除去」する。処理水質は樹脂だけでなく、前処理の良否、再生剤の量・濃度・流速・純度、樹脂を使い切る度合い、内部の分配・集水装置の設計に大きく左右される。",
+    "樹脂の4つの機能：強酸性陽イオン（SAC）＝全陽イオンを除去、再生剤は化学量論より大幅に多く必要。弱酸性陽イオン（WAC）＝アルカリ度に対応する硬度だけを除去、ほぼ化学量論で再生。強塩基性陰イオン（SBA）＝シリカ・CO2を含む全陰イオンを除去（I形は高温・高シリカ向き、II形は容量大だが35℃上限）。弱塩基性陰イオン（WBA）＝強酸だけを吸着しシリカ・CO2は除けない。",
+    "イオン交換は回分処理。交換帯が出口に達すると破過（リーク開始）。再生しきれない樹脂（ヒール）が出口側に残るとリークが増える。向流再生はヒールを入口側に置くため、並流再生よりリークが大幅に少なく、薬品効率も良い。",
+    "軟化（SAC Na形）：Ca・MgをNaに交換し、食塩水で再生。Mgが先にリークする。TDSが500 mg/Lを超えると硬度リークが増えるので再生量を補正する。実用交換容量は約46〜69 g/L（食塩96〜240 kg/m³）。",
+    "脱アルカリ：アルカリ度はボイラの濃縮倍数を制限し（フォーミング・プライミング）、分解したCO2が復水系の炭酸腐食を起こす。方式は①塩形強塩基（SBA Cl形、TDSは減らない）②WAC H形＋脱炭酸＋後段軟化③分流（Na形とH形の混合）④SAC H形＋脱炭酸＋苛性中和。H形樹脂や酸注入で生じたCO2は、通常の脱気器では除けないので脱炭酸塔が必要。",
+    "脱塩：陽イオン交換（H形）と陰イオン交換（OH形）を組み合わせ、ほぼ全イオンを除く。混床式ではSACの生成した酸が隣のSBAで即座に中和されるため、ナトリウムリークが小さく、比抵抗18.2 MΩ・cm（0.055 µS/cm）の超純水も得られる。",
+    "シリカは樹脂への親和力が最も弱く最初にリークし、導電率には現れない。シリカ破過は通水量の85〜95%で、導電率破過（100%）より先に来る。SAC(H)からのNaリーク1 mg/L as CaCO3はSBA出口で導電率5 µS/cmに相当。",
+    "樹脂の劣化要因：酸化剤（塩素・クロラミン・高温の溶存酸素）による架橋切断（含水率上昇・膨潤）、鉄・アルミ（陽イオン樹脂の代表的汚染物）、有機酸（陰イオン樹脂のファウリング）、浸透圧ショック、熱ショック、摩耗。年1回コアサンプルを分析し、新品と比較する。",
+    "逆洗は約50%展開を目標に水温で補正する（Ft = Fr[1 + 0.008(t − r)]）。陰イオン樹脂の再生希釈水は軟水または純水を使う。再生剤中の競合イオンは希釈液で500 mg/L as CaCO3以下が目安。"
+  ],
+  "terms": [
+    {
+      "id": "ion-exchange",
+      "term": "イオン交換",
+      "reading": "いおんこうかん",
+      "en": "Ion exchange",
+      "definition": "樹脂に固定された交換基が保持するイオンと、水中の同符号のイオンを可逆的に入れ替える処理。それ自体はイオンを「除去」するのではなく、有害なイオンを無害なイオンに置き換える（例：CaSO4 → Na形で Na2SO4、H形で H2SO4、さらにOH形で水）。回分処理で、交換容量を使い切ったら再生する。",
+      "related": ["sac-resin", "wac-resin", "sba-resin", "wba-resin", "regeneration-ix"]
+    },
+    {
+      "id": "sac-resin",
+      "term": "強酸性陽イオン交換樹脂（SAC）",
+      "reading": "きょうさんせいよういおんこうかんじゅし",
+      "en": "Strong acid cation (SAC) resin",
+      "aliases": ["SAC", "強酸性樹脂", "カチオン樹脂"],
+      "definition": "スルホン酸基を持つスチレン系樹脂。どのpHでもすべての陽イオンを除去できる。Na形（食塩再生）なら軟化、H形（硫酸・塩酸再生）なら脱塩・脱アルカリの陽イオン段に使う。再生剤は化学量論より大幅に多く必要。架橋度8%のゲル型が最も一般的。",
+      "field": "硝酸でも再生できるが、誤用すると爆発性の条件になるため、まず使わない。",
+      "related": ["sodium-softener", "wac-resin", "sodium-leakage"]
+    },
+    {
+      "id": "wac-resin",
+      "term": "弱酸性陽イオン交換樹脂（WAC）",
+      "reading": "じゃくさんせいよういおんこうかんじゅし",
+      "en": "Weak acid cation (WAC) resin",
+      "aliases": ["WAC", "カルボン酸樹脂"],
+      "definition": "カルボン酸基を持つアクリル系樹脂。アルカリ性条件で、アルカリ度（重炭酸）に対応する硬度だけを除去し、中性塩（CaCl2など）とは反応しない。ほぼ化学量論の酸で再生でき効率が高い。H形→Na形で体積が約60%膨張する。",
+      "field": "硫酸で再生するときは0.8%以下の濃度にしないと石膏（CaSO4）が析出する。塩酸ならその問題はないが、内部材にハステロイCが必要。",
+      "related": ["wac-dealkalization", "sac-resin", "starvation-regeneration"]
+    },
+    {
+      "id": "sba-resin",
+      "term": "強塩基性陰イオン交換樹脂（SBA）",
+      "reading": "きょうえんきせいいんいおんこうかんじゅし",
+      "en": "Strong base anion (SBA) resin",
+      "aliases": ["SBA", "アニオン樹脂"],
+      "definition": "4級アンモニウム基を持つ樹脂。シリカ・CO2などの弱酸も含め、すべての陰イオンを除去する。再生剤は化学量論の2〜3倍必要。I形：苛性で再生、50℃まで使用可、高アルカリ・高シリカ水に有効。II形：交換容量は大きいが35℃上限で、CO2・シリカの除去力が劣る。III形：II形の容量とI形のシリカ除去力・耐熱性を併せ持つ。",
+      "field": "寿命の目安は、理想的な条件でもI形で最大約5年、II形で3〜4年。",
+      "related": ["wba-resin", "salt-splitting-capacity", "silica-break"]
+    },
+    {
+      "id": "wba-resin",
+      "term": "弱塩基性陰イオン交換樹脂（WBA）",
+      "reading": "じゃくえんきせいいんいおんこうかんじゅし",
+      "en": "Weak base anion (WBA) resin",
+      "definition": "強い鉱酸（硫酸・塩酸・硝酸）を分子ごと吸着するだけで、炭酸やケイ酸（シリカ）は除けない。ほぼ化学量論の苛性（4%）で再生でき効率が高い。処理水にシリカが残るのでボイラ給水には通常使わない。交換容量は57 g/L超と大きいが、低温や高流速で低下する。",
+      "related": ["sba-resin", "organic-trap"]
+    },
+    {
+      "id": "gel-macroporous",
+      "term": "ゲル型・マクロポーラス型樹脂",
+      "reading": "げるがたまくろぽーらすがた",
+      "en": "Gel vs. macroporous resin",
+      "definition": "ゲル型は交換基が粒全体に均一に分布する最も一般的な構造で、強度は架橋度（DVB、通常8%、最大20%）で決まる。マクロポーラス型はスポンジ状の細孔（粒体積の10〜30%）を持ち、硬く、酸化や物理的ストレスに強いが、細孔の分だけ交換容量が小さい。",
+      "field": "体積変化の大きい用途（WACのNa形運転など）ではマクロポーラス型を使う。",
+      "related": ["ion-exchange", "ups-resin"]
+    },
+    {
+      "id": "ups-resin",
+      "term": "均一粒径樹脂（UPS）",
+      "reading": "きんいつりゅうけいじゅし",
+      "en": "Uniform particle size (UPS) resin",
+      "definition": "90%以上の粒が同じメッシュサイズの樹脂。標準品は16〜50メッシュ（1.19〜0.30 mm）、均等係数1.5〜1.7。UPS樹脂は再生効率・運転容量が高く、リンス水量が少ない。混床では陽イオン樹脂と陰イオン樹脂の分離が良くなる。",
+      "related": ["packed-bed", "mixed-bed"]
+    },
+    {
+      "id": "exchange-capacity",
+      "term": "総交換容量・実用交換容量",
+      "reading": "そうこうかんようりょう",
+      "en": "Total capacity / Working capacity",
+      "definition": "総交換容量は樹脂の全交換基の量（meq/mL など）。実用交換容量（運転容量）は実際に使える量で、常に総容量より小さい。水中イオン濃度・比率、通水速度、温度、再生剤量、装置設計で変わる。再生剤量を倍にしても容量は倍にならない。",
+      "formula": "通水量 = 実用交換容量 × 樹脂量 ÷ 被交換イオン負荷。17.1 mg/L = 1 gr/gal、1 kgr/ft³ = 2.29 g/L",
+      "field": "例：樹脂2.83 m³、容量54.9 g/L、硬度132 mg/L as CaCO3 → 155 kg ÷ 132 g/m³ ≒ 1174 m³ 通水可能。",
+      "related": ["ion-exchange", "as-caco3"]
+    },
+    {
+      "id": "salt-splitting-capacity",
+      "term": "中性塩分解容量（SSC）",
+      "reading": "ちゅうせいえんぶんかいようりょう",
+      "en": "Salt splitting capacity (SSC)",
+      "definition": "SBA樹脂のうち、シリカ・CO2などの弱酸まで除去できる強塩基性の交換基の量。経年でアミンが分解したり有機酸で汚染されたりすると強塩基基が弱塩基基に変わり、シリカとCO2が除けなくなる（硫酸・塩化物は除ける）。新品ではSSC＝総交換容量。",
+      "field": "SBAのシリカリークが増えてきたら、SSCの低下（樹脂寿命）を疑い、樹脂分析で確認する。",
+      "related": ["sba-resin", "silica-break", "organic-fouling"]
+    },
+    {
+      "id": "water-retention-capacity",
+      "term": "含水率（水分保持容量）",
+      "reading": "がんすいりつ",
+      "en": "Water retention capacity (WRC)",
+      "definition": "樹脂の交換基に結合し表面に付着している水の割合（自由水は除く）。塩素などの酸化剤で架橋が切断されると、樹脂が膨潤して含水率が上がり、総容量・実用容量が下がる。",
+      "field": "標準ゲル型SAC（H形）の新品は約46〜56%。含水率の上昇は酸化劣化と残り寿命の目安になる。",
+      "related": ["resin-oxidation", "sac-resin"]
+    },
+    {
+      "id": "resin-selectivity",
+      "term": "選択性（樹脂への親和力）",
+      "reading": "せんたくせい",
+      "en": "Selectivity (affinity)",
+      "definition": "イオンの樹脂への結合しやすさ。一般に価数と原子番号が大きいほど強い。SAC Na形ではCaのほうがMgより強く保持されるため、破過時はMgが先にリークする。WAC樹脂の親和力は H⁺ ≫ Cu²⁺ ＞ Fe²⁺ ＞ Ca²⁺ ＞ Mg²⁺ ＞ NH4⁺ ＞ Na⁺。",
+      "related": ["ion-exchange", "silica-break"]
+    },
+    {
+      "id": "leakage-ix",
+      "term": "リーク（スリップ）",
+      "reading": "りーく",
+      "en": "Leakage (slippage)",
+      "definition": "再生しきれずに出口側に残ったイオン（ヒール）が、通水を再開したとき平衡により処理水へ漏れ出すこと。リークするイオンは樹脂の種類と親和力で決まる。ヒールを入口側に寄せれば（向流再生）リークは大幅に減る。",
+      "related": ["counter-current-regeneration", "sodium-leakage", "silica-break"]
+    },
+    {
+      "id": "counter-current-regeneration",
+      "term": "向流再生",
+      "reading": "こうりゅうさいせい",
+      "en": "Counter-current regeneration",
+      "definition": "通水と逆方向に再生剤を流す方式。再生不十分な部分（ヒール）が入口側に来るため、並流再生よりリークが大幅に少なく、再生効率が高く、薬品・排水も少ない。樹脂層を流動させない（集水管の埋設、水・空気によるブロック）ことが前提。毎回の逆洗はしない（3〜40回に1回）。",
+      "field": "逆洗した直後は、通常の2〜3倍の再生剤量で再生しないと期待する水質が出ない。弱酸性・弱塩基性樹脂ではあまり効果がない。",
+      "related": ["co-current-regeneration", "leakage-ix", "packed-bed"]
+    },
+    {
+      "id": "co-current-regeneration",
+      "term": "並流再生",
+      "reading": "へいりゅうさいせい",
+      "en": "Co-current regeneration",
+      "definition": "通水と同じ方向（通常は上から下）に再生剤を流す方式。ヒールが出口側（下部）に残るため、向流再生よりリークが多い。毎回の再生前に逆洗する。",
+      "related": ["counter-current-regeneration"]
+    },
+    {
+      "id": "stepwise-regeneration",
+      "term": "段階再生（硫酸）",
+      "reading": "だんかいさいせい",
+      "en": "Stepwise regeneration",
+      "definition": "硫酸で陽イオン樹脂を再生するとき、低濃度（例2%）から高濃度（例4%）へ段階的に濃度を上げる方法。最初の低濃度段階でCaの大部分を溶離し、石膏（CaSO4）の析出を防ぐ。2段階で、希釈水量を減らして濃度を上げるのが望ましい。",
+      "field": "石膏が樹脂内に析出すると硬度リークの原因になる。塩酸なら析出問題はなく5%で一括注入できる。",
+      "related": ["sac-resin", "wac-resin"]
+    },
+    {
+      "id": "thoroughfare-regeneration",
+      "term": "スルー再生（直列再生）",
+      "reading": "するーさいせい",
+      "en": "Thoroughfare regeneration",
+      "definition": "ある塔（後段の強酸・強塩基樹脂）の再生廃液を、別の塔（前段の弱酸・弱塩基樹脂）の再生に再利用する方式。後段には過剰量を流し、余った再生剤で前段を再生する。全体で約90%の再生効率となり、酸・苛性と排水を大きく減らせる。",
+      "related": ["wac-resin", "wba-resin", "counter-current-regeneration"]
+    },
+    {
+      "id": "sodium-softener",
+      "term": "軟水器（Na形強酸性樹脂）",
+      "reading": "なんすいき",
+      "en": "Sodium cycle softener / SAC (Na+) softening",
+      "aliases": ["軟化器", "ゼオライト軟化器"],
+      "definition": "スケール成分のCa・MgをNaに交換して軟水を作る最も簡単なイオン交換処理。食塩水で再生する。実用交換容量は約46〜69 g/L（食塩96〜240 kg/m³）。TDSが500 mg/Lを超えると硬度リークが増え、再生量の補正が必要。",
+      "formula": "Ca(HCO3)2 + 2R-Na → R2-Ca + 2NaHCO3 ／ 再生：2NaCl + R2-Ca → 2R-Na + CaCl2",
+      "field": "再生用の食塩は岩塩でなく精製塩（蒸発塩）を使う。向流再生で0.5 mg/L未満の硬度を狙うなら、塩中のCa・Mgは5〜10 mg/L未満のものを指定する。",
+      "related": ["sac-resin", "salometer", "lime-zeolite-softening"]
+    },
+    {
+      "id": "chloride-dealkalizer",
+      "term": "塩形脱アルカリ（SBA Cl形）",
+      "reading": "えんけいだつあるかり",
+      "en": "Chloride anion dealkalization",
+      "definition": "軟水器の後段にII形SBA（Cl形）を置き、重炭酸・炭酸・硫酸・硝酸を塩化物に交換する方式。食塩で再生でき操作が簡単なため、施設・軽工業の蒸気プラントで多く使われる。TDSは減らないのでブローは通常減らない。処理水は希薄な食塩水で配管を腐食しやすい。",
+      "field": "再生効率は10〜28%と低く、低TDS水向き。食塩に少量の苛性を加えると容量が上がり、処理水のpHも安定する。流入水は完全に軟化しておくこと。",
+      "related": ["sodium-softener", "sba-resin", "dealkalization"]
+    },
+    {
+      "id": "dealkalization",
+      "term": "脱アルカリ",
+      "reading": "だつあるかり",
+      "en": "Dealkalization",
+      "definition": "補給水のアルカリ度を下げる処理。アルカリ度はフォーミング・プライミングによるキャリーオーバーで濃縮倍数を制限し、ボイラ内で分解したCO2が復水系の炭酸腐食を起こすため、脱塩が不要な圧力でも採用される。塩形SBA、WAC H形、分流方式、SAC H形、酸注入などの方式がある。",
+      "related": ["chloride-dealkalizer", "wac-dealkalization", "split-stream-dealkalization", "decarbonator", "carbonic-acid-corrosion"]
+    },
+    {
+      "id": "wac-dealkalization",
+      "term": "WAC H形脱アルカリ",
+      "reading": "だぶりゅーえーしーだつあるかり",
+      "en": "WAC (H+) dealkalization",
+      "definition": "弱酸性樹脂（H形）でアルカリ度に対応する硬度を除き、重炭酸をCO2に変える方式。原水変動に関係なく処理水アルカリ度が一定で、TDSも下がる。生成CO2は脱炭酸塔で除き（5〜10 mg/L、pH約6.3）、苛性でpH 8.3〜10.2に調整する。残った非炭酸硬度は後段のNa形軟水器で除く。",
+      "field": "硬度＜アルカリ度の水では、Mgが1〜2 mg/Lリークし硬度ゼロにはならない。",
+      "related": ["wac-resin", "decarbonator", "starvation-regeneration"]
+    },
+    {
+      "id": "starvation-regeneration",
+      "term": "スターベーション再生",
+      "reading": "すたーべーしょんさいせい",
+      "en": "Starvation regeneration",
+      "definition": "WAC樹脂を化学量論＋わずか（約2%）の酸で再生する方式。処理水に遊離鉱酸（FMA）がほとんど出ず、苛性は残留CO2の中和分だけで済む。一定のpH（例5.8）で通水を終え、再生中に出口pHが急に下がったら（酸の破過）注入を止める。米国では化学量論の約20%増しで再生しFMAが出る方式が一般的。",
+      "related": ["wac-resin", "wac-dealkalization", "free-mineral-acidity"]
+    },
+    {
+      "id": "split-stream-dealkalization",
+      "term": "分流脱アルカリ",
+      "reading": "ぶんりゅうだつあるかり",
+      "en": "Split stream dealkalization",
+      "definition": "Na形軟水器の処理水（アルカリ度そのまま）とH形陽イオン塔の処理水（FMA含有）を混合し、FMAでアルカリ度を中和してCO2として脱炭酸塔で除く方式。TDSも下がる。",
+      "formula": "%SAC(H) = (AR − AT) × 100 ÷ (AR + FMA)　AR：原水アルカリ度、AT：目標アルカリ度",
+      "field": "例：AR 220、FMA 57、AT 10 mg/L → H形76%：Na形24%。酸性水が給水に入らないよう、混合後のMアルカリ度は10 mg/L超を保つ。",
+      "related": ["dealkalization", "free-mineral-acidity", "decarbonator"]
+    },
+    {
+      "id": "free-mineral-acidity",
+      "term": "遊離鉱酸（FMA）",
+      "reading": "ゆうりこうさん",
+      "en": "Free mineral acidity (FMA)",
+      "aliases": ["FMA"],
+      "definition": "H形陽イオン交換で、硫酸塩・塩化物・硝酸塩が硫酸・塩酸・硝酸に変わったもの。pH 4.3未満で存在する。FMA 1 mg/L as CaCO3あたり約7 µS/cmの導電率になる。SAC(H)が破過に近づくとFMAが減り、Naリークが増える。",
+      "related": ["split-stream-dealkalization", "sodium-leakage", "alkalinity-hierarchy"]
+    },
+    {
+      "id": "decarbonator",
+      "term": "脱炭酸塔",
+      "reading": "だつたんさんとう",
+      "en": "Decarbonator (degasifier)",
+      "aliases": ["脱気塔（CO2）", "デガシファイア"],
+      "definition": "H形陽イオン交換や酸注入で生成したCO2を、充填塔で空気と接触させて機械的に除く装置（強制通風式）。真空脱気や気体透過膜を使う場合もある。CO2を5〜10 mg/Lまで下げ、陰イオン塔の負荷と苛性を減らす。CO2が陰イオン負荷の25%を超えると機械的除去が経済的になる。",
+      "field": "標準設計のスプレー式・トレイ式脱気器では、脱アルカリで生じる大量のCO2は除けない（ガスブランケットが起こる）。脱炭酸塔を省略しないこと。",
+      "related": ["dealkalization", "deaerator", "carbonic-acid-corrosion"]
+    },
+    {
+      "id": "demineralization",
+      "term": "脱塩（純水製造）",
+      "reading": "だつえん",
+      "en": "Demineralization",
+      "aliases": ["純水装置", "2床3塔"],
+      "definition": "陽イオン交換（H形）と陰イオン交換（OH形）を組み合わせ、ほぼすべての溶解イオンをH⁺とOH⁻に置き換えて水にする処理。原水TDSが高く、求める純度が高いほど段数が増える。脱炭酸・真空脱気を陽イオン段と陰イオン段の間に入れることが多い。",
+      "related": ["sac-resin", "sba-resin", "mixed-bed", "decarbonator"]
+    },
+    {
+      "id": "mixed-bed",
+      "term": "混床式脱塩装置",
+      "reading": "こんしょうしきだつえんそうち",
+      "en": "Mixed bed demineralizer",
+      "aliases": ["MB", "ミックスベッド"],
+      "definition": "SAC(H形)とSBA(OH形)を均一に混ぜて通水する装置。再生時は逆洗で比重差により分離（陽イオン樹脂が下）、それぞれ酸と苛性で再生し、空気で再混合する。SACが作った酸が隣のSBAで即座に中和されるため、ナトリウムリークが小さい。研磨用ではシリカ0.01 mg/L未満、0.055 µS/cm（18.2 MΩ・cm）の超純水が得られる。",
+      "field": "分離と再混合の良否が性能を決める。復水の精密ろ過（復水脱塩）にも使われる。",
+      "related": ["demineralization", "ups-resin", "condensate-polishing"]
+    },
+    {
+      "id": "packed-bed",
+      "term": "充填床（パックドベッド）",
+      "reading": "じゅうてんしょう",
+      "en": "Packed bed unit",
+      "definition": "容器をほぼ樹脂で満たし（フリーボード約5 cm）、上下のノズルプレートで挟んだ向流再生装置。均一粒径樹脂を使い、逆洗をなくして排水を減らす。容器内で逆洗できないため、流入水・再生剤は粒子や微生物を含まない清浄なものが必要。石灰軟化の後段には使わない。",
+      "related": ["counter-current-regeneration", "ups-resin"]
+    },
+    {
+      "id": "desilicizer",
+      "term": "脱シリカ塔（SBA OH形）",
+      "reading": "だつしりかとう",
+      "en": "Desilicizer (hydroxyl anion)",
+      "definition": "軟水をI形SBA（OH形）に通してシリカを除く方式。TDS 150 mg/L未満・シリカ10〜20 mg/L程度の補給水を低・中圧ボイラに使う場合に用いる。苛性のみで再生し、再生廃液は次回の第1段に再利用する。再生液は49℃に加温するとシリカ除去が良くなる。",
+      "field": "処理水は希薄なNaOH（pH約11.5）になるので、ボイラ補給水には酸でpH調整する。",
+      "related": ["sba-resin", "silica-boiler"]
+    },
+    {
+      "id": "organic-fouling",
+      "term": "有機物汚染（樹脂のファウリング）",
+      "reading": "ゆうきぶつおせん",
+      "en": "Organic fouling of anion resin",
+      "aliases": ["有機汚染", "フミン酸汚染"],
+      "definition": "表流水中のフミン酸・フルボ酸（植物の分解物）がSBA（OH形）樹脂の骨格に吸着して交換基を塞ぐこと。部分的にしか回復しない。通水量低下、再生・洗浄コスト増、処理水質悪化、リンス時間の延長を招く。純度の高い水では微量の有機酸でもpHが大きく下がる。",
+      "field": "色度は有機汚染の目安になるが、色がなくても汚染することがある（特に山地の低TDS水）。対策：凝集清澄、オーガニックトラップ、有機物を放出しやすい樹脂、食塩水による洗浄。",
+      "related": ["organic-trap", "sba-resin", "color-tannin"]
+    },
+    {
+      "id": "organic-trap",
+      "term": "オーガニックトラップ",
+      "reading": "おーがにっくとらっぷ",
+      "en": "Organic trap (scavenger)",
+      "definition": "脱塩装置の前段に置き、有機酸を吸着してSBA(OH形)を守る塔。一般的なのはSBA（Cl形）を食塩＋少量の苛性で再生する方式。アルカリ度の約25%と全硫酸塩を塩化物に交換するため、後段の負荷構成が変わる。WBA（OH形）を使う方式もある。",
+      "related": ["organic-fouling", "wba-resin"]
+    },
+    {
+      "id": "sodium-leakage",
+      "term": "ナトリウムリーク",
+      "reading": "なとりうむりーく",
+      "en": "Sodium leakage",
+      "definition": "Naは樹脂への親和力がCa・Mgより弱いため、SAC(H形)から常に少量漏れる。向流再生なら0.2 mg/L as CaCO3未満。並流再生では、Na比率が高いほど増え、アルカリ度比率が高いほど・酸の量が多いほど減る。SBA出口ではNaOHとなり、1 mg/L as CaCO3あたり5 µS/cm導電率が上がる。",
+      "field": "脱塩装置の導電率が上がったら、陰イオン容量不足が確認されていない限り、まず陽イオン塔（SAC）を疑う。",
+      "related": ["sac-resin", "free-mineral-acidity", "silica-break"]
+    },
+    {
+      "id": "silica-break",
+      "term": "シリカ破過",
+      "reading": "しりかはか",
+      "en": "Silica breakthrough",
+      "definition": "シリカはSBA樹脂への親和力が最も弱いので最初にリークする。導電率に寄与しないため導電率計では検知できず、通水量の85〜95%でシリカが破過する（導電率破過は100%）。SBAの監視はシリカ計と導電率計を併用する。",
+      "field": "pHと導電率・シリカの組み合わせで、破過したのが陽イオン塔か陰イオン塔かを判断できる。",
+      "related": ["sba-resin", "salt-splitting-capacity", "silica-boiler"]
+    },
+    {
+      "id": "regeneration-ix",
+      "term": "再生工程（逆洗・通薬・押出し・水洗）",
+      "reading": "さいせいこうてい",
+      "en": "Regeneration cycle",
+      "definition": "①逆洗：堆積物・破砕粒を除き、層をほぐす（約50%展開）。②通薬：所定の濃度・流速・接触時間で再生剤を注入。③押出し（スローリンス）：希釈水を続けて流し、残った再生剤を押し出す（樹脂量の1倍以上）。④水洗（ファストリンス）：所定水質になるまで洗う。",
+      "formula": "逆洗流速の温度補正：Ft = Fr × [1 + 0.008(t − r)]",
+      "field": "陰イオン樹脂の再生希釈水は軟水か純水を使う（硬度析出防止）。容器にたまった空気は通水中の急激な逆流や再生剤の偏流を起こすので、再生前にベントする。",
+      "related": ["counter-current-regeneration", "salometer"]
+    },
+    {
+      "id": "salometer",
+      "term": "サロメーター（塩分比重計）",
+      "reading": "さろめーたー",
+      "en": "Salometer",
+      "definition": "食塩水の濃度を飽和度（°S）で表示する比重計。15.6℃で26.395% NaClが100%飽和。軟水器の再生中に2〜5分ごとに出口の塩分を測り、溶離曲線を描いて再生条件を確認する。",
+      "field": "目標は「30°S以上の食塩水で30分の接触」。温度補正が必要。",
+      "related": ["sodium-softener", "regeneration-ix"]
+    },
+    {
+      "id": "resin-oxidation",
+      "term": "樹脂の酸化劣化",
+      "reading": "じゅしのさんかれっか",
+      "en": "Resin oxidation",
+      "definition": "塩素・クロラミンなどの酸化剤が陽イオン樹脂の架橋（DVB）を永久に切断し、樹脂が膨潤して総容量が下がる現象。圧損増大で粒が壊れやすくなり、軽くなった樹脂は逆洗で流出する。加熱で放出された溶存酸素も陽・陰樹脂を攻撃する。",
+      "field": "苛性に含まれる塩素酸塩も強い酸化剤。再生剤は低不純物の精製品を使う。",
+      "related": ["water-retention-capacity", "osmotic-shock"]
+    },
+    {
+      "id": "iron-fouling-resin",
+      "term": "鉄・アルミによる樹脂汚染",
+      "reading": "てつあるみによるじゅしおせん",
+      "en": "Iron and aluminum fouling of resin",
+      "definition": "陽イオン樹脂の最も一般的な汚染物は鉄。井水の2価鉄が樹脂に交換された後、酸素で3価に酸化され強く保持され、さらに酸化物となって樹脂の内外を塞ぐ。アルミは凝集剤（硫酸バンド）の過剰注入が主な原因で、3価なので除去が難しい。",
+      "field": "鉄は汚染された酸や、薬品貯槽・配管の腐食からも入る。陰イオン樹脂では鉄が有機物と錯体を作って汚染する。",
+      "related": ["iron-oxidation-removal", "organic-fouling"]
+    },
+    {
+      "id": "osmotic-shock",
+      "term": "浸透圧ショック・熱ショック",
+      "reading": "しんとうあつしょっく",
+      "en": "Osmotic shock / Thermal shock",
+      "definition": "浸透圧ショックは、接触する液が急変して樹脂粒の体積が急激に変わることで粒が割れる現象（例：WACの酸再生直後の苛性再生で60%膨張、高濃度の再生剤）。熱ショックは、温水運転（温石灰軟化後の軟水器・復水脱塩）の樹脂に冷水を急に入れて割れる現象。",
+      "field": "冷水は低流量で徐々に入れて樹脂を冷やす。破砕粒は圧損上昇・偏流・樹脂流出・リーク増の原因。正常な摩耗は年3%以内。",
+      "related": ["resin-oxidation", "wac-resin"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q2.4-01",
+      "type": "choice",
+      "q": "シリカやCO2などの弱酸も含め、すべての陰イオンを除去できる樹脂はどれか。",
+      "choices": ["強塩基性陰イオン交換樹脂（SBA）", "弱塩基性陰イオン交換樹脂（WBA）", "弱酸性陽イオン交換樹脂（WAC）", "強酸性陽イオン交換樹脂（SAC）Na形"],
+      "answer": 0,
+      "explanation": "SBAはシリカ・CO2を含む全陰イオンを除去する。WBAは強い鉱酸を吸着するだけで、シリカ・CO2は除けない。"
+    },
+    {
+      "id": "q2.4-02",
+      "type": "choice",
+      "q": "弱酸性陽イオン交換樹脂（WAC）H形が除去する陽イオンはどれか。",
+      "choices": ["アルカリ度（重炭酸）に対応する硬度", "すべての陽イオン", "塩化物に対応する硬度だけ", "ナトリウムだけ"],
+      "answer": 0,
+      "explanation": "WACは中性塩（CaCl2など）とは反応せず、アルカリ度に対応する硬度だけを除去してCO2を生成する。"
+    },
+    {
+      "id": "q2.4-03",
+      "type": "tf",
+      "q": "Na形強酸性樹脂の軟水器が破過するとき、カルシウムよりマグネシウムが先にリークする。",
+      "answer": true,
+      "explanation": "カルシウムのほうが樹脂への親和力が強いため、マグネシウムが先に漏れ出す。"
+    },
+    {
+      "id": "q2.4-04",
+      "type": "choice",
+      "q": "向流再生が並流再生よりリークが少ない理由はどれか。",
+      "choices": ["再生不十分な部分（ヒール）が通水の入口側に来るため", "樹脂量が多いため", "毎回逆洗するため", "再生剤濃度が高いため"],
+      "answer": 0,
+      "explanation": "ヒールが入口側にあり、出口側に十分再生された樹脂層があるため、平衡によるリークが大幅に減る。"
+    },
+    {
+      "id": "q2.4-05",
+      "type": "tf",
+      "q": "向流再生の装置は、毎回の再生前に逆洗を行う。",
+      "answer": false,
+      "explanation": "向流再生では層を乱さないため、逆洗は3〜40回に1回程度。逆洗した後は2〜3倍の再生剤量で再生する必要がある。"
+    },
+    {
+      "id": "q2.4-06",
+      "type": "choice",
+      "q": "WAC樹脂を硫酸で再生するときの硫酸濃度の上限はどれか。",
+      "choices": ["0.8%", "2%", "5%", "10%"],
+      "answer": 0,
+      "explanation": "0.8%を超えると石膏（CaSO4）が樹脂層・樹脂粒内に析出する。塩酸なら5%で注入できる。"
+    },
+    {
+      "id": "q2.4-07",
+      "type": "choice",
+      "q": "塩形脱アルカリ（SBA Cl形）について正しいものはどれか。",
+      "choices": ["TDSは減らないため、ブロー量は通常減らない", "TDSを大幅に減らせる", "酸で再生する必要がある", "硬度を含む水をそのまま通水できる"],
+      "answer": 0,
+      "explanation": "アルカリ度を塩化物に置き換えるだけなのでTDSは変わらない。食塩で再生でき、流入水は完全に軟化しておく必要がある。"
+    },
+    {
+      "id": "q2.4-08",
+      "type": "tf",
+      "q": "H形陽イオン交換で発生した大量のCO2は、標準設計の脱気器で十分に除去できるので脱炭酸塔は省略してよい。",
+      "answer": false,
+      "explanation": "標準的なスプレー式・トレイ式脱気器ではガスブランケットが起こり除去できない。脱炭酸塔が必要。"
+    },
+    {
+      "id": "q2.4-09",
+      "type": "choice",
+      "q": "分流脱アルカリで、原水アルカリ度 220 mg/L、SAC(H)処理水のFMA 57 mg/L、目標アルカリ度 10 mg/Lのとき、SAC(H)側の流量割合はおよそいくらか。",
+      "choices": ["約24%", "約50%", "約76%", "約96%"],
+      "answer": 2,
+      "explanation": "%SAC(H) = (220 − 10) × 100 ÷ (220 + 57) ≒ 76%。残り24%がNa形軟水器の処理水。"
+    },
+    {
+      "id": "q2.4-10",
+      "type": "choice",
+      "q": "SBA樹脂の破過で最初にリークし、かつ導電率では検知できない成分はどれか。",
+      "choices": ["シリカ", "塩化物", "硫酸イオン", "硝酸イオン"],
+      "answer": 0,
+      "explanation": "シリカは親和力が最も弱く先にリークし、導電率に寄与しない。シリカ破過は通水量の85〜95%で起こる。"
+    },
+    {
+      "id": "q2.4-11",
+      "type": "choice",
+      "q": "2床式脱塩装置のSBA出口でナトリウムリークが 1 mg/L as CaCO3 増えると、導電率はおよそどれだけ上がるか。",
+      "choices": ["0.5 µS/cm", "2.5 µS/cm", "5 µS/cm", "20 µS/cm"],
+      "answer": 2,
+      "explanation": "NaはSBA出口でNaOHになり、1 mg/L as CaCO3あたり約5 µS/cm。NaClなら2.5 µS/cm。"
+    },
+    {
+      "id": "q2.4-12",
+      "type": "choice",
+      "q": "混床式脱塩装置で2床式よりナトリウムリークが小さくなる理由はどれか。",
+      "choices": ["SACが生成した酸が隣のSBAで即座に中和され、酸による溶離（酸背圧）がなくなるため", "樹脂量が多いため", "再生剤濃度が高いため", "通水速度が遅いため"],
+      "answer": 0,
+      "explanation": "混床では樹脂粒の周りが中性に保たれ、酸背圧によるNaの溶離が起こらない。"
+    },
+    {
+      "id": "q2.4-13",
+      "type": "tf",
+      "q": "コロイダルシリカは、混床式を含むイオン交換装置で除去できる。",
+      "answer": false,
+      "explanation": "コロイダル（非反応性）シリカはイオン交換を素通りし、ボイラ内で溶けてボイラ水・蒸気のシリカを上げる。前処理で除く必要がある。"
+    },
+    {
+      "id": "q2.4-14",
+      "type": "choice",
+      "q": "陽イオン交換樹脂の汚染物として最も一般的なものはどれか。",
+      "choices": ["鉄", "シリカ", "フミン酸", "硝酸"],
+      "answer": 0,
+      "explanation": "井水の2価鉄が交換された後に3価に酸化され、強く保持・酸化物化して樹脂を内外から汚染する。有機酸（フミン酸）は陰イオン樹脂の汚染物。"
+    },
+    {
+      "id": "q2.4-15",
+      "type": "choice",
+      "q": "塩素などの酸化剤による陽イオン樹脂の劣化を示す分析値の変化はどれか。",
+      "choices": ["含水率（水分保持容量）の上昇", "含水率の低下", "中性塩分解容量の上昇", "粒径の縮小"],
+      "answer": 0,
+      "explanation": "架橋が切れて樹脂が膨潤するため含水率が上がり、総容量が下がる。"
+    },
+    {
+      "id": "q2.4-16",
+      "type": "choice",
+      "q": "25℃で逆洗流速 9.23 m/h（相当値）と指定されている樹脂を、水温7℃で逆洗するとき、流速はどうすべきか。",
+      "choices": ["下げる（約14%減）", "上げる（約14%増）", "変えない", "2倍にする"],
+      "answer": 0,
+      "explanation": "Ft = Fr[1 + 0.008(t − r)] = Fr × (1 − 0.144)。低温では水の粘度が高く展開しやすいので、流速を下げないと樹脂が流出する。"
+    },
+    {
+      "id": "q2.4-17",
+      "type": "tf",
+      "q": "陰イオン交換樹脂の再生に使う希釈水は、軟水または純水でなければならない。",
+      "answer": true,
+      "explanation": "硬度を含む水で苛性を希釈すると、樹脂内で硬度が析出し、処理水質も悪化する。"
+    },
+    {
+      "id": "q2.4-18",
+      "type": "choice",
+      "q": "理想的な条件で、I形SBA樹脂の寿命の目安として示されているのはどれか。",
+      "choices": ["最大約5年", "最大約1年", "約10〜15年", "半永久的"],
+      "answer": 0,
+      "explanation": "SBAはアミンの分解で徐々に中性塩分解容量を失う。I形は最大約5年、II形は3〜4年が目安。"
+    },
+    {
+      "id": "q2.4-19",
+      "type": "choice",
+      "q": "軟水器の再生液の目標として示されている条件はどれか。",
+      "choices": ["30°S以上の食塩水で30分の接触", "10°Sの食塩水で5分の接触", "100°Sの食塩水で1分の接触", "5%苛性で30分の接触"],
+      "answer": 0,
+      "explanation": "サロメーターで溶離曲線を作り、30°S以上で30分接触できているかを確認する。"
+    },
+    {
+      "id": "q2.4-20",
+      "type": "tf",
+      "q": "陽イオン樹脂が誤って陰イオン塔に混入しても、陰イオン塔の処理水質には影響しない。",
+      "answer": false,
+      "explanation": "混入した陽イオン樹脂は苛性再生で常にNa形になり、平衡でNaを放出するため、水洗しても水質が出なくなる。飽和食塩水で浮沈分離して除去する。"
+    }
+  ]
+}

@@ -401,7 +401,7 @@
     var p = overallProgress();
     var rate = p.answered ? Math.round(p.correct / p.answered * 100) + '%' : '—';
     var dt = dailyTerm();
-    var quick = ['濃縮倍数', 'LSI', '白さび', 'レジオネラ', '亜硝酸', '孔食', 'ブロー', 'HTI'];
+    var quick = ['濃縮倍数', 'LSI', 'ブロー', 'レジオネラ', '孔食', 'キャリーオーバー', '脱気器', '苛性腐食'];
     var recent = state.recent.map(function (k) {
       if (k.indexOf('t:') === 0 && TERM[k.slice(2)]) return '<a class="chip" href="#/term/' + encodeURIComponent(k.slice(2)) + '">' + esc(TERM[k.slice(2)].term) + '</a>';
       if (k.indexOf('p:') === 0 && PROD[k.slice(2)]) return '<a class="chip" href="#/product/' + encodeURIComponent(k.slice(2)) + '">' + esc(PROD[k.slice(2)].name) + '</a>';

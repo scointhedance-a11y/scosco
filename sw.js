@@ -1,5 +1,5 @@
 /* オフライン用のキャッシュ。tools/build.py が CACHE の版を更新する。 */
-const CACHE = 'water-navi-2026-10-18-1546';
+const CACHE = 'water-navi-2026-10-18-2053';
 const ASSETS = ['./', 'index.html', 'css/style.css', 'js/data.js', 'js/calc.js', 'js/app.js', 'manifest.webmanifest', 'icons/icon.svg'];
 
 self.addEventListener('install', (e) => {

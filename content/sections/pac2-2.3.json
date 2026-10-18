@@ -1,0 +1,439 @@
+{
+  "id": "pac2-2.3",
+  "book": "PAC-2 ボイラ水技術マニュアル",
+  "section": "2.3",
+  "title": "水中の不純物と前処理（石灰軟化・鉄マンガン・シリカ除去）",
+  "titleEn": "Water Impurities and Pretreatment",
+  "summary": [
+    "水中の不純物は「溶解固形物」「溶存ガス」「懸濁物」に分類される。前処理はボイラの清浄性を保つうえで最も重要な部分で、硬度・シリカ・金属イオン・酸素のリークはボイラのスケールや腐食に直結する。内部処理薬品は小さな変動には対応できても、大きな変動には対応できない。",
+    "清澄（凝集ろ過）は懸濁物と色度を除くが TDS は下がらない（アルミ・鉄塩で逆に増える。塩素処理で塩化物も増える）。シルト（アルミナ・シリカ）がボイラに入ると溶けてシリカになる。",
+    "鉄・マンガンは井水に多い（酸素がなく、H2S などの還元剤で2価の可溶形）。鉄は0.05 ppm未満、マンガンは0.01 ppm未満が目標。曝気・塩素・過マンガン酸カリで酸化してろ過する。鉄1 ppmあたり塩素0.64 ppm、KMnO4 0.95 ppm。マンガンはpH 9付近まで上げ、鉄より時間が必要。グリーンサンドろ過が有効。",
+    "シリカは表流水で1〜10 ppm、井水で25〜50 ppm にもなる。溶解性シリカは脱塩で除けるがコロイダルシリカは除けない（凝集・ろ過・温石灰軟化で低減）。",
+    "石灰軟化：消石灰の OH⁻ が重炭酸を炭酸に変え、Ca を CaCO3、Mg を Mg(OH)2 として沈殿させる。CO2 → HCO3⁻ → CO3²⁻ → OH⁻ の順で反応が進むため、まず遊離CO2の分だけ石灰が消費される。CaCO3の溶解度はpH約9.4で最小、Mg(OH)2はpH 10.5でほぼゼロ。",
+    "冷石灰軟化：常温で主に Ca 硬度とアルカリ度を下げる（Mgは約10%しか落ちない）。シリカは約5 ppm程度まで。スラッジブランケット型・スラッジ循環（固液接触）型があり、滞留時間60〜120分、処理水濁度5 NTU未満が目安。",
+    "温石灰軟化（HPS）：約104℃で行うため反応が数百倍速く、Mg はほぼ完全に除かれ、CO2・溶存酸素も追い出せる。目的は「軟化・脱アルカリ・脱シリカ」の3つだが同時に最適化はできない（2つを選ぶ）。残留OHアルカリ度は5〜15 ppm as CaCO3。",
+    "温石灰軟化の管理値：S値＝M−Ca（Ca低減が目的）、N値＝Ca−M（アルカリ度低減が目的）、いずれも40〜60 ppm as CaCO3。加熱蒸気の凝縮で約12%希釈される。シリカは Mg(OH)2 フロックへの吸着で除去（100℃以上、滞留30〜60分、pH 10〜10.2、スラッジ循環3〜8%）。",
+    "運転トラブル：処理水の変動（原水変化・薬注不良・流量変動）、加熱・脱気不足（ベント不足、スプレー弁固着、蒸気不足）、高濁度（凝集不良・定格超過・偏流）、高硬度（OHアルカリ度ゼロ＝石灰不足、キャリーオーバー、ソーダ灰不足）、シリカ除去不良（Mg不足、スラッジ循環不足）。",
+    "温石灰軟化の後段ろ過は無煙炭（アンスラサイト）を使う。砂はシリカ化合物なのでシリカを戻してしまう。"
+  ],
+  "terms": [
+    {
+      "id": "water-impurity-types",
+      "term": "水中不純物の分類",
+      "reading": "すいちゅうふじゅんぶつのぶんるい",
+      "en": "Classification of water impurities",
+      "definition": "水中の不純物は「溶解固形物（硬度・シリカ・TDSなど）」「溶存ガス（O2・CO2・H2S）」「懸濁物（粘土・シルト・微生物など）」の3種類に分類される。産業排水・油・プロセス物質による汚染も加わる。",
+      "related": ["tds", "suspended-solids", "boiler-pretreatment"]
+    },
+    {
+      "id": "clarification",
+      "term": "清澄処理（凝集沈殿）",
+      "reading": "せいちょうしょり",
+      "en": "Clarification",
+      "aliases": ["凝集沈殿", "清澄"],
+      "definition": "凝集剤（アルミ・鉄塩、高分子凝集剤）でコロイド状懸濁物と色度を除去する処理。TDSは下がらず、アルミ・鉄塩の添加で増えることもある。通常は表流水に適用する。",
+      "field": "清澄後に石灰でpH調整すると、硬度が 2〜5 ppm as CaCO3 程度増えることがある。",
+      "related": ["suspended-solids", "colloidal-silica", "granular-media-filtration"]
+    },
+    {
+      "id": "color-tannin",
+      "term": "色度（タンニン・リグニン）",
+      "reading": "しきど",
+      "en": "Color (tannins, lignins)",
+      "definition": "植物の分解で生じる有機酸・タンニン・リグニンによる水の着色。多くの工場では規格はないが、脱塩装置に送る場合や白い紙の製造では除去が必要。タンニンは鉄と結合して可溶化し、ろ過をすり抜けてボイラに付着したり陰イオン樹脂を汚染したりする。",
+      "related": ["clarification", "organic-fouling"]
+    },
+    {
+      "id": "iron-oxidation-removal",
+      "term": "鉄の酸化除去",
+      "reading": "てつのさんかじょきょ",
+      "en": "Iron removal by oxidation",
+      "definition": "可溶性の2価鉄（Fe²⁺）を曝気・塩素・過マンガン酸カリで3価に酸化し、水酸化物として沈殿・ろ過する方法。pHが高いほど反応は速く、酸化鉄の溶解度は下がる。2〜3 ppm程度ならろ過器で直接除去できるが、より強い酸化剤とマンガン触媒、pH 8.5以上が必要。",
+      "formula": "鉄1 ppm あたり：塩素(Cl2) 0.64 ppm ／ KMnO4 0.95 ppm",
+      "field": "前処理での鉄の目標は 0.05 ppm 未満。井水では還元状態で最大 25 ppm の2価鉄を含むこともある。",
+      "related": ["iron-manganese", "greensand-filter", "manganese-removal"]
+    },
+    {
+      "id": "manganese-removal",
+      "term": "マンガン除去",
+      "reading": "まんがんじょきょ",
+      "en": "Manganese removal",
+      "definition": "鉄と同様に酸化してろ過するが、鉄より低濃度でも問題になりやすい。pHを約9.0まで上げると除去効率が大きく上がり、時間（接触時間）が鉄以上に重要。過マンガン酸カリと反応して二酸化マンガンとして共沈する。目標は 0.01 ppm 未満。",
+      "field": "マンガンは「黒い水」、鉄は「赤水」の原因になる。どちらもイオン交換樹脂を汚染する。",
+      "related": ["iron-oxidation-removal", "greensand-filter", "manganese-deposit"]
+    },
+    {
+      "id": "greensand-filter",
+      "term": "グリーンサンドろ過",
+      "reading": "ぐりーんさんどろか",
+      "en": "Manganese greensand filter",
+      "aliases": ["マンガン砂ろ過"],
+      "definition": "過マンガン酸カリで処理したグリーンサンド（海緑石）をろ材とするろ過器。ろ材上のマンガン酸化物が触媒となり、鉄・マンガンの酸化除去を促進する。前段で過マンガン酸カリやpH調整用の石灰を注入することが多い。",
+      "related": ["iron-oxidation-removal", "manganese-removal"]
+    },
+    {
+      "id": "colloidal-silica",
+      "term": "コロイダルシリカ",
+      "reading": "ころいだるしりか",
+      "en": "Colloidal silica",
+      "aliases": ["非反応性シリカ"],
+      "definition": "粒子状（コロイド）のシリカ。脱塩装置（イオン交換）では除去できず、凝集・ろ過・温石灰軟化で低減する。前処理をすり抜けるとボイラ内の条件で溶解し、ボイラ水や蒸気中のシリカを増やす。",
+      "field": "給水の溶解性シリカが低いのにボイラ水シリカが計算より高いときは、コロイダルシリカのリークを疑う。",
+      "related": ["silica-boiler", "clarification", "hot-lime-softening"]
+    },
+    {
+      "id": "silica-boiler",
+      "term": "シリカ（ボイラ水系）",
+      "reading": "しりか",
+      "en": "Silica (SiO2) in boiler systems",
+      "definition": "天然水にはすべてシリカが含まれる（表流水1〜10 ppm、井水では25〜50 ppmのことも）。高圧ボイラほど低いシリカが求められる。ボイラ内でケイ酸塩スケールを作るほか、圧力が高いと蒸気に揮発してタービンに付着する。",
+      "field": "石灰軟化で大きく下がるのは原水シリカが10 ppmを超える場合。低いレベルまで下げるには温石灰軟化か脱塩が必要。",
+      "related": ["colloidal-silica", "silica-scale", "limiting-factor", "silica-volatility"]
+    },
+    {
+      "id": "lime-softening",
+      "term": "石灰軟化（沈殿軟化）",
+      "reading": "せっかいなんか",
+      "en": "Lime softening (precipitation softening)",
+      "aliases": ["石灰ソーダ法", "沈殿軟化"],
+      "definition": "消石灰 Ca(OH)2（必要に応じてソーダ灰・苛性ソーダ・石膏を併用）を加え、Ca を炭酸カルシウム、Mg を水酸化マグネシウムとして沈殿除去する処理。石灰を入れて Ca が減るのは、OH⁻ が重炭酸を炭酸に変えて Ca の溶解度を下げるため。シリカ・鉄・マンガン・リン酸も共沈するので清澄処理でもある。",
+      "formula": "Ca(HCO3)2 + Ca(OH)2 → 2CaCO3 + 2H2O",
+      "related": ["cold-lime-softening", "hot-lime-softening", "partial-lime-softening", "alkalinity-hierarchy"]
+    },
+    {
+      "id": "alkalinity-hierarchy",
+      "term": "アルカリ度の段階（CO2→HCO3⁻→CO3²⁻→OH⁻）",
+      "reading": "あるかりどのだんかい",
+      "en": "Acid/base alkalinity hierarchy",
+      "definition": "遊離CO2はpH 8.3で消失し、重炭酸（HCO3⁻）はpH 8.3で最大、炭酸（CO3²⁻）はpH 12.3で最大、その後OH⁻が増える。酸性側の形がすべて消費されるまで次の段階には進まないため、石灰はまず遊離CO2の中和に使われる。",
+      "formula": "CO2(ppm as CO2) = M × 10^(6.3 − pH)　（M は ppm as CaCO3）",
+      "field": "CO2が多い原水は石灰消費とスラッジが増えるので、前段で曝気してCO2を飛ばす。",
+      "related": ["lime-softening", "alkalinity", "p-m-alkalinity"]
+    },
+    {
+      "id": "partial-lime-softening",
+      "term": "部分石灰軟化",
+      "reading": "ぶぶんせっかいなんか",
+      "en": "Partial lime softening",
+      "definition": "石灰だけを使い、主に Ca を下げる冷間処理。Mg はわずかしか下がらない（Ca:Mg=2:1で約10%、1:1で約20%）。アルカリ度は総硬度の低下分と同じだけ下がる。",
+      "related": ["complete-lime-softening", "cold-lime-softening"]
+    },
+    {
+      "id": "complete-lime-softening",
+      "term": "完全石灰軟化",
+      "reading": "かんぜんせっかいなんか",
+      "en": "Complete (excess) lime softening",
+      "definition": "石灰を過剰に入れて遊離OHアルカリ度（通常5〜10 ppm as CaCO3）を残し、Mg も Mg(OH)2 として下げる冷間処理。Mg が減る代わりに Ca が増えるため、ソーダ灰や苛性ソーダで Ca をさらに下げる。",
+      "related": ["partial-lime-softening", "soda-ash", "hydroxide-residual"]
+    },
+    {
+      "id": "lime-zeolite-softening",
+      "term": "石灰・ゼオライト軟化",
+      "reading": "せっかいぜおらいとなんか",
+      "en": "Lime-zeolite softening",
+      "aliases": ["石灰－軟化器併用"],
+      "definition": "石灰軟化の後段にナトリウム形イオン交換（ゼオライト・樹脂）軟化を置き、ボイラ用に硬度を低く仕上げる方法。温石灰軟化 → 無煙炭ろ過 → 樹脂軟化器 はボイラ補給水の一般的な構成。",
+      "related": ["lime-softening", "sodium-softener"]
+    },
+    {
+      "id": "lime-gypsum-softening",
+      "term": "石灰・石膏軟化",
+      "reading": "せっかいせっこうなんか",
+      "en": "Lime-gypsum softening",
+      "definition": "アルカリ度が硬度を大きく上回る原水に、石灰と石膏（CaSO4）を加えて硬度とアルカリ度を下げる方法。石膏や塩化カルシウムで Ca を補い、余分なアルカリ度を CaCO3 として除く。",
+      "related": ["lime-softening"]
+    },
+    {
+      "id": "soda-ash",
+      "term": "ソーダ灰（炭酸ナトリウム）",
+      "reading": "そーだばい",
+      "en": "Soda ash (Na2CO3)",
+      "definition": "石灰軟化で Ca がアルカリ度より多い（CaH ＞ M）場合に、炭酸イオンを補って Ca を CaCO3 として沈殿させる薬品。石灰と組み合わせると NaOH を生成する（スラッジが出る）。苛性ソーダならスラッジは増えない。",
+      "formula": "Ca(OH)2 + Na2CO3 → CaCO3 + 2NaOH",
+      "related": ["lime-softening", "complete-lime-softening"]
+    },
+    {
+      "id": "sludge-blanket",
+      "term": "スラッジブランケット型軟化装置",
+      "reading": "すらっじぶらんけっとがた",
+      "en": "Sludge blanket precipitator",
+      "definition": "処理水を、既に生成した沈殿物の浮遊層（スラッジブランケット）の中を上向きにくぐらせる装置。固相と大量に接触するため後析出が減り、反応時間が短くなり、シリカも一部除去できる。定格の約20〜115%で安定運転できる。",
+      "field": "ブランケット高さは、生成量と同じ速度でスラッジを抜いて保つ。流量を上げるとブランケットが上がり、キャリーオーバーの原因になる。",
+      "related": ["solids-contact-clarifier", "post-precipitation", "rise-rate"]
+    },
+    {
+      "id": "solids-contact-clarifier",
+      "term": "固液接触型（スラッジ循環型）清澄器",
+      "reading": "こえきせっしょくがたせいちょうき",
+      "en": "Solids-contact (sludge recirculation) clarifier",
+      "definition": "沈降部のフロックスラリーを中央の反応部に一定量循環させる上向流型清澄器。種結晶となる固形物量が処理流量にあまり左右されないため、より高い上昇速度で運転できる。冷石灰軟化で最も一般的な形式。",
+      "related": ["sludge-blanket", "sludge-recirculation"]
+    },
+    {
+      "id": "rise-rate",
+      "term": "上昇速度（ライズレート）",
+      "reading": "じょうしょうそくど",
+      "en": "Rise rate",
+      "definition": "沈殿装置の断面積あたりの通水量。冷石灰軟化ではスラッジブランケット型 2.4〜3.1 m³/h/m²、固液接触型 3.1〜3.7 m³/h/m²（水温12.8℃超なら25%増し）。温石灰軟化の上向流型は 3.7〜4.3 m³/h/m²（滞留60分）。",
+      "field": "冷石灰軟化の目安：滞留60〜120分、温度変化 1.1℃/h 以内、処理水SS 10 ppm未満・濁度5 NTU未満、5分沈降試験でスラッジ濃度70〜90%。",
+      "related": ["sludge-blanket", "solids-contact-clarifier"]
+    },
+    {
+      "id": "hot-lime-softening",
+      "term": "温石灰軟化（HPS）",
+      "reading": "おんせっかいなんか",
+      "en": "Hot process softening (HPS) / Hot lime softening",
+      "aliases": ["熱間石灰軟化", "HPS"],
+      "definition": "約104℃（220°F）で行う石灰軟化。反応速度が冷間の数百倍で、沈殿物が大きく重く沈降が速い。Ca・Mg・アルカリ度・シリカ・TDS・溶存酸素・CO2を下げる。Mg はほぼ完全に除かれ（5 ppm as CaCO3未満）、残留OHアルカリ度は5〜15 ppm as CaCO3。主にボイラ補給水用。",
+      "field": "役割は「軟化・脱アルカリ・脱シリカ」の3つ。同時に全部は最適化できないので、2つを主目的に選ぶ。工場では脱アルカリ目的が多い（陰イオン交換で脱アルカリするより約20倍安い）。",
+      "related": ["lime-softening", "s-n-value", "steam-dilution-hps", "magnesium-silica-adsorption"]
+    },
+    {
+      "id": "s-n-value",
+      "term": "S値・N値（温石灰軟化）",
+      "reading": "えすちえぬち",
+      "en": "S value / N value",
+      "definition": "温石灰軟化の処理水の管理指標。S＝M−Ca（Ca低減が目的のとき。過剰アルカリ度）、N＝Ca−M（アルカリ度低減が目的のとき。過剰Ca）。どちらも 40〜60 ppm as CaCO3 が適正。",
+      "field": "S＞60ならソーダ灰・苛性を減らす。N＞60ならソーダ灰・苛性を増やす。石灰はOHアルカリ度（2P−M＝5〜15 ppm）で決まるので変えない。",
+      "related": ["hot-lime-softening", "p-m-alkalinity"]
+    },
+    {
+      "id": "steam-dilution-hps",
+      "term": "加熱蒸気による希釈（HPS）",
+      "reading": "かねつじょうきによるきしゃく",
+      "en": "Steam dilution factor",
+      "definition": "温石灰軟化では加熱に使った蒸気が凝縮して処理水に加わるため、沈殿で除かれないイオン（Na・Cl・SO4）も見かけ上下がる。例：38℃の原水を34 kPagの蒸気で108℃に加熱すると、処理水の約12%が凝縮蒸気になる。",
+      "field": "薬注量や処理水質を予測する前に、まずこの希釈を計算に入れる。",
+      "related": ["hot-lime-softening"]
+    },
+    {
+      "id": "magnesium-silica-adsorption",
+      "term": "マグネシウムによるシリカ除去",
+      "reading": "まぐねしうむによるしりかじょきょ",
+      "en": "Silica removal by magnesium hydroxide adsorption",
+      "definition": "シリカはケイ酸イオンとして、生成直後の水酸化マグネシウムフロック表面（MgOH⁺）に静電吸着されて除かれる。化学反応ではないので必要量は推定しかできない。シリカが高いほど効率が良い。冷間処理では効率が低く、約5 ppmが限度。",
+      "field": "効率よく除去する条件：100℃以上、滞留30分〜1時間、pH約10〜10.2、スラッジ循環。Mgが不足すれば軽焼ドロマイト（MgO 32%）や酸化マグネシウムを加える。",
+      "related": ["hot-lime-softening", "sodium-aluminate", "sludge-recirculation", "silica-boiler"]
+    },
+    {
+      "id": "ferric-silica-removal",
+      "term": "鉄塩によるシリカ除去",
+      "reading": "てつえんによるしりかじょきょ",
+      "en": "Silica removal by ferric hydroxide",
+      "definition": "硫酸第二鉄を石灰・苛性で沈殿させ、水酸化鉄にシリカを吸着させる方法。最適pH約9.0。シリカ10 ppm未満の水では除去シリカ1 ppmあたり硫酸第二鉄10〜20 ppmが必要で、到達限界は2〜3 ppm程度。温度が上がると効率が下がるので冷間処理向き。硫酸・非炭酸硬度・鉄が増えるのが欠点。",
+      "related": ["magnesium-silica-adsorption"]
+    },
+    {
+      "id": "sodium-aluminate",
+      "term": "アルミン酸ナトリウム",
+      "reading": "あるみんさんなとりうむ",
+      "en": "Sodium aluminate",
+      "definition": "石灰軟化で Mg とシリカの低減を大きく促進する陰イオン性凝集剤。Mg・シリカと共沈して溶解度の低い化合物を作り、軽い Mg(OH)2 フロックを締めてキャリーオーバーを減らす。通常5〜20 ppm。",
+      "field": "Mg が総硬度の1/3を超えるなら、濁度5 NTU未満を保つためにアルミン酸ナトリウムが必要になることが多い。水によってはシリカ改善効果がない場合もあるので試験で確認する。",
+      "related": ["magnesium-silica-adsorption", "hot-lime-softening"]
+    },
+    {
+      "id": "sludge-recirculation",
+      "term": "スラッジ循環",
+      "reading": "すらっじじゅんかん",
+      "en": "Sludge recirculation",
+      "definition": "沈降した重い沈殿物を薬品混合部に戻し、種として過飽和を早く解消させる操作。シリカ除去では Mg フロックとの接触を増やす。通常は流入水量の3〜8%、5分沈降試験で60〜80%の濃度のスラッジを使う。",
+      "field": "最も濃いのはコーン頂部だが、砂・グリットでポンプが摩耗するので頂部の少し上から取る。",
+      "related": ["magnesium-silica-adsorption", "sludge-blanket"]
+    },
+    {
+      "id": "vent-condenser",
+      "term": "ベントコンデンサ",
+      "reading": "べんとこんでんさ",
+      "en": "Vent condenser",
+      "definition": "温石灰軟化装置や脱気器のベント蒸気を冷たい補給水で凝縮させ、非凝縮性ガス（O2・CO2）だけを排出しつつ熱を回収する装置。管式（スケールが付くのでバイパスが必要）と直接接触式（詰まりにくく安価）がある。",
+      "field": "ベント量の目安：処理量1000 kg/hあたり蒸気0.5 kg/h（ベントコンデンサなしなら最大2.5 kg/h）。実際にはベント上30〜46 cmほど蒸気の白煙が見える程度。",
+      "related": ["deaerator", "hot-lime-softening"]
+    },
+    {
+      "id": "hydroxide-residual",
+      "term": "残留OHアルカリ度（石灰軟化の管理）",
+      "reading": "ざんりゅうおーえいちあるかりど",
+      "en": "Hydroxide alkalinity residual",
+      "definition": "石灰が十分に注入されているかを判断する指標。処理水のOHアルカリ度（2P−M）を5〜10 ppm as CaCO3（温石灰では5〜15）に保つ。ゼロなら石灰不足のサイン。",
+      "formula": "OH = 2P − M（ppm as CaCO3）",
+      "related": ["p-m-alkalinity", "complete-lime-softening", "s-n-value"]
+    },
+    {
+      "id": "retention-time-tracer",
+      "term": "滞留時間試験（偏流チェック）",
+      "reading": "たいりゅうじかんしけん",
+      "en": "Retention time (short-circuiting) test",
+      "definition": "TRASAR・フェノールフタレイン・フルオレセイン・食塩を一度に投入し、出口で濃度が最大になるまでの時間を測って実際の滞留時間を確認する方法。理論滞留時間の100%にはならないが、75%を下回ったら排水して内部点検する。",
+      "formula": "理論滞留時間 = 槽容量 ÷ 流量",
+      "field": "例：容量38 m³、流量30 m³/h → 理論76分。40分で最大なら約53%で偏流（スラッジ・スケール堆積や破損）を疑う。",
+      "related": ["trasar", "sludge-blanket"]
+    },
+    {
+      "id": "anthracite-filter",
+      "term": "無煙炭ろ過（アンスラサイト）",
+      "reading": "むえんたんろか",
+      "en": "Anthracite (coal) media filter",
+      "definition": "温石灰軟化の後段に使うろ過材。砂はシリカ化合物なので、高温・高pHの処理水にシリカを溶かし戻してしまうため使わない。冷石灰軟化の後は砂でも無煙炭でもよい。",
+      "related": ["hot-lime-softening", "granular-media-filtration"]
+    },
+    {
+      "id": "granular-media-filtration",
+      "term": "粒状ろ材ろ過",
+      "reading": "りゅうじょうろざいろか",
+      "en": "Granular media filtration",
+      "aliases": ["砂ろ過", "急速ろ過"],
+      "definition": "砂などの粒状ろ材の層に水を通し、懸濁物・コロイドを除く物理化学的処理。清澄・沈殿軟化の最終工程として使い、SS 5〜50 ppm の水から1 NTU未満の処理水を得る。イオン交換樹脂の汚染を防ぐためにも必要。",
+      "related": ["clarification", "anthracite-filter"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q2.3-01",
+      "type": "choice",
+      "q": "水中の不純物の3分類として正しいものはどれか。",
+      "choices": ["溶解固形物・溶存ガス・懸濁物", "硬度・アルカリ度・シリカ", "有機物・無機物・微生物", "陽イオン・陰イオン・中性分子"],
+      "answer": 0,
+      "explanation": "PAC-2では不純物を溶解固形物（dissolved solids）・溶存ガス（dissolved gases）・懸濁物（suspended matter）に分類している。"
+    },
+    {
+      "id": "q2.3-02",
+      "type": "tf",
+      "q": "凝集沈殿による清澄処理では、TDS（溶解固形物）も大きく低減できる。",
+      "answer": false,
+      "explanation": "清澄処理で除けるのは懸濁物と色度。TDSは下がらず、アルミ・鉄塩の添加で逆に増えることもある。"
+    },
+    {
+      "id": "q2.3-03",
+      "type": "choice",
+      "q": "前処理系で一般的に目標とされる鉄の濃度はどれか。",
+      "choices": ["0.05 ppm未満", "0.5 ppm未満", "1 ppm未満", "5 ppm未満"],
+      "answer": 0,
+      "explanation": "鉄は一般に前処理で0.05 ppm未満まで下げる。マンガンは0.01 ppm未満が望ましい。"
+    },
+    {
+      "id": "q2.3-04",
+      "type": "choice",
+      "q": "2価の鉄 1 ppm を塩素で酸化するのに必要な塩素（Cl2）はおよそいくらか。",
+      "choices": ["0.14 ppm", "0.64 ppm", "0.95 ppm", "1.5 ppm"],
+      "answer": 1,
+      "explanation": "塩素は鉄1 ppmあたり0.64 ppm、過マンガン酸カリなら0.95 ppmが必要。"
+    },
+    {
+      "id": "q2.3-05",
+      "type": "tf",
+      "q": "井水に鉄・マンガンが多いのは、酸素がなく還元状態のため2価の可溶形で存在するからである。",
+      "answer": true,
+      "explanation": "井水は酸化電位が低く、H2Sなどの還元剤があると不溶性の3価鉄・4価マンガンが可溶性の形に還元される。"
+    },
+    {
+      "id": "q2.3-06",
+      "type": "choice",
+      "q": "イオン交換による脱塩では除去できないシリカはどれか。",
+      "choices": ["コロイダルシリカ", "溶解性シリカ", "ケイ酸イオン", "反応性シリカ"],
+      "answer": 0,
+      "explanation": "脱塩は溶解性シリカを除くが、コロイダルシリカは除けない。凝集・ろ過・温石灰軟化で低減する。"
+    },
+    {
+      "id": "q2.3-07",
+      "type": "choice",
+      "q": "石灰（Ca(OH)2）を加えるとカルシウムが減る理由として正しいものはどれか。",
+      "choices": ["OH⁻が重炭酸を炭酸に変え、カルシウムの溶解度が大きく下がるため", "石灰がカルシウムを吸着するため", "pHが下がってカルシウムが揮発するため", "石灰がカルシウムをナトリウムに交換するため"],
+      "answer": 0,
+      "explanation": "OH⁻が HCO3⁻ を CO3²⁻ に変え、CaCO3 として沈殿させる。逆説的に見えるが、このため石灰で Ca が下がる。"
+    },
+    {
+      "id": "q2.3-08",
+      "type": "choice",
+      "q": "炭酸カルシウムの溶解度が最小になるpHはおよそいくつか。",
+      "choices": ["約8.3", "約9.4", "約10.5", "約12.3"],
+      "answer": 1,
+      "explanation": "CaCO3と平衡するCaはpH約9.4で最小となり、それ以上では Ca(OH)2 の形成で溶解度が上がる。Mg(OH)2はpH 10.5でほぼゼロになる。"
+    },
+    {
+      "id": "q2.3-09",
+      "type": "tf",
+      "q": "冷石灰軟化で、遊離CO2が残っている状態でも炭酸イオンの生成は同時に進む。",
+      "answer": false,
+      "explanation": "酸性側の形（CO2）がすべて重炭酸になるまで炭酸は生成しない。石灰はまずCO2の中和に消費される。"
+    },
+    {
+      "id": "q2.3-10",
+      "type": "choice",
+      "q": "一般的な原水（Ca:Mg = 2:1）を冷石灰軟化したとき、マグネシウムの除去率はおよそどれくらいか。",
+      "choices": ["約10%", "約50%", "約80%", "ほぼ100%"],
+      "answer": 0,
+      "explanation": "石灰注入点の局所的な高pHでMg(OH)2が生じるため約10%が除かれる。1:1なら約20%。温石灰軟化ではほぼ完全に除去される。"
+    },
+    {
+      "id": "q2.3-11",
+      "type": "choice",
+      "q": "温石灰軟化（HPS）の3つの機能のうち、同時に最適化できるのはいくつか。",
+      "choices": ["1つだけ", "2つ（3つ目は犠牲にする）", "3つすべて", "機能によらず最適化は不要"],
+      "answer": 1,
+      "explanation": "軟化・脱アルカリ・脱シリカの3つは同時に最適化できない。主目的を2つ選び、3つ目は犠牲にする。"
+    },
+    {
+      "id": "q2.3-12",
+      "type": "choice",
+      "q": "温石灰軟化で、アルカリ度低減が主目的のときに使う管理値 N（Ca − M）の適正範囲はどれか。",
+      "choices": ["5〜15 ppm as CaCO3", "20〜30 ppm as CaCO3", "40〜60 ppm as CaCO3", "80〜100 ppm as CaCO3"],
+      "answer": 2,
+      "explanation": "S値（M − Ca）もN値（Ca − M）も適正値は40〜60 ppm as CaCO3。N＞60ならソーダ灰・苛性を増やす。"
+    },
+    {
+      "id": "q2.3-13",
+      "type": "tf",
+      "q": "温石灰軟化では、加熱蒸気の凝縮による希釈で、沈殿除去されないナトリウムや塩化物の濃度も見かけ上下がる。",
+      "answer": true,
+      "explanation": "例えば38℃の原水を34 kPagの蒸気で加熱すると、処理水の約12%が凝縮蒸気になり、その分濃度が下がる。"
+    },
+    {
+      "id": "q2.3-14",
+      "type": "choice",
+      "q": "温石灰軟化の後段ろ過器に砂ではなく無煙炭を使う理由はどれか。",
+      "choices": ["砂はシリカ化合物で、シリカを溶かし戻すため", "無煙炭のほうが鉄を吸着するため", "砂は高温で膨張するため", "無煙炭は逆洗が不要なため"],
+      "answer": 0,
+      "explanation": "高温・高pHの処理水に砂を使うとシリカが溶け出して処理水に戻ってしまう。"
+    },
+    {
+      "id": "q2.3-15",
+      "type": "choice",
+      "q": "水酸化マグネシウムへの吸着でシリカを効率よく除去する条件として誤っているものはどれか。",
+      "choices": ["温度100℃以上", "pH約10〜10.2", "スラッジ循環を止める", "滞留時間30分〜1時間"],
+      "answer": 2,
+      "explanation": "スラッジ循環（流入量の3〜8%）はMgフロックとの接触を増やし、シリカ除去効率を上げるので必要。"
+    },
+    {
+      "id": "q2.3-16",
+      "type": "choice",
+      "q": "石灰軟化の処理水でOHアルカリ度がゼロだった。最も考えられる原因はどれか。",
+      "choices": ["石灰の注入不足", "ソーダ灰の過剰注入", "温度の上がりすぎ", "スラッジ循環の過剰"],
+      "answer": 0,
+      "explanation": "残留OHアルカリ度は5〜10 ppm as CaCO3が目安。ゼロは石灰不足のサインで、処理水硬度の上昇につながる。"
+    },
+    {
+      "id": "q2.3-17",
+      "type": "choice",
+      "q": "トレーサで調べた実際の滞留時間が理論値の何%を下回ったら、軟化装置を排水して内部点検すべきか。",
+      "choices": ["95%", "75%", "50%", "25%"],
+      "answer": 1,
+      "explanation": "実滞留時間は理論値の100%にはならないが、75%を下回ったらスラッジ・スケール堆積や部品破損による偏流を疑う。"
+    },
+    {
+      "id": "q2.3-18",
+      "type": "tf",
+      "q": "アルミン酸ナトリウムは、石灰軟化でマグネシウムとシリカの低減を促進し、軽いMg(OH)2フロックのキャリーオーバーを減らす。",
+      "answer": true,
+      "explanation": "陰イオン性凝集剤としてMg・シリカと共沈し、フロックを締める。通常5〜20 ppmで使う。"
+    },
+    {
+      "id": "q2.3-19",
+      "type": "choice",
+      "q": "石灰スラリーの濃度上限として推奨されているのはどれか。",
+      "choices": ["1%", "5%", "15%", "30%"],
+      "answer": 1,
+      "explanation": "5%を超えると沈降して詰まりの原因になる。希釈水に未軟化水を使うと配管にスケールが付くので注意。"
+    }
+  ]
+}
