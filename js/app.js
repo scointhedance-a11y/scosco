@@ -289,6 +289,25 @@
       '<div class="item-sub">' + esc(p.category) + (productSummary(p) ? '：' + esc(productSummary(p)) : '') + '</div></a>';
   }
 
+  // 製品・装置資料の用語と製品MAPを、品番（数字を含む別名）でつなぐ
+  function normCode(s) { return String(s).toUpperCase().replace(/[\s\-・]/g, ''); }
+  function productMatchesTerm(p, t) {
+    var name = normCode(p.name);
+    return [t.term].concat(t.aliases || []).some(function (a) {
+      var n = normCode(a);
+      if (n.length < 4 || !/\d{3}/.test(n)) return false;
+      var i = name.indexOf(n);
+      return i >= 0 && !/\d/.test(name.charAt(i + n.length)) && !(i > 0 && /\d/.test(name.charAt(i - 1)));
+    });
+  }
+  function productTerms(p) {
+    return TERMS.filter(function (t) { return /^eq-/.test(t.sec) && /^product-/.test(t.id) && productMatchesTerm(p, t); });
+  }
+  function termProducts(t) {
+    if (!/^product-/.test(t.id)) return [];
+    return PRODUCTS.filter(function (p) { return productMatchesTerm(p, t); });
+  }
+
   function backLink(href, label) {
     if (href === 'back') {
       return '<a class="back" href="#/" data-action="back">' + ICON.back + esc(label) + '</a>';
@@ -401,7 +420,7 @@
     var p = overallProgress();
     var rate = p.answered ? Math.round(p.correct / p.answered * 100) + '%' : '—';
     var dt = dailyTerm();
-    var quick = ['濃縮倍数', 'LSI', 'ブロー', 'レジオネラ', '孔食', 'キャリーオーバー', '脱気器', '苛性腐食'];
+    var quick = ['濃縮倍数', 'LSI', 'ブロー', 'レジオネラ', 'キャリーオーバー', '脱気器', '凝集', '活性汚泥', '汚泥脱水', '3D TRASAR', '薬注ポンプ'];
     var recent = state.recent.map(function (k) {
       if (k.indexOf('t:') === 0 && TERM[k.slice(2)]) return '<a class="chip" href="#/term/' + encodeURIComponent(k.slice(2)) + '">' + esc(TERM[k.slice(2)].term) + '</a>';
       if (k.indexOf('p:') === 0 && PROD[k.slice(2)]) return '<a class="chip" href="#/product/' + encodeURIComponent(k.slice(2)) + '">' + esc(PROD[k.slice(2)].name) + '</a>';
@@ -584,6 +603,7 @@
     var related = (t.related || []).map(function (id) { return TERM[id]; }).filter(Boolean);
     var referencedBy = TERMS.filter(function (x) { return x.id !== t.id && (x.related || []).indexOf(t.id) >= 0 && related.indexOf(x) < 0; });
     var qs = relatedQuizzes(t);
+    var prods = termProducts(t);
     var saved = isSaved('t:' + t.id);
     var html = '<div class="stack">' + backLink('back', '戻る') +
       '<article class="card">' +
@@ -598,6 +618,7 @@
       (t.field ? '<div class="block fieldnote"><h3>現場のポイント</h3><p>' + esc(t.field) + '</p></div>' : '') +
       (related.length ? '<div class="block"><h3>関連する用語</h3><div class="chips">' + related.map(function (r) { return '<a class="chip" href="#/term/' + encodeURIComponent(r.id) + '">' + esc(r.term) + '</a>'; }).join('') + '</div></div>' : '') +
       (referencedBy.length ? '<div class="block"><h3>この用語を参照している用語</h3><div class="chips">' + referencedBy.map(function (r) { return '<a class="chip" href="#/term/' + encodeURIComponent(r.id) + '">' + esc(r.term) + '</a>'; }).join('') + '</div></div>' : '') +
+      (prods.length ? '<div class="block"><h3>製品MAP</h3><div class="chips">' + prods.map(function (p) { return '<a class="chip" href="#/product/' + encodeURIComponent(p.id) + '">' + esc(p.name) + '</a>'; }).join('') + '</div></div>' : '') +
       '<div class="block source">出典：' + esc(s ? s.book : '') + ' ／ <a href="#/section/' + encodeURIComponent(t.sec) + '">' + esc(secLabel(s)) + '</a></div>' +
       '</article>';
     if (qs.length) {
@@ -983,6 +1004,10 @@
       '<dl class="attrs block">' + (p.attrs || []).map(function (a) {
         return '<dt>' + esc(a[0].replace(/\n/g, ' ')) + '</dt><dd>' + esc(a[1]) + '</dd>';
       }).join('') + '</dl></article>';
+    var pts = productTerms(p);
+    if (pts.length) {
+      html += '<div class="section-title"><h2>製品資料の解説</h2></div><div class="list">' + pts.map(termItem).join('') + '</div>';
+    }
     if (siblings.length) {
       html += '<div class="section-title"><h2>同じ区分の製品</h2><span class="muted small">' + siblings.length + '件</span></div><div class="list">' + siblings.map(productItem).join('') + '</div>';
     }

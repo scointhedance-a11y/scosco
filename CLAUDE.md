@@ -1,10 +1,11 @@
 # 水処理ナビ — 作業メモ
 
-水処理技術（冷却水・ボイラ等）の学習クイズ＋現場用辞書の静的Webアプリ。ビルド不要の素のHTML/CSS/JS。
+水処理技術（原水・排水・冷却水・ボイラ・薬品・機器）の学習クイズ＋現場用辞書の静的Webアプリ。ビルド不要の素のHTML/CSS/JS。
 
 - コンテンツ: `content/sections/*.json`（形式は docs/CONTENT_GUIDE.md）、製品: `content/products.json`
 - 生成: `python3 tools/build.py` → `js/data.js`・`dist/water-app.html`・`sw.js` のキャッシュ版。コンテンツを変えたら必ず実行してコミットする。
 - 製品MAP更新: `python3 tools/import_products.py <xlsx>`
+- 資料グループ（PAC-1〜3・製品・装置資料）ごとのID・節番号の付け方は docs/CONTENT_GUIDE.md の「資料グループと命名」に従う。
 
 ## 資料を追加するとき
 1. 原本（社外秘）はコミットしない。`pdftotext` で本文を読み、日本語で要点・用語・クイズを書き起こす（原文の丸写しはしない）。
