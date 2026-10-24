@@ -1,0 +1,1035 @@
+{
+  "id": "pac1-1.2",
+  "book": "PAC-1 原水・排水処理技術マニュアル",
+  "section": "1.2",
+  "title": "水化学の基礎",
+  "titleEn": "Basic Water Chemistry",
+  "summary": [
+    "表流水は大気との接触でガスの影響を受けやすく、地下水は地層との接触で鉱物分が多い。地下水は組成が安定し濁りが少なく、表流水は降雨や土壌侵食で変動しやすい。天然水の硬度は数mg/Lから500 mg/L超まで幅がある。",
+    "気体の溶解度は①水中で化学反応するか遊離ガスとして溶けるか、②水中と大気中の分圧、③水温の3つで決まる。酸素はイオン化しないので脱気で低濃度まで下げられるが、CO2とアンモニアは結合していない（遊離）分しか機械的に除けない。アンモニアはアルカリ性ほど除きやすい。",
+    "鉱物の溶解度の経験則：硬度塩は温度上昇・アルカリ度上昇・CO2減少で溶けにくくなる。ナトリウム塩は主に温度で溶けやすくなる。シリカはpHが上がるほど溶けやすい（天然水では通常4 mg/L未満、アルカリ性の天然水では200 mg/Lに達することもある）。鉄・マンガンはアルカリ度と酸化の度合いが上がるほど溶けにくい。",
+    "純水は25℃で[H⁺]と[OH⁻]がそれぞれ10⁻⁷ mol/Lで、イオン積Kw＝10⁻¹⁴。KwはpKwで0℃ 14.93、25℃ 14.00、50℃ 13.26と温度で変わるため、水は加熱するとpHが下がる。冷却したサンプルのpHで高温系を管理すると、実際とずれたpHで運転することになる。",
+    "pHは水素イオンと水酸化物イオンのバランスを示す目安で、酸・アルカリの量を表すものではない。水の状態を定めるにはpH・アルカリ度・CO2の3つが必要。CO2/全アルカリ度の比が同じならpHは同じだが、アルカリ度が高い水ほど緩衝能が大きい。",
+    "炭酸系の平衡定数はK_H＝10⁻²·⁸、Ka1＝10⁻⁶·³、Ka2＝10⁻¹⁰·³。pH約8.3未満では重炭酸とCO2だけ、pH 8.3はフェノールフタレイン終点、pH約4.3はメチルオレンジ終点（全アルカリ度がゼロになり、それ以下は遊離鉱酸）。OH⁻はpH 9.3を超えて1 mg/L as CaCO3を超えるまで実質的に寄与しない。",
+    "PとMの関係表（P＝0、P＜½M、P＝½M、P＞½M、P＝M）からOH⁻・CO3²⁻・HCO3⁻を求められる。近似はpH 10付近で誤差が大きく（P＞½Mでも重炭酸がアルカリ度の最大25%残りうる）、pH 9.2未満またはpH 12超で精度がよい。P＝50、M＝500ならpHは9.0〜9.2のはず、という具合に測定値の妥当性チェックに使える。",
+    "酸化還元反応は電子の授受で、酸化（電子を失う）には必ず還元（電子を得る）が伴う。鉄・マンガンは還元状態で2価として溶け、酸化して3価・4価にすると溶けにくくなる。除去には酸化とpH調整の両方が必要で、反応速度（pH・触媒・接触時間）が実際の決め手になる。",
+    "塩素は手軽な酸化剤だが、アンモニアが多い水ではクロラミンになって消費される。過マンガン酸、二酸化塩素、オゾンはアンモニアの影響を受けない。酸化還元反応は酸塩基中和（ほぼ瞬時）に比べて遅いので、設計時のジャーテストでは時間を変数に含める。",
+    "化学量論の計算は分子量（または当量＝分子量÷原子価）で行う。濃度はmg/Lで表すのが正確で、ppmとはmg/L＝ppm×比重の関係（約10000 ppm未満では差は無視できる）。CaCO3換算やepmで表すと陽イオンと陰イオンの合計を比べて分析の妥当性を確かめられる。"
+  ],
+  "terms": [
+    {
+      "id": "gas-solubility",
+      "term": "気体の溶解度",
+      "reading": "きたいのようかいど",
+      "en": "Gas solubility",
+      "aliases": [
+        "ガスの溶解度",
+        "溶存ガス"
+      ],
+      "definition": "水に溶ける気体の量は、①水中で化学反応するか遊離ガスとして溶けるか、②水中と大気中での気体の分圧、③水温の3つで決まる。水は気体の分圧が大気側と釣り合うところまでしか遊離ガスを溶かさない。",
+      "formula": "空気の組成：窒素78%、酸素21%、CO2 0.03〜0.06%（300〜600 ppm）",
+      "field": "飽和温度（その圧力での沸点）では理論上すべての遊離ガスが溶けなくなるが、実際には蒸気温度が水温よりわずかに高いため完全には除けない。窒素は不活性で水化学上はあまり問題にならない。",
+      "related": [
+        "henrys-law",
+        "partial-pressure",
+        "free-gas",
+        "mechanical-deaeration"
+      ]
+    },
+    {
+      "id": "partial-pressure",
+      "term": "分圧",
+      "reading": "ぶんあつ",
+      "en": "Partial pressure",
+      "aliases": [
+        "ガス分圧"
+      ],
+      "definition": "混合気体の中で、それぞれの気体がその濃度に比例して示す圧力。空気中の酸素は大気圧の約1/5の圧力を示す。水に溶けた遊離ガスも濃度に比例した圧力を持つ。",
+      "field": "曝気でCO2を除けるのは、水を細かく分散させて空気に触れさせると、水中のCO2の圧力が空気中のCO2の圧力と釣り合うまでCO2が抜けるため。",
+      "related": [
+        "henrys-law",
+        "gas-solubility",
+        "decarbonator"
+      ]
+    },
+    {
+      "id": "free-gas",
+      "term": "遊離ガスと結合ガス",
+      "reading": "ゆうりがすとけつごうがす",
+      "en": "Free gas vs. combined gas",
+      "aliases": [
+        "遊離CO2",
+        "遊離炭酸",
+        "free CO2"
+      ],
+      "definition": "酸素は水に溶けてもイオン化せず遊離酸素として存在する。CO2とアンモニアは水中の条件に応じて一部がイオン化（結合）する。ガス圧を示し機械的に除けるのは遊離の形だけである。",
+      "field": "脱気で酸素は低濃度まで下げられるが、CO2とアンモニアは結合していない分しか除けない。CO2は炭酸イオンと反応して重炭酸になるので、溶けるCO2の量は水中の炭酸イオン量にも左右される。",
+      "related": [
+        "gas-solubility",
+        "ammonia-solubility",
+        "carbonate-equilibrium",
+        "deaerator"
+      ]
+    },
+    {
+      "id": "ammonia-solubility",
+      "term": "アンモニアの溶解とpH",
+      "reading": "あんもにあのようかいとぴーえいち",
+      "en": "Ammonia solubility",
+      "aliases": [
+        "アンモニア除去",
+        "アンモニアストリッピング"
+      ],
+      "definition": "アンモニアはCO2と逆に、水がアルカリ性のときに遊離ガスとしてふるまい除きやすい。中性の水では遊離ガスとして存在する割合はごく小さい。",
+      "field": "脱気だけで完全に除くのは難しいが、アルカリ度が高いほど除去率は上がる。アンモニアの多い水は塩素を消費してクロラミンを作る点にも注意。",
+      "related": [
+        "free-gas",
+        "chloramine",
+        "ammonia-contamination"
+      ]
+    },
+    {
+      "id": "mineral-solubility-classes",
+      "term": "鉱物の溶解度の経験則",
+      "reading": "こうぶつのようかいどのけいけんそく",
+      "en": "Solubility rules of thumb for mineral impurities",
+      "aliases": [
+        "溶解度の4分類",
+        "溶解度の経験則"
+      ],
+      "definition": "天然水の鉱物は、①Ca・Mg化合物（硬度）、②Na化合物、③二酸化ケイ素、④鉄・マンガン化合物の4つに分けて溶解度を考える。硬度塩は温度上昇・アルカリ度上昇・CO2減少で溶けにくくなり、Na塩は温度上昇で溶けやすくなる。シリカはpH、鉄・マンガンはpHと酸化還元状態で溶解度が決まる。",
+      "formula": "CaCO3：15 mg/L（0℃）→13 mg/L（100℃）、CaSO4：1290 → 1250 mg/L（いずれも as CaCO3）",
+      "field": "硫酸カルシウムは溶解度曲線が不規則だが、およそ116℃（240°F）以上では温度とともに溶けにくくなる。Naを多く含む付着物は極端な濃縮か蒸発乾固を疑う。",
+      "related": [
+        "inverse-solubility",
+        "silica-solubility",
+        "iron-manganese",
+        "calcium-sulfate-scale",
+        "hardness"
+      ]
+    },
+    {
+      "id": "silica-solubility",
+      "term": "シリカの溶解度とpH",
+      "reading": "しりかのようかいどとぴーえいち",
+      "en": "Silica solubility",
+      "aliases": [
+        "溶解性シリカ",
+        "潜在的な酸"
+      ],
+      "definition": "シリカの溶解度は主に酸性・アルカリ性で決まり、pHが上がるほど溶けやすい。天然水では通常4 mg/L未満（コロイド状のものは別）だが、アルカリ性の天然水では溶解性シリカが200 mg/Lに達することもある。",
+      "field": "pHが上がると非晶質シリカはケイ酸塩になり、硬度（とくにMg）と一緒に沈殿する。アルカリ性ではシリカの溶解度は硬度濃度で決まる。高温ではNaと結合してケイ酸ナトリウムになるため、シリカは「潜在的な酸」とみなせる。",
+      "related": [
+        "colloidal-silica",
+        "magnesium-silica-adsorption",
+        "silica-scale",
+        "mineral-solubility-classes"
+      ]
+    },
+    {
+      "id": "acid-base-salt",
+      "term": "酸・塩基・塩",
+      "reading": "さん・えんき・えん",
+      "en": "Acids, bases, and salts",
+      "aliases": [
+        "酸",
+        "塩基",
+        "塩"
+      ],
+      "definition": "酸は酸味があり、炭酸塩と泡を出して反応し、青色リトマスを赤くする。塩基はその逆の性質を持つ。塩は酸と塩基の根（ラジカル）の組み合わせで、両者の強さによって中性にも酸性・塩基性寄りにもなる。",
+      "field": "塩の溶解度は酸・塩基の成分それぞれでは決まらず、組み合わせで決まる。例：水酸化カルシウムはわずかしか溶けないが、塩化カルシウムはよく溶ける。",
+      "related": [
+        "acid-strength",
+        "polybasic-acid",
+        "salt-hydrolysis-ph",
+        "amphoteric-substance"
+      ]
+    },
+    {
+      "id": "acid-strength",
+      "term": "酸・塩基の強さ",
+      "reading": "さん・えんきのつよさ",
+      "en": "Strength of acids and bases",
+      "aliases": [
+        "強酸",
+        "弱酸",
+        "強塩基"
+      ],
+      "definition": "酸の強さは水素イオンを出す能力、塩基の強さは水酸化物イオンを生じる能力で決まる。強酸は塩酸・硫酸・硝酸、リン酸は中程度、炭酸は弱酸。強塩基は水酸化ナトリウム・水酸化カリウム・水酸化カルシウム。",
+      "field": "強酸と強塩基の反応では中性塩と水ができる（NaCl、Na2SO4など）。",
+      "related": [
+        "acid-base-salt",
+        "salt-hydrolysis-ph",
+        "ph"
+      ]
+    },
+    {
+      "id": "polybasic-acid",
+      "term": "一塩基酸・二塩基酸・三塩基酸",
+      "reading": "いちえんきさん・にえんきさん・さんえんきさん",
+      "en": "Monobasic, dibasic, and tribasic acids",
+      "aliases": [
+        "多塩基酸",
+        "酸性塩",
+        "二塩基酸",
+        "三塩基酸"
+      ],
+      "definition": "水素原子を1つ持つ酸（HCl、HNO3）は塩を1種類しか作らない一塩基酸。2つ持つ酸（H2SO4、H2CO3）は水素を残した中間の酸性塩（NaHSO4、NaHCO3）も作る二塩基酸。リン酸（H3PO4）は第一・第二・第三リン酸ナトリウムの3種類を作る三塩基酸。",
+      "field": "リン酸塩の塩基性はNa原子の数が多いほど強い（NaH2PO4 ＜ Na2HPO4 ＜ Na3PO4）。",
+      "related": [
+        "acid-base-salt",
+        "salt-hydrolysis-ph",
+        "orthophosphate"
+      ]
+    },
+    {
+      "id": "salt-hydrolysis-ph",
+      "term": "塩がpHに与える影響",
+      "reading": "えんがぴーえいちにあたえるえいきょう",
+      "en": "Effect of salts on pH",
+      "aliases": [
+        "塩基性塩",
+        "中性塩",
+        "塩の加水分解"
+      ],
+      "definition": "水酸化物イオンも水素イオンも含まない塩が水のpHを変えるかは、水分子から水素イオンや水酸化物イオンを「引き出す」力しだい。強酸と強塩基の塩（NaCl、Na2SO4、NaNO3）はpHにほとんど影響しない。強塩基と弱酸の塩（Na2CO3、Na3PO4）はpHをかなり上げる。",
+      "field": "中間の塩（NaHCO3、Na2HPO4）は塩の中に水素を含むので、pHを上げる効果は小さい。",
+      "related": [
+        "acid-strength",
+        "polybasic-acid",
+        "ph"
+      ]
+    },
+    {
+      "id": "amphoteric-substance",
+      "term": "両性物質",
+      "reading": "りょうせいぶっしつ",
+      "en": "Amphoteric substances",
+      "aliases": [
+        "両性",
+        "両性元素",
+        "amphoteric"
+      ],
+      "definition": "酸としても塩基としてもふるまえる元素・化合物。アルミニウムは硫酸アルミニウム（ばん土）では塩基、アルミン酸ナトリウムでは酸の役割をする。マンガンやクロムも過マンガン酸塩・クロム酸塩では酸としてふるまう。",
+      "field": "アルミニウムのフロックは、アルカリ度・酸性度を調整して析出させる。最適なフロック形成pHは硫酸バンドかアルミン酸ナトリウムかで異なる。こうした二面性は、ある種の金属が腐食抑制剤として役立つ理由にもなる。",
+      "related": [
+        "sodium-aluminate",
+        "acid-base-salt",
+        "chromate",
+        "amphoteric-hydroxide-redissolution"
+      ]
+    },
+    {
+      "id": "water-ion-product",
+      "term": "水のイオン積（Kw）",
+      "reading": "みずのいおんせき",
+      "en": "Ion product of water (Kw)",
+      "aliases": [
+        "Kw",
+        "pKw",
+        "水の解離定数"
+      ],
+      "definition": "水がH⁺とOH⁻にわずかに解離する平衡の定数。25℃で[H⁺][OH⁻]＝10⁻¹⁴で、中性では両イオンとも10⁻⁷ mol/L（H⁺として約0.005 mg/L as CaCO3）。Kwは温度と塩濃度で変わる。",
+      "formula": "Kw = [H⁺][OH⁻] = 10⁻¹⁴（25℃）／pKw：0℃ 14.93、10℃ 14.53、25℃ 14.00、30℃ 13.83、50℃ 13.26",
+      "field": "Kwは温度が上がると大きくなる（pKwが下がる）ので、CO2などのガス量が変わらなくても水は加熱するとpHが下がる。高温系を冷却サンプルのpHで管理すると、実際とは違うpHで運転していることになる。",
+      "related": [
+        "ph",
+        "carbonate-dissociation-constants",
+        "acidity"
+      ]
+    },
+    {
+      "id": "acidity",
+      "term": "酸度",
+      "reading": "さんど",
+      "en": "Acidity",
+      "aliases": [
+        "酸性度",
+        "塩基中和能"
+      ],
+      "definition": "水が塩基を中和する能力の尺度。酸とは他の化学種に陽子（H⁺）を与える物質。アルカリ度（酸を中和する能力）と対をなす概念である。",
+      "field": "酸度が大きいほど金属イオンの溶解度と電気化学的な腐食反応の速度が上がり、腐食が進む。一方、アルカリ度が上がると炭酸カルシウムなどが過飽和になりやすい。",
+      "related": [
+        "alkalinity",
+        "free-mineral-acidity",
+        "acid-corrosion"
+      ]
+    },
+    {
+      "id": "co2-alkalinity-ph-balance",
+      "term": "pH・アルカリ度・CO2のバランス",
+      "reading": "ぴーえいち・あるかりど・しーおーつーのばらんす",
+      "en": "Relationship among pH, alkalinity, and carbon dioxide",
+      "aliases": [
+        "CO2/アルカリ度比",
+        "遊離炭酸の計算"
+      ],
+      "definition": "水中の溶存CO2量はpHとアルカリ度で決まり、pHはCO2と全（M）アルカリ度の比で決まる。比が同じなら、アルカリ度の大小にかかわらずpHは同じになる。例えばCO2：全アルカリ度が10：1の水は、アルカリ度がいくらでもpH 5.5未満になる。",
+      "formula": "1.0 mg/L CO2（as CO2）＝1.14 mg/L（as CaCO3）。例：pH 6.9で比0.3、M＝150なら CO2＝45 mg/L as CaCO3＝39 mg/L as CO2",
+      "field": "井戸水は溶存CO2が非常に多く、アルカリ度が高くてもpHが低い。表流水もCO2過飽和のことがある。補給水のCO2は冷却塔で放散されて大気と平衡になる。",
+      "related": [
+        "carbonate-equilibrium",
+        "buffer-capacity",
+        "bicarbonate-disproportionation",
+        "alkalinity-hierarchy"
+      ]
+    },
+    {
+      "id": "bicarbonate-disproportionation",
+      "term": "重炭酸の不均化（CO2放散）",
+      "reading": "じゅうたんさんのふきんか",
+      "en": "Bicarbonate disproportionation",
+      "aliases": [
+        "CO2ストリッピング",
+        "冷却塔でのpH上昇"
+      ],
+      "definition": "冷却水が蒸発で濃縮されアルカリ度が上がると、重炭酸2個から炭酸1個とCO2・水ができ、CO2が塔で抜けてpHが上がる。重炭酸2個が炭酸1個になるので、CO2が抜けてもアルカリ度は失われない。",
+      "formula": "2HCO3⁻ → CO3²⁻ + CO2↑ + H2O",
+      "field": "酸を注入した場合は違い、重炭酸がCO2に変わって塔で放散されるため全アルカリ度が下がる。",
+      "related": [
+        "co2-alkalinity-ph-balance",
+        "cooling-tower",
+        "acid-feed"
+      ]
+    },
+    {
+      "id": "carbonate-dissociation-constants",
+      "term": "炭酸系の平衡定数",
+      "reading": "たんさんけいのへいこうていすう",
+      "en": "Carbonate system equilibrium constants",
+      "aliases": [
+        "Ka1",
+        "Ka2",
+        "炭酸の解離定数",
+        "炭酸種の分布"
+      ],
+      "definition": "CO2の水和（ヘンリー則）と炭酸の2段階解離の定数。これからpHごとの炭酸種（CO2・HCO3⁻・CO3²⁻）の割合が求まる。pH約4.2以上では常に2種類が共存し、pH約8.3未満では重炭酸と溶存CO2だけ、それ以上では重炭酸と炭酸が主になる。",
+      "formula": "CO2 + H2O → H2CO3：K_H = 10⁻²·⁸／H2CO3 → H⁺ + HCO3⁻：Ka1 = 10⁻⁶·³／HCO3⁻ → H⁺ + CO3²⁻：Ka2 = 10⁻¹⁰·³",
+      "field": "OH⁻はpH 9.3を超えて1 mg/L as CaCO3を超えるまでアルカリ度にほとんど寄与しない。pH 8.3でのOH⁻は0.1 mg/L as CaCO3未満。",
+      "related": [
+        "carbonate-equilibrium",
+        "henrys-law",
+        "water-ion-product",
+        "pm-alkalinity-relationships"
+      ]
+    },
+    {
+      "id": "pm-alkalinity-relationships",
+      "term": "P・Mアルカリ度とイオン種の関係表",
+      "reading": "ぴー・えむあるかりどといおんしゅのかんけいひょう",
+      "en": "Alkalinity relationships (P and M)",
+      "aliases": [
+        "アルカリ度関係表",
+        "M = OH + HCO3 + CO3",
+        "P = OH + ½CO3"
+      ],
+      "definition": "M（全）アルカリ度＝OH⁻＋HCO3⁻＋CO3²⁻、Pアルカリ度＝OH⁻＋½CO3²⁻、Oアルカリ度＝OH⁻ という定義から、P・Mの滴定値だけでOH⁻・CO3²⁻・HCO3⁻（いずれもas CaCO3）を割り振る表。炭酸種と水酸化物以外（リン酸・アンモニアなど）が無視できる場合にだけ成り立つ。",
+      "formula": "P＝0：HCO3⁻＝M／P＜½M：CO3²⁻＝2P、HCO3⁻＝M−2P／P＝½M：CO3²⁻＝2P／P＞½M：OH⁻＝2P−M、CO3²⁻＝2(M−P)／P＝M：OH⁻＝M",
+      "field": "pH 10付近では誤差が大きい（P＞½Mで重炭酸をゼロとしても、実際はアルカリ度の最大25%が重炭酸のことがある）。P＜½Mの式はpH 9.2未満、P＞½Mの式はpH 12超で最も正確。アンモニアが多い汚染水では炭酸を塩化バリウムで沈殿させてからP滴定するとOH⁻を正確に測れる。硫化物などを含む排水ではCO2発生法を使う。",
+      "related": [
+        "p-m-alkalinity",
+        "alkalinity",
+        "carbonate-dissociation-constants",
+        "p-to-m-ratio-ph"
+      ]
+    },
+    {
+      "id": "p-to-m-ratio-ph",
+      "term": "P/M比・OHアルカリ度からのpH推定",
+      "reading": "ぴーえむひからのぴーえいちすいてい",
+      "en": "Approximate pH from P/M ratio",
+      "aliases": [
+        "P/M比",
+        "苛性アルカリ度とpH"
+      ],
+      "definition": "pH 10未満ではPアルカリ度がMアルカリ度の何%かでおよそのpHが推定でき、pH 10を超えると遊離OH⁻の量からpHを推定できる（いずれもTDS・温度の補正なし）。",
+      "formula": "P/M：0%→pH 8.2〜8.4（CO2ゼロの場合）、10%→9.0〜9.2、20%→9.5〜9.6、30%→9.7〜9.8、50%→9.9〜10.0／OH⁻ 4〜5 mg/L as CaCO3→pH 10.0、41〜50→pH 11.0",
+      "field": "pH計の値と滴定値の整合チェックに使う。P＝50、M＝500ならpHは9.0〜9.2のはず。PがゼロならpHは8.3以下のはず。合わなければ電極や試薬を疑う。",
+      "related": [
+        "pm-alkalinity-relationships",
+        "p-m-alkalinity",
+        "ph"
+      ]
+    },
+    {
+      "id": "buffer-capacity",
+      "term": "緩衝能",
+      "reading": "かんしょうのう",
+      "en": "Buffer capacity",
+      "aliases": [
+        "緩衝作用",
+        "バッファー",
+        "buffering"
+      ],
+      "definition": "酸や塩基を加えたときのpH変化を和らげる水の能力。CO2/アルカリ度の比が同じでpHが同じ水でも、アルカリ度が高い水ほどCO2や酸を追加したときのpH変化が小さい。",
+      "field": "NaOHだけの水を酸で中和するとpH 9から4.3まで垂直に落ち、pH 7での制御はほぼ不可能。Na2CO3で緩衝された水はゆっくり変化する。酸性排水の中和もNaOHよりNa2CO3の方が制御しやすいが、CO2発生による発泡に注意。",
+      "related": [
+        "co2-alkalinity-ph-balance",
+        "ph-control",
+        "alkalinity"
+      ]
+    },
+    {
+      "id": "redox-reaction",
+      "term": "酸化還元反応",
+      "reading": "さんかかんげんはんのう",
+      "en": "Oxidation-reduction (redox) reaction",
+      "aliases": [
+        "レドックス",
+        "redox",
+        "電気化学反応"
+      ],
+      "definition": "電子のやり取りを伴う反応。酸化では反応物が電子を失い（例：Fe → Fe²⁺ + 2e⁻）、還元では電子を得る（例：½O2 + H2O + 2e⁻ → 2OH⁻）。電気的中性を保つため、酸化には必ず還元が伴う。",
+      "formula": "Fe → Fe²⁺ + 2e⁻（酸化）／½O2 + H2O + 2e⁻ → 2OH⁻（還元）",
+      "field": "消毒、腐食、鉄・マンガンの沈殿除去、排水の硫化物酸化による脱臭はすべて酸化還元反応。上の2式は冷却水中での鉄の腐食反応そのものでもある。",
+      "related": [
+        "half-cell-reaction",
+        "oxidizing-agent",
+        "reducing-agent",
+        "corrosion",
+        "redox-kinetics"
+      ]
+    },
+    {
+      "id": "half-cell-reaction",
+      "term": "半電池反応",
+      "reading": "はんでんちはんのう",
+      "en": "Half-cell reaction",
+      "aliases": [
+        "半反応",
+        "half reaction"
+      ],
+      "definition": "酸化または還元の片側だけを書いた反応式。放出された電子は別の半電池反応で受け取られる必要があるため「半分」と呼ぶ。",
+      "field": "反応の強さ（電位）は電気化学系列（標準電極電位）から判断する。異種金属を接触させたとき、系列上の離れ具合がガルバニック電池の強さを示す。",
+      "related": [
+        "redox-reaction",
+        "standard-electrode-potential",
+        "galvanic-series"
+      ]
+    },
+    {
+      "id": "oxidizing-agent",
+      "term": "酸化剤",
+      "reading": "さんかざい",
+      "en": "Oxidizing agent (oxidant)",
+      "aliases": [
+        "オキシダント",
+        "電子受容体",
+        "oxidant"
+      ],
+      "definition": "相手から電子を受け取り、自身は還元される物質。水中の酸素、塩素、臭素、オゾン、過マンガン酸、二酸化塩素など。殺菌剤として使われるほか、井戸水や酸性鉱山排水から鉄・マンガンを除くための酸化にも使う。",
+      "field": "塩素（次亜塩素酸）が最もよく使われるが、常に最適とは限らない。アンモニアの多い水では塩素がクロラミンになって消費される。",
+      "related": [
+        "reducing-agent",
+        "standard-electrode-potential",
+        "chloramine",
+        "oxidizing-biocide",
+        "iron-oxidation-removal",
+        "oxidant-selection-criteria"
+      ]
+    },
+    {
+      "id": "reducing-agent",
+      "term": "還元剤",
+      "reading": "かんげんざい",
+      "en": "Reducing agent",
+      "aliases": [
+        "電子供与体",
+        "reductant"
+      ],
+      "definition": "相手に電子を与え、自身は酸化される物質。腐食反応での鉄は電子供与体であり還元剤とみなせる。",
+      "field": "重金属の中には還元で除くのがよいものがある。水銀塩は水素化ホウ素塩のような強い還元剤で金属水銀に還元してろ別できる。",
+      "related": [
+        "oxidizing-agent",
+        "redox-reaction",
+        "oxygen-scavenger"
+      ]
+    },
+    {
+      "id": "redox-potential",
+      "term": "酸化還元電位",
+      "reading": "さんかかんげんでんい",
+      "en": "Redox potential",
+      "aliases": [
+        "ORP",
+        "酸化還元電位（ORP）",
+        "Eh"
+      ],
+      "definition": "水が酸化状態か還元状態かを示す電位。正の電位は酸化状態、負の電位は還元状態を表し、ゼロ点は水素電極の半電池電位を基準にした便宜的なもの。pH計に専用電極をつけて測る。",
+      "field": "プールベ図では、鉄はpH 5.5の井戸水で+200 mVでもFe²⁺のまま溶けていることがあるが、pHを約8.4に上げるとわずかに負（−150 mV）でもFe³⁺に酸化されうる。マンガンはpH 7なら+500 mVでもMn²⁺のままのことがあり、pHを10近くまで上げると酸化しやすくなる。",
+      "related": [
+        "pourbaix-diagram",
+        "redox-state-field-test",
+        "iron-manganese",
+        "oxidant-monitoring"
+      ]
+    },
+    {
+      "id": "redox-state-field-test",
+      "term": "酸化還元状態の簡易判定",
+      "reading": "さんかかんげんじょうたいのかんいはんてい",
+      "en": "Field tests for redox state",
+      "aliases": [
+        "メチレンブルー試験",
+        "酢酸鉛試験紙"
+      ],
+      "definition": "酸化還元電極がない現場で、サンプルが還元状態か酸化状態かを定性的に判断する方法。還元状態の目安は、硫化物臭・酢酸鉛紙の黒変、メチレンブルーの退色、酸素の不検出、亜硫酸などの還元剤の検出。酸化状態ならメチレンブルーの色が残り、酸素が検出される。",
+      "field": "井戸水の鉄・マンガン処理の検討前に、まずこれで還元状態かどうかを確認する。",
+      "related": [
+        "redox-potential",
+        "hydrogen-sulfide",
+        "sulfite-residual"
+      ]
+    },
+    {
+      "id": "standard-electrode-potential",
+      "term": "標準電極電位",
+      "reading": "ひょうじゅんでんきょくでんい",
+      "en": "Standard electrode potential",
+      "aliases": [
+        "酸化力の比較",
+        "酸化剤の電位"
+      ],
+      "definition": "標準水素電極（0.0 V）を基準にした半電池反応の電位。値が大きいほど強い酸化剤。酸化剤選定の目安になる。",
+      "formula": "Na −2.71 V、Fe −0.44 V、O2（中性）0.40 V、次亜塩素酸 0.89 V、Br2 1.08 V、Cl2 1.36 V、過マンガン酸（酸性）1.68 V、H2O2（酸性）1.77 V、O3（酸性）2.07 V、F2 2.87 V",
+      "field": "電位は熱力学的に反応が起こりうるかを示すだけで、実際の除去は反応速度で決まる。水質（アンモニアの有無など）も含めて酸化剤を選ぶ。",
+      "related": [
+        "oxidizing-agent",
+        "half-cell-reaction",
+        "galvanic-series"
+      ]
+    },
+    {
+      "id": "chloramine",
+      "term": "クロラミン",
+      "reading": "くろらみん",
+      "en": "Chloramine",
+      "aliases": [
+        "結合塩素",
+        "combined chlorine"
+      ],
+      "definition": "アンモニアを多く含む水に塩素を加えたときにできる化合物。酸化剤ではあるが塩素より弱い。アンモニアが塩素を消費するため、こうした水では塩素が酸化剤として最適でない。",
+      "field": "アンモニアの多い水で鉄・マンガンを酸化するなら、アンモニアの影響を受けない過マンガン酸、二酸化塩素、オゾンが適する。",
+      "related": [
+        "chlorine",
+        "chlorine-demand",
+        "ammonia-solubility",
+        "oxidizing-agent"
+      ]
+    },
+    {
+      "id": "redox-kinetics",
+      "term": "酸化反応の速度",
+      "reading": "さんかはんのうのそくど",
+      "en": "Redox reaction kinetics",
+      "aliases": [
+        "反応速度",
+        "接触時間",
+        "MnO2触媒"
+      ],
+      "definition": "酸化還元反応は、ほぼ瞬時に進む酸塩基中和と比べて非常に遅いことがある。熱力学（電位）より反応速度が実際の決め手で、pH・酸化剤・触媒の有無で速度が変わる。鉄・マンガンの酸化は高pHほど速い。",
+      "formula": "鉄の酸化：pH 5では大きな滞留槽が必要／pH 8.3〜8.5なら酸化剤との接触5分未満でインライン酸化・ろ過が可能",
+      "field": "二酸化マンガンは酸化を速める触媒で、酸化剤も兼ねる過マンガン酸カリウムとして手軽に加えられる。酸化還元プロセスを設計するときは、時間を変数に入れたジャーテストを行う。",
+      "related": [
+        "iron-oxidation-removal",
+        "manganese-removal",
+        "redox-potential",
+        "metal-floc-removal",
+        "potassium-permanganate"
+      ]
+    },
+    {
+      "id": "metal-floc-removal",
+      "term": "酸化・還元後の金属の除去",
+      "reading": "さんか・かんげんごのきんぞくのじょきょ",
+      "en": "Removal of oxidized or reduced metals",
+      "aliases": [
+        "鉄・マンガンのろ過",
+        "沈殿かろ過か"
+      ],
+      "definition": "酸化（または還元）されて不溶性になった金属はコロイド粒子になり、凝結・凝集・ろ過で水から除く。濃度が2〜5 mg/Lを超える場合は、フロックが多すぎてろ過では実用的でないため沈殿で除く。",
+      "field": "重金属の溶解度もpHに左右され、pHは溶解度だけでなく反応速度にも効く。",
+      "related": [
+        "redox-kinetics",
+        "iron-manganese",
+        "granular-media-filtration",
+        "colloid"
+      ]
+    },
+    {
+      "id": "chemical-equation-rules",
+      "term": "化学反応式の4条件",
+      "reading": "かがくはんのうしきのよんじょうけん",
+      "en": "Requirements for chemical equations",
+      "aliases": [
+        "化学反応式",
+        "質量保存"
+      ],
+      "definition": "化学反応式は、①実際に起こることが試験や経験で確かめられている、②両辺で各元素の原子数が同じ、③反応する各物質の分子数の比を表す、④生成物の質量の合計が反応物の質量の合計と等しい、の4条件を満たす必要がある。",
+      "field": "量論計算をしたら、両辺の質量の合計が一致するかで計算ミスを確かめる。",
+      "related": [
+        "combining-weight-calculation",
+        "softening-stoichiometry"
+      ]
+    },
+    {
+      "id": "softening-stoichiometry",
+      "term": "化学軟化の量論",
+      "reading": "かがくなんかのりょうろん",
+      "en": "Softening reaction stoichiometry",
+      "aliases": [
+        "石灰・ソーダ灰の必要量",
+        "石灰ソーダ法"
+      ],
+      "definition": "化学軟化ではCa硬度は炭酸カルシウム、Mg硬度は水酸化マグネシウムとして沈殿する。重炭酸カルシウム1分子の除去に石灰1分子、重炭酸マグネシウム1分子に石灰2分子、非炭酸Ca硬度1分子にソーダ灰1分子、非炭酸Mg硬度1分子に石灰1分子とソーダ灰1分子が必要。",
+      "formula": "Ca(OH)2 + Ca(HCO3)2 → 2CaCO3 + 2H2O",
+      "field": "Mg硬度は炭酸塩でも非炭酸塩でも石灰を余分に食うので、Mgの多い原水は薬品費と汚泥量が増える。",
+      "related": [
+        "lime-softening",
+        "soda-ash",
+        "temporary-hardness",
+        "combining-weight-calculation"
+      ]
+    },
+    {
+      "id": "molecular-weight",
+      "term": "原子量・分子量",
+      "reading": "げんしりょう・ぶんしりょう",
+      "en": "Atomic and molecular weight",
+      "aliases": [
+        "式量",
+        "分子量"
+      ],
+      "definition": "原子や分子の相対的な重さ。水素を1とすると酸素は16で、酸素原子は水素原子の16倍重い。相対値なので、ポンド・グラムなど任意の重量単位をあてはめて計算に使える。",
+      "field": "反応の重量関係は分子量でも当量（分子量÷原子価）でも計算できる。代表値：Ca(OH)2 74、Ca(HCO3)2 162、CaCO3 100、H2O 18。",
+      "related": [
+        "equivalent-weight",
+        "combining-weight-calculation"
+      ]
+    },
+    {
+      "id": "combining-weight-calculation",
+      "term": "結合重量の計算",
+      "reading": "けつごうじゅうりょうのけいさん",
+      "en": "Combining weight calculation",
+      "aliases": [
+        "量論計算",
+        "薬品必要量の計算"
+      ],
+      "definition": "反応式の各物質の下に分子量（×係数）を書き、分析値を比例配分して反応物と生成物の量を求める方法。上下の値はすべて質量基準（lb、kg、ppm（重量）、mg/L）でそろえる。",
+      "formula": "重炭酸カルシウム100 mg/L → 必要な消石灰 74×100/162 ＝ 46 mg/L、生成CaCO3 200×100/162 ≒ 124 mg/L、水 36×100/162 ＝ 22 mg/L",
+      "field": "検算として両辺の合計を比べる（46＋100 ＝ 124＋22 ＝ 146）。",
+      "related": [
+        "molecular-weight",
+        "chemical-equation-rules",
+        "softening-stoichiometry"
+      ]
+    },
+    {
+      "id": "ppm-mg-per-l",
+      "term": "ppmとmg/Lの違い",
+      "reading": "ぴーぴーえむとみりぐらむぱーりっとるのちがい",
+      "en": "ppm vs. mg/L",
+      "aliases": [
+        "ppm",
+        "mg/L",
+        "百万分率"
+      ],
+      "definition": "ppmは重量・容量などの「百万分の一」を表す相対単位で、水と溶質の密度差を考えない。mg/Lは体積あたりの質量でより正確。希薄な水ではほぼ同じだが、TDSが高くなるほど差が開く（約10000 ppm未満では差は無視できる）。",
+      "formula": "mg/L = ppm × 溶液の比重",
+      "field": "かん水・濃縮排水・薬品溶液のような高濃度液では比重を掛けて換算する。",
+      "related": [
+        "tds",
+        "epm",
+        "hardness-units"
+      ]
+    },
+    {
+      "id": "epm",
+      "term": "epm（当量濃度）",
+      "reading": "いーぴーえむ",
+      "en": "Equivalents per million (epm)",
+      "aliases": [
+        "meq/L",
+        "ミリ当量",
+        "当量毎百万"
+      ],
+      "definition": "イオンの濃度（ppm）をそのイオンの当量で割った値。反応する組み合わせなら、どのイオンも1 epmずつ互いに結合するので、分析結果を表す共通の物差しになる。",
+      "formula": "epm = ppm ÷ 当量 ＝ mg/L as CaCO3 ÷ 50",
+      "field": "陽イオン合計と陰イオン合計のepm（またはas CaCO3）が一致するかで分析値を検証する。例：陽イオン合計 7.30 epm ＝ 陰イオン合計 7.30 epm。ナトリウム形イオン交換軟化では、Ca・Mgが減った分だけNaが増え、陽イオン合計は変わらない。",
+      "related": [
+        "equivalent-weight",
+        "as-caco3",
+        "electroneutrality",
+        "sodium-softener"
+      ]
+    },
+    {
+      "id": "hardness-units",
+      "term": "硬度の単位換算",
+      "reading": "こうどのたんいかんさん",
+      "en": "Hardness units and conversion factors",
+      "aliases": [
+        "gpg",
+        "グレーン/ガロン",
+        "ドイツ硬度",
+        "フランス硬度",
+        "英国硬度",
+        "クラーク度"
+      ],
+      "definition": "硬度は国や業界によって異なる単位で表される。1グレーン/ガロン（as CaCO3）、1英国（クラーク）度、1フランス度、1ドイツ度、1 epmが、それぞれ何mg/L as CaCO3に当たるかを覚えておくと換算できる。",
+      "formula": "1 gpg ＝ 17.1、1 英国度 ＝ 14.3、1 フランス度 ＝ 10、1 ドイツ度 ＝ 17.9、1 epm ＝ 50（いずれも mg/L as CaCO3）",
+      "field": "海外メーカーの装置仕様書や軟化器のカタログは、gpgやドイツ度で書かれていることが多い。",
+      "related": [
+        "hardness",
+        "as-caco3",
+        "epm"
+      ]
+    },
+    {
+      "id": "ionic-vs-compound-expression",
+      "term": "イオン表示と化合物表示",
+      "reading": "いおんひょうじとかごうぶつひょうじ",
+      "en": "Ionic vs. compound expression of analysis",
+      "aliases": [
+        "as Cl",
+        "as NaCl",
+        "表示基準"
+      ],
+      "definition": "水中の無機物はイオンとして存在するので、分析はイオンで行い、結果はイオンとして（as Cl⁻）または推定される化合物として（as NaCl）報告する。計算を簡単にするため、Ca・Mg・炭酸・重炭酸・水酸化物などはCaCO3換算で報告されることが多い。",
+      "formula": "塩化物100 mg/L（as Cl⁻）× 58.5/35.5 ＝ 166 mg/L（as NaCl）。うちNaは66 mg/L",
+      "field": "報告書の数値は「何として」の表示を必ず確認する。同じ水でも表示基準が違うと数値が大きく変わる。",
+      "related": [
+        "as-caco3",
+        "epm",
+        "equivalent-weight"
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1.2-01",
+      "type": "tf",
+      "q": "一般に、地下水は表流水より組成が安定しており、懸濁物（濁り）も少ない。",
+      "answer": true,
+      "explanation": "表流水は流れが速く降雨や土壌侵食の影響を受けて変動しやすい。地下水は組成が安定し、濁りが少ない。"
+    },
+    {
+      "id": "q1.2-02",
+      "type": "choice",
+      "q": "気体の水への溶解度を決める3要素に含まれないものはどれか。",
+      "choices": [
+        "水の濁度",
+        "気体が水中で化学反応するかどうか",
+        "水中と大気中での気体の分圧",
+        "水温"
+      ],
+      "answer": 0,
+      "explanation": "3要素は、化学反応するか遊離ガスとして溶けるか、分圧、水温。"
+    },
+    {
+      "id": "q1.2-03",
+      "type": "tf",
+      "q": "CO2とアンモニアは、水中で結合（イオン化）している分も含めて脱気ですべて除去できる。",
+      "answer": false,
+      "explanation": "ガス圧を持ち機械的に除けるのは遊離の形だけ。CO2とアンモニアは結合していない分しか除けない。酸素はイオン化しないので脱気で低濃度まで下げられる。"
+    },
+    {
+      "id": "q1.2-04",
+      "type": "choice",
+      "q": "アンモニアを脱気で除去しやすいのはどのような水か。",
+      "choices": [
+        "アルカリ度が高い水",
+        "中性の水",
+        "酸性の水",
+        "CO2が多い水"
+      ],
+      "answer": 0,
+      "explanation": "アルカリ性ではアンモニアが遊離ガスとしてふるまう。中性では遊離ガスの割合はごく小さい。"
+    },
+    {
+      "id": "q1.2-05",
+      "type": "choice",
+      "q": "空気中のCO2濃度として示されている範囲はどれか。",
+      "choices": [
+        "0.03〜0.06%（300〜600 ppm）",
+        "0.3〜0.6%",
+        "1〜2%",
+        "21%"
+      ],
+      "answer": 0,
+      "explanation": "空気は窒素78%、酸素21%、CO2 0.03〜0.06%（300〜600 ppm）。"
+    },
+    {
+      "id": "q1.2-06",
+      "type": "tf",
+      "q": "硬度塩の溶解度は、温度が上がる、アルカリ度が上がる、CO2が減る、のいずれでも下がる傾向がある。",
+      "answer": true,
+      "explanation": "これが硬度塩の溶解度の経験則。ただし硫酸カルシウムは溶解度曲線が不規則で、約116℃（240°F）以上でこの傾向に従う。"
+    },
+    {
+      "id": "q1.2-07",
+      "type": "choice",
+      "q": "典型的な天然水のシリカの溶解度として示されている値はどれか。",
+      "choices": [
+        "通常4 mg/L未満",
+        "通常40 mg/L前後",
+        "通常200 mg/L以上",
+        "温度でほぼ決まり一定しない"
+      ],
+      "answer": 0,
+      "explanation": "天然水では通常4 mg/L未満（コロイド状を除く）。アルカリ性の天然水では200 mg/Lに達することもある。シリカの溶解度は主にpHで決まる。"
+    },
+    {
+      "id": "q1.2-08",
+      "type": "tf",
+      "q": "鉄とマンガンは、水のアルカリ度が上がり、酸化の度合いが高まるほど溶けにくくなる。",
+      "answer": true,
+      "explanation": "通常の水の第一鉄の最大溶解度は約8 mg/Lだが、空気に触れると酸化第二鉄として沈殿しやすく、天然水の溶解鉄は通常1 mg/L未満。"
+    },
+    {
+      "id": "q1.2-09",
+      "type": "choice",
+      "q": "炭酸ナトリウム（Na2CO3）を水に溶かしたときのpHへの影響として正しいものはどれか。",
+      "choices": [
+        "pHをかなり上げる",
+        "ほとんど影響しない",
+        "pHを下げる",
+        "重炭酸ナトリウムより影響が小さい"
+      ],
+      "answer": 0,
+      "explanation": "強塩基と弱酸の塩はpHをかなり上げる。NaCl・Na2SO4・NaNO3はほとんど影響せず、NaHCO3は水素を含むので影響が小さい。"
+    },
+    {
+      "id": "q1.2-10",
+      "type": "choice",
+      "q": "アルミニウムが硫酸塩では塩基、アルミン酸ナトリウムでは酸としてふるまう性質を何というか。",
+      "choices": [
+        "両性",
+        "緩衝性",
+        "不動態",
+        "加水分解"
+      ],
+      "answer": 0,
+      "explanation": "酸としても塩基としてもふるまえる性質を両性という。マンガン・クロムも過マンガン酸塩・クロム酸塩では酸としてふるまう。"
+    },
+    {
+      "id": "q1.2-11",
+      "type": "tf",
+      "q": "水のイオン積Kwは温度が上がると大きくなるため、CO2などの量が変わらなくても水は加熱するとpHが下がる。",
+      "answer": true,
+      "explanation": "pKwは0℃ 14.93、25℃ 14.00、50℃ 13.26と温度とともに下がる。冷却したサンプルのpHで高温系を管理すると実際とずれる。"
+    },
+    {
+      "id": "q1.2-12",
+      "type": "choice",
+      "q": "25℃の中性の水で、水素イオンをCaCO3換算するとおよそどのくらいか。",
+      "choices": [
+        "0.005 mg/L as CaCO3",
+        "0.5 mg/L as CaCO3",
+        "5 mg/L as CaCO3",
+        "50 mg/L as CaCO3"
+      ],
+      "answer": 0,
+      "explanation": "中性では[H⁺]＝10⁻⁷ mol/Lで、約0.005 mg/L as CaCO3にすぎない。扱いやすくするためにpH尺度が考案された。"
+    },
+    {
+      "id": "q1.2-13",
+      "type": "choice",
+      "q": "pH 6.9でCO2/全アルカリ度の比が0.3、全アルカリ度が150 mg/L as CaCO3の水のCO2濃度（as CO2）はおよそいくらか。",
+      "choices": [
+        "39 mg/L",
+        "45 mg/L",
+        "51 mg/L",
+        "15 mg/L"
+      ],
+      "answer": 0,
+      "explanation": "CO2＝150×0.3＝45 mg/L as CaCO3。1 mg/L as CO2＝1.14 mg/L as CaCO3なので、45÷1.14≒39 mg/L as CO2。"
+    },
+    {
+      "id": "q1.2-14",
+      "type": "tf",
+      "q": "CO2 1 mg/L・アルカリ度10 mg/Lの水と、CO2 10 mg/L・アルカリ度100 mg/Lの水はpHが同じで、緩衝能も同じである。",
+      "answer": false,
+      "explanation": "比が同じ1：10なのでpHは同じだが、アルカリ度100 mg/Lの水の方が緩衝能が大きく、同じ量のCO2を加えたときのpH変化が小さい。"
+    },
+    {
+      "id": "q1.2-15",
+      "type": "tf",
+      "q": "冷却塔でCO2が放散されると、2HCO3⁻ → CO3²⁻ + CO2 + H2O の反応によりアルカリ度が失われる。",
+      "answer": false,
+      "explanation": "重炭酸2個が炭酸1個になるのでアルカリ度は失われず、pHが上がる。アルカリ度が下がるのは酸を注入して重炭酸をCO2に変え、放散させた場合。"
+    },
+    {
+      "id": "q1.2-16",
+      "type": "choice",
+      "q": "炭酸の第二解離定数Ka2はどれか。",
+      "choices": [
+        "10⁻¹⁰·³",
+        "10⁻⁶·³",
+        "10⁻²·⁸",
+        "10⁻¹⁴"
+      ],
+      "answer": 0,
+      "explanation": "K_H（CO2の水和）＝10⁻²·⁸、Ka1＝10⁻⁶·³、Ka2＝10⁻¹⁰·³。10⁻¹⁴は25℃の水のイオン積。"
+    },
+    {
+      "id": "q1.2-17",
+      "type": "choice",
+      "q": "P＝20、M＝100（mg/L as CaCO3）の水のCO3²⁻とHCO3⁻はどれか。",
+      "choices": [
+        "CO3²⁻ 40、HCO3⁻ 60",
+        "CO3²⁻ 20、HCO3⁻ 80",
+        "CO3²⁻ 40、HCO3⁻ 0",
+        "CO3²⁻ 160、HCO3⁻ 0"
+      ],
+      "answer": 0,
+      "explanation": "P＜½Mなので OH⁻＝0、CO3²⁻＝2P＝40、HCO3⁻＝M−2P＝60。"
+    },
+    {
+      "id": "q1.2-18",
+      "type": "choice",
+      "q": "P＞½Mの水のOH⁻アルカリ度を求める式はどれか。",
+      "choices": [
+        "2P − M",
+        "M − 2P",
+        "2(M − P)",
+        "P − ½M"
+      ],
+      "answer": 0,
+      "explanation": "P＞½MではHCO3⁻を無視し、OH⁻＝2P−M、CO3²⁻＝2(M−P)となる。"
+    },
+    {
+      "id": "q1.2-19",
+      "type": "choice",
+      "q": "Pアルカリ度50、Mアルカリ度500の水のpHとして妥当なのはどれか。",
+      "choices": [
+        "9.0〜9.2",
+        "8.2〜8.4",
+        "9.9〜10.0",
+        "7.0前後"
+      ],
+      "answer": 0,
+      "explanation": "P/M＝10%で、およそpH 9.0〜9.2。PがゼロならpHは8.3以下のはず。測定値の整合チェックに使える。"
+    },
+    {
+      "id": "q1.2-20",
+      "type": "tf",
+      "q": "NaOHだけを含む水を硫酸で中和するとpH 9から4.3まで急激に落ちるので、pH 7付近での制御は非常に難しい。",
+      "answer": true,
+      "explanation": "緩衝されていない水はごく少量の酸でpHが大きく動く。Na2CO3で緩衝された水はpH変化がゆるやかで制御しやすい。"
+    },
+    {
+      "id": "q1.2-21",
+      "type": "choice",
+      "q": "標準電極電位が最も大きい（最も強い）酸化剤はどれか。",
+      "choices": [
+        "オゾン（酸性）",
+        "塩素",
+        "次亜塩素酸",
+        "臭素"
+      ],
+      "answer": 0,
+      "explanation": "O3（酸性）2.07 V ＞ Cl2 1.36 V ＞ Br2 1.08 V ＞ 次亜塩素酸 0.89 V。"
+    },
+    {
+      "id": "q1.2-22",
+      "type": "tf",
+      "q": "アンモニアを多く含む水では、塩素よりも過マンガン酸・二酸化塩素・オゾンの方が酸化剤として適している。",
+      "answer": true,
+      "explanation": "アンモニアは塩素を消費してクロラミン（より弱い酸化剤）を作る。過マンガン酸・二酸化塩素・オゾンはアンモニアの影響を受けない。"
+    },
+    {
+      "id": "q1.2-23",
+      "type": "choice",
+      "q": "鉄の酸化に関する記述で正しいものはどれか。",
+      "choices": [
+        "pH 8.3〜8.5なら酸化剤との接触5分未満でインライン酸化・ろ過できる",
+        "pH 5の方が反応が速く、滞留槽は不要",
+        "反応速度はpHに無関係で電位だけで決まる",
+        "二酸化マンガンは酸化を遅らせる"
+      ],
+      "answer": 0,
+      "explanation": "鉄・マンガンの酸化は高pHほど速い。pH 5では大きな滞留槽が必要。MnO2は酸化を速める触媒。"
+    },
+    {
+      "id": "q1.2-24",
+      "type": "choice",
+      "q": "還元状態のサンプルの簡易判定の目安として正しくないものはどれか。",
+      "choices": [
+        "メチレンブルーの色が残る",
+        "酢酸鉛紙が黒くなる",
+        "酸素が検出されない",
+        "亜硫酸などの還元剤が検出される"
+      ],
+      "answer": 0,
+      "explanation": "メチレンブルーの色が消えれば還元状態、色が残れば酸化状態。"
+    },
+    {
+      "id": "q1.2-25",
+      "type": "tf",
+      "q": "酸化して不溶化した金属が2〜5 mg/Lを超える場合は、フロックが多すぎるため、ろ過より沈殿で除くのが実用的である。",
+      "answer": true,
+      "explanation": "不溶化した金属はコロイドとなり、凝結・凝集・ろ過で除くが、2〜5 mg/Lを超えると沈殿が必要になる。"
+    },
+    {
+      "id": "q1.2-26",
+      "type": "choice",
+      "q": "化学軟化で非炭酸マグネシウム硬度1分子を除去するのに必要な薬品はどれか。",
+      "choices": [
+        "石灰1分子とソーダ灰1分子",
+        "石灰2分子",
+        "ソーダ灰1分子のみ",
+        "石灰1分子のみ"
+      ],
+      "answer": 0,
+      "explanation": "重炭酸Ca：石灰1、重炭酸Mg：石灰2、非炭酸Ca：ソーダ灰1、非炭酸Mg：石灰1＋ソーダ灰1。"
+    },
+    {
+      "id": "q1.2-27",
+      "type": "choice",
+      "q": "重炭酸カルシウム100 mg/Lと反応させるのに必要な消石灰（Ca(OH)2、分子量74）はおよそいくらか（Ca(HCO3)2の分子量162）。",
+      "choices": [
+        "46 mg/L",
+        "74 mg/L",
+        "100 mg/L",
+        "124 mg/L"
+      ],
+      "answer": 0,
+      "explanation": "74×100/162≒46 mg/L。生成するCaCO3は約124 mg/L、水は22 mg/Lで、両辺の合計はどちらも146になる。"
+    },
+    {
+      "id": "q1.2-28",
+      "type": "tf",
+      "q": "ppmとmg/Lの差はTDSが高くなるほど大きくなり、mg/L＝ppm×溶液の比重の関係がある。",
+      "answer": true,
+      "explanation": "希薄な水ではほぼ同じだが、約10000 ppmを超えると密度差が無視できなくなる。"
+    },
+    {
+      "id": "q1.2-29",
+      "type": "choice",
+      "q": "1ドイツ度の硬度はmg/L as CaCO3でいくらか。",
+      "choices": [
+        "17.9",
+        "17.1",
+        "14.3",
+        "10"
+      ],
+      "answer": 0,
+      "explanation": "1 gpg＝17.1、1英国度＝14.3、1フランス度＝10、1ドイツ度＝17.9、1 epm＝50 mg/L as CaCO3。"
+    },
+    {
+      "id": "q1.2-30",
+      "type": "choice",
+      "q": "塩化物イオン100 mg/L（as Cl⁻）をNaCl表示にするといくらか。",
+      "choices": [
+        "166 mg/L as NaCl",
+        "100 mg/L as NaCl",
+        "58.5 mg/L as NaCl",
+        "141 mg/L as NaCl"
+      ],
+      "answer": 0,
+      "explanation": "100×58.5/35.5≒166 mg/L as NaCl。うちNa分は66 mg/L。"
+    }
+  ]
+}

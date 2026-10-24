@@ -1,0 +1,441 @@
+{
+  "id": "pac1-1.15",
+  "book": "PAC-1 原水・排水処理技術マニュアル",
+  "section": "1.15",
+  "title": "汚泥の安定化",
+  "titleEn": "Sludge Stabilization",
+  "summary": [
+    "汚泥の安定化は、一次・二次沈殿池の汚泥について、臭気を減らし、病原菌を減らし、後処理・処分する量を減らし、脱水性を良くするための処理。主に生物系の多い都市下水処理で使われ、通常は汚泥処理の最初の段階で、その後に濃縮・脱水が続く。",
+    "方法は化学処理（石灰安定化・塩素酸化）、生物処理（嫌気性消化・好気性消化）、熱処理の3つ。石灰安定化はpH 12を最低30分保つ。脱水ケーキの臭気対策で石灰を加える場合はpH約10.5にとどめ、腐食性で処分できなくなるためpH 12を超えないようにする。",
+    "嫌気性消化は酸素のない状態で有機物をメタン・CO2・水に分解する。酸生成菌（通性菌）が有機物を短鎖有機酸に変え、メタン生成菌がそれをメタンとCO2に変える2段階で、メタン生成菌は増殖が遅くpH・負荷・温度の変動に弱いため、運転はメタン生成菌の環境を守ることが中心になる。",
+    "都市下水汚泥の嫌気性消化では原汚泥固形物の25〜55%が分解され、無機分が増えるため脱水性（ケーキ固形分）も良くなる。メタンを生むのは嫌気性消化だけで、消化槽の加温・撹拌や建物暖房・エンジンに使える。",
+    "消化槽は低率・高率・二段の3方式。低率は加温・撹拌なしでスカム・脱離液・汚泥の3層に分かれる。高率は外部熱交換器で設計温度±1°F（0.6°C）に加温し、撹拌・均一投入で容積と滞留時間を大きく減らす。中温菌は92〜96°F（33〜36°C）、高温菌は122〜140°F（50〜60°C）。",
+    "固形物負荷は低率0.03〜0.1 lb VSS/ft³/d（0.4〜1.6 kg/m³/d）、高率0.10〜0.5 lb VSS/ft³/d（1.6〜8.0 kg/m³/d）。SRTは低率30〜60日、高率10日超。返送のない消化槽ではSRT＝HRTで、性能管理にはHRT・HLRよりSRT・SLRが重要。",
+    "最適pHは6.5〜7.6。pHを上げ緩衝能を高めるには重炭酸ナトリウムを使い、重炭酸アルカリ度は1000 mg/L as CaCO3以上、揮発酸／総アルカリ度比は0.5未満に保つ。苛性ソーダ・ソーダ灰・石灰はCO2と反応して槽内を負圧にするおそれがある。",
+    "健全な消化ガスはメタン65〜70%、CO2 30〜35%。ガス発生量は分解VS 1 lbあたり7〜8 ft³（0.4〜0.5 m³/kg）で、VS分解率は通常35〜60%。脱離液は有機物・SS・アンモニア・りんを高濃度に含み、処理場の頭へ戻される。",
+    "好気性消化は汚泥を別槽で長時間曝気し、内生呼吸で細胞を酸化する。酸素要求量は45°C以下で2 kg O2/kg VS、45°C超（硝化が起きない）で1.45 kg O2/kg VS。DOは1 mg/Lを下回らせず2〜4 mg/Lを保ち、pHは6.5以上。自己発熱型高温好気性消化（ATAD）は60°Cに達する。",
+    "熱処理は汚泥を加圧下で180°C（356°F）以上・30分加熱して殺菌し、細菌の粘質層を可溶化して脱水しやすくする（Porteous法・Zimpro法）。ただし有機物は減らないので病原菌が再増殖しうる。消化槽の固液分離にはカチオン系凝集剤が使われるが、過剰注入では固形物がガスで浮上する。"
+  ],
+  "terms": [
+    {
+      "id": "sludge-stabilization",
+      "term": "汚泥の安定化",
+      "reading": "おでいのあんていか",
+      "en": "Sludge stabilization",
+      "aliases": ["汚泥安定化"],
+      "definition": "一次・二次処理で出た汚泥の臭気を減らし、病原菌を減らし、処理・処分量を減らし、脱水性を改善する処理。化学処理（石灰安定化・塩素酸化）、生物処理（嫌気性・好気性消化）、熱処理がある。",
+      "field": "通常は汚泥処理の第一段階で、後に濃縮・脱水が続く。有機物・細菌の多い汚泥は、埋立・土壌還元・ラグーン・焼却などの処分前に安定化が求められる場合がある。一次汚泥と二次汚泥は混合しても別々に処理してもよい。",
+      "related": ["lime-stabilization-sludge", "anaerobic-digestion-sludge", "aerobic-digestion-sludge", "thermal-sludge-treatment"]
+    },
+    {
+      "id": "lime-stabilization-sludge",
+      "term": "石灰安定化",
+      "reading": "せっかいあんていか",
+      "en": "Lime stabilization",
+      "aliases": ["石灰処理（汚泥）"],
+      "definition": "石灰で汚泥のpHを上げて生物活性を止める化学的安定化。pH 12を最低30分保つのが一般的。塩素による酸化も可能だが取扱い上の問題から使用は限られる。",
+      "formula": "安定化：pH 12・30分以上／脱水ケーキの臭気対策：pH約10.5（12を超えない）",
+      "field": "脱水後のケーキに臭気対策で石灰を加えるときは、固形物量が増える点に注意。pH 12を超えると腐食性のため処分できなくなるので、生物活性がほぼ止まり臭気が出なくなるpH約10.5を目安にする。",
+      "related": ["sludge-stabilization", "ph"]
+    },
+    {
+      "id": "anaerobic-digestion-sludge",
+      "term": "嫌気性消化",
+      "reading": "けんきせいしょうか",
+      "en": "Anaerobic digestion",
+      "aliases": ["嫌気消化", "メタン発酵"],
+      "definition": "酸素のない状態で、複雑な有機物を微生物の連続した発酵によってメタン・CO2・水に分解する汚泥安定化法。残った固形物は生物活性がほとんどなく安定とみなされる。都市下水汚泥では原汚泥固形物の25〜55%が分解される。",
+      "field": "メタンを生むのは安定化法の中で嫌気性消化だけ。無機分の割合が増えるため消化汚泥は脱水性が良く（ケーキ固形分が高く）なり、下流の脱水・処分コストも下がる。高濃度排水用のUASBなど嫌気性リアクターは固形物の消化槽ではなくBOD除去装置なので混同しない。",
+      "related": ["acid-formation-phase", "methanogens", "low-rate-anaerobic-digester", "high-rate-anaerobic-digester", "digester-gas"]
+    },
+    {
+      "id": "acid-formation-phase",
+      "term": "酸生成相",
+      "reading": "さんせいせいそう",
+      "en": "Acid formation phase",
+      "aliases": ["酸発酵", "酸生成菌"],
+      "definition": "嫌気性消化の第1段階。好気・嫌気のどちらにも適応できる通性菌が、複雑な有機物を酢酸・プロピオン酸・乳酸などの短鎖有機酸（揮発酸）に変える。この反応は汚泥のpHを下げる方向に働く。",
+      "field": "正常な消化槽では酸の生成とメタン生成がつり合い、揮発酸は低く保たれる。揮発酸が上がり始めたらメタン生成が追いついていないサイン。",
+      "related": ["methanogens", "anaerobic-digestion-sludge", "digester-va-alkalinity-ratio"]
+    },
+    {
+      "id": "methanogens",
+      "term": "メタン生成菌",
+      "reading": "めたんせいせいきん",
+      "en": "Methanogens (methane formers)",
+      "aliases": ["メタン菌", "メタン生成細菌"],
+      "definition": "嫌気性消化の第2段階で、揮発性脂肪酸をメタンとCO2に変える嫌気性細菌。増殖が遅く、pH・基質濃度・温度のわずかな変動にも影響を受ける。嫌気性消化の速度は基本的にこの菌が支配する。",
+      "field": "衝撃負荷や温度変化でメタン生成が鈍ると、有機酸がたまりpHが下がり、さらに活性が落ちる悪循環で消化槽が破綻する。石灰添加などの是正措置が必要。pHまたは有機酸の定期測定が欠かせない。",
+      "related": ["acid-formation-phase", "digester-bicarbonate-alkalinity", "digester-toxicity"]
+    },
+    {
+      "id": "low-rate-anaerobic-digester",
+      "term": "低率消化槽",
+      "reading": "ていりつしょうかそう",
+      "en": "Low-rate digester",
+      "aliases": ["標準消化"],
+      "definition": "最も単純な嫌気性消化槽。大型の貯留槽で、熱は汚泥の分解熱のみ、撹拌も分解による自然な動きだけ。原汚泥は間欠投入される。槽内は上からスカム層・脱離液層・汚泥層の3層に分かれ、分解は下の汚泥層だけで起こる。",
+      "formula": "固形物負荷：0.03〜0.1 lb VSS/ft³/d（0.4〜1.6 kg VSS/m³/d）／SRT：30〜60日",
+      "field": "安定化汚泥は槽底から定期的に引き抜き、脱離液は側面から抜いて処理場の頭に戻す。ガスは液面上にたまり蓋から取り出す。",
+      "related": ["high-rate-anaerobic-digester", "digester-supernatant", "digester-solids-loading-rate"]
+    },
+    {
+      "id": "high-rate-anaerobic-digester",
+      "term": "高率消化槽",
+      "reading": "こうりつしょうかそう",
+      "en": "High-rate digester",
+      "aliases": ["高速消化"],
+      "definition": "外部加温・補助撹拌・均一投入で安定した環境をつくり、生物分解を促進する嫌気性消化槽。必要容積と滞留時間が大きく減る。外部熱交換器で設計温度の±1°F（0.6°C）以内に加温し、汚泥は頻繁に投入して一括投入による乱れを抑える。",
+      "formula": "固形物負荷：0.10〜0.5 lb VSS/ft³/d（1.6〜8.0 kg VSS/m³/d）／SRT：10日超",
+      "field": "温度の安定がメタン生成菌の活性を保つ鍵。中温（92〜96°F、33〜36°C）運転が最も一般的。",
+      "related": ["mesophilic-thermophilic-digestion", "two-stage-anaerobic-digester", "digester-heating-mixing", "low-rate-anaerobic-digester"]
+    },
+    {
+      "id": "two-stage-anaerobic-digester",
+      "term": "二段消化",
+      "reading": "にだんしょうか",
+      "en": "Two-stage digestion",
+      "aliases": ["二次消化槽"],
+      "definition": "高率消化槽の後ろに、加温・撹拌しない二次消化槽を直列に置く方式。二次槽で消化汚泥を沈降させて底から安定化汚泥として抜き、上部から脱離液を抜く。メタンは両方の槽で発生し回収される。",
+      "field": "二次消化槽は濃縮槽としてはうまく働かないことが多く、薄い汚泥と高濃度の脱離液になりがち。気泡が汚泥に付いて浮上することや、消化で微細粒子が増えることが原因と考えられる。SRT計算では2槽の容積を合計する。",
+      "related": ["high-rate-anaerobic-digester", "digester-supernatant", "digester-polymer-treatment"]
+    },
+    {
+      "id": "digester-cover",
+      "term": "消化槽の蓋（固定蓋・浮き蓋）",
+      "reading": "しょうかそうのふた",
+      "en": "Digester covers (fixed / floating)",
+      "aliases": ["固定蓋", "浮き蓋", "ガスホルダ"],
+      "definition": "消化槽の蓋には固定式と浮き式がある。固定蓋はコンクリートか鋼製で平板・円錐・ドーム形。浮き蓋は液面に直接載るタイプ（ガス貯留は少ない）と、側面スカート付きでガスのクッションに載るガスホルダタイプがある。",
+      "field": "固定蓋では汚泥を抜くとき空気が入ると爆発性混合気ができるおそれがあるため、液位制御で流出量を流入量に合わせる。コンクリート蓋はひび割れで気密が保てないことが多い。蓋の下に爆発性混合気ができにくい浮き蓋が最も安全。",
+      "related": ["digester-gas", "anaerobic-digestion-sludge"]
+    },
+    {
+      "id": "digester-heating-mixing",
+      "term": "消化槽の加温・撹拌",
+      "reading": "しょうかそうのかおん・かくはん",
+      "en": "Digester heating and mixing",
+      "aliases": ["外部熱交換器"],
+      "definition": "加温方法は槽内温水コイル、外部熱交換器への汚泥循環、高温ガスとの直接接触、蒸気吹込み。最も一般的なのは汚泥循環式の外部熱交換器。撹拌は外部ミキサーへの循環、機械撹拌、槽内ポンプ循環、圧縮した消化ガスの底部散気で行う。",
+      "field": "槽内温水コイルは腐食や汚泥の焼き付きで伝熱が落ちやすい。外部熱交換器は停止して清掃でき、温度制御がしやすく、槽内に配管がなく、発生メタンを熱源に使える。",
+      "related": ["high-rate-anaerobic-digester", "digester-gas"]
+    },
+    {
+      "id": "digester-solids-loading-rate",
+      "term": "固形物負荷（消化槽）",
+      "reading": "こけいぶつふか",
+      "en": "Solids loading rate (SLR)",
+      "aliases": ["SLR", "VSS負荷", "有機物負荷"],
+      "definition": "消化槽容積1 m³（ft³）・1日あたりに投入される揮発性浮遊物質（VSS）の量。消化槽の容量設計と性能評価に使う。ただし処理を担う微生物量を示すものではないので、性能と必ずしも対応しない。",
+      "formula": "SLR(kg/m³/d) = VSS(mg/L) × 汚泥流量(m³/d) ÷ (槽容積(m³) × 1000)／米国単位：SLR(lb/ft³/d) = 8.34 × VSS(mg/L) × 流量(MGD) ÷ V(ft³)",
+      "field": "目安は低率0.4〜1.6 kg/m³/d、高率1.6〜8.0 kg/m³/d。汚泥の揮発性固形物濃度に応じて負荷を調整し、最低SRTを下回らないようにする。",
+      "related": ["digester-srt", "low-rate-anaerobic-digester", "high-rate-anaerobic-digester"]
+    },
+    {
+      "id": "digester-srt",
+      "term": "固形物滞留時間（消化槽）",
+      "reading": "こけいぶつたいりゅうじかん",
+      "en": "Solids retention time (SRT)",
+      "aliases": ["SRT", "汚泥滞留時間"],
+      "definition": "固形物が系内にとどまる平均時間。完全混合の消化槽では活性菌体の一部が引抜き汚泥と一緒に出ていくため、定常を保つには菌の増殖速度が引抜き速度以上である必要がある。嫌気性消化で最も重要な管理指標。",
+      "formula": "SRT(日) = 消化槽SS(mg/L) × 槽容積 ÷ (引抜き汚泥SS(mg/L) × 引抜き量/日)",
+      "field": "返送のない消化槽ではSRT＝HRT。目安は低率30〜60日、高率10日超。一次汚泥ではSRTを延ばすとVS分解率は50〜60%まで急に上がるが、それ以上はSRTや温度を上げてもほとんど伸びない。",
+      "related": ["digester-hrt", "digester-solids-loading-rate", "volatile-solids-reduction"]
+    },
+    {
+      "id": "digester-hrt",
+      "term": "水理学的滞留時間・水理負荷（消化槽）",
+      "reading": "すいりがくてきたいりゅうじかん",
+      "en": "Hydraulic retention time (HRT) / hydraulic loading rate (HLR)",
+      "aliases": ["HRT", "HLR"],
+      "definition": "HRTは消化槽容積を汚泥投入量で割った値（日）。HLRはその逆数。",
+      "formula": "HRT = V ÷ 投入量、HLR = 1 ÷ HRT",
+      "field": "消化槽の性能管理では、HRT・HLRはSRT・SLRほど重要ではない。設計SRTを満たしていれば、HRT・SRTはガス発生量にほとんど影響しない。",
+      "related": ["digester-srt"]
+    },
+    {
+      "id": "mesophilic-thermophilic-digestion",
+      "term": "中温消化・高温消化",
+      "reading": "ちゅうおんしょうか・こうおんしょうか",
+      "en": "Mesophilic / thermophilic digestion",
+      "aliases": ["中温菌", "高温菌"],
+      "definition": "消化温度による区分。高率消化槽は一般に92〜96°F（33〜36°C）で運転され、この範囲で育つ菌を中温菌という。122〜140°F（50〜60°C）では高温菌が増殖し、反応が速いため滞留時間を短くでき、消化汚泥の脱水性も改善しうる。",
+      "field": "消化は通常、中温域（95°F・35°C以下）で行う。同じSRTなら温度を35°Cに上げるとVS分解率が上がるが、SRTが長いと温度の効果は小さくなる。VSの転換は約35°Cと約54°C（130°F）付近で最も効率が良い。",
+      "related": ["high-rate-anaerobic-digester", "methanogens", "volatile-solids-reduction"]
+    },
+    {
+      "id": "digester-bicarbonate-alkalinity",
+      "term": "重炭酸アルカリ度（消化槽）",
+      "reading": "じゅうたんさんあるかりど",
+      "en": "Bicarbonate alkalinity in digesters",
+      "aliases": ["BA", "緩衝能", "重炭酸ナトリウム添加"],
+      "definition": "消化槽のpHは気相のCO2濃度と液相の重炭酸アルカリ度で決まる。気相CO2の割合が一定なら、重炭酸アルカリ度を加えればpHは上がる。最適pHは6.5〜7.6で、メタン生成菌はわずかなpH変化にも敏感。",
+      "formula": "重炭酸ナトリウム添加量(mg/L) = 1.68 × (目標pHでのMアルカリ度 − 現在のMアルカリ度)（as CaCO3）／BA = TA − 0.8 × VA（TA：pH 4.2まで滴定、VA：酢酸として）",
+      "field": "重炭酸アルカリ度は最低1000 mg/L as CaCO3を保つ。pHと緩衝能を確実に上げられるのは重炭酸ナトリウムで、苛性ソーダ・ソーダ灰・石灰はCO2と反応して重炭酸を作るため槽内が部分的に負圧になるおそれがある。",
+      "related": ["digester-va-alkalinity-ratio", "alkalinity", "p-m-alkalinity", "methanogens"]
+    },
+    {
+      "id": "digester-va-alkalinity-ratio",
+      "term": "揮発酸／アルカリ度比",
+      "reading": "きはつさん・あるかりどひ",
+      "en": "Volatile acids to total alkalinity ratio",
+      "aliases": ["VA/TA比", "VFA", "揮発性脂肪酸"],
+      "definition": "消化槽内の揮発酸（揮発性脂肪酸、VFA）濃度と総アルカリ度の比。酸生成とメタン生成のつり合いを示す指標。",
+      "formula": "VA/TA ＜ 0.5 で良好",
+      "field": "比が上がってきたらメタン生成が追いついていない。負荷を下げる・温度を確認する・重炭酸ナトリウムで緩衝能を補うなどで、pH低下による破綻を未然に防ぐ。",
+      "related": ["digester-bicarbonate-alkalinity", "acid-formation-phase", "methanogens"]
+    },
+    {
+      "id": "digester-toxicity",
+      "term": "消化阻害物質",
+      "reading": "しょうかそがいぶっしつ",
+      "en": "Toxic substances in sludge digestion",
+      "aliases": ["消化槽の毒性"],
+      "definition": "メタン生成菌の増殖を妨げる物質。pH 6.6〜7.4での阻害濃度の目安は、硫化物200、銅0.5、亜鉛1.0、クロム3.0、ニッケル2.0、ナトリウム5000〜8000、カリウム4000〜10000、マグネシウム1200〜3500、カルシウム2000〜6000、アンモニア（Nとして）3000、揮発酸8000（いずれもmg/L）。",
+      "formula": "アンモニア：pH 7.6超では1500〜3000 mg/Lで阻害／揮発酸：8000 mg/Lまでは緩衝能でpH 6.6〜7.4を保てれば阻害しない",
+      "field": "菌は濃度がゆっくり変われば、ある程度まで馴致できる。急な流入（重金属を含む工場排水の汚泥など）が一番危ない。重金属は低濃度でも効くので受入れ汚泥の組成変化に注意する。",
+      "related": ["methanogens", "hydrogen-sulfide"]
+    },
+    {
+      "id": "volatile-solids-reduction",
+      "term": "揮発性固形物分解率",
+      "reading": "きはつせいこけいぶつぶんかいりつ",
+      "en": "Volatile solids reduction",
+      "aliases": ["VS分解率", "VS減量率"],
+      "definition": "消化によって分解された揮発性固形物（VS）の割合。嫌気性消化の性能は、固形物の減量・ガス発生量・脱離液の水質で評価する。",
+      "formula": "嫌気性消化：通常35〜60%",
+      "field": "分解率は汚泥の種類と運転条件（SRT・温度・負荷）で決まる。一次汚泥ではSRTを延ばすと50〜60%までは急に上がるが、その先はほとんど伸びない。",
+      "related": ["digester-srt", "mesophilic-thermophilic-digestion", "digester-gas"]
+    },
+    {
+      "id": "digester-gas",
+      "term": "消化ガス",
+      "reading": "しょうかがす",
+      "en": "Digester gas (sludge gas)",
+      "aliases": ["バイオガス", "汚泥ガス"],
+      "definition": "嫌気性消化で発生するガス。健全な消化槽ではメタン65〜70%、CO2 30〜35%で、窒素・水素・硫化水素はごくわずか。発生量は分解したVSあたりの体積で表す。",
+      "formula": "比ガス発生量：分解VS 1 lbあたり7〜8 ft³（0.4〜0.5 m³/kg）",
+      "field": "消化槽の加温・撹拌、建物の暖房、エンジン駆動に使える。メタン比率が下がりCO2が増えるのは、メタン生成が鈍っている兆候。可燃性ガスなので、空気が入る運転（固定蓋からの引抜きなど）では爆発性混合気に注意。",
+      "related": ["anaerobic-digestion-sludge", "digester-cover", "methanogens"]
+    },
+    {
+      "id": "digester-supernatant",
+      "term": "消化脱離液",
+      "reading": "しょうかだつりえき",
+      "en": "Digester supernatant",
+      "aliases": ["脱離液"],
+      "definition": "消化槽で汚泥と分かれた上澄み。有機物・溶解性および懸濁性固形物・アンモニア・りんを高濃度に含み、水質は消化槽ごとに、また同じ槽でも時期によって大きく変わる。",
+      "formula": "例（活性汚泥処理場、一次汚泥含む）：SS 5000〜15000、BOD5 1000〜10000、COD 3000〜30000、アンモニア（NH3）500〜1000、全りん（P）300〜1000 mg/L",
+      "field": "通常は処理場の頭に戻されるため、水処理側の負荷（特に窒素・りん）を押し上げる。返流のタイミングと量を管理する。",
+      "related": ["low-rate-anaerobic-digester", "two-stage-anaerobic-digester", "suspended-solids"]
+    },
+    {
+      "id": "aerobic-digestion-sludge",
+      "term": "好気性消化",
+      "reading": "こうきせいしょうか",
+      "en": "Aerobic digestion",
+      "aliases": ["好気消化"],
+      "definition": "水処理系とは別の開放または密閉槽で汚泥を長時間曝気し、生化学的に酸化して安定化する方法。有機物を酸化して細胞を作り、さらに細胞自体を内生呼吸でCO2・水・硝酸に酸化する。産業排水でも二次処理の余剰生物汚泥を減らすのに使われる。",
+      "formula": "C5H7NO2 + 7O2 → 5CO2 + 3H2O + H⁺ + NO3⁻（理論 1.98 kg O2/kg細胞）／実測 1.7〜2.1 kg O2/kg VS（1.74〜2.07 lb/lb）",
+      "field": "設計値は、45°C（113°F）以下で2 kg O2/kg VS、45°C超（硝化が起きない）で1.45 kg O2/kg VS。pHは6.5を下回らせない（硝化でpHが下がるので必要なら調整）。DOは1 mg/Lを下回らせず2〜4 mg/Lに保つ。",
+      "related": ["aerobic-digester-operation", "atad", "nitrifying-bacteria"]
+    },
+    {
+      "id": "aerobic-digester-operation",
+      "term": "好気性消化槽の運転方式と目安",
+      "reading": "こうきせいしょうかそうのうんてんほうしき",
+      "en": "Aerobic digester operating modes and parameters",
+      "aliases": ["半回分式", "連続式"],
+      "definition": "半回分式は沈殿池から汚泥を送りながら曝気し、満水後もしばらく曝気してから停止・沈降させ、上澄みを抜く。濃縮汚泥は通常2〜4%で引き抜き、種汚泥として一部を残す。連続式は活性汚泥法に似て、一定水位で濃縮槽へ越流させ、濃縮汚泥を消化槽に戻すか次工程へ送る。",
+      "formula": "VS 40%分解に必要なSRT：108日（4°C）、31日（16°C）、18日（27°C）／55%分解：386日（4°C）、109日（16°C）、64日（27°C）／デカントで得られる最大固形分：2.5〜3.5%／撹拌動力：0.5〜4 hp/1000 ft³（13〜105 kW/1000 m³）",
+      "field": "低温ほど必要なSRTが大きく伸びるので、冬期は分解率が落ちやすい。撹拌動力は槽形状と散気装置で決まるので機器メーカーに確認する。",
+      "related": ["aerobic-digestion-sludge", "atad"]
+    },
+    {
+      "id": "atad",
+      "term": "自己発熱型高温好気性消化",
+      "reading": "じこはつねつがたこうおんこうきせいしょうか",
+      "en": "Auto-heated thermophilic aerobic digestion",
+      "aliases": ["ATAD"],
+      "definition": "加圧浮上（DAF）などで固形分4%超に濃縮した汚泥を好気性消化し、生物分解の発熱で液温を60°C（140°F）まで上げる方式。高温で分解が速いため、滞留時間（槽容積）と酸素必要量を減らせる。",
+      "field": "米国・欧州でも大規模にはあまり使われていない。撹拌動力が多く必要で、特に寒冷地では保温のため槽に蓋をする必要がある。",
+      "related": ["aerobic-digestion-sludge", "aerobic-digester-operation", "mesophilic-thermophilic-digestion"]
+    },
+    {
+      "id": "digester-polymer-treatment",
+      "term": "消化槽の薬品処理",
+      "reading": "しょうかそうのやくひんしょり",
+      "en": "Digester chemical treatment",
+      "aliases": ["消化槽への凝集剤添加"],
+      "definition": "嫌気性・好気性消化槽の固液分離を凝集剤で助けること。通常は不要だが、立上げ時の固形物保持、より濃い消化汚泥、より清澄な脱離液を得るのに役立つ。特に汚泥層と清澄な脱離液層の形成に頼る低率消化・二段高率消化で効果がある。",
+      "field": "都市下水の消化槽ではカチオン系凝集剤が第一候補だが、汚泥の性状で最適品は変わるのでスクリーニングが必要。過剰注入するとガスの気泡がフロックに閉じ込められ、固形物が全部浮上してしまうことがある。",
+      "related": ["two-stage-anaerobic-digester", "low-rate-anaerobic-digester"]
+    },
+    {
+      "id": "thermal-sludge-treatment",
+      "term": "汚泥の熱処理",
+      "reading": "おでいのねつしょり",
+      "en": "Thermal (heat) treatment of sludge",
+      "aliases": ["Porteous法", "Zimpro法", "熱調質"],
+      "definition": "汚泥を加圧下で短時間加熱して安定化・調質する方法。180°C（356°F）以上で30分加熱し、病原菌・非病原菌を死滅させ、細菌の粘質層を可溶化して脱水しやすくする。Porteous法は予熱汚泥を反応器に入れ加圧蒸気を吹き込み約30分保持した後デカント槽へ送る。Zimpro法は反応器に入る前に空気を吹き込み、蒸気で所定温度まで加熱する。",
+      "formula": "180°C（356°F）以上・30分",
+      "field": "有機物は減らないので、処理後の保管が悪いと病原菌が再増殖する。処理後の汚泥は高い固形分まで濃縮・脱水できる。",
+      "related": ["sludge-stabilization"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1.15-01",
+      "type": "choice",
+      "q": "汚泥安定化の目的として本文に挙げられていないものはどれか。",
+      "choices": ["汚泥中の重金属を回収する", "臭気を減らす", "病原菌を減らす", "脱水性を改善する"],
+      "answer": 0,
+      "explanation": "目的は臭気低減、病原菌低減、処理・処分量の低減、脱水性の改善。"
+    },
+    {
+      "id": "q1.15-02",
+      "type": "choice",
+      "q": "石灰安定化の一般的な条件はどれか。",
+      "choices": ["pH 12を最低30分", "pH 10.5を最低5分", "pH 9を最低24時間", "pH 14を最低1分"],
+      "answer": 0,
+      "explanation": "石灰でpHを12に上げ、最低30分保つ。"
+    },
+    {
+      "id": "q1.15-03",
+      "type": "tf",
+      "q": "脱水ケーキの臭気対策で石灰を加える場合も、確実を期してpH 12を超えるまで添加するのがよい。",
+      "answer": false,
+      "explanation": "pH 12を超えると腐食性のため処分できなくなる。生物活性がほぼ止まるpH約10.5を目安にする。"
+    },
+    {
+      "id": "q1.15-04",
+      "type": "tf",
+      "q": "汚泥安定化法のうち、メタンを生成するのは嫌気性消化だけである。",
+      "answer": true,
+      "explanation": "メタンは嫌気性消化でのみ発生し、加温・撹拌や暖房・エンジンに利用できる。"
+    },
+    {
+      "id": "q1.15-05",
+      "type": "choice",
+      "q": "嫌気性消化で、揮発酸をメタンとCO2に変え、消化全体の速度を支配する微生物はどれか。",
+      "choices": ["メタン生成菌", "通性菌（酸生成菌）", "硝化菌", "鉄細菌"],
+      "answer": 0,
+      "explanation": "メタン生成菌は増殖が遅く変動に弱いため、消化の運転はこの菌の環境維持が中心となる。"
+    },
+    {
+      "id": "q1.15-06",
+      "type": "choice",
+      "q": "都市下水汚泥の嫌気性消化で分解される原汚泥固形物の割合の目安はどれか。",
+      "choices": ["25〜55%", "5〜10%", "70〜90%", "ほぼ100%"],
+      "answer": 0,
+      "explanation": "原汚泥固形物の25〜55%が分解され、下流の脱水・処分コストが下がる。"
+    },
+    {
+      "id": "q1.15-07",
+      "type": "tf",
+      "q": "低率消化槽では外部熱交換器で加温し、機械撹拌で槽内を均一に保つ。",
+      "answer": false,
+      "explanation": "低率消化槽は加温・撹拌を行わず、スカム・脱離液・汚泥の3層に分かれる。外部加温と撹拌は高率消化槽の特徴。"
+    },
+    {
+      "id": "q1.15-08",
+      "type": "choice",
+      "q": "高率消化槽で最も一般的な運転温度（中温域）はどれか。",
+      "choices": ["33〜36°C（92〜96°F）", "50〜60°C（122〜140°F）", "15〜20°C", "70°C以上"],
+      "answer": 0,
+      "explanation": "中温菌が育つ33〜36°Cが一般的。50〜60°Cは高温菌の範囲。"
+    },
+    {
+      "id": "q1.15-09",
+      "type": "choice",
+      "q": "高率嫌気性消化槽の固形物負荷の目安（kg VSS/m³/d）はどれか。",
+      "choices": ["1.6〜8.0", "0.4〜1.6", "0.03〜0.1", "10〜20"],
+      "answer": 0,
+      "explanation": "高率は1.6〜8.0 kg VSS/m³/d（0.10〜0.5 lb/ft³/d）、低率は0.4〜1.6 kg/m³/d。"
+    },
+    {
+      "id": "q1.15-10",
+      "type": "choice",
+      "q": "低率嫌気性消化槽のSRTの目安はどれか。",
+      "choices": ["30〜60日", "1〜3日", "10日以下", "120日以上"],
+      "answer": 0,
+      "explanation": "低率は30〜60日、高率は10日超が目安。"
+    },
+    {
+      "id": "q1.15-11",
+      "type": "tf",
+      "q": "返送のない嫌気性消化槽では、SRTはHRTと等しくなる。",
+      "answer": true,
+      "explanation": "返送がなければ固形物と液は同じ時間とどまるため、SRT＝HRTとなる。"
+    },
+    {
+      "id": "q1.15-12",
+      "type": "choice",
+      "q": "嫌気性消化で良好な運転のために保つべき揮発酸／総アルカリ度比はどれか。",
+      "choices": ["0.5未満", "1.0以上", "2〜3", "5以上"],
+      "answer": 0,
+      "explanation": "VA/TA比は0.5未満、重炭酸アルカリ度は1000 mg/L as CaCO3以上に保つ。"
+    },
+    {
+      "id": "q1.15-13",
+      "type": "choice",
+      "q": "消化槽のpHと緩衝能を上げる薬品として、本文が推奨するものはどれか。",
+      "choices": ["重炭酸ナトリウム", "苛性ソーダ", "ソーダ灰", "消石灰"],
+      "answer": 0,
+      "explanation": "苛性ソーダ・ソーダ灰・石灰はCO2と反応して重炭酸を作るため、槽内が部分的に負圧になるおそれがある。"
+    },
+    {
+      "id": "q1.15-14",
+      "type": "choice",
+      "q": "総アルカリ度（TA）2500 mg/L as CaCO3、揮発酸（VA）500 mg/L（酢酸として）の消化槽の重炭酸アルカリ度はいくらか。",
+      "choices": ["2100 mg/L", "2000 mg/L", "2900 mg/L", "1250 mg/L"],
+      "answer": 0,
+      "explanation": "BA = TA − 0.8×VA = 2500 − 0.8×500 = 2100 mg/L as CaCO3。"
+    },
+    {
+      "id": "q1.15-15",
+      "type": "choice",
+      "q": "pH 6.6〜7.4の消化槽で阻害を起こす濃度が最も低い（毒性が強い）のはどれか。",
+      "choices": ["銅", "ナトリウム", "カルシウム", "硫化物"],
+      "answer": 0,
+      "explanation": "銅は0.5 mg/Lで阻害する。硫化物は200、ナトリウムは5000〜8000、カルシウムは2000〜6000 mg/L。"
+    },
+    {
+      "id": "q1.15-16",
+      "type": "tf",
+      "q": "健全な消化槽のガスは、メタン約65〜70%、二酸化炭素約30〜35%である。",
+      "answer": true,
+      "explanation": "窒素・水素・硫化水素はごくわずか。比ガス発生量は分解VS 1 kgあたり0.4〜0.5 m³。"
+    },
+    {
+      "id": "q1.15-17",
+      "type": "tf",
+      "q": "固定蓋の消化槽よりも浮き蓋の消化槽のほうが、蓋の下に爆発性混合気ができにくく安全とされる。",
+      "answer": true,
+      "explanation": "浮き蓋が最も安全。固定蓋では汚泥引抜き時に空気が入らないよう液位制御で流出量を流入量に合わせる。"
+    },
+    {
+      "id": "q1.15-18",
+      "type": "choice",
+      "q": "液温45°C以下の好気性消化で推奨される酸素必要量はどれか。",
+      "choices": ["2 kg O2/kg VS", "1.45 kg O2/kg VS", "0.5 kg O2/kg VS", "5 kg O2/kg VS"],
+      "answer": 0,
+      "explanation": "45°C以下では2 kg O2/kg VS。45°Cを超えると硝化が起きないため1.45 kg O2/kg VSとなる。"
+    },
+    {
+      "id": "q1.15-19",
+      "type": "choice",
+      "q": "好気性消化槽の溶存酸素（DO）の管理値として適切なものはどれか。",
+      "choices": ["1 mg/Lを下回らせず2〜4 mg/Lに保つ", "0.1 mg/L未満に保つ", "8 mg/L以上に保つ", "DOは管理不要"],
+      "answer": 0,
+      "explanation": "DOは1 mg/Lを下回らないようにし、2〜4 mg/Lに維持する。pHは6.5以上。"
+    },
+    {
+      "id": "q1.15-20",
+      "type": "tf",
+      "q": "汚泥の熱処理（180°C・30分）では有機物も大きく減るため、処理後に病原菌が再増殖する心配はない。",
+      "answer": false,
+      "explanation": "熱処理は殺菌するが有機物は減らないため、保管が不適切だと病原菌が再増殖しうる。"
+    }
+  ]
+}

@@ -1,0 +1,532 @@
+{
+  "id": "pac1-1.3",
+  "book": "PAC-1 原水・排水処理技術マニュアル",
+  "section": "1.3",
+  "title": "基本計算",
+  "titleEn": "Basic Calculations",
+  "summary": [
+    "排水処理設備は年月とともに老朽化・修理・改造され、記録が残っていないことも多い。設備更新・工程変更・薬品処理で効率を上げられるかを判断するには、設備が過負荷か低負荷かを示す指標を自分で計算できる必要がある。変動が大きい系では週・月単位で計算して初めて意味を持つ値もある。",
+    "清澄池・DAFの基本指標：滞留時間 DT＝容積÷流量（円形の容積＝πr²×水深）、表面上昇速度（表面負荷・水面積負荷）SRR＝流量÷表面積、越流堰負荷 WOR＝流量÷堰長（一般に10000〜40000 gal/day/ft、125000〜500000 L/day/m）、固形物負荷 SL＝固形物量/日÷表面積。",
+    "薬品の効果をお客様に伝えるには、ppm・mg/Lの注入率だけでなく、処理水量あたり・1日あたり・年間のコストで示す。そのとき製品の比重を必ず計算に入れる（米国単位では水1 gal＝8.34 lb）。",
+    "希釈の一般式は (V1)(C1)(spg1)＝(V2)(C2)(spg2)。両方の溶液で体積と濃度の単位をそろえること。0.5%（重量）の製品溶液1 mLを500 mLの試料に入れると10 ppmになるので、ジャーテストは500 mL試料と0.5%溶液で行うと計算が簡単。",
+    "活性汚泥の指標：SVI＝30分沈降後の汚泥容積（mL/L）×1000÷MLSS（mg/L）で、通常100〜150 mL/g。F/M比＝流入BOD量/日÷曝気槽内のMLSS量（沈殿池の汚泥は含めない）。",
+    "汚泥日令（MCRT・SRT）は、固形物が系内にとどまる平均日数で、（曝気槽＋沈殿池の汚泥量）÷（引き抜きTSS＋処理水TSS）で求める。処理水TSSが少なければ結果への影響は小さい。目標MCRTから余剰汚泥（WAS）の引き抜き量を逆算できる。",
+    "消化槽の滞留時間は清澄池と同じく容積÷汚泥流量で求め、嫌気性消化槽では通常約15〜30日（メタン生成が最適になる範囲）。揮発性固形物負荷（VSL）＝揮発性固形物量÷消化槽容積、揮発性固形物削減率（VSR）＝（流入VS−流出VS）÷流入VS×100。",
+    "脱水の評価には固形物回収率 SC＝ケーキ固形分×（流入固形分−ろ液固形分）÷［流入固形分×（ケーキ固形分−流出固形分）］×100 を使う（1%＝10000 mg/L）。ポリマーコストは使用量×単価÷脱水した固形物量で、乾燥トン（またはウェットトン）あたりで表す。"
+  ],
+  "terms": [
+    {
+      "id": "hydraulic-detention-time",
+      "term": "滞留時間（DT）",
+      "reading": "たいりゅうじかん",
+      "en": "Detention time (DT)",
+      "aliases": [
+        "DT",
+        "水理学的滞留時間",
+        "HRT",
+        "滞留時間計算"
+      ],
+      "definition": "水が清澄池・DAF・槽・ラグーンにとどまる平均時間。容積を流量で割って求める。目標滞留時間を決めれば、式を変形して処理できる最大流量も求まる。",
+      "formula": "DT = 容積 ÷ 流量／矩形 V = L×W×D、円形 V = πr²×D／最大流量 = 容積 ÷ 目標滞留時間",
+      "field": "例：直径12.2 m（40 ft）・水深3.66 m（12 ft）の円形清澄池に7571 m³/d（2 MGD）なら約1.4時間。米国単位では 1 ft³＝7.48 gal を使う。",
+      "related": [
+        "surface-rise-rate",
+        "weir-overflow-rate",
+        "digester-detention-time",
+        "us-water-unit-factors",
+        "clarifier-detention-time"
+      ]
+    },
+    {
+      "id": "surface-rise-rate",
+      "term": "表面上昇速度（SRR）",
+      "reading": "ひょうめんじょうしょうそくど",
+      "en": "Surface rise rate (SRR)",
+      "aliases": [
+        "SRR",
+        "表面負荷",
+        "水面積負荷",
+        "水理負荷",
+        "surface loading",
+        "hydraulic loading"
+      ],
+      "definition": "清澄池やDAFが流量をどれだけ処理できるかを示す指標。流量を池の表面積で割った値で、単位は L/day/m²（gal/day/ft²）。",
+      "formula": "SRR = 流量 ÷ 表面積",
+      "field": "例：直径15.24 m（50 ft）のDAFに7571 m³/d（2 MGD）なら約41500 L/day/m²（1019 gal/day/ft²）。設計値を超えていればキャリーオーバーの原因として流量を疑う。",
+      "related": [
+        "hydraulic-detention-time",
+        "weir-overflow-rate",
+        "solids-loading-rate",
+        "rise-rate",
+        "surface-loading-design",
+        "clarifier-hydraulic-loading"
+      ]
+    },
+    {
+      "id": "weir-overflow-rate",
+      "term": "越流堰負荷（WOR）",
+      "reading": "えつりゅうぜきふか",
+      "en": "Weir overflow rate (WOR)",
+      "aliases": [
+        "WOR",
+        "堰負荷",
+        "越流負荷"
+      ],
+      "definition": "清澄池が流量を処理できるかを、越流堰の単位長さあたりの流量で表した指標。",
+      "formula": "WOR = 流量 ÷ 堰長（円形なら堰長＝π×堰直径）／一般値 125000〜500000 L/day/m（10000〜40000 gal/day/ft）",
+      "field": "例：堰直径14.63 m（48 ft）、流量272.5 m³/h（1200 gpm）で約142300 L/day/m（11460 gal/day/ft）。堰の一部だけから越流していると局所的な負荷が上がるので、堰の水平も確認する。",
+      "related": [
+        "surface-rise-rate",
+        "hydraulic-detention-time",
+        "weir-loading"
+      ]
+    },
+    {
+      "id": "solids-loading-rate",
+      "term": "固形物負荷（SL）",
+      "reading": "こけいぶつふか",
+      "en": "Solids loading (SL)",
+      "aliases": [
+        "SL",
+        "固形物負荷率"
+      ],
+      "definition": "清澄池やDAFが固形物をどれだけ処理できるかを示す指標。1日あたりの固形物量を装置の表面積で割り、kg/day/m²（lb/day/ft²）で表す。",
+      "formula": "SL = 固形物量/日 ÷ 表面積",
+      "field": "例：19.8 m×6.1 m（65 ft×20 ft）の矩形DAFに45.4 t/日（50 ton/日）なら約376 kg/day/m²（76.9 lb/day/ft²）。水理負荷が適正でも固形物負荷が過大なら処理水が悪化する。",
+      "related": [
+        "surface-rise-rate",
+        "suspended-solids",
+        "daf-loading-rates"
+      ]
+    },
+    {
+      "id": "us-water-unit-factors",
+      "term": "米国単位の換算係数",
+      "reading": "べいこくたんいのかんさんけいすう",
+      "en": "US unit conversion factors",
+      "aliases": [
+        "8.34 lb/gal",
+        "7.48 gal/ft3",
+        "MGD",
+        "1440 min/day"
+      ],
+      "definition": "米国単位で水処理計算をするときの基本係数。水1 galは8.34 lb、1 ft³は7.48 gal、1日は1440分。MGDは百万ガロン/日。",
+      "formula": "lb/day = 流量(gpm) × 1440 × 8.34 × 濃度(ppm) ÷ 1,000,000／2 MGD ≒ 7571 m³/d",
+      "field": "メートル法なら水1 L＝1 kg、1 m³＝1000 kgで同じ計算ができる。単位の混在が計算ミスの最大原因。",
+      "related": [
+        "chemical-usage-calculation",
+        "hydraulic-detention-time"
+      ]
+    },
+    {
+      "id": "chemical-usage-calculation",
+      "term": "薬品使用量の計算",
+      "reading": "やくひんしようりょうのけいさん",
+      "en": "Product usage calculation",
+      "aliases": [
+        "注入量計算",
+        "kg/day計算",
+        "lb/day計算"
+      ],
+      "definition": "注入率（ppm＝mg/L）と流量から、1日あたりの製品使用量を求める計算。",
+      "formula": "使用量(kg/day) = 流量(m³/h) × 24 × 1000 × 注入率(ppm) ÷ 1,000,000",
+      "field": "例：45.4 m³/h（200 gpm）に80 ppmなら約87.2 kg/day（192 lb/day）。",
+      "related": [
+        "us-water-unit-factors",
+        "chemical-treatment-cost",
+        "dilution-formula"
+      ]
+    },
+    {
+      "id": "chemical-treatment-cost",
+      "term": "薬品処理コストの計算",
+      "reading": "やくひんしょりこすとのけいさん",
+      "en": "Chemical treatment cost",
+      "aliases": [
+        "処理コスト",
+        "日額コスト",
+        "年間コスト"
+      ],
+      "definition": "お客様が運転費を理解できるよう、注入率に加えて、一定水量の処理コストと1日・年間のコストを示す計算。容量で使う液体製品は比重を掛けて重量に直してから単価を掛ける。",
+      "formula": "日額コスト = 単価($/kg) × 使用量(L/day) × 1 kg/L × 比重／ある水量の処理コスト = 日額コスト × 処理水量 ÷ 1日の水量",
+      "field": "例：$3.30/kg、45.4 L/day、比重1.26 → 約$189/日、年間約$69000。比重を忘れると液体製品のコストを大きく見誤る。",
+      "related": [
+        "chemical-usage-calculation",
+        "polymer-cost-per-ton"
+      ]
+    },
+    {
+      "id": "dilution-formula",
+      "term": "希釈の一般式",
+      "reading": "きしゃくのいっぱんしき",
+      "en": "Standard dilution formula",
+      "aliases": [
+        "V1C1=V2C2",
+        "希釈計算"
+      ],
+      "definition": "ジャーテストでも実機でも使える希釈計算の式。両方の溶液で体積と濃度の単位をそろえる必要がある。単位を混ぜると誤った結果になる。",
+      "formula": "(V1)(C1)(spg1) = (V2)(C2)(spg2)",
+      "field": "例：0.5%（＝5000 mg/L）の製品溶液4 mLを800 mLの水に加えると、(4)(5000)＝(800)(C2) より25 mg/L。0.5%程度の希薄なポリマー溶液は比重1とみなしてよい。",
+      "related": [
+        "jar-test-dosing-shortcut",
+        "chemical-usage-calculation",
+        "jar-test"
+      ]
+    },
+    {
+      "id": "jar-test-dosing-shortcut",
+      "term": "ジャーテスト添加量の早見",
+      "reading": "じゃーてすとてんかりょうのはやみ",
+      "en": "Jar test dosing shortcut",
+      "aliases": [
+        "0.5%溶液1 mL＝10 ppm",
+        "1%＝10000 mg/L"
+      ],
+      "definition": "0.5%（重量）の製品溶液1 mLを500 mLの試料に加えると、製品注入率は10 ppm（10 mg/L）になる。1%は10000 mg/L（10000 ppm）。",
+      "formula": "0.5%溶液 1 mL ／ 試料 500 mL ＝ 10 mg/L",
+      "field": "ジャーテストを500 mL試料・0.5%製品溶液でそろえれば、添加mL×10がそのままppmになり、現場で計算ミスが減る。",
+      "related": [
+        "dilution-formula",
+        "jar-test"
+      ]
+    },
+    {
+      "id": "waste-activated-sludge-rate",
+      "term": "余剰汚泥引き抜き量（WAS）",
+      "reading": "よじょうおでいひきぬきりょう",
+      "en": "Waste activated sludge (WAS) rate",
+      "aliases": [
+        "WAS",
+        "余剰汚泥",
+        "引き抜き量"
+      ],
+      "definition": "目標の汚泥日令を保つために引き抜く汚泥量。汚泥日令の式を変形して、引き抜くべきTSS量を求める。",
+      "formula": "WAS(kg/day) = (曝気槽の汚泥量 + 沈殿池の汚泥量) ÷ 目標汚泥日令 − 処理水TSS(kg/day)",
+      "field": "汚泥日令（MCRT）＝（曝気槽＋沈殿池の汚泥量）÷（引き抜きTSS＋処理水TSS）を変形したもの。例：曝気槽4733 kg＋沈殿池1325 kg、処理水TSS 7.88 kg/h（約189 kg/day）の系で汚泥日令5日にするには WAS≒1022 kg/day。",
+      "related": [
+        "solids-retention-time",
+        "was-flow-conversion",
+        "mlss-mlvss"
+      ]
+    },
+    {
+      "id": "digester-detention-time",
+      "term": "消化槽の滞留時間",
+      "reading": "しょうかそうのたいりゅうじかん",
+      "en": "Digester detention time",
+      "aliases": [
+        "消化日数",
+        "嫌気性消化槽の滞留時間"
+      ],
+      "definition": "消化槽の容積を汚泥流量で割った値で、計算方法は清澄池の滞留時間と同じ。嫌気性消化槽では通常約15〜30日で、この範囲でメタンガスの生成が最適になる。",
+      "formula": "DT = 消化槽容積 ÷ 汚泥流量",
+      "field": "例：直径12.2 m（40 ft）・高さ9.1 m（30 ft）の消化槽に2.27 m³/h（10 gpm）なら約19.5日。 消化槽の評価にはこのほか揮発性固形物負荷（VS量÷槽容積：例 5% TSS・VS 90%の汚泥1.58 m³/hで約1.6 kg/day/m³）と、揮発性固形物削減率（(流入VS−流出VS)÷流入VS×100：例 1706→227 kg/dayで約87%）を使う。",
+      "related": [
+        "hydraulic-detention-time",
+        "digester-srt",
+        "digester-solids-loading-rate",
+        "volatile-solids-reduction",
+        "sludge-handling-stages"
+      ]
+    },
+    {
+      "id": "polymer-cost-per-ton",
+      "term": "汚泥脱水のポリマーコスト",
+      "reading": "おでいだっすいのぽりまーこすと",
+      "en": "Polymer cost per ton of solids",
+      "aliases": [
+        "PC",
+        "$/乾燥トン",
+        "乾燥固形物あたりの薬品費"
+      ],
+      "definition": "汚泥脱水の薬品費を監視する指標。ポリマー使用量×単価を、脱水した固形物量で割り、乾燥トン（またはウェットトン）あたりで表す。",
+      "formula": "PC = (ポリマー使用量 × 単価) ÷ 脱水固形物量／脱水固形物量 = 汚泥量 × 固形分 × 回収率",
+      "field": "例：5%汚泥189 m³を回収率96%で脱水（≒9.1乾燥t）、0.5%ポリマー溶液3.79 m³（比重1.05、≒19.9 kg）、$4.4/kg → 約$9.6/乾燥t。",
+      "related": [
+        "dewatering-solids-capture",
+        "chemical-treatment-cost"
+      ]
+    },
+    {
+      "id": "max-design-flow",
+      "term": "目標滞留時間からの最大流量",
+      "reading": "もくひょうたいりゅうじかんからのさいだいりゅうりょう",
+      "en": "Maximum flow for a target detention time",
+      "aliases": [
+        "最大処理流量",
+        "許容流量"
+      ],
+      "definition": "滞留時間の式を変形し、必要な滞留時間を確保できる最大の流量を求める計算。",
+      "formula": "流量 = 容積 ÷ 目標滞留時間",
+      "field": "例：容積887.7 m³（234500 gal）のDAFで滞留1.75時間を確保するなら、流量は約12000 m³/d（3.2 MGD）まで。増産で流量が増える計画のときにまず確認する。",
+      "related": [
+        "hydraulic-detention-time",
+        "equipment-loading-assessment"
+      ]
+    },
+    {
+      "id": "was-flow-conversion",
+      "term": "余剰汚泥の引き抜き流量への換算",
+      "reading": "よじょうおでいのひきぬきりゅうりょうへのかんさん",
+      "en": "WAS flow rate from solids content",
+      "aliases": [
+        "引き抜き流量",
+        "汚泥流量換算"
+      ],
+      "definition": "必要な余剰汚泥の固形物量（kg/day）を、引き抜く汚泥の固形分率で割って汚泥（ほぼ水）の量にし、水の密度で割って流量に直す計算。",
+      "formula": "引き抜き流量(m³/day) = WAS(kg/day) ÷ 固形分率 ÷ 1000 kg/m³",
+      "field": "例：WAS 1022 kg/day、固形分0.5%なら 204400 kg/day → 約204 m³/day（8.5 m³/h、米国単位では約54000 gpd・37 gpm）。返送汚泥が薄いと引き抜き流量が大きくなる。",
+      "related": [
+        "waste-activated-sludge-rate",
+        "jar-test-dosing-shortcut"
+      ]
+    },
+    {
+      "id": "equipment-loading-assessment",
+      "term": "設備の過負荷・低負荷の判定",
+      "reading": "せつびのかふか・ていふかのはんてい",
+      "en": "Assessing equipment loading",
+      "aliases": [
+        "負荷評価",
+        "設備診断",
+        "性能評価"
+      ],
+      "definition": "滞留時間・表面負荷・堰負荷・固形物負荷・F/M比・汚泥日令などを計算し、設計値や一般値と比べて、設備が過負荷か低負荷かを判断すること。設備更新・工程変更・薬品処理で効率を上げられるかを見極める基礎になる。",
+      "field": "設備は老朽化・修理・改造で設計時と変わっており、記録が残っていないことも多い。変動が大きい系では単日ではなく週・月単位で計算して傾向を見る。",
+      "related": [
+        "hydraulic-detention-time",
+        "surface-rise-rate",
+        "weir-overflow-rate",
+        "solids-loading-rate",
+        "food-to-microorganism-ratio",
+        "solids-retention-time"
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1.3-01",
+      "type": "choice",
+      "q": "清澄池の滞留時間（DT）を求める式はどれか。",
+      "choices": [
+        "容積 ÷ 流量",
+        "流量 ÷ 表面積",
+        "流量 ÷ 堰長",
+        "固形物量 ÷ 表面積"
+      ],
+      "answer": 0,
+      "explanation": "DT＝容積÷流量。流量÷表面積は表面上昇速度、流量÷堰長は越流堰負荷、固形物量÷表面積は固形物負荷。"
+    },
+    {
+      "id": "q1.3-02",
+      "type": "choice",
+      "q": "直径12.2 m、水深3.66 mの円形清澄池に7571 m³/dが流入するときの滞留時間はおよそいくらか。",
+      "choices": [
+        "1.4時間",
+        "0.5時間",
+        "3.5時間",
+        "14時間"
+      ],
+      "answer": 0,
+      "explanation": "V＝3.14×6.1²×3.66≒428 m³。428÷7571×24≒1.4時間。"
+    },
+    {
+      "id": "q1.3-03",
+      "type": "tf",
+      "q": "表面上昇速度（SRR）は表面負荷や水理負荷とも呼ばれ、流量を池の表面積で割って求める。",
+      "answer": true,
+      "explanation": "SRRは清澄池・DAFの流量処理能力を示し、単位は L/day/m²（gal/day/ft²）。"
+    },
+    {
+      "id": "q1.3-04",
+      "type": "choice",
+      "q": "越流堰負荷（WOR）の一般的な範囲（メートル法）はどれか。",
+      "choices": [
+        "125000〜500000 L/day/m",
+        "1250〜5000 L/day/m",
+        "10000〜40000 L/day/m",
+        "1〜5 m³/h/m"
+      ],
+      "answer": 0,
+      "explanation": "一般値は10000〜40000 gal/day/ftで、メートル法では125000〜500000 L/day/m。"
+    },
+    {
+      "id": "q1.3-05",
+      "type": "tf",
+      "q": "円形清澄池の越流堰の長さは、堰の直径にπを掛けて求める。",
+      "answer": true,
+      "explanation": "円周＝πd。例：堰直径14.63 m、流量272.5 m³/hなら WOR≒142300 L/day/m。"
+    },
+    {
+      "id": "q1.3-06",
+      "type": "choice",
+      "q": "液体製品のコストを計算するとき、容量の使用量に必ず掛け合わせるべきものはどれか。",
+      "choices": [
+        "製品の比重",
+        "処理水のpH",
+        "製品の有効成分の分子量",
+        "水温"
+      ],
+      "answer": 0,
+      "explanation": "単価は重量あたりなので、容量の使用量を重量に直すために比重を掛ける。米国単位では8.34 lb/galも掛ける。"
+    },
+    {
+      "id": "q1.3-07",
+      "type": "choice",
+      "q": "流量45.4 m³/hに80 ppmで製品を注入するときの1日の使用量はおよそいくらか。",
+      "choices": [
+        "87.2 kg/day",
+        "3.6 kg/day",
+        "192 kg/day",
+        "872 kg/day"
+      ],
+      "answer": 0,
+      "explanation": "45.4×24×1000×80÷1,000,000≒87.2 kg/day（米国単位では約192 lb/day）。"
+    },
+    {
+      "id": "q1.3-08",
+      "type": "choice",
+      "q": "0.5%（重量）の製品溶液4 mLを水800 mLに加えたときの製品濃度はどれか。",
+      "choices": [
+        "25 mg/L",
+        "50 mg/L",
+        "5 mg/L",
+        "250 mg/L"
+      ],
+      "answer": 0,
+      "explanation": "0.5%＝5000 mg/L。(4)(5000)＝(800)(C2) より C2＝25 mg/L。希薄溶液なので比重は1とみなす。"
+    },
+    {
+      "id": "q1.3-09",
+      "type": "tf",
+      "q": "0.5%（重量）の製品溶液1 mLを500 mLの試料に加えると、注入率は10 ppmになる。",
+      "answer": true,
+      "explanation": "5000 mg/L×1 mL÷500 mL＝10 mg/L。ジャーテストは500 mL試料と0.5%溶液でそろえると計算が簡単。"
+    },
+    {
+      "id": "q1.3-10",
+      "type": "choice",
+      "q": "SVIの通常の範囲はどれか。",
+      "choices": [
+        "100〜150 mL/g",
+        "10〜15 mL/g",
+        "300〜500 mL/g",
+        "1000〜1500 mL/g"
+      ],
+      "answer": 0,
+      "explanation": "SVIは通常100〜150 mL/g。1000 mLを30分沈降させ、沈降容積（mL/L）×1000÷MLSS（mg/L）で求める。"
+    },
+    {
+      "id": "q1.3-11",
+      "type": "choice",
+      "q": "MLSS 3200 mg/L、30分沈降容積350 mL/LのときのSVIはおよそいくらか。",
+      "choices": [
+        "109 mL/g",
+        "91 mL/g",
+        "350 mL/g",
+        "1.1 mL/g"
+      ],
+      "answer": 0,
+      "explanation": "350×1000÷3200≒109 mL/g。"
+    },
+    {
+      "id": "q1.3-12",
+      "type": "tf",
+      "q": "F/M比の計算では、曝気槽のMLSSに加えて二次沈殿池内の汚泥量も分母に含める。",
+      "answer": false,
+      "explanation": "F/M比の分母は曝気槽内のMLSS量だけで、沈殿池の汚泥は含めない。沈殿池の汚泥を含めるのは汚泥日令（MCRT）の計算。"
+    },
+    {
+      "id": "q1.3-13",
+      "type": "choice",
+      "q": "流入BOD 5453 kg/day、曝気槽内MLSS 56800 kgのときのF/M比はどれか。",
+      "choices": [
+        "約0.096",
+        "約0.96",
+        "約10.4",
+        "約0.0096"
+      ],
+      "answer": 0,
+      "explanation": "5453÷56800≒0.096。単位は本来 day⁻¹ だが、通常は単位なしで報告する。"
+    },
+    {
+      "id": "q1.3-14",
+      "type": "choice",
+      "q": "汚泥日令（MCRT）の別名として正しい組み合わせはどれか。",
+      "choices": [
+        "平均細胞滞留時間・固形物滞留時間（SRT）",
+        "水理学的滞留時間・表面負荷",
+        "F/M比・SVI",
+        "越流堰負荷・固形物負荷"
+      ],
+      "answer": 0,
+      "explanation": "汚泥日令はMCRT（平均細胞滞留時間）またはSRT（固形物滞留時間）とも呼ばれ、固形物が系内にとどまる平均日数。"
+    },
+    {
+      "id": "q1.3-15",
+      "type": "choice",
+      "q": "系内の汚泥量が6058 kg（曝気槽4733 kg＋沈殿池1325 kg）、処理水TSSが189 kg/dayのとき、汚泥日令5日にするための余剰汚泥引き抜き量はおよそいくらか。",
+      "choices": [
+        "1022 kg/day",
+        "1211 kg/day",
+        "189 kg/day",
+        "30290 kg/day"
+      ],
+      "answer": 0,
+      "explanation": "WAS＝6058÷5−189≒1022 kg/day。固形分0.5%の汚泥なら約204 m³/dayの引き抜きになる。"
+    },
+    {
+      "id": "q1.3-16",
+      "type": "choice",
+      "q": "嫌気性消化槽の平均滞留時間として一般的な範囲はどれか。",
+      "choices": [
+        "約15〜30日",
+        "約1〜2時間",
+        "約2〜3日",
+        "約60〜90日"
+      ],
+      "answer": 0,
+      "explanation": "嫌気性消化槽の滞留時間は通常約15〜30日で、メタンガスの生成が最適になる範囲。"
+    },
+    {
+      "id": "q1.3-17",
+      "type": "choice",
+      "q": "流入VS 1706 kg/day、流出VS 227 kg/dayの消化槽の揮発性固形物削減率（VSR）はおよそいくらか。",
+      "choices": [
+        "87%",
+        "13%",
+        "50%",
+        "100%"
+      ],
+      "answer": 0,
+      "explanation": "(1706−227)÷1706×100≒87%。"
+    },
+    {
+      "id": "q1.3-18",
+      "type": "tf",
+      "q": "固形分1%は10000 mg/L（10000 ppm）に相当する。",
+      "answer": true,
+      "explanation": "固形物回収率の計算で、mg/Lで示された流出固形物を%に直すときに使う（1000 mg/L＝0.1%）。"
+    },
+    {
+      "id": "q1.3-19",
+      "type": "choice",
+      "q": "流入5%の汚泥をケーキ固形分20%に脱水し、流出固形物が0.1%だったときの固形物回収率に最も近いのはどれか（ろ液固形分も0.1%とする）。",
+      "choices": [
+        "98%",
+        "80%",
+        "75%",
+        "25%"
+      ],
+      "answer": 0,
+      "explanation": "SC＝20×(5−0.1)÷[5×(20−0.1)]×100≒98%。"
+    },
+    {
+      "id": "q1.3-20",
+      "type": "tf",
+      "q": "排水処理の指標の中には、系の変動が大きいため、週単位や月単位で計算して初めて意味を持つものがある。",
+      "answer": true,
+      "explanation": "日々の変動が大きい系では、単日の値では過負荷・低負荷を判断しにくい。週・月単位で傾向を見る。"
+    }
+  ]
+}

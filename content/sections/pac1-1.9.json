@@ -1,0 +1,826 @@
+{
+  "id": "pac1-1.9",
+  "book": "PAC-1 原水・排水処理技術マニュアル",
+  "section": "1.9",
+  "title": "石灰軟化",
+  "titleEn": "Lime Softening",
+  "summary": [
+    "前処理はボイラ系の清浄度を左右する最重要工程。冷石灰軟化・温石灰軟化・ろ過・イオン交換・脱アルカリ・脱塩・ROを原水と用途に応じて組み合わせる。内部処理で吸収できるのは小さな変動までで、前処理が乱れると薬品では防ぎきれない。",
+    "石灰軟化ではCaをCaCO3、MgをMg(OH)2として沈殿させるほか、遊離CO2・重炭酸アルカリ度・シリカ・濁質も同時に下がる。炭酸アルカリ度は35 ppm as CaCO3未満まで下げられ、ボイラのサイクル化学の管理と復水系へのCO2放出の低減に役立つ。",
+    "冷石灰軟化装置はスラッジブランケット型と固液接触（スラッジ循環）型が主流。設計目安は越流負荷7.5〜9 m³/h/m（10〜12 gpm/ft）、水温変化1.1℃/h（2°F/h）以内、滞留60〜120分で、処理水SS 10 ppm未満・濁度5 NTU未満を目指す。",
+    "冷間処理の効率は温度・pH・阻害物質（タンニン・有機排水など）で変わる。CaCO3の溶解度は約pH 9.4で最小、Mg(OH)2はpH 9.5を超えると急減し10.5でほぼゼロ。15.6℃（60°F）では基準溶解度の1.12倍として補正する。",
+    "薬品量の計算は、①遊離CO2の中和、②石灰注入点での局所的なMg沈殿、③重炭酸→炭酸への変換、④不足分のCa・アルカリ度の補給（苛性・ソーダ灰・石膏）、⑤CaCO3の平衡点の作図（45°線）という順に、すべてppm as CaCO3で積み上げる。",
+    "温石灰軟化（約104℃）の機能は「軟化」「脱アルカリ」「脱シリカ」の3つで、同時に最適化できるのは2つまで。ボイラ補給水用途では脱アルカリを主目的にすることが多い（陰イオン交換で脱アルカリすると約20倍のコスト）。",
+    "温石灰軟化装置は下向流（従来型）と上向流（スラッジブランケット型）があり、脱気と復水の扱いによりグループ1〜5に分かれる。非脱気型（グループ1・3）の溶存酸素は約0.3 ppm、脱気型（グループ2）は5〜15 ppbまで下がる。",
+    "注入量の換算は「注入量＝濃度（ppm as CaCO3）×換算係数÷（純度×CF）」。CFは米国単位（lb/1000 gal）で120、メートル単位（kg/m³）で1000。例：石灰190 ppm as CaCO3（純度93%）→ 0.151 kg/m³（1.26 lb/1000 gal）。",
+    "運転管理では処理水の全硬度（全酸硬度・可溶性硬度）・P/M/OHアルカリ度・シリカ・濁度・pHを測り、5分沈降試験でスラッジ濃度を確認する。処理水の変動要因は「原水組成の変化」「機械的トラブル（注入系）」「流量の大きな変動」の3つ。",
+    "トラブルの代表は、硬度上昇（石灰不足・キャリーオーバー・ソーダ灰不足）、シリカ除去不良（Mg不足・スラッジ循環不足・凝集不良・低温・低pH）、加熱不足（オーバーフロー開・ベント不足・スプレー弁固着・蒸気不足）。"
+  ],
+  "terms": [
+    {
+      "id": "cold-lime-design-limits",
+      "term": "冷石灰軟化装置の設計目安",
+      "reading": "れいせっかいなんかそうちのせっけいめやす",
+      "en": "Cold lime softener design limitations",
+      "aliases": [
+        "越流負荷",
+        "ウェア負荷",
+        "weir overflow rate"
+      ],
+      "definition": "冷石灰軟化の沈殿装置を評価するときの基準値。上昇速度のほか、越流堰の長さあたりの流量（越流負荷）、水温の変化速度、滞留時間、期待される処理水質を確認する。",
+      "formula": "越流負荷 7.5〜9 m³/h/m（10〜12 gpm/ft）／水温変化 1.1℃/h（2°F/h）以内／滞留 60〜120分／処理水 SS 10 ppm未満・濁度 5 NTU未満／ブロースラッジ 5分沈降で70〜90%",
+      "field": "水温が急に変わると密度差で対流が起き、スラッジブランケットが乱れてキャリーオーバーする。井水と表流水を切り替える現場では温度変化速度もチェックする。",
+      "related": [
+        "rise-rate",
+        "sludge-blanket",
+        "solids-contact-clarifier",
+        "cold-lime-softening",
+        "five-minute-settling-test"
+      ]
+    },
+    {
+      "id": "caco3-temperature-correction",
+      "term": "CaCO3溶解度の温度補正",
+      "reading": "たんさんかるしうむようかいどのおんどほせい",
+      "en": "Temperature effect on CaCO3 solubility (cold process)",
+      "aliases": [
+        "温度補正係数",
+        "1.12倍"
+      ],
+      "definition": "冷間処理の温度範囲では、水温が低いほどCaCO3の溶解度が上がり、処理水に残るCa・炭酸が増える。基準温度から5.6℃（10°F）下がるごとに約12%増えるとみなして補正する。",
+      "formula": "15.6℃（60°F）の溶解度 ≒ 基準溶解度 × 1.12",
+      "field": "冬場に処理水硬度が上がるのは、石灰不足ではなく水温低下による溶解度上昇のこともある。OHアルカリ度が適正なら温度を疑う。",
+      "related": [
+        "cold-lime-softening",
+        "inverse-solubility",
+        "caco3-equilibrium-graphical-method"
+      ]
+    },
+    {
+      "id": "lime-softening-ph-window",
+      "term": "石灰軟化の最適pH（CaCO3とMg(OH)2）",
+      "reading": "せっかいなんかのさいてきぴーえいち",
+      "en": "pH effect on CaCO3 and Mg(OH)2 solubility",
+      "aliases": [
+        "pH 9.4",
+        "pH 10.5"
+      ],
+      "definition": "CaCO3の溶解度は約pH 9.4で最小になり、それ以上では可溶性の水酸化カルシウムの生成で再び増える。一方Mg(OH)2の溶解度はpH 9.5を超えると急激に下がり、pH 10.5でほぼゼロになる。Ca除去とMg除去では適するpHが異なる。",
+      "field": "Ca低減が目的ならpHを上げすぎない。Mgまで下げたいときは遊離OHアルカリ度を残してpHを10台に上げる必要があり、その分Caが増えることを見込む。",
+      "related": [
+        "partial-lime-softening",
+        "complete-lime-softening",
+        "hydroxide-residual"
+      ]
+    },
+    {
+      "id": "softening-inhibitors",
+      "term": "軟化阻害物質",
+      "reading": "なんかそがいぶっしつ",
+      "en": "Softening inhibitors (organics)",
+      "aliases": [
+        "有機物阻害",
+        "タンニン阻害"
+      ],
+      "definition": "タンニン、有機性排水、下水などの汚染物質は、化学的な沈殿軟化の効率を下げ、結果の予測を難しくする。軟化薬品を入れる前に除去しておく必要があり、多くの場合は塩素による酸化（ブレークポイント塩素処理）で影響を消せる。",
+      "field": "計算どおりの残留硬度が出ない軟化装置は、原水中の有機物を疑う。予測が難しい原水ではジャーテストやパイロット試験で確かめてから薬注量を決める。",
+      "related": [
+        "color-tannin",
+        "chlorine",
+        "poor-coagulation-softener"
+      ]
+    },
+    {
+      "id": "co2-lime-demand",
+      "term": "遊離CO2による石灰消費",
+      "reading": "ゆうりにさんかたんそによるせっかいしょうひ",
+      "en": "Lime demand of free CO2",
+      "aliases": [
+        "CO2の二重反応"
+      ],
+      "definition": "冷石灰軟化では、加えた石灰はまず遊離CO2の中和に使われて重炭酸カルシウムになり、Ca硬度と重炭酸アルカリ度を増やす。この重炭酸を炭酸に変えるためにさらに石灰が要るので、CO2は実質2回反応させることになる。温石灰軟化では加熱でCO2が放散されるため、この分の石灰は不要。",
+      "formula": "2CO2 + Ca(OH)2 → Ca(HCO3)2（各1 ppm as CaCO3）",
+      "field": "CO2の多い井水では石灰の消費量とCaCO3スラッジが増える。前段に脱炭酸塔（デガシファイア）を置いてCO2をはぎ取ると、石灰とスラッジの両方を減らせる。",
+      "related": [
+        "alkalinity-hierarchy",
+        "decarbonator",
+        "lime-softening-calculation-steps"
+      ]
+    },
+    {
+      "id": "local-mg-precipitation",
+      "term": "石灰注入点での局所的なMg沈殿",
+      "reading": "せっかいちゅうにゅうてんでのきょくしょてきなまぐねしうむちんでん",
+      "en": "Incidental magnesium precipitation at the lime feed point",
+      "aliases": [
+        "付随的Mg除去"
+      ],
+      "definition": "石灰の注入点では瞬時に混ざらず、石灰の溶解度も約1100 ppmしかないため、局所的にpHとOH濃度が非常に高くなる。そのためMg除去を狙わなくても一部のMgがMg(OH)2として沈殿し、その分のCaが増える。",
+      "formula": "Mg²⁺ + Ca(OH)2 → Mg(OH)2 + Ca²⁺（Ca:Mg＝2:1で約10%、1:1で約20%のMgが沈殿）",
+      "field": "薬注計算では、Mg除去を意図しない部分軟化でもこの約10%分の石灰とCa増加を見込んでおく。",
+      "related": [
+        "partial-lime-softening",
+        "lime-softening-calculation-steps"
+      ]
+    },
+    {
+      "id": "mg-noncarbonate-hardness-lime",
+      "term": "Mg非炭酸塩硬度と石灰",
+      "reading": "まぐねしうむひたんさんえんこうどとせっかい",
+      "en": "Magnesium noncarbonate hardness and lime",
+      "aliases": [
+        "Mg永久硬度"
+      ],
+      "definition": "重炭酸マグネシウム（一時硬度）は石灰で処理するとMg(OH)2が沈殿して全硬度が下がる。しかし硫酸マグネシウムや塩化マグネシウム（永久硬度）を石灰で処理すると、MgがCa非炭酸塩硬度に置き換わるだけで全硬度は下がらない。",
+      "field": "非炭酸塩硬度の多い原水では、石灰だけで全硬度を下げようとしても効果がない。ソーダ灰の併用や後段のイオン交換軟化を検討する。",
+      "related": [
+        "temporary-hardness",
+        "hardness",
+        "soda-ash",
+        "complete-lime-softening"
+      ]
+    },
+    {
+      "id": "lime-softening-calculation-steps",
+      "term": "石灰軟化の薬注計算手順",
+      "reading": "せっかいなんかのやくちゅうけいさんてじゅん",
+      "en": "Step-by-step lime softening calculation",
+      "aliases": [
+        "軟化計算",
+        "処理結果の予測"
+      ],
+      "definition": "すべての成分と薬品をppm as CaCO3で表し、反応を順番に積み上げて処理水質と薬注量を予測する方法。まず遊離CO2を中和し、局所的なMg沈殿分を加え、重炭酸を炭酸に変え、必要なら苛性・ソーダ灰・石膏でCaやアルカリ度を補い、最後にCaCO3の平衡点を作図で求める。最後に各薬品の合計を製品量に換算する。",
+      "formula": "例（部分冷石灰軟化）：石灰 12（CO2分）＋9（Mg 10%分）＋132（HCO3分）＝153 ppm as CaCO3",
+      "field": "計算を始める前に、Ca低減・アルカリ度低減・全硬度低減のどれを優先するかを工場と合意しておく。冷石灰軟化は通常Ca低減、温石灰軟化はアルカリ度とシリカの低減が主目的。",
+      "related": [
+        "co2-lime-demand",
+        "local-mg-precipitation",
+        "caco3-equilibrium-graphical-method",
+        "softening-dosage-equation",
+        "as-caco3"
+      ]
+    },
+    {
+      "id": "caco3-equilibrium-graphical-method",
+      "term": "CaCO3平衡点の作図法（45°線）",
+      "reading": "たんさんかるしうむへいこうてんのさくずほう",
+      "en": "Precipitating to CaCO3 equilibrium (45° line method)",
+      "aliases": [
+        "45度線",
+        "35 ppm則"
+      ],
+      "definition": "薬品添加後の過飽和な水について、まずCaCO3の沈殿がCaか炭酸のどちらかがゼロになるまで進むと仮定し、その点から傾き1（45°）の線を引いて典型的な処理結果の曲線と交わる点を読む。交点が処理水のCaと炭酸（as CaCO3）の予測値。装置メーカーは目安としてCaまたは炭酸35 ppm as CaCO3を仕上がり値に使うことが多い。",
+      "formula": "例：Ca 260・CO3 230 → 完全沈殿を仮定するとCa 30・CO3 0 → 45°線で冷間曲線と交わり Ca 54・CO3 24（ppm as CaCO3）",
+      "field": "検算として、Caの減少量と炭酸の減少量が等しいことを確認する（CaCO3は1:1で沈殿するため）。冷間（10〜21℃）と温間（104℃）では別の曲線を使う。",
+      "related": [
+        "lime-softening-calculation-steps",
+        "caco3-temperature-correction",
+        "supersaturation"
+      ]
+    },
+    {
+      "id": "cold-process-silica-removal",
+      "term": "冷間処理でのMgによるシリカ除去",
+      "reading": "れいかんしょりでのまぐねしうむによるしりかじょきょ",
+      "en": "Silica removal by magnesium in cold process",
+      "aliases": [
+        "冷石灰のシリカ除去"
+      ],
+      "definition": "冷間ではMg(OH)2へのシリカ吸着効率が低く、温度に強く依存する。10℃（50°F）では、15 ppmを超える分のシリカ1 ppmを除くのに約25 ppm（as CaCO3）のMg硬度の沈殿が必要で、21℃（70°F）では約6〜7 ppmで済む。冷石灰では通常シリカ5 ppm前後が限度。",
+      "formula": "例（21℃）：シリカ20→5 ppmにはMg硬度125 ppmの沈殿が必要。原水Mg 30 ppmなら95 ppm追加、さらに遊離OH 10 ppmでの残留Mg 60 ppm分を加え計155 ppm",
+      "field": "約60℃（140°F）まで加温できない限り、冷間処理をシリカ低減の手段として当てにしない。さらに下げたい場合は32℃（90°F）超への加温とドロマイト石灰の追加が必要。原水シリカが10 ppm以下では10%を超える低減は期待しにくい。",
+      "related": [
+        "magnesium-silica-adsorption",
+        "ferric-silica-removal",
+        "dolomitic-lime",
+        "cold-lime-softening"
+      ]
+    },
+    {
+      "id": "dolomitic-lime",
+      "term": "ドロマイト石灰",
+      "reading": "どろまいとせっかい",
+      "en": "Dolomitic lime",
+      "aliases": [
+        "苦土石灰"
+      ],
+      "definition": "酸化マグネシウム約32%と水酸化カルシウム約62%を含む石灰。シリカ除去に必要なMg(OH)2が原水のMgだけでは足りないときに、石灰と一緒にMg源として加える。",
+      "field": "溶けにくいので溶液にはできず、スラリーまたは乾式で注入する。シリカ除去不良のときは原水のシリカとMgを分析し、ドロマイト石灰やアルミン酸ナトリウムの注入量を見直す。",
+      "related": [
+        "magnesium-oxide-feed",
+        "cold-process-silica-removal",
+        "magnesium-silica-adsorption"
+      ]
+    },
+    {
+      "id": "magnesium-oxide-feed",
+      "term": "酸化マグネシウムの添加",
+      "reading": "さんかまぐねしうむのてんか",
+      "en": "Magnesium oxide (MgO) addition",
+      "aliases": [
+        "MgO添加"
+      ],
+      "definition": "脱シリカを主目的とする温石灰軟化で、シリカを十分下げるためにMgを補う方法。MgOは水と反応して直接Mg(OH)2になるため、石灰やOHの要求量を増やさずにMg濃度を上げられる。",
+      "formula": "MgO + H2O → Mg(OH)2",
+      "field": "MgもMgOも石灰と同じく溶けにくいので、スラリー濃度5%以下で注入する。",
+      "related": [
+        "dolomitic-lime",
+        "magnesium-silica-adsorption",
+        "hps-silica-magnesium-table"
+      ]
+    },
+    {
+      "id": "hps-silica-magnesium-table",
+      "term": "シリカ低減に必要なMg沈殿量（温石灰）",
+      "reading": "しりかていげんにひつようなまぐねしうむちんでんりょう",
+      "en": "Magnesium precipitate required for silica reduction (HPS)",
+      "aliases": [
+        "シリカ除去の経験表"
+      ],
+      "definition": "数百基の温石灰軟化装置の実績から、原水シリカとろ過後の目標シリカの組み合わせごとに必要なMg(OH)2・MgO沈殿量（as CaCO3）をまとめた経験表。シリカ低減は単純な沈殿反応ではないため、この実績値が最も信頼できる推定手段とされる。原水シリカが高いほど、除去1 ppmあたりのMg量は少なくて済む。",
+      "formula": "例：原水シリカ20 ppm → ろ過水5 ppm には約82 ppm、→ 1 ppm には約130 ppm（as CaCO3）",
+      "field": "目標シリカを下げるほど必要Mg量は急増する。過大な目標を設定する前に、後段の脱塩装置で取るほうが経済的か比較する。",
+      "related": [
+        "magnesium-silica-adsorption",
+        "magnesium-oxide-feed",
+        "hot-lime-softening"
+      ]
+    },
+    {
+      "id": "hps-downflow-upflow",
+      "term": "下向流型と上向流型の温石灰軟化装置",
+      "reading": "かこうりゅうがたとじょうこうりゅうがたのおんせっかいなんかそうち",
+      "en": "Downflow (conventional) vs. upflow (sludge blanket) HPS",
+      "aliases": [
+        "下向流HPS",
+        "上向流HPS",
+        "アップテイクファンネル"
+      ],
+      "definition": "下向流型は加熱水と薬品を槽上部で混合し、下へ流しながら沈殿させ、アップテイクファンネル（集水漏斗）で急な方向転換と減速により粒子を分離する。上向流型はダウンカマーで下部コーンに導いた水を上向きに戻し、スラッジブランケットをくぐらせる。",
+      "formula": "下向流：最大上昇速度 4.9 m³/h/m²（2 gpm/ft²）、滞留60分以上（スラッジコーンを除く）／上向流：3.7〜4.3 m³/h/m²（1.5〜1.75 gpm/ft²）、滞留60分",
+      "field": "負荷変動が大きく急な工場や、油などで沈殿物が軽くなるおそれがある場合は下向流型。負荷がほぼ一定ならシリカ除去に優れる上向流型。上向流型は急な流量増でブランケットが膨張し、ろ過器へキャリーオーバーしやすい。",
+      "related": [
+        "hot-lime-softening",
+        "sludge-blanket",
+        "rise-rate",
+        "sludge-recirculation"
+      ]
+    },
+    {
+      "id": "hps-deaeration-groups",
+      "term": "温石灰軟化装置のグループ分類（1〜5）",
+      "reading": "おんせっかいなんかそうちのぐるーぷぶんるい",
+      "en": "HPS design groups (deaeration and condensate handling)",
+      "aliases": [
+        "脱気型HPS",
+        "非脱気型HPS"
+      ],
+      "definition": "補給水と復水の扱い・脱気の有無で分けた温石灰軟化装置の型式。グループ1：補給水100%・部分脱気。グループ2：補給水100%・完全脱気（脱気部と2〜10分分の貯留部を内蔵）。グループ3：復水を別室で加熱・貯留。グループ4：補給水を脱気し、復水を別に脱気。グループ5：ろ過後の補給水と復水を同じ脱気器で脱気。",
+      "formula": "溶存酸素の目安：グループ1・3 約0.3 ppm（300 ppb）未満／グループ2 5〜15 ppb",
+      "field": "グループ1・3は脱気型ではないので、後段に脱気器が必要。グループ1は鋼管エコノマイザや段階加熱器のない低圧ボイラ向け。グループ5は復水回収率が高い（通常70%超）工場で使う。グループ4の固定オリフィス式脱気器は補給水25%超で、復水と補給水の比の変動が50%以内なら十分機能する。",
+      "related": [
+        "hot-lime-softening",
+        "deaerator",
+        "tray-deaerator",
+        "atomizing-deaerator",
+        "hps-condensate-co2"
+      ]
+    },
+    {
+      "id": "hps-condensate-co2",
+      "term": "未脱気復水のCO2とHPS処理水",
+      "reading": "みだっきふくすいのにさんかたんそとおんせっかいしょりすい",
+      "en": "Free CO2 in condensate mixed with HPS effluent",
+      "aliases": [
+        "CO2の再循環"
+      ],
+      "definition": "遊離CO2を含む未脱気の復水を温石灰軟化処理水と混ぜると、CO2が処理水のOH・炭酸と結合して重炭酸・炭酸になる。その後で脱気しても放散される遊離CO2はほとんどなく、ボイラ内で分解して再び蒸気中のCO2となり循環する。揮発性アミンを使っている場合はCO2がアミン重炭酸として戻り、加熱部で分解してベントから抜ける。",
+      "field": "脱気直後の水のpHが8.3なら遊離CO2は除かれている（大気からの再吸収を避けるため直ちに測る）。グループ1（復水混合後に別の脱気器）やグループ2（未脱気復水を脱気済み補給水に混合）で起きやすい。",
+      "related": [
+        "hps-deaeration-groups",
+        "co2-in-steam",
+        "neutralizing-amine",
+        "deaerator"
+      ]
+    },
+    {
+      "id": "spray-heater-valve",
+      "term": "スプレーヒータ弁",
+      "reading": "すぷれーひーたべん",
+      "en": "Spray heater valve (spring-loaded inlet valve)",
+      "aliases": [
+        "スプレー弁",
+        "入口スプレー弁"
+      ],
+      "definition": "温石灰軟化装置の入口で、ばね荷重により冷たい補給水を微細な霧状にして蒸気雰囲気中に噴き込む弁。標準サイズで作られ、大容量の装置では複数個を並べる。",
+      "formula": "定格流量時の弁差圧 約34 kPa（5 psi）",
+      "field": "スケールで弁が開いたまま固着すると、低流量時に差圧が足りず水が霧にならずに流れ落ち、加熱不足になる。低流量運転が常態なら、ばね荷重を上げて低流量でも所定差圧が出るようにする。複数弁のうち1つだけを止めて他に負荷させると水の分配が偏るので避ける。",
+      "related": [
+        "hps-insufficient-heating",
+        "hot-lime-softening",
+        "spray-deaerator"
+      ]
+    },
+    {
+      "id": "hps-vent-rate",
+      "term": "温石灰軟化装置のベント量",
+      "reading": "おんせっかいなんかそうちのべんとりょう",
+      "en": "HPS vent rate",
+      "aliases": [
+        "ベント蒸気量",
+        "ベントプルーム"
+      ],
+      "definition": "ベントコンデンサがあっても、非凝縮性ガスを蒸気の流れで掃き出すために一定量の蒸気を逃がす必要がある。安全側の目安は軟化装置能力500 kg/h（1000 lb/h）あたり蒸気0.5 kg/h（1 lb/h）。ベントコンデンサがない場合は、加熱する水500 kg（1000 lb）あたり2.5 kg（5 lb）もの蒸気が必要になる。",
+      "formula": "実務目安：ベント出口上300〜460 mm（12〜18インチ）程度まで蒸気の白煙が見える量",
+      "field": "ベント不足では加熱部にガスが溜まり、スプレー水と蒸気の接触が悪くなって水温が下がる。管式ベントコンデンサは処理量11 m³/h（50 gpm）未満では蒸気節約で元が取れにくく、小・中型では直接接触式が主流。",
+      "related": [
+        "vent-condenser",
+        "deaerator-venting",
+        "hps-insufficient-heating"
+      ]
+    },
+    {
+      "id": "hps-duty-selection",
+      "term": "温石灰軟化の3機能と運転目的の選択",
+      "reading": "おんせっかいなんかのさんきのうとうんてんもくてきのせんたく",
+      "en": "HPS functions: softening, dealkalization, desilicization",
+      "aliases": [
+        "最大脱アルカリ運転",
+        "最大Ca低減運転"
+      ],
+      "definition": "温石灰軟化の機能は軟化（Ca・Mgの低減、最も少ない用途）、脱アルカリ（最も一般的）、脱シリカの3つで、同時に最適化できるのは2つまで。脱アルカリを狙うときはCaを過剰にし（ルシャトリエの原理で炭酸が多く消費される）、Ca低減を狙うときは炭酸を過剰にする。過剰分の目安は40〜60 ppm as CaCO3。",
+      "field": "後段にNa形軟化器があるなら、残った硬度はそこで取れるので脱アルカリ優先が一般的。脱塩する工場でも、陰イオン交換で脱アルカリすると温石灰の約20倍のコストになるため、温石灰は脱アルカリ器として使うのが得策。",
+      "related": [
+        "s-n-value",
+        "hot-lime-softening",
+        "lime-zeolite-softening",
+        "dealkalization"
+      ]
+    },
+    {
+      "id": "softening-dosage-equation",
+      "term": "軟化薬品の注入量換算式",
+      "reading": "なんかやくひんのちゅうにゅうりょうかんさんしき",
+      "en": "Chemical dosage equation for lime softening",
+      "aliases": [
+        "換算係数",
+        "CF=120",
+        "CF=1000"
+      ],
+      "definition": "ppm as CaCO3で求めた薬品濃度を、実際の製品注入量に直す式。CaCO3から各物質への換算係数（当量比）を掛け、製品純度で割り、単位係数CFで割る。代表値：消石灰Ca(OH)2 0.74（純度93%）、生石灰CaO 0.56（90%）、ソーダ灰1.06（98%）、フレーク苛性0.8（98%）、石膏CaSO4·2H2O 1.72（79%）、塩化カルシウム1.11（75%）。",
+      "formula": "注入量 ＝ 濃度(ppm as CaCO3) × 換算係数 ÷ (純度 × CF)　CF：120（lb/1000 gal）、1000（kg/m³）／例：石灰190 → 190×0.74÷(0.93×1000)＝0.151 kg/m³、ソーダ灰92 → 0.1 kg/m³（0.83 lb/1000 gal）",
+      "field": "純度で割り忘れると注入不足になる。薬品在庫の減り方と計算上の使用量を突き合わせ、正しく注入されているか定期的に確認する。",
+      "related": [
+        "equivalent-weight",
+        "as-caco3",
+        "lime-softening-calculation-steps",
+        "soda-ash"
+      ]
+    },
+    {
+      "id": "lime-slurry-feed",
+      "term": "石灰スラリー注入と薬注装置",
+      "reading": "せっかいすらりーちゅうにゅうとやくちゅうそうち",
+      "en": "Lime slurry feeding and chemical proportioning",
+      "aliases": [
+        "乾式フィーダ",
+        "スラリーフィーダ",
+        "比例注入"
+      ],
+      "definition": "石灰・酸化マグネシウム・ドロマイトは溶解度が低く溶液では注入できないため、スラリーか乾式で注入する。スラリーは5%以下に保つ（濃いと沈降して詰まる）。乾式では薬品ごとに別のフィーダが要るが、スラリーなら撹拌を続ける条件でソーダ灰と同じ槽から注入できる。注入量は水量計の信号に比例させる。",
+      "field": "原水組成が変わると石灰とソーダ灰の比も変わるので、薬品ごとに別のフィーダを持つほうが調整しやすい。同じ槽で比率を変えるときは、希釈水を張り直して新しい比率で薬品を仕込む必要がある。",
+      "related": [
+        "lime-feed-line-plugging",
+        "softener-effluent-variability",
+        "soda-ash"
+      ]
+    },
+    {
+      "id": "lime-feed-line-plugging",
+      "term": "薬注配管の閉塞",
+      "reading": "やくちゅうはいかんのへいそく",
+      "en": "Plugging of chemical feed lines",
+      "aliases": [
+        "石灰配管詰まり"
+      ],
+      "definition": "石灰注入配管はどこでも詰まりうるが、軟化装置内の配管部で起きやすい。主な原因は濃すぎるスラリー（上限5%）、未軟化の補給水を希釈水に使うこと（配管内でスケールが生じる）、配管内流速の不足。ポンプサクションタンク方式では、詰まるとタンクがオーバーフローするので気づきやすい。",
+      "field": "ポンプのグランドシール水は軟水（復水並みの水質）を使う。原水を使うとスケールで詰まり、グランドからの漏れで注入量も狂う。石灰の配管閉塞を抑える添加剤もある。",
+      "related": [
+        "lime-slurry-feed",
+        "softener-high-hardness"
+      ]
+    },
+    {
+      "id": "softener-sludge-blowdown",
+      "term": "軟化装置のスラッジブロー",
+      "reading": "なんかそうちのすらっじぶろー",
+      "en": "Softener sludge blowdown",
+      "aliases": [
+        "デスラッジ",
+        "スラッジ引抜き"
+      ],
+      "definition": "軟化反応で生じた沈殿物を排出する操作。温石灰軟化ではブロー量は流入水量の0.5〜2.5%で、スラッジレベルと濃度で決める。自動ブロー弁は原水量に比例させ（タイマーまたは水量計連動のカウンタタイマー）、連続または間欠で動かす。",
+      "field": "コーン頂部（最下部）には石灰の砂粒・砂・はがれたスケールが溜まり、ポンプの摩耗や自動弁のシート漏れの原因になる。自動ブローと循環スラッジはコーン頂部より少し上から取り、頂部の手動ブロー弁は1日1回程度開けて砂粒を排出する。自動ブロー弁と装置の間には仕切弁を入れておく。",
+      "related": [
+        "sludge-recirculation",
+        "five-minute-settling-test",
+        "hot-lime-softening"
+      ]
+    },
+    {
+      "id": "five-minute-settling-test",
+      "term": "5分沈降試験",
+      "reading": "ごふんちんこうしけん",
+      "en": "5-minute settling test",
+      "aliases": [
+        "スラッジ沈降試験"
+      ],
+      "definition": "スラッジ試料をメスシリンダー等で5分間静置し、沈降したスラッジの体積割合でスラッジ濃度を評価する簡易試験。循環用スラッジは60〜80%、底部スラッジは90〜100%が目安。",
+      "formula": "循環スラッジ 60〜80%（シリカ除去目的では最低70%）／底部スラッジ 90〜100%",
+      "field": "循環スラッジの濃度が低いと、同じ効果を得るのに循環量を増やす必要がある。最も濃いのはコーン頂部（約60%固形分）だが、砂粒が多いので少し上から取る。",
+      "related": [
+        "sludge-recirculation",
+        "softener-sludge-blowdown",
+        "poor-silica-removal-softener"
+      ]
+    },
+    {
+      "id": "total-vs-soluble-hardness",
+      "term": "全酸硬度と可溶性硬度（キャリーオーバー判定）",
+      "reading": "ぜんさんこうどとかようせいこうど",
+      "en": "Total acid hardness vs. soluble hardness",
+      "aliases": [
+        "全硬度（酸処理）",
+        "ろ過硬度"
+      ],
+      "definition": "軟化装置の処理水について、酸で懸濁物まで溶かして測る全酸硬度と、溶けている分だけを測る可溶性硬度を比べる試験。両者の差が大きければ、沈殿した硬度成分（フロック）が処理水に持ち出されている（キャリーオーバー）と判断できる。",
+      "field": "処理水硬度が高いとき、まずこの比較で「反応不足（可溶性硬度が高い）」か「固液分離不良（差が大きい）」かを切り分ける。",
+      "related": [
+        "softener-high-hardness",
+        "hardness",
+        "softener-carryover"
+      ]
+    },
+    {
+      "id": "softener-effluent-variability",
+      "term": "軟化処理水の変動要因",
+      "reading": "なんかしょりすいのへんどうよういん",
+      "en": "Softener effluent variability",
+      "aliases": [
+        "処理水のばらつき"
+      ],
+      "definition": "軟化装置の処理水が安定しない主な原因は、①原水組成の変化、②機械的トラブル（水量計・比例注入機構・薬品取出し機構・注入ポンプ・配管閉塞）、③流量の大きな変動、の3つ。",
+      "field": "原水のCa・Mg・全アルカリ度を毎時（または必要な頻度で）分析し、必要薬品量を再計算して比例注入の設定を直す。流量の急変は、過大な復水ポンプの断続運転が原因のことがあり、小さいポンプへの交換や吐出絞りで平準化する。オリフィス式水量計は板の摩耗や堆積物を点検する。",
+      "related": [
+        "lime-slurry-feed",
+        "lime-feed-line-plugging",
+        "softener-carryover"
+      ]
+    },
+    {
+      "id": "hps-insufficient-heating",
+      "term": "温石灰軟化装置の加熱不足・脱気不良",
+      "reading": "おんせっかいなんかそうちのかねつぶそく",
+      "en": "Insufficient heating or deaeration (HPS)",
+      "aliases": [
+        "加熱不足"
+      ],
+      "definition": "非脱気型では蒸気空間の圧力に対応する飽和温度の0.6〜1.7℃（1〜3°F）以内、脱気型の加熱部では飽和温度に達していなければならない。足りない原因は、オーバーフロー弁の開放・固着（蒸気が逃げる）、ベント不足（ガスが溜まる）、スプレー弁の固着による噴霧不良、蒸気供給不足。",
+      "formula": "加熱用蒸気：通常34〜103 kPag（5〜15 psig）",
+      "field": "オーバーフロー配管は下水に直結していることが多いので、触って熱いかで開閉を確かめる。蒸気不足が常態なら、軟化装置の蒸気部圧力で作動する減圧弁（PRV）付きの補助生蒸気ラインを設ける。",
+      "related": [
+        "spray-heater-valve",
+        "hps-vent-rate",
+        "hot-lime-softening",
+        "steam-dilution-hps"
+      ]
+    },
+    {
+      "id": "softener-carryover",
+      "term": "軟化装置のキャリーオーバー（濁質流出）",
+      "reading": "なんかそうちのきゃりーおーばー",
+      "en": "Softener carryover (high effluent turbidity)",
+      "aliases": [
+        "フロック流出",
+        "濁度上昇"
+      ],
+      "definition": "処理水の濁度上昇や懸濁物の流出は、凝集・沈降不良、局所的または全体的な高流速、あるいはその両方で起こる。定格超過運転では滞留時間が短くなり軽いフロックがろ過器に流れて差圧が急上昇する。ろ過器逆洗水を一度に戻すような急な流量変化もフロック流出を招く。",
+      "field": "逆洗水は回収槽に受けて一定流量で戻す。能力不足なら大型化か並列増設を検討するが、並列運転の処理水をろ過前に混ぜるとろ層内で析出してろ材が固結し、ろ過後に混ぜると析出した硬度がボイラや樹脂に入る点に注意する。偏流は滞留時間試験で確認する。",
+      "related": [
+        "retention-time-tracer",
+        "poor-coagulation-softener",
+        "total-vs-soluble-hardness"
+      ]
+    },
+    {
+      "id": "poor-coagulation-softener",
+      "term": "軟化装置の凝集不良",
+      "reading": "なんかそうちのぎょうしゅうふりょう",
+      "en": "Poor coagulation in lime softeners",
+      "aliases": [
+        "微細フロック"
+      ],
+      "definition": "処理水の白濁や、沈まない細かいフロックとして現れる。原因は凝集時間の不足、補給水中の有機物（反応も阻害する）、薬品混合の不十分など。有機物はブレークポイント塩素処理でほぼ影響を消せる。",
+      "field": "直径3 m（10 ft）を超える温石灰軟化装置では薬品入口にミキサを付けると効果がある。上向流型は高速ミキサでもよいが、下向流型は槽内を乱さないよう低速・バッフル付きにする。冷石灰のジャーテストは実機をよく再現するが、温石灰のジャーテストは再現性が低く、アルミン酸ナトリウム・粘土・MgO・鉄塩・ポリマーなどを実機で試行錯誤することになる。",
+      "related": [
+        "softening-inhibitors",
+        "sodium-aluminate",
+        "hot-lime-polymer",
+        "softener-carryover"
+      ]
+    },
+    {
+      "id": "hot-lime-polymer",
+      "term": "温石灰軟化でのポリマー使用",
+      "reading": "おんせっかいなんかでのぽりまーしよう",
+      "en": "Polymer use in hot lime softening",
+      "aliases": [
+        "樹脂のポリマー被覆"
+      ],
+      "definition": "温石灰では高温で反応が十分進むため、通常ポリマーは使わない。場合によっては陰イオン性凝集剤（フロック形成剤）や陽イオン性凝結剤でスラッジブランケットの密度を上げられるが、過剰注入すると後段のイオン交換樹脂を被覆し、通水量の短縮や硬度リークを招く。",
+      "field": "ポリマーを導入するときは後段のイオン交換軟化器の状態を事前によく確認する。過剰注入はスラッジブロー系の閉塞やスラッジ層のゲル化も起こす。",
+      "related": [
+        "sodium-softener",
+        "poor-coagulation-softener",
+        "organic-fouling"
+      ]
+    },
+    {
+      "id": "softener-high-hardness",
+      "term": "軟化処理水の硬度上昇",
+      "reading": "なんかしょりすいのこうどじょうしょう",
+      "en": "High hardness in softener effluent",
+      "aliases": [
+        "石灰不足",
+        "ソーダ灰不足"
+      ],
+      "definition": "石灰軟化装置の処理水硬度が高くなる原因は、薬品の注入不足、キャリーオーバー、ソーダ灰不足のいずれか。石灰が足りているかは処理水のOHアルカリ度（5〜10 ppm as CaCO3）で判断し、ゼロなら石灰不足。",
+      "field": "注入不足なら、薬注量・設定、ポンプ吐出量、グランドシール水の水質（復水並みか）を確認する。キャリーオーバーは全酸硬度と可溶性硬度を比較して確かめる。ソーダ灰不足は原水水質の変化で起きるので、ストロークか注入濃度を上げる。",
+      "related": [
+        "hydroxide-residual",
+        "total-vs-soluble-hardness",
+        "soda-ash",
+        "lime-feed-line-plugging"
+      ]
+    },
+    {
+      "id": "poor-silica-removal-softener",
+      "term": "軟化装置のシリカ除去不良",
+      "reading": "なんかそうちのしりかじょきょふりょう",
+      "en": "Poor silica removal in lime softeners",
+      "aliases": [
+        "シリカ除去不良"
+      ],
+      "definition": "タービンなどへのシリカ付着を防ぐうえで重要なシリカ低減がうまくいかない原因は、Mg不足、スラッジ循環不足・スラッジ密度不足、凝集不良、低温、低pH。効率よく除くには100℃（212°F）以上、滞留30分〜1時間、pH約10〜10.2、スラッジ循環が揃う必要がある。",
+      "formula": "スラッジ循環 流入量の3〜8%／循環スラッジ密度 最低70%（5分沈降）",
+      "field": "原水のシリカとMgを分析してドロマイト石灰・アルミン酸ナトリウムの注入を調整し、循環スラッジ流量と原水流量の比を確認する。スラッジ循環のない沈殿型ではMgがシリカと一度しか接触しないため効率が低い。",
+      "related": [
+        "magnesium-silica-adsorption",
+        "sludge-recirculation",
+        "dolomitic-lime",
+        "five-minute-settling-test",
+        "silica-boiler"
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1.9-01",
+      "type": "choice",
+      "q": "冷石灰軟化装置の設計目安として、原文に示される滞留時間はどれか。",
+      "choices": [
+        "60〜120分",
+        "5〜10分",
+        "15〜30分",
+        "4〜6時間"
+      ],
+      "answer": 0,
+      "explanation": "冷石灰軟化の滞留時間は60〜120分が目安です。あわせて越流負荷7.5〜9 m³/h/m、水温変化1.1℃/h以内が示されています。"
+    },
+    {
+      "id": "q1.9-02",
+      "type": "tf",
+      "q": "冷間処理の範囲では、水温が下がるとCaCO3の溶解度は下がり、処理水の残留Caは減る。",
+      "answer": false,
+      "explanation": "冷間処理の範囲では水温が下がるほど溶解度が上がります。5.6℃（10°F）下がるごとに約12%増え、15.6℃では基準の1.12倍として補正します。"
+    },
+    {
+      "id": "q1.9-03",
+      "type": "choice",
+      "q": "Mg(OH)2の溶解度がほぼゼロになるpHはおよそいくつか。",
+      "choices": [
+        "10.5",
+        "8.3",
+        "9.4",
+        "12.3"
+      ],
+      "answer": 0,
+      "explanation": "Mg(OH)2の溶解度はpH 9.5を超えると急減し、pH 10.5でほぼゼロになります。9.4はCaCO3の溶解度が最小になるpHです。"
+    },
+    {
+      "id": "q1.9-04",
+      "type": "tf",
+      "q": "硫酸マグネシウムや塩化マグネシウムを石灰で処理しても、MgがCaの非炭酸塩硬度に置き換わるだけで全硬度は下がらない。",
+      "answer": true,
+      "explanation": "Mgの永久硬度を石灰で処理すると、同じ当量のCa永久硬度ができるだけなので軟化にはなりません。全硬度が下がるのは重炭酸Mg（一時硬度）の場合です。"
+    },
+    {
+      "id": "q1.9-05",
+      "type": "choice",
+      "q": "Mg除去を意図していなくても、冷石灰軟化で一部のMgが沈殿する理由はどれか。",
+      "choices": [
+        "石灰注入点で局所的にpHとOH濃度が非常に高くなるため",
+        "CO2が放散されてpHが下がるため",
+        "MgがCaCO3と共沈するため",
+        "水温が上がるため"
+      ],
+      "answer": 0,
+      "explanation": "瞬時の混合は不可能で、石灰の溶解度も約1100 ppmしかないため、注入点は局所的に高pHになります。Ca:Mg＝2:1で約10%のMgが沈殿します。"
+    },
+    {
+      "id": "q1.9-06",
+      "type": "choice",
+      "q": "冷石灰軟化の計算例で、遊離CO2 12・Mg沈殿分9・重炭酸132（いずれもppm as CaCO3）に対する石灰の合計はいくらか。",
+      "choices": [
+        "153 ppm as CaCO3",
+        "132 ppm as CaCO3",
+        "141 ppm as CaCO3",
+        "264 ppm as CaCO3"
+      ],
+      "answer": 0,
+      "explanation": "石灰の増分をすべて足して12＋9＋132＝153 ppm as CaCO3です。これを換算係数と純度で製品量に直します。"
+    },
+    {
+      "id": "q1.9-07",
+      "type": "tf",
+      "q": "温石灰軟化では、遊離CO2の中和にも石灰を見込む必要がある。",
+      "answer": false,
+      "explanation": "温石灰軟化では薬品添加前の加熱で遊離CO2が放散されるため、その中和に石灰は要りません。冷石灰ではCO2を中和してから重炭酸を炭酸に変えるので、CO2は実質2回反応させます。"
+    },
+    {
+      "id": "q1.9-08",
+      "type": "choice",
+      "q": "CaCO3平衡点の作図法で、完全沈殿を仮定した点から引く線の傾きはどれか。",
+      "choices": [
+        "1（45°）",
+        "2",
+        "0.5",
+        "−1"
+      ],
+      "answer": 0,
+      "explanation": "CaCO3はCaと炭酸が1:1で沈殿するので、傾き1（45°）の線を引き、典型的な処理結果の曲線との交点を読みます。検算としてCaと炭酸の減少量が等しいことを確認します。"
+    },
+    {
+      "id": "q1.9-09",
+      "type": "choice",
+      "q": "10℃（50°F）の冷間処理で、15 ppmを超える分のシリカ1 ppmを除くのに必要なMg硬度の沈殿量はおよそいくらか。",
+      "choices": [
+        "約25 ppm as CaCO3",
+        "約1 ppm as CaCO3",
+        "約6〜7 ppm as CaCO3",
+        "約100 ppm as CaCO3"
+      ],
+      "answer": 0,
+      "explanation": "10℃では約25 ppmが必要で、効率はシリカが下がるほどさらに悪化します。21℃では約6〜7 ppmで済み、温度が上がるほど効率は急速に上がります。"
+    },
+    {
+      "id": "q1.9-10",
+      "type": "tf",
+      "q": "約60℃（140°F）まで加温できない限り、冷間処理をシリカ低減の手段として当てにすべきではない。",
+      "answer": true,
+      "explanation": "冷石灰でのシリカ低減は通常5 ppm前後が限度で、それ以上は加温（32℃超）とドロマイト石灰の追加が必要です。"
+    },
+    {
+      "id": "q1.9-11",
+      "type": "choice",
+      "q": "ドロマイト石灰の組成として原文に示されるものはどれか。",
+      "choices": [
+        "MgO約32%・Ca(OH)2約62%",
+        "MgO約62%・Ca(OH)2約32%",
+        "CaO約90%",
+        "MgCO3約50%・CaCO3約50%"
+      ],
+      "answer": 0,
+      "explanation": "ドロマイト石灰は酸化マグネシウム約32%、水酸化カルシウム約62%で、シリカ除去用のMg源として使います。"
+    },
+    {
+      "id": "q1.9-12",
+      "type": "choice",
+      "q": "負荷変動が大きく急な工場や、油で沈殿物が軽くなるおそれがある場合に適した温石灰軟化装置はどれか。",
+      "choices": [
+        "下向流（従来）型",
+        "上向流スラッジブランケット型",
+        "どちらでも同じ",
+        "冷石灰軟化装置"
+      ],
+      "answer": 0,
+      "explanation": "上向流スラッジブランケット型は急な流量増でブランケットが膨張しやすく、軽い沈殿物はブランケットを汚染します。負荷がほぼ一定ならシリカ除去に優れる上向流型が向きます。"
+    },
+    {
+      "id": "q1.9-13",
+      "type": "choice",
+      "q": "補給水100%・完全脱気型（グループ2）の温石灰軟化装置で、脱気器が正常なときの溶存酸素はどれくらいまで下がるか。",
+      "choices": [
+        "5〜15 ppb",
+        "0.3 ppm（300 ppb）程度",
+        "1〜2 ppm",
+        "0 ppb（完全除去）"
+      ],
+      "answer": 0,
+      "explanation": "グループ2は脱気部と貯留部を内蔵し、溶存酸素を5〜15 ppbまで下げられます。非脱気型のグループ1・3では約0.3 ppmが残ります。"
+    },
+    {
+      "id": "q1.9-14",
+      "type": "tf",
+      "q": "未脱気の復水を温石灰軟化処理水と混ぜてから脱気すれば、復水中のCO2は脱気器でほぼ除去できる。",
+      "answer": false,
+      "explanation": "復水のCO2は処理水のOH・炭酸と結合して重炭酸・炭酸になるため、脱気しても遊離CO2として出ていきません。ボイラ内で分解して蒸気中に戻り、循環します。"
+    },
+    {
+      "id": "q1.9-15",
+      "type": "choice",
+      "q": "温石灰軟化装置のスプレーヒータ弁の、定格流量時の差圧の目安はどれか。",
+      "choices": [
+        "約34 kPa（5 psi）",
+        "約3.4 kPa（0.5 psi）",
+        "約340 kPa（50 psi）",
+        "約1 MPa"
+      ],
+      "answer": 0,
+      "explanation": "ばね荷重のスプレー弁は定格流量で約34 kPa（5 psi）の差圧になるよう設計されています。低流量が常態ならばね荷重を上げて差圧を確保します。"
+    },
+    {
+      "id": "q1.9-16",
+      "type": "choice",
+      "q": "ベントコンデンサ付きの温石灰軟化装置で、安全側のベント蒸気量の目安はどれか。",
+      "choices": [
+        "能力500 kg/hあたり蒸気0.5 kg/h",
+        "能力500 kg/hあたり蒸気25 kg/h",
+        "ベントは全閉でよい",
+        "能力500 kg/hあたり蒸気0.005 kg/h"
+      ],
+      "answer": 0,
+      "explanation": "目安は1000 lb/h（500 kg/h）あたり1 lb/h（0.5 kg/h）。実務ではベント出口上300〜460 mm程度まで白煙が見える量にします。"
+    },
+    {
+      "id": "q1.9-17",
+      "type": "tf",
+      "q": "温石灰軟化の後段にNa形軟化器がある場合、温石灰は脱アルカリを優先して運転するのが一般的である。",
+      "answer": true,
+      "explanation": "残った硬度は軟化器で経済的に取れますが、現場で使える他の脱アルカリ手段は限られます。陰イオン交換で脱アルカリすると約20倍のコストになります。"
+    },
+    {
+      "id": "q1.9-18",
+      "type": "choice",
+      "q": "石灰（Ca(OH)2、純度93%、換算係数0.74）190 ppm as CaCO3をkg/m³に換算した値はどれか。",
+      "choices": [
+        "約0.151 kg/m³",
+        "約1.26 kg/m³",
+        "約0.141 kg/m³",
+        "約15.1 kg/m³"
+      ],
+      "answer": 0,
+      "explanation": "190×0.74÷(0.93×1000)＝0.151 kg/m³です。米国単位ではCF＝120を使い1.26 lb/1000 galになります。"
+    },
+    {
+      "id": "q1.9-19",
+      "type": "choice",
+      "q": "温石灰軟化装置のスラッジブロー量の範囲（流入水量に対する割合）はどれか。",
+      "choices": [
+        "0.5〜2.5%",
+        "3〜8%",
+        "10〜20%",
+        "0.01〜0.05%"
+      ],
+      "answer": 0,
+      "explanation": "ブロー量は0.5〜2.5%で、スラッジレベルと濃度で決めます。3〜8%はスラッジ循環量の目安です。"
+    },
+    {
+      "id": "q1.9-20",
+      "type": "tf",
+      "q": "スラッジ循環用の取り出し口は、最も濃いスラッジが得られるコーン頂部（最下部）に設けるのが推奨される。",
+      "answer": false,
+      "explanation": "頂部は最も濃い（約60%固形分）ものの、石灰の砂粒・砂・はがれたスケールが溜まりポンプを摩耗させます。頂部の少し上から取るのが推奨です。"
+    },
+    {
+      "id": "q1.9-21",
+      "type": "choice",
+      "q": "軟化処理水の硬度が高いとき、キャリーオーバーかどうかを確かめる試験はどれか。",
+      "choices": [
+        "全酸硬度と可溶性硬度の比較",
+        "Pアルカリ度のみの測定",
+        "溶存酸素の測定",
+        "シリカの測定"
+      ],
+      "answer": 0,
+      "explanation": "懸濁物まで溶かして測る全酸硬度と、溶けている分の可溶性硬度の差が大きければ、沈殿した硬度成分が流出しています。"
+    },
+    {
+      "id": "q1.9-22",
+      "type": "tf",
+      "q": "能力不足で2基の石灰軟化装置を並列運転する場合、処理水をろ過器の前で混ぜれば問題は起きない。",
+      "answer": false,
+      "explanation": "並列運転では処理水の成分が一致しないため、一方が他方を軟化させます。ろ過前に混ぜるとろ層内で析出してろ材が固結し、ろ過後に混ぜると析出した硬度がボイラや樹脂に入ります。"
+    }
+  ]
+}

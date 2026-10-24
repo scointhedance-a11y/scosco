@@ -1,0 +1,527 @@
+{
+  "id": "pac1-1.13",
+  "book": "PAC-1 原水・排水処理技術マニュアル",
+  "section": "1.13",
+  "title": "重金属の除去",
+  "titleEn": "Heavy Metals Removal",
+  "summary": [
+    "重金属は生成も分解もされず、体内での半減期が数年に及ぶため生物に蓄積する。水銀・ヒ素・セレンなど影響の大きい金属はµg/Lレベル、鉄・ニッケルなどはmg/Lレベルの排出基準が設けられ、下水道への間接放流は直接放流より基準が緩いことが多い。",
+    "発生源はめっき・エッチングの廃液とすすぎ水、精製所の排ガス洗浄水、鉱石処理水、鋳造工程、金属触媒の溶出など。規制対象になりやすいのはSb・As・Ba・Be・Cd・Cr・Co・Cu・Pb・Hg・Ni・Ag・Se・V・Znなど。",
+    "沈殿のしやすさは溶解度積（Ksp）で比べる。Kspが小さいほど除去しやすい（例：Fe(OH)3 1.1×10⁻³⁶、HgS 10⁻⁵⁰）。ただし塩類の多い排水ではイオン強度の影響で溶解度が純水の2〜3倍になり、Kspから沈殿の速さは予測できない。",
+    "EDTA・NTAなどのキレート剤があると、金属は安定な可溶性錯体になり沈殿しにくい。沈殿できるかは溶解度積と生成定数（Kf）の比較で見積もる。EDTAで錯化した亜鉛は水酸化物でも硫化物でも沈殿しない。",
+    "対策は機械的・運転的・化学的（MOC）に組み立てる。運転面では教育、生産計画、原料代替（六価クロム・シアンの置き換え）、排水の分別、漏えい防止、クローズドループ化が柱になる。",
+    "設備的手法：イオン交換（選択性樹脂によるスカベンジング）、膜分離（ED・MF・UF・NF・RO）、電解回収。ROは多価イオンの99%、1価イオンの約95%を阻止し、運転圧力は2.8〜6.9 MPag（400〜1000 psig）。",
+    "化学的手法の主流は沈殿＋凝集・固液分離で、金属排水処理施設の約75%が採用する。沈殿剤は水酸化物・硫化物・炭酸塩・低分子有機硫化物・天然物・鉄共沈・合成高分子。金属濃度が50〜250 µg/Lと低いと処理が難しい。",
+    "前処理として、六価クロムはpH約2で還元（ORP制御、15〜45分）してからpH 7.5〜8.5で水酸化クロムとして沈殿させる。シアンは2段アルカリ塩素法（pH約11でシアン酸へ、pH 8〜9で CO2とN2へ）で通常1 mg/L未満に下げる。",
+    "排水プロファイルでは全金属・溶解性金属・粒子状金属・陰イオン・導電率・SS・キレート剤を調べる。0.45 µmろ紙を通るものを溶解性とし、全金属は強酸で分解してAAまたはICPで測り、粒子状は差で求める。",
+    "亜鉛排水の事例：pH 9.2で水酸化物沈殿させた後、溶解性亜鉛は75 µg/L未満でほぼすべて粒子状だった。放流基準超過の原因は沈殿ではなく固液分離側にあり、凝集剤の見直しとラメラ沈殿槽の連続運転化が提案された。"
+  ],
+  "terms": [
+    {
+      "id": "heavy-metals",
+      "term": "重金属（排水規制対象）",
+      "reading": "じゅうきんぞく",
+      "en": "Heavy metals (regulated in wastewater)",
+      "aliases": ["有害金属", "規制金属"],
+      "definition": "排水中で有害物質として扱われ、排出基準の対象になりやすい金属。アンチモン・ヒ素・バリウム・ベリリウム・カドミウム・クロム・コバルト・銅・鉛・水銀・ニッケル・銀・セレン・バナジウム・亜鉛などが挙げられる。多くは第一遷移金属（スカンジウム〜亜鉛）に属する。",
+      "field": "基準は日間最大値と月間平均値の両方で決められることが多い。水銀・ヒ素・セレンはµg/L、鉄・ニッケルはmg/Lオーダーの基準が目安。",
+      "related": ["bioaccumulation", "direct-indirect-discharge", "metal-wastewater-profile"]
+    },
+    {
+      "id": "bioaccumulation",
+      "term": "生物蓄積（金属）",
+      "reading": "せいぶつちくせき",
+      "en": "Bioaccumulation",
+      "aliases": ["生物濃縮"],
+      "definition": "金属は有機毒物と違って生成も分解もされず、臓器内での半減期が数年に及ぶことがあるため、生物体内に長くとどまって蓄積する。毒性の主な仕組みは、金属が酵素などの生体分子に結合して本来の働きを妨げること。",
+      "field": "微量でも長期間の排出で影響が積み重なるため、基準値は濃度だけでなく総量や平均値でも管理される。",
+      "related": ["heavy-metals"]
+    },
+    {
+      "id": "direct-indirect-discharge",
+      "term": "直接放流と間接放流",
+      "reading": "ちょくせつほうりゅうとかんせつほうりゅう",
+      "en": "Direct vs. indirect discharge",
+      "aliases": ["下水道放流", "公共下水道"],
+      "definition": "処理水を河川などの公共用水域へ直接流すのが直接放流、公共の下水処理場へ送るのが間接放流。間接放流は下水処理場で更に処理されるため、一般に基準が直接放流より緩い。",
+      "field": "どちらの基準が適用されるかで、必要な処理レベルと設備が大きく変わる。受入れ先の処理場が独自の上限値を定めていることもある（事例では全亜鉛2.7 mg/L）。",
+      "related": ["heavy-metals", "zinc-removal-case-study"]
+    },
+    {
+      "id": "metal-complex-ligand",
+      "term": "金属錯体と配位子",
+      "reading": "きんぞくさくたいとはいいし",
+      "en": "Metal complex and ligand",
+      "aliases": ["錯イオン", "リガンド"],
+      "definition": "溶けている金属イオンを取り囲んで安定化させる原子・分子を配位子（リガンド）、金属イオンと配位子のまとまりを錯イオン（金属錯体）という。配位子には塩化物・フッ化物・シアン化物などのイオン、アンモニアや水などの中性分子、アミン（エタノールアミン）やカルボン酸（酢酸）などの有機分子がある。",
+      "field": "排水中の金属は単純なイオンとは限らない。アンモニアやシアン、有機物と錯体を作っていると沈殿しにくくなるので、処理不良時は錯化剤の有無を疑う。",
+      "related": ["coordination-number", "chelation", "formation-constant"]
+    },
+    {
+      "id": "coordination-number",
+      "term": "配位数",
+      "reading": "はいいすう",
+      "en": "Coordination number",
+      "aliases": ["四面体型", "八面体型"],
+      "definition": "錯体の中で1つの金属に結合している配位子の数。遷移金属では4と6が最も多く、配位数4は四面体型（例：Zn(CN)4²⁻、FeCl4⁻）、配位数6は八面体型（例：Co(NH3)6²⁺）をとりやすい。第一遷移金属の結合には3d軌道が関わり、軌道が空・半充填・完全充填のときが最も安定。",
+      "field": "アルミニウム（Al³⁺）がEDTAやカルバメートなどのキレート剤と沈殿性の錯体を作らないのは、この電子配置の理由による。",
+      "related": ["metal-complex-ligand"]
+    },
+    {
+      "id": "solubility-product",
+      "term": "溶解度積（Ksp）",
+      "reading": "ようかいどせき",
+      "en": "Solubility product (Ksp)",
+      "aliases": ["Ksp"],
+      "definition": "難溶性の固体が水中で溶解平衡にあるとき、溶けたイオン濃度を係数乗して掛け合わせた定数。固体の濃度は一定とみなして平衡定数に含める。温度で変わるので温度とともに示す。小さいほど溶けにくく、その陰イオンで金属を除去しやすい。",
+      "formula": "Fe(OH)3：Ksp ＝ [Fe³⁺][OH⁻]³ ＝ 1.1×10⁻³⁶／例（室温・純水）：Zn(OH)2 10⁻¹⁷、ZnS 10⁻²⁴、ZnCO3 10⁻¹¹、HgS 10⁻⁵⁰",
+      "field": "表の値では多くの金属で硫化物のKspが最も小さく、硫化物沈殿が最も低い残留濃度を狙える。ただしKspの大小から沈殿が生じる速さは分からず、Kspが極めて小さくても平衡到達に数分〜数時間かかるものがある。",
+      "related": ["ionic-strength-effect", "hydroxide-precipitation", "sulfide-precipitation", "supersaturation"]
+    },
+    {
+      "id": "ionic-strength-effect",
+      "term": "イオン強度の影響（溶解度の増大）",
+      "reading": "いおんきょうどのえいきょう",
+      "en": "Ionic strength effect on precipitate solubility",
+      "aliases": ["塩効果"],
+      "definition": "イオン強度は溶液中の全イオン量の尺度で、導電率と関係する。溶解塩の多い排水では沈殿のイオンが他のイオンに引き付けられ、沈殿の溶解度が純水中の2〜3倍に増えることがある。価数の高いイオンほど影響が大きい。",
+      "field": "水の再利用を進めて工程水の塩濃度が上がると、同じ薬注でも沈殿処理の成績が落ちる。Kspの表（純水値）どおりの残留濃度にならないときはイオン強度を疑う。",
+      "related": ["solubility-product", "conductivity", "tds"]
+    },
+    {
+      "id": "formation-constant",
+      "term": "生成定数（Kf）",
+      "reading": "せいせいていすう",
+      "en": "Formation constant (Kf)",
+      "aliases": ["安定度定数", "Kf"],
+      "definition": "金属（M）とキレート剤（C）が錯体（MC）を作る反応の平衡定数。大きいほど錯体が安定で、金属がキレートから離れにくい。金属-EDTA錯体の例：Mn(II) 10¹³、Co・Zn・Cd(II) 10¹⁶、Ni・Cu・Pb(II) 10¹⁸、Fe(III) 10²⁵。",
+      "formula": "Kf ＝ [MC] ÷ ([M][C])",
+      "field": "Kfが大きい金属ほど、キレート剤が共存すると沈殿処理が難しくなる。",
+      "related": ["chelation", "chelant-precipitant-competition", "metal-complex-ligand"]
+    },
+    {
+      "id": "chelant-precipitant-competition",
+      "term": "キレート剤と沈殿剤の競合",
+      "reading": "きれーとざいとちんでんざいのきょうごう",
+      "en": "Competition between chelant and precipitant",
+      "aliases": ["キレート金属排水"],
+      "definition": "キレート錯化した金属に沈殿剤を加えると、金属はキレート剤と沈殿剤の取り合いになる。この平衡定数はKspとKfの積の逆数で表され、大きいほど沈殿側に進む。Fe(III)-EDTAと水酸化物ではKsp 10⁻³⁶、Kf 10²⁵から10¹¹となり沈殿が勝つが、多くの金属ではこれほど大きくならない。",
+      "formula": "MC ＋ OH⁻ ⇄ MOH ＋ C、Keq ＝ 1 ÷ (Ksp × Kf)",
+      "field": "キレート金属排水の対策は、①金属を電気化学的・化学的に還元して単体にする、②キレート結合に勝てる沈殿剤（Kspの小さい硫化物や高分子捕集剤）を使う、③イオン交換やROで物理的に分ける、の3つ。EDTA錯化亜鉛は水酸化物でも硫化物でも沈殿しない。",
+      "related": ["formation-constant", "solubility-product", "chelation", "total-chelant-test", "chemical-reduction-metals"]
+    },
+    {
+      "id": "hydroxide-precipitation",
+      "term": "水酸化物沈殿法",
+      "reading": "すいさんかぶつちんでんほう",
+      "en": "Hydroxide precipitation",
+      "aliases": ["中和沈殿", "アルカリ沈殿"],
+      "definition": "アルカリを加えて金属を難溶性の水酸化物として沈殿させる、最も一般的で最も安価な重金属除去法。ヒ素・カドミウム・三価クロム・銅・鉄・マンガン・ニッケル・鉛・亜鉛に有効。経済性から生石灰・消石灰がよく使われるが、苛性ソーダは液体で制御しやすく、ナトリウム塩が溶けるためスラッジも少ない。",
+      "formula": "M²⁺ ＋ 2NaOH ⇄ M(OH)2 ＋ 2Na⁺",
+      "field": "弱点は、①混合金属排水ではすべての金属に効く単一pHが見つかりにくい、②キレート剤・錯化剤があると効かない、③大水量では非現実的なことがある、④スラッジがかさばり脱水しにくく処分費が高い。",
+      "related": ["amphoteric-hydroxide-redissolution", "solubility-product", "iron-coprecipitation", "lime-softening"]
+    },
+    {
+      "id": "amphoteric-hydroxide-redissolution",
+      "term": "過剰アルカリによる水酸化物の再溶解",
+      "reading": "かじょうあるかりによるすいさんかぶつのさいようかい",
+      "en": "Redissolution of metal hydroxides in excess hydroxide",
+      "aliases": ["ジンケート", "両性水酸化物", "最適pH"],
+      "definition": "金属の溶解度はpHに依存し、亜鉛などは過剰なOH⁻と反応して溶けやすい錯イオン（ジンケートなど）を作るため、pHを上げすぎると逆に溶解度が増える。キレート剤と同じく沈殿平衡と競合する反応。",
+      "formula": "Zn(OH)2 ＋ OH⁻ ⇄ Zn(OH)3⁻／溶解度最小の目安：Zn 約pH 9.2、Cr³⁺ 約pH 8.5",
+      "field": "金属ごとに溶解度が最小になるpHがあるので、pH計の校正と制御が処理成績を左右する。混合金属排水で単一pHが決まらないのはこのため。",
+      "related": ["hydroxide-precipitation", "zinc-removal-case-study", "ph-control"]
+    },
+    {
+      "id": "sulfide-precipitation",
+      "term": "硫化物沈殿法（SSP・ISP）",
+      "reading": "りゅうかぶつちんでんほう",
+      "en": "Sulfide precipitation (soluble / insoluble sulfide)",
+      "aliases": ["SSP", "ISP", "可溶性硫化物沈殿", "不溶性硫化物沈殿"],
+      "definition": "硫化物イオンで金属を難溶性の硫化物として沈殿させる方法。H2S・Na2S・NaHSなど水溶性の硫化物を使うのがSSP、硫化第一鉄など難溶性の硫化物を使うのがISP。硫化物は水酸化物より溶けにくく結合も強いため、キレート剤があっても沈殿させやすく、残留金属を低くできる。銅・カドミウム・亜鉛・水銀は短時間で沈殿する。",
+      "formula": "M²⁺ ＋ S²⁻ ⇄ MS",
+      "field": "利点：残留金属が低い、キレートに強い、スラッジが溶出しにくく脱水しやすい、クロム酸・重クロム酸を還元せずに除ける、混合金属を同じpHで処理できる。欠点：水酸化物より高価、酸性排水に触れると猛毒のH2Sが出る、残留硫化物自体が有毒、凝集・固液分離の最適化が難しい。",
+      "related": ["solubility-product", "hydrogen-sulfide", "organic-sulfide-precipitant", "chelant-precipitant-competition"]
+    },
+    {
+      "id": "carbonate-precipitation",
+      "term": "炭酸塩沈殿法",
+      "reading": "たんさんえんちんでんほう",
+      "en": "Carbonate precipitation",
+      "aliases": ["炭酸塩沈殿"],
+      "definition": "炭酸イオンを加えて金属を炭酸塩として沈殿させる方法。溶解度はおおむね水酸化物と硫化物の中間。炭酸源には炭酸ナトリウム・炭酸カルシウム・CO2（溶けて炭酸になり、pH調整で炭酸イオンになる）を使う。カドミウムは炭酸が十分あれば中性付近で除け、鉛は炭酸鉛のほうがろ過しやすいため水酸化物より効率よく除ける。",
+      "formula": "M²⁺ ＋ CO3²⁻ ⇄ MCO3",
+      "field": "炭酸塩は水酸化物より密で分離しやすい。欠点は水酸化物法より高価なこと、45分を超える長い滞留が必要なこと、CO2の放出で発泡やスラッジ浮上が起きること。",
+      "related": ["hydroxide-precipitation", "solubility-product", "soda-ash"]
+    },
+    {
+      "id": "organic-sulfide-precipitant",
+      "term": "低分子有機硫化物沈殿剤（DTC・TTC・TMT）",
+      "reading": "ていぶんしゆうきりゅうかぶつちんでんざい",
+      "en": "Small organic molecule precipitants (DTC, TTC, TMT)",
+      "aliases": ["DTC", "ジメチルジチオカルバメート", "TTC", "TMT", "トリメルカプトトリアジン"],
+      "definition": "分子量500未満の有機硫化物で、金属と強く結合し化学量論的に反応して難溶性の錯体を作る。代表はジメチルジチオカルバメート（DTC）、トリチオカルバメート（TTC）、トリメルカプトトリアジン（TMT）。DTCは2価金属1モルに2モル必要。",
+      "formula": "2DTC⁻ ＋ M²⁺ ⇄ M(DTC)2",
+      "field": "DTCは効果が高く価格も中程度だが水生毒性が非常に高い。TMTは無毒だが高価。いずれも凝集・フロック形成が必要で、過剰注入はコスト増と放流水の毒性につながるため注入量管理が重要。",
+      "related": ["sulfide-precipitation", "polymeric-metal-precipitant"]
+    },
+    {
+      "id": "iron-coprecipitation",
+      "term": "鉄共沈法",
+      "reading": "てつきょうちんほう",
+      "en": "Iron co-precipitation",
+      "aliases": ["水酸化鉄共沈"],
+      "definition": "水酸化物沈殿法の変形で、pH調整段階で硫酸第二鉄や塩化第二鉄を加え、生成する水酸化鉄に目的金属を取り込ませる（結晶中への取り込み、フロック内への物理的な抱き込み、表面への吸着）。ヒ素・ベリリウム・カドミウム・銅・鉛・ニッケル・亜鉛を、水酸化物沈殿単独より低い濃度まで下げられる。",
+      "field": "効果は鉄注入量・pH・目的金属の初期濃度・吸着サイトを奪い合う共存成分で変わるため、最適化に手間がかかる。ジャーテストで鉄量とpHを振って決める。",
+      "related": ["hydroxide-precipitation", "ferric-silica-removal", "post-precipitation"]
+    },
+    {
+      "id": "natural-metal-precipitant",
+      "term": "天然物系の金属沈殿剤",
+      "reading": "てんねんぶつけいのきんぞくちんでんざい",
+      "en": "Natural molecule precipitants",
+      "aliases": ["キトサン", "アルギン酸", "でんぷん誘導体"],
+      "definition": "合成品ではなく天然由来の物質を使う沈殿剤。でんぷん・粘土の誘導体、キチン・キトサン・アルギン酸などの多糖類がある。無毒で比較的安価だが、大量のスラッジを生じ、でんぷん系は安定性が低く、放流に必要な低濃度まで下げる性能では水酸化物・硫化物法に及ばない。",
+      "field": "現状では重金属除去の主力にはならない。無毒性が魅力のため研究は続いている。",
+      "related": ["hydroxide-precipitation", "polymeric-metal-precipitant"]
+    },
+    {
+      "id": "polymeric-metal-precipitant",
+      "term": "高分子金属捕集剤",
+      "reading": "こうぶんしきんぞくほしゅうざい",
+      "en": "Synthetic polymeric metal precipitant",
+      "aliases": ["NALMET", "高分子重金属捕集剤", "ポリマー系硫化物"],
+      "definition": "チオカルバメート構造の金属結合部位を高分子に組み込んだ合成沈殿剤（DTCとは別の化学）。沈殿と凝集（清澄）が一段で起こるので、別の凝集剤を最適化しなくても固液分離が良く、有機硫化物より水生毒性が低い。キレート剤があっても金属を沈殿させられる。",
+      "formula": "除去されやすい順：Hg ＞ Ag ＞ Cd ＞ Cu ＞ Pb ＞ Zn ＞ Co²⁺ ＞ Ni ＞ Fe²⁺ ＞ Mn",
+      "field": "中性付近で最もよく働く（亜鉛は低めのpHのほうが効く）。高pHでは水酸化物沈殿との相乗効果も得られる。過剰注入時や後段に生物処理がある場合も毒性面で有利。",
+      "related": ["organic-sulfide-precipitant", "chelant-precipitant-competition", "sulfide-precipitation"]
+    },
+    {
+      "id": "cementation",
+      "term": "金属置換（セメンテーション）",
+      "reading": "きんぞくちかん",
+      "en": "Metallic replacement / cementation",
+      "aliases": ["セメンテーション", "置換析出"],
+      "definition": "溶けている金属イオンを、よりイオン化しやすい別の金属で自然に置き換えて析出させる方法。例：鉄くずで銅を析出させる。銀と鉄、水銀と鉄・亜鉛の組み合わせにも使える。",
+      "formula": "Cu²⁺ ＋ Fe⁰ → Cu⁰ ＋ Fe²⁺",
+      "field": "スクラップ金属で価値の高い金属を回収でき、エネルギーも要らない。ただし反応が進む金属の組み合わせが限られ、置き換えた鉄が新たに溶け出すのでその除去が必要になる。",
+      "related": ["galvanic-series", "electrolytic-recovery"]
+    },
+    {
+      "id": "chemical-reduction-metals",
+      "term": "化学還元による金属除去",
+      "reading": "かがくかんげんによるきんぞくじょきょ",
+      "en": "Chemical reduction of metal ions",
+      "aliases": ["還元析出"],
+      "definition": "水素化ホウ素ナトリウム・ヒドラジン・亜硫酸水素ナトリウムなどの還元剤から金属イオンに電子を与え、金属単体として析出させて分離する方法。イオン状の水銀はヒドラジン・塩化第一スズ・水素化ホウ素ナトリウムで金属水銀にできる。",
+      "field": "キレート剤で沈殿処理が難しい場合でも効くのが、化学還元・電解還元に共通する大きな利点。",
+      "related": ["chelant-precipitant-competition", "electrolytic-recovery", "chromium-reduction"]
+    },
+    {
+      "id": "electrolytic-recovery",
+      "term": "電解回収",
+      "reading": "でんかいかいしゅう",
+      "en": "Electrolytic recovery",
+      "aliases": ["電解採取", "電解還元"],
+      "definition": "近接した一対の電極からなる電解槽に金属含有液を流し、電流を流して陰極上で金属イオンを単体に還元して回収する方法。装置は電解槽・移送ポンプ・整流器で構成され、能力は陰極の総面積（0.09〜0.9 m²、1〜10 ft²）で決まる。回収量は電流に比例する（ファラデーの法則）。",
+      "formula": "平板電極：金属1000〜20000 mg/L の液／網状（レティキュレート）陰極：100 mg/L 未満の液",
+      "field": "イオン交換の再生廃液やROの濃縮水と組み合わせると、金属を回収できる形にできる。キレート金属にも有効。",
+      "related": ["chemical-reduction-metals", "metal-scavenging-resin", "ro-metal-recovery"]
+    },
+    {
+      "id": "metal-scavenging-resin",
+      "term": "金属回収用イオン交換（スカベンジング）",
+      "reading": "きんぞくかいしゅうようのいおんこうかん",
+      "en": "Ion exchange for metals / scavenging",
+      "aliases": ["選択性樹脂", "キレート樹脂", "スカベンジング"],
+      "definition": "排水中の金属を陽イオン交換樹脂（通常H形）で捕らえる方法。2価金属を狙う場合は選択性の高い樹脂を使い、これをスカベンジングと呼ぶ。再生（陽イオン樹脂は鉱酸、陰イオン樹脂は苛性）で高濃度の金属液が得られ、回収や追加処理に回せる。工程内のクローズドループにも、放流前の最終処理にも使える。",
+      "field": "樹脂の汚れを防ぐため、前段にカートリッジフィルタや活性炭で粒子と有機物を除く。",
+      "related": ["ion-exchange", "electrolytic-recovery", "closed-loop-metal-recycling"]
+    },
+    {
+      "id": "ro-metal-recovery",
+      "term": "ROによる金属の濃縮・回収",
+      "reading": "あーるおーによるきんぞくののうしゅくかいしゅう",
+      "en": "Reverse osmosis for heavy metal concentration",
+      "aliases": ["めっきすすぎ水RO"],
+      "definition": "排水をROに通して、金属を濃縮した濃縮水と清浄な透過水に分ける方法。多価イオンの99%、1価イオンの約95%を濃縮側に保持でき、めっきすすぎ水で実績がある。濃縮水をめっき浴へ、透過水をすすぎ槽へ戻せればクローズドループになる。",
+      "formula": "運転圧力 2.8〜6.9 MPag（400〜1000 psig）／濃縮水の到達TDS 通常20000〜30000 mg/L／膜寿命 通常5年",
+      "field": "イオン交換と除去性能は同等で、高濃度の供給液を扱えるが設備費は高い（電解回収と組み合わせた場合）。濃縮水がそのまま戻せないときは電解回収や蒸発と組み合わせる。フラックスの低下を洗浄時期の目安にする。",
+      "related": ["reverse-osmosis", "membrane-filtration-types", "electrolytic-recovery", "closed-loop-metal-recycling"]
+    },
+    {
+      "id": "microfiltration-metal-polishing",
+      "term": "精密ろ過（MF）による金属沈殿物の除去",
+      "reading": "せいみつろかによるきんぞくちんでんぶつのじょきょ",
+      "en": "Microfiltration polishing of metal precipitates",
+      "aliases": ["MF仕上げ"],
+      "definition": "MF（0.1〜10 µm）を沈殿法と組み合わせ、重力沈殿で取り切れない微細な金属沈殿物を分離する方法。溶解性金属は基準以下まで下がっているのに全金属（溶解性＋粒子状）が基準を超える場合、問題は固液分離にあるので検討する価値がある。",
+      "formula": "分離範囲：MF 0.1〜10 µm、UF 0.01〜0.1 µm、NF 0.001〜0.01 µm、RO 0.001 µm未満",
+      "field": "溶解性と粒子状を分けて測り、粒子状が多いときに選ぶ手段。溶解性が高いうちはMFを付けても効果がない。",
+      "related": ["membrane-filtration-types", "soluble-particulate-metal", "electrodialysis"]
+    },
+    {
+      "id": "chromium-reduction",
+      "term": "六価クロムの還元処理",
+      "reading": "ろっかくろむのかんげんしょり",
+      "en": "Hexavalent chromium reduction",
+      "aliases": ["クロム還元", "Cr6+還元"],
+      "definition": "六価クロム（クロム酸イオン）は水酸化物で沈殿しないため、まず三価に還元してから水酸化クロムとして沈殿させる。還元剤は亜硫酸ガス・亜硫酸水素ナトリウム・メタ重亜硫酸ナトリウム（よく使う）や硫酸第一鉄。pHを約2に下げて還元剤をORP制御で注入し、15〜45分反応させた後、中和槽でpH 7.5〜8.5にして沈殿させる。",
+      "formula": "2H2CrO4 ＋ 3SO2 → Cr2(SO4)3 ＋ 2H2O／Cr2(SO4)3 ＋ 6NaOH → 3Na2SO4 ＋ 2Cr(OH)3",
+      "field": "pH 5を超えると還元が遅くなり、溶存酸素や第二鉄が還元剤を消費する。ORPで還元剤量は管理できるが、処理水のクロム濃度は分析で確認する。Cr³⁺の溶解度は約pH 8.5で最小。",
+      "related": ["chromate", "chemical-reduction-metals", "hydroxide-precipitation", "oxidant-monitoring"]
+    },
+    {
+      "id": "cyanide-destruction",
+      "term": "シアンの分解処理（アルカリ塩素法・オゾン法）",
+      "reading": "しあんのぶんかいしょり",
+      "en": "Cyanide destruction (alkaline chlorination / ozone)",
+      "aliases": ["2段アルカリ塩素法", "シアン処理"],
+      "definition": "シアンは毒性に加え、金属と可溶性錯体を作って沈殿を妨げるため、すすぎ水から前処理で通常1 mg/L未満まで除く。最も一般的なのは2段アルカリ塩素法で、第1段はpH約11で塩素または次亜塩素酸ナトリウムによりシアン酸（CNO⁻）へ、第2段はpHを8〜9（約8.5）に下げて追加の酸化剤でCO2とN2まで分解する。オゾン法もあり、塩素化有機物を作らないが、設備・運転費が高い。",
+      "formula": "第1段：Cl2 ＋ NaCN ＋ 2NaOH → NaCNO ＋ 2NaCl ＋ H2O／第2段：3Cl2 ＋ 4NaOH ＋ 2NaCNO → 2CO2 ＋ N2 ＋ 6NaCl ＋ 2H2O",
+      "field": "第1段は苛性をpH制御、塩素をORP制御する独立した2系統で管理する。第2段で硫酸を入れすぎてpH 7を下回ると猛毒のシアン化水素が発生するので絶対に避ける。",
+      "related": ["chlorine", "ozone-treatment", "oxidant-monitoring", "waste-segregation-metals"]
+    },
+    {
+      "id": "waste-segregation-metals",
+      "term": "金属排水の発生源対策（運転的要因）",
+      "reading": "きんぞくはいすいのはっせいげんたいさく",
+      "en": "Operational factors for metal pollution control",
+      "aliases": ["排水の分別", "原料代替", "ドラッグアウト"],
+      "definition": "重金属対策の運転面の柱。従業員教育と監督、生産計画（不要な洗浄工程の削減）、原料の代替（めっきの六価クロム・シアンの置き換え）、有害・非有害排水の分別（シアン排水は他と混ぜる前に前処理）、漏えい防止と整理整頓、クローズドループ化。設備面では、めっきのラック形状を変えてドラッグアウト（持ち出し液）を減らすなどの改善も含む。",
+      "field": "工程液の交換時期を経過時間や生産量ではなく化学分析で決めると、廃液量を減らせる。排水を混ぜると有害成分の除去がかえって難しくなる。",
+      "related": ["moc-approach", "closed-loop-metal-recycling", "cyanide-destruction", "concentrated-metal-waste"]
+    },
+    {
+      "id": "closed-loop-metal-recycling",
+      "term": "クローズドループ化（金属のリサイクル）",
+      "reading": "くろーずどるーぷか",
+      "en": "Closed loop recycling",
+      "aliases": ["工程内回収"],
+      "definition": "イオン交換・RO・電解回収など、金属を分離・濃縮できる設備で工程内に金属を戻し、末端（エンドオブパイプ）処理に回る金属量を減らす考え方。",
+      "field": "末端処理の負荷が下がるうえ、高価な金属を回収できる。濃縮液が工程に戻せる品質かどうかが成否を分ける。",
+      "related": ["metal-scavenging-resin", "ro-metal-recovery", "electrolytic-recovery", "waste-segregation-metals"]
+    },
+    {
+      "id": "concentrated-metal-waste",
+      "term": "高濃度金属廃液の扱い",
+      "reading": "こうのうどきんぞくはいえきのあつかい",
+      "en": "Concentrated metal-bearing wastewater",
+      "aliases": ["濃厚廃液"],
+      "definition": "めっき廃液などの高濃度金属廃液の扱いは3通り。①希薄排水にゆっくり定量混入して通常どおり処理する、②発生源でバッチ処理する（沈殿、ROやイオン交換による分離）、③場外へ搬出して処理する。②が最も効果的で、金属を工程に戻せる可能性もある。",
+      "field": "一度に流し込むと末端処理の薬注・pH制御が追いつかず、基準超過の原因になる。",
+      "related": ["waste-segregation-metals", "closed-loop-metal-recycling"]
+    },
+    {
+      "id": "total-chelant-test",
+      "term": "全キレート試験",
+      "reading": "ぜんきれーとしけん",
+      "en": "Total chelant test",
+      "aliases": ["キレート剤分析"],
+      "definition": "試料を指示薬の存在下で硝酸ビスマスで滴定し、キレート剤がすべて消費されて余ったビスマスが指示薬と反応したときの色変化で、キレート剤の含有量を求める試験。",
+      "field": "着色・濁り・固形物のある試料では終点が見えず使いにくい。キレート剤の濃度は変動しやすいので、金属とキレート剤を両方含む排水を出す工場では頻繁に測る。",
+      "related": ["chelant-precipitant-competition", "metal-wastewater-profile"]
+    },
+    {
+      "id": "soluble-particulate-metal",
+      "term": "溶解性金属と粒子状金属",
+      "reading": "ようかいせいきんぞくとりゅうしじょうきんぞく",
+      "en": "Soluble vs. particulate (insoluble) metal",
+      "aliases": ["全金属", "0.45 µmろ過", "AA", "ICP"],
+      "definition": "多くの排出基準は全金属（溶解性＋粒子状）で決められている。全金属は試料を強酸で分解（すべて溶かす）してから、溶解性金属は0.45 µmのろ紙でろ過してから、原子吸光（AA）またはICP発光分析で測り、粒子状金属は差で求める。0.45 µmを通るものを溶解性とみなす。",
+      "formula": "粒子状金属 ＝ 全金属 − 溶解性金属",
+      "field": "溶解性が高ければ沈殿工程（pH・キレート剤）、粒子状が高ければ固液分離工程（凝集剤・沈殿槽）を疑う、という切り分けの基本。比色法は試料の妨害を受けやすく、公式にはAAとICPが用いられる。",
+      "related": ["metal-wastewater-profile", "zinc-removal-case-study", "microfiltration-metal-polishing"]
+    },
+    {
+      "id": "metal-wastewater-profile",
+      "term": "排水プロファイル（金属）",
+      "reading": "はいすいぷろふぁいる",
+      "en": "Wastewater profile for metal removal",
+      "aliases": ["排水調査"],
+      "definition": "金属除去の対策範囲を見積もるための排水の調査項目一式。全金属・溶解性金属・粒子状金属・全陰イオン・導電率・懸濁物質を含め、キレート試験も加えると処理案を立てやすい。",
+      "field": "排水組成は日ごと（時には時間ごと）に変わるので、複数日にわたって採水する。事例では4日連続でグラブサンプルを採った。",
+      "related": ["soluble-particulate-metal", "total-chelant-test", "zinc-removal-case-study"]
+    },
+    {
+      "id": "zinc-removal-case-study",
+      "term": "亜鉛除去のトラブル事例（自動車工場）",
+      "reading": "あえんじょきょのとらぶるじれい",
+      "en": "Heavy metal removal troubleshooting example (zinc)",
+      "aliases": ["亜鉛排水", "ラメラ沈殿槽"],
+      "definition": "下水処理場への放流基準（全亜鉛2.7 mg/L）を年4回超過した自動車工場の事例。苛性でpH 9.2に制御して水酸化亜鉛を沈殿させ、凝集剤・高分子を加えて並列のラメラ沈殿槽で分離していた。原水は全亜鉛2.5〜7.5 mg/L（溶解性は最大3 mg/L）、沈殿後は90%超が粒子状、処理水は溶解性75 µg/L未満・全亜鉛1.25 mg/L未満で、課題は固液分離側と判明した。",
+      "formula": "判断基準：溶解性亜鉛 150 µg/L超 → キレート試験／粒子状亜鉛 1.5 mg/L超 → 固液分離（高分子注入ポンプ・ラメラ運転）を点検",
+      "field": "基準超過のサンプルは、標準液と並べてAAを再測定、pH確認、0.45 µmろ過で溶解性を確認、の順に原因を詰める。提案は、3〜4週間のデータ追加、ジャーテストによる凝集剤の比較（並列2系列で実機比較）、ラメラ沈殿槽をバッチ運転から低流量の連続運転へ変えること。",
+      "related": ["soluble-particulate-metal", "amphoteric-hydroxide-redissolution", "hydroxide-precipitation", "direct-indirect-discharge"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1.13-01",
+      "type": "tf",
+      "q": "重金属は有機毒物と同様に、生物処理などで分解して無害化できる。",
+      "answer": false,
+      "explanation": "金属は生成も分解もされません。体内での半減期が数年に及ぶこともあり、生物に蓄積します。除去は沈殿・分離・回収で行います。"
+    },
+    {
+      "id": "q1.13-02",
+      "type": "choice",
+      "q": "一般に排出基準がµg/Lレベルと厳しく設定される金属の組み合わせはどれか。",
+      "choices": ["水銀・ヒ素・セレン", "鉄・ニッケル", "ナトリウム・カリウム", "カルシウム・マグネシウム"],
+      "answer": 0,
+      "explanation": "環境影響の大きい水銀・ヒ素・セレンはµg/L、毒性の低い鉄・ニッケルなどはmg/Lレベルの基準が一般的です。"
+    },
+    {
+      "id": "q1.13-03",
+      "type": "tf",
+      "q": "下水道への間接放流は、下水処理場でさらに処理されるため、一般に直接放流より基準が緩い。",
+      "answer": true,
+      "explanation": "間接放流は放流先で追加処理されるため、河川などへの直接放流より基準が緩い傾向があります。"
+    },
+    {
+      "id": "q1.13-04",
+      "type": "choice",
+      "q": "溶解度積（Ksp）について正しいものはどれか。",
+      "choices": ["小さいほど溶けにくく、その陰イオンで金属を除去しやすい", "大きいほど沈殿が速く生成する", "温度によらず一定である", "排水のイオン強度が高いほど溶解度は下がる"],
+      "answer": 0,
+      "explanation": "Kspが小さいほど難溶性です。ただしKspから沈殿の速さは分からず、Kspは温度で変わり、イオン強度が高いと溶解度は2〜3倍に増えることがあります。"
+    },
+    {
+      "id": "q1.13-05",
+      "type": "tf",
+      "q": "工程水の再利用を進めて溶解塩が増えると、沈殿処理の性能が落ちることがある。",
+      "answer": true,
+      "explanation": "イオン強度が高いと沈殿のイオンが他のイオンに引き付けられ、溶解度が純水中の2〜3倍に増えることがあります。"
+    },
+    {
+      "id": "q1.13-06",
+      "type": "choice",
+      "q": "金属-EDTA錯体の生成定数（Kf）が最も大きい金属はどれか。",
+      "choices": ["Fe(III)", "Mn(II)", "Zn(II)", "Cd(II)"],
+      "answer": 0,
+      "explanation": "Fe(III)-EDTAのKfは10²⁵で最大です。それでも水酸化第二鉄のKspが10⁻³⁶と非常に小さいため、水酸化物沈殿が勝ちます。"
+    },
+    {
+      "id": "q1.13-07",
+      "type": "tf",
+      "q": "EDTAで錯化した亜鉛は、硫化物沈殿法を使えば容易に沈殿させられる。",
+      "answer": false,
+      "explanation": "EDTA錯化亜鉛は水酸化物でも硫化物でも沈殿しない例として挙げられています。還元、高分子捕集剤、イオン交換・ROなどを検討します。"
+    },
+    {
+      "id": "q1.13-08",
+      "type": "choice",
+      "q": "金属含有排水を処理する施設のうち、化学沈殿＋凝集・分離を採用している割合として示されているのはどれか。",
+      "choices": ["約75%", "約10%", "約30%", "ほぼ100%"],
+      "answer": 0,
+      "explanation": "約75%の施設が化学沈殿と凝集・分離を採用しており、最も費用対効果の高い末端処理とされています。"
+    },
+    {
+      "id": "q1.13-09",
+      "type": "choice",
+      "q": "水酸化物沈殿で、石灰の代わりに苛性ソーダを使う利点として正しいものはどれか。",
+      "choices": ["液体で注入制御しやすく、スラッジが少ない", "最も安価である", "キレート剤があっても沈殿できる", "どのpHでも全金属を沈殿できる"],
+      "answer": 0,
+      "explanation": "石灰は安価ですが固体・スラリーで制御しにくく、不溶性の副生物でスラッジが増えます。苛性はナトリウム塩が溶けるのでスラッジが少なくなります。"
+    },
+    {
+      "id": "q1.13-10",
+      "type": "tf",
+      "q": "亜鉛の水酸化物沈殿では、pHを高くすればするほど残留亜鉛は低くなる。",
+      "answer": false,
+      "explanation": "水酸化亜鉛は過剰なOH⁻と反応して溶けやすいジンケートを作るため、pHを上げすぎると溶解度が増えます。事例では約pH 9.2で最小でした。"
+    },
+    {
+      "id": "q1.13-11",
+      "type": "choice",
+      "q": "硫化物沈殿法の欠点として正しいものはどれか。",
+      "choices": ["酸性排水に触れると猛毒のH2Sが発生するおそれがある", "水酸化物より残留金属が高い", "キレート剤があるとまったく効かない", "混合金属を同じpHで処理できない"],
+      "answer": 0,
+      "explanation": "欠点はH2S発生のおそれ、高コスト、残留硫化物の毒性、固液分離の最適化の難しさです。残留金属の低さ、キレートへの強さ、同一pHでの混合金属処理はむしろ利点です。"
+    },
+    {
+      "id": "q1.13-12",
+      "type": "choice",
+      "q": "炭酸塩沈殿法で、水酸化物法より効率よく除去できるとされる金属はどれか。",
+      "choices": ["鉛とカドミウム", "鉄とマンガン", "三価クロム", "水銀"],
+      "answer": 0,
+      "explanation": "カドミウムは炭酸が十分あれば中性付近で除け、鉛は炭酸鉛のほうがろ過しやすいため効率よく除去できます。"
+    },
+    {
+      "id": "q1.13-13",
+      "type": "tf",
+      "q": "炭酸塩沈殿法は滞留時間が短く、45分未満で反応が完了するのが利点である。",
+      "answer": false,
+      "explanation": "炭酸塩沈殿は45分を超える長い滞留が必要で、CO2放出による発泡やスラッジ浮上も欠点です。"
+    },
+    {
+      "id": "q1.13-14",
+      "type": "choice",
+      "q": "DTC（ジメチルジチオカルバメート）で2価金属1モルを沈殿させるのに必要なDTCは何モルか。",
+      "choices": ["2モル", "1モル", "0.5モル", "3モル"],
+      "answer": 0,
+      "explanation": "2DTC⁻ ＋ M²⁺ → M(DTC)2 の化学量論で、2モル必要です。DTCは効果が高い一方、水生毒性が非常に高いので過剰注入に注意します。"
+    },
+    {
+      "id": "q1.13-15",
+      "type": "tf",
+      "q": "チオカルバメート構造を持つ高分子金属捕集剤は、沈殿と凝集が一段で起こるため、別の凝集剤を最適化しなくても固液分離しやすい。",
+      "answer": true,
+      "explanation": "高分子捕集剤の主な利点は、沈殿と清澄を同時に行えることと、有機硫化物より水生毒性が低いことです。"
+    },
+    {
+      "id": "q1.13-16",
+      "type": "choice",
+      "q": "六価クロムの還元処理で、還元剤を注入するときのpHの目安はどれか。",
+      "choices": ["約2", "約7", "約8.5", "約11"],
+      "answer": 0,
+      "explanation": "還元はpH約2で速く進み、pH 5を超えると遅くなります。還元後にpH 7.5〜8.5へ中和して水酸化クロムとして沈殿させます。"
+    },
+    {
+      "id": "q1.13-17",
+      "type": "tf",
+      "q": "クロム酸イオン（六価クロム）は、苛性を加えればそのまま水酸化物として沈殿除去できる。",
+      "answer": false,
+      "explanation": "六価クロムは水酸化物で沈殿しないので、まず三価に還元する必要があります。なお硫化物沈殿ではクロム酸・重クロム酸を還元せずに除けるとされています。"
+    },
+    {
+      "id": "q1.13-18",
+      "type": "choice",
+      "q": "2段アルカリ塩素法の第2段で、pHを7未満にしてはならない理由はどれか。",
+      "choices": ["猛毒のシアン化水素が発生するため", "シアン酸が再びシアンに戻るため", "塩素が分解しなくなるため", "金属水酸化物が沈殿しすぎるため"],
+      "answer": 0,
+      "explanation": "第2段は硫酸でpH約8.5に下げますが、7を下回るとシアン化水素ガスが発生します。"
+    },
+    {
+      "id": "q1.13-19",
+      "type": "choice",
+      "q": "溶解性金属とみなすろ過の孔径として一般に用いられるものはどれか。",
+      "choices": ["0.45 µm", "10 µm", "1 mm", "0.001 µm"],
+      "answer": 0,
+      "explanation": "0.45 µmのろ紙を通るものを溶解性、残るものを粒子状とします。全金属は強酸で分解してからAAまたはICPで測ります。"
+    },
+    {
+      "id": "q1.13-20",
+      "type": "choice",
+      "q": "亜鉛排水の事例で、処理水の溶解性亜鉛が75 µg/L未満、全亜鉛が1 mg/Lをわずかに超えていた。改善すべき工程はどれか。",
+      "choices": ["凝集・ラメラ沈殿などの固液分離工程", "苛性による沈殿工程のpHをさらに上げる", "キレート剤の除去", "原水の亜鉛濃度の測定頻度を減らす"],
+      "answer": 0,
+      "explanation": "溶解性が十分低く、ほぼすべてが粒子状なので、沈殿は効いています。課題は固液分離で、凝集剤のジャーテストやラメラ沈殿槽の連続運転化が提案されました。"
+    },
+    {
+      "id": "q1.13-21",
+      "type": "tf",
+      "q": "事例では、処理水の溶解性亜鉛が150 µg/Lを超えたらキレート剤の試験を行うよう推奨している。",
+      "answer": true,
+      "explanation": "溶解性亜鉛が高いのは沈殿不良のサインで、キレート剤の断続的な流入が原因でないかを確かめます。粒子状が1.5 mg/Lを超えたら固液分離を点検します。"
+    },
+    {
+      "id": "q1.13-22",
+      "type": "choice",
+      "q": "電解回収で、金属濃度100 mg/L未満の液から回収するのに使う電極はどれか。",
+      "choices": ["表面積の大きい網状（レティキュレート）陰極", "平板電極", "犠牲陽極", "黒鉛陽極のみ"],
+      "answer": 0,
+      "explanation": "平板電極は1000〜20000 mg/Lの液向けで、低濃度の液には表面積の大きい網状陰極を使います。回収量は電流に比例します（ファラデーの法則）。"
+    }
+  ]
+}
