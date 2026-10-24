@@ -1,0 +1,10 @@
+{
+  "name": "toeic960-trainer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "TOEIC L&R 960点を目指す学習アプリ（静的サイト）",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "build:single": "node scripts/build-single.js"
+  }
+}
