@@ -1,0 +1,449 @@
+{
+  "id": "eq-3",
+  "book": "製品・装置資料（薬品・機器）",
+  "section": "3",
+  "title": "3D TRASAR ボイラ用 Premium シリーズ",
+  "titleEn": "3D TRASAR for Boiler Premium Series (All-In-One controller, OM0324)",
+  "summary": [
+    "工業用・施設用ボイラ向けのオールインワン型コントローラ。給水・ボイラ水の腐食とスケールに関わる項目を監視し、外部の薬注ポンプ（清缶剤・脱酸素剤）やブロー弁を制御し、データとアラームをECOLAB3Dへ送ってEcolab Global Intelligence Centerが24時間365日監視する。",
+    "型式は設置箇所で2系統：給水（FW）用のBR53/54/55/56/57/5C/5Dと、ブロー水（BD）用のBR60/68。NCSM（腐食ストレスモニター）、SCS（サンプルコンディショニングシステム）、フルオロメーター（T1＝TRASAR 1、T3＝TRASAR 3）、pH・導電率センサー、NCM、自動洗浄（BR68）の組み合わせで決まる。",
+    "高温・高圧のサンプルを扱うため、SCS（サンプルクーラー・減圧弁・リリーフ弁・電磁弁など）で冷却・減圧してからセンサーに通す。サンプル流量15〜30 L/h、圧力0.1〜13 MPa（BR53の一部型式は16.5 MPa）、温度5〜200℃（同260℃）、圧力損失0.1 MPa未満。",
+    "連続ブロー・定時ブローの導電率制御では、センサー上流の遮断ゲート弁を運転中は全開に保ち、下流の流量調整弁で背圧をかけてフラッシュ蒸気による誤検知を防ぐ。ボイラからセンサーまでは最大3 m、連続ブローはブロー量2,300 kg/h超のボイラで推奨。",
+    "フルオロメーターは純水とTRASAR校正液（赤色T3はS0980、橙色T1はS0910）で2点校正し、各180 mLを注入する。セル汚れは、ブラシ清掃と希塩酸60 mL・2分の酸洗浄で落とす。",
+    "導電率・pHは新品や不安定時に2点校正→1点校正、定期はポータブル計で確認し必要なら1点校正。校正液は水の純度に合わせて40〜10,000 µS/cmの組み合わせから選ぶ。1点校正の前に30分以上通水して安定させる。",
+    "推奨メンテナンスはストレーナ清掃・フルオロメーター／導電率／pHの校正をいずれも1か月ごと（型式により対象が異なる）。高圧ストレーナはドレン弁を約2秒開けて排出する。",
+    "BR68xxの薬品洗浄モジュールは、三方弁でフルオロメーターをバイパスして酸で自動洗浄し、洗浄中はアラームを抑制、12分後に通常運転に戻る。洗浄酸はシュウ酸ベースの460-S0355。",
+    "安全：高温・高圧の漏れ、フラッシュラインのドレン接続、センサー取り外し前の圧抜き、耐熱手袋、電気作業は有資格者のみ、通電中はフルオロメーター（クラス1 LED）を開けない、保護接地を必ず行う。装置は約60 kgで一人で持てるのは20 kgまで。"
+  ],
+  "terms": [
+    {
+      "id": "3dt-boiler-premium-series",
+      "term": "3D TRASAR ボイラ用 Premiumシリーズ",
+      "reading": "すりーでぃーとれーさーぼいらようぷれみあむしりーず",
+      "en": "3D TRASAR for Boiler Premium series",
+      "aliases": ["3DT-BR", "ボイラ用オールインワンコントローラ", "OM0324"],
+      "definition": "ボイラ給水・ボイラ水の腐食とスケールに関わる項目を監視し、外部薬注ポンプを制御して問題を最小化する装置。監視値とアラームはECOLAB3Dへ送られ、Ecolab Global Intelligence Centerの専門部署が24時間365日監視し定期報告する。用途は工業用・施設用ボイラ。",
+      "field": "設置例では給水側とブロー側にそれぞれ1台置き、給水側は脱酸素剤（OX）・清缶剤（IN）ポンプを4〜20 mAのPI制御、ブロー側はブロー弁（BD）を制御し、DCSにも接続する。",
+      "related": ["3d-trasar", "trasar", "3dt-boiler-model-lineup", "3dt-cw-premium-c200-c300"]
+    },
+    {
+      "id": "3dt-boiler-model-lineup",
+      "term": "ボイラ用3D TRASARの型式構成",
+      "reading": "ぼいらようすりーでぃーとれーさーのかたしきこうせい",
+      "en": "Model lineup (BR53xx–BR68xx)",
+      "aliases": ["BR53xx", "BR54xx", "BR55xx", "BR56xx", "BR57xx", "BR5Cxx", "BR5Dxx", "BR60xx", "BR68xx"],
+      "definition": "給水（FW）用：BR53＝NCSM＋pH/導電率（SCSは任意）、BR54＝T3フルオロメーター＋pH/導電率、BR55＝NCSM＋T3、BR56＝SCS＋T1、BR57＝NCSM＋SCS＋T1、BR5C＝pH/導電率のみ、BR5D＝pH/導電率＋NCM。ブロー水（BD）用：BR60＝SCS（フルオロメーター任意）、BR68＝SCS＋T1＋pH/導電率＋自動洗浄。全型式にフレームが付く。",
+      "formula": "電圧120 Vまたは240 V、モデムL4G1（Global）、NCSMシールド：なし／SUS／透明プラスチック、SCS：0.34 MPa／10.3 MPa／13.8 MPa",
+      "field": "型式によって保守対象（ストレーナ・フルオロメーター等）が変わる。重量はいずれも約60 kg。",
+      "related": ["3dt-boiler-premium-series", "3dt-boiler-ncsm", "3dt-boiler-scs", "3dt-boiler-trasar1-trasar3"]
+    },
+    {
+      "id": "3dt-boiler-ncsm",
+      "term": "NCSM（ナルコ コロージョン ストレスモニター）",
+      "reading": "えぬしーえすえむ",
+      "en": "Nalco Corrosion Stress Monitor (NCSM)",
+      "aliases": ["腐食ストレスモニター", "NCSM参照電極キット", "060-BLM5200"],
+      "definition": "給水ラインの高温・高圧のサンプルで、ORP（酸化還元電位）と温度（RTD）を測り、給水系の腐食ストレスを監視するモジュール。BR53・BR55・BR57に付く。参照電極キットとアクセサリーキットが付属し、床置き型（060-BLM5200）もある。",
+      "field": "外部にORPモジュールを別置きする場合は、ORP/REF（2線）とRTD（4線）の信号線をコントローラに配線する。SCS付きならRTS（4線）と電磁弁の配線も別途必要。腐食ストレスの監視値は脱酸素剤ポンプの制御に結びつく。",
+      "related": ["redox-potential", "oxygen-scavenger", "feedwater", "3dt-boiler-model-lineup"]
+    },
+    {
+      "id": "3dt-boiler-scs",
+      "term": "SCS（サンプルコンディショニングシステム）",
+      "reading": "えすしーえす",
+      "en": "Sample Conditioning System (SCS)",
+      "aliases": ["試料水調整システム", "サンプル調整装置", "減圧弁", "リリーフ弁"],
+      "definition": "高温・高圧のボイラ給水・ブロー水を、センサーに通せる温度・圧力まで下げる前処理部。サンプルクーラー、ストレーナー、減圧弁、リリーフ弁、ソレノイド（電磁）弁、温度センサー、流量計、圧力計、フィルターなどで構成される。",
+      "formula": "SCSの種類：0.34 MPa／10.3 MPa／13.8 MPa。水圧が高すぎるとリリーフ弁が開く",
+      "field": "SCS高温警報が出ると自動洗浄も中止される。クーラーの冷却水不足が高温の主因なので、まず冷却水の流れを確認する。",
+      "related": ["3dt-boiler-sample-cooler", "3dt-boiler-sample-conditions", "steam-sampling-practice"]
+    },
+    {
+      "id": "3dt-boiler-sample-cooler",
+      "term": "サンプルクーラー（ボイラ用3D TRASAR）",
+      "reading": "さんぷるくーらー",
+      "en": "Sample cooler",
+      "aliases": ["冷却水入口", "冷却水出口"],
+      "definition": "高温サンプルを冷却水で冷やす熱交換器。冷却水は1/2インチFNPTで接続する。",
+      "formula": "冷却水量：一般的に115〜450 L/h（15℃）。設置参考図では約3.8〜7.6 L/min",
+      "field": "冷却水が止まると高温サンプルがセンサー側に流れ、高温警報やセンサー損傷の原因になる。冷却水入口・出口の向きを取り違えない。",
+      "related": ["3dt-boiler-scs", "3dt-boiler-sample-conditions"]
+    },
+    {
+      "id": "3dt-boiler-sample-conditions",
+      "term": "サンプル水の条件（ボイラ用）",
+      "reading": "さんぷるすいのじょうけん",
+      "en": "Sample water requirements (boiler)",
+      "aliases": ["サンプル流量", "サンプル圧力", "サンプル配管"],
+      "definition": "装置に供給するサンプル水の条件。流量15〜30 L/h、圧力0.1〜13 MPa、温度5〜200℃、圧力損失0.1 MPa未満。BR53の一部型式（表記BM53012）は0.1〜16.5 MPa・5〜260℃。接液材はステンレス（他型式は真鍮・アクリル・ガラスも）。",
+      "formula": "設置参考図：給水ヘッダからのサンプル 250〜500 mL/min（10.3 MPa、最大260℃）、配管は1/4インチSUSチューブで最大30 m・断熱材を巻く",
+      "field": "接続前にサンプルラインを20分間フラッシュして閉塞を防ぐ。フラッシュラインは必ず外部ドレン配管につなぎ、弁操作は耐熱手袋で。逆流のおそれがある排水側には逆止弁を付ける。",
+      "related": ["3dt-boiler-scs", "3dt-boiler-sample-cooler", "3dt-cw-sample-conditions"]
+    },
+    {
+      "id": "3dt-boiler-trasar1-trasar3",
+      "term": "T1・T3フルオロメーター（TRASAR 1／TRASAR 3）",
+      "reading": "てぃーわん・てぃーすりーふるおろめーたー",
+      "en": "TRASAR 1 / TRASAR 3 fluorometers",
+      "aliases": ["T1", "T3", "060-BT3220", "060-BT3222", "赤色フルオロメーター", "橙色フルオロメーター"],
+      "definition": "ボイラ薬剤に入ったトレーサーを測るフルオロメーター。T3（赤色、TRASAR 3）はBR54・BR55、T1（橙色、TRASAR 1、RTD一体型）はBR56・BR57・BR68に付く。薬剤濃度のほか濁度とセルファウリングも測る。",
+      "field": "校正液は色（種類）で違う：T3はS0980、T1はS0910。取り違えると校正が合わない。T3/T1濁度高アラームは気泡やファウリングが原因で、サンプル確認とフィルター追加で対処する。",
+      "related": ["trasar", "3dt-boiler-fluorometer-calibration", "3dt-boiler-cell-cleaning", "3dt-cw-fluorometer"]
+    },
+    {
+      "id": "3dt-boiler-fluorometer-calibration",
+      "term": "フルオロメーターの2点校正（ボイラ用）",
+      "reading": "ふるおろめーたーのにてんこうせい",
+      "en": "Fluorometer two-point calibration (boiler)",
+      "aliases": ["S0980", "S0910", "TRASAR校正"],
+      "definition": "サービス→校正→TRASARを選び、取付後初回は「Yes」、以降は「No」で「2点」を選ぶ。サンプル入口弁とフルオロメーター下部弁を閉め、出口の三方弁をドレン側に開けて、純水→TRASAR校正液の順に注入し、それぞれ「開始」、最後に「保存」。",
+      "formula": "純水・校正液とも3回注入して合計180 mL。校正液：T3（赤）S0980、T1（橙）S0910",
+      "field": "ブランクと校正液は別のシリンジで。RO透過水は蛍光を持つことがあるのでブランクに使わない。失敗したら純水・校正液の種類違い、混入、使用期限を確認して再校正。終了後は三方弁のドレン側を閉め、下部弁→入口弁の順にゆっくり開けて通水を戻す。",
+      "related": ["3dt-boiler-trasar1-trasar3", "3dt-boiler-cell-cleaning", "3dt-cw-trasar-calibration"]
+    },
+    {
+      "id": "3dt-boiler-cell-cleaning",
+      "term": "フルオロメーターセルの清掃（ボイラ用）",
+      "reading": "ふるおろめーたーせるのせいそう",
+      "en": "Fluorometer cell cleaning",
+      "aliases": ["セルファウリング高", "酸洗浄"],
+      "definition": "セルファウリング値が高いときに校正前に行う清掃。入口弁、次に出口弁を閉めて上部プラグを外し、ブラシでセルを洗う。落ちなければシールテープを替えてプラグを戻し、希塩酸60 mLを注入して2分置き、十分にフラッシュする。",
+      "field": "酸洗浄と同時のブラッシングが非常に効果的で、激しくこすらない限りセルは傷まない。セル汚れが頻発するならフィルターを付ける。",
+      "related": ["3dt-boiler-trasar1-trasar3", "3dt-boiler-auto-clean-module", "3dt-cw-cell-fouling"]
+    },
+    {
+      "id": "3dt-boiler-auto-clean-module",
+      "term": "薬品洗浄モジュール（自動洗浄・BR68xx）",
+      "reading": "やくひんせんじょうもじゅーる",
+      "en": "Chemical cleaning module (auto-clean)",
+      "aliases": ["自動洗浄", "薬品洗浄サイクル", "460-S0355", "洗浄用の酸"],
+      "definition": "ブロー水用BR68xxに付く、フルオロメーターを酸で自動洗浄する機構。三方弁に通電してフルオロメーターをバイパスし、ポンプで洗浄酸を送る（約0.5分）。洗浄中は最後の読み値と制御状態を保持してアラームを抑制し、12分経過で通常運転に戻る。",
+      "formula": "0分：三方弁通電・ポンプ稼働 → 0.5分：ポンプ停止 → 10分：三方弁切替（通水再開） → 12分まで：セルファウリング・濁度は測定するがアラームは抑制 → 12分超：通常運転",
+      "field": "SCS高温警報、フルオロメーター校正中、インターロック・フロースイッチ・間欠添加の作動中、TRASARリレー出力のオーバーライド、フルオロメーター通信／センサーエラーのいずれかがあると洗浄はできず、進行中なら中止される。洗浄酸はシュウ酸ベース（2 L）。",
+      "related": ["3dt-boiler-cell-cleaning", "3dt-boiler-cleaning-acid-leak"]
+    },
+    {
+      "id": "3dt-boiler-cleaning-acid-leak",
+      "term": "洗浄酸の漏洩時の対応",
+      "reading": "せんじょうさんのろうえいじのたいおう",
+      "en": "Cleaning acid leak response",
+      "aliases": ["薬液漏れ", "シュウ酸"],
+      "definition": "薬品洗浄装置から洗浄酸が漏れたときの手順。関係する電源をすべて切り、周囲をバリケードして知らない人の立入りを防ぎ、現場の管理者に通知して現場の手順で処理する。SDSの写しを手元に置き、作業者全員がすぐ見られるようにする。",
+      "field": "処理剤・校正液・洗浄酸を扱うときは必ずSDSを確認し、安全靴・ゴーグル・ヘルメット・手袋を着用する。",
+      "related": ["3dt-boiler-auto-clean-module", "3dt-boiler-safety"]
+    },
+    {
+      "id": "3dt-boiler-blowdown-conductivity-sensor",
+      "term": "ブロー水用電気伝導率センサー",
+      "reading": "ぶろーすいようでんきでんどうりつせんさー",
+      "en": "Blowdown conductivity sensor",
+      "aliases": ["060-BDP600C", "ブローダウン用外部センサー", "十字継手"],
+      "definition": "ボイラのブローラインに十字継手で取り付け、ボイラ水の導電率でブロー弁を制御するための高温高圧用センサー。コントローラの電気伝導率ボードにつなぐ。",
+      "formula": "5〜10,000 µS/cm、セル定数K=1.0、250℃、4.1 MPa",
+      "field": "ブローラインに蒸気や空気が混じると、読み値の異常・ばらつきと制御不良を招き、センサーや弁の寿命も大きく縮む。取付けはプローブの向きと背圧のかけ方が決め手。",
+      "related": ["conductivity", "boiler-blowdown", "auto-blowdown-control", "3dt-boiler-continuous-blowdown-install"]
+    },
+    {
+      "id": "3dt-boiler-continuous-blowdown-install",
+      "term": "連続ブローのプローブ・弁の取付け",
+      "reading": "れんぞくぶろーのぷろーぶ・べんのとりつけ",
+      "en": "Probe and valve arrangement for continuous blowdown",
+      "aliases": ["表面ブロー", "ブローコントロール弁", "流量調整弁"],
+      "definition": "表面ブローから導電率センサー、ブロー制御弁、流量調整弁の順に配管する方法。ボイラ運転中はセンサー上流の遮断ゲート弁を全開に保ち、センサー下流の流量調整弁で背圧をかけてフラッシュ（気化）による誤検知を防ぐ。",
+      "formula": "ボイラ〜センサー：最大3 m（継手は最少に）。表面ブロー取出し：水位から100〜150 mm下。センサー上流に最低50 mmの直管部。電極〜流量調整弁：300〜450 mm。連続ブローはブロー量2,300 kg/h超のボイラで推奨",
+      "field": "蒸気がたまりそうな配管上部には各種センサーを付けない。ブロー制御弁はボイラの熱を受けにくい低い位置に。センサーが常に水中にあるよう出口側を立ち上げる。フルオロメーターでブロー管理する場合は、サンプル排出点を導電率プローブの位置に置く。",
+      "related": ["continuous-blowdown", "3dt-boiler-blowdown-conductivity-sensor", "3dt-boiler-timed-blowdown"]
+    },
+    {
+      "id": "3dt-boiler-timed-blowdown",
+      "term": "定時ブロー（一定時間のブロー）",
+      "reading": "ていじぶろー",
+      "en": "Timed (intermittent) blowdown",
+      "aliases": ["一定時間のブロー", "間欠ブロー", "缶水の定期サンプリング"],
+      "definition": "一定時間ごとにブロー弁を開けて缶水をサンプリングし、導電率を測ってブローする方式。小型ボイラなど連続ブローを使わない場合に用いる。缶水レベルが下がり過ぎないよう水位に注意して行う。",
+      "field": "連続ブローと同様に、上流ゲート弁は全開、下流の流量調整弁で背圧をかける。サンプルが流れていない間（トラップ時間）は導電率が実際の缶水を表さないことに注意。",
+      "related": ["3dt-boiler-continuous-blowdown-install", "3dt-boiler-one-point-calibration", "boiler-blowdown"]
+    },
+    {
+      "id": "3dt-boiler-ph-conductivity-sensor",
+      "term": "pH・導電率センサー（ボイラ給水用）",
+      "reading": "ぴーえいち・どうでんりつせんさー",
+      "en": "pH and conductivity sensors (boiler)",
+      "aliases": ["6035381", "COND1", "PT100", "PT1000"],
+      "definition": "冷却・減圧したサンプルのpHと導電率を測るセンサー。pHセンサー（6035381）は1〜10,000 µS/cmの試料が対象。導電率入力は1〜10,000 µS/cmで、PT100/PT1000温度センサー付き・なしの両方に対応する。",
+      "field": "導電率センサーは内部の気泡を除き、取付け時はプローブの穴をサンプルの流れの向きに合わせる。ネジ部にはシールテープを巻く。pH高アラームはアラーム設定・センサー読み不良・pH調整剤の注入量を順に確認する。",
+      "related": ["ph", "conductivity", "3dt-boiler-conductivity-standards", "3dt-boiler-one-point-calibration"]
+    },
+    {
+      "id": "3dt-boiler-conductivity-standards",
+      "term": "導電率・pHの2点校正と校正液の選び方（ボイラ用）",
+      "reading": "どうでんりつ・ぴーえいちのにてんこうせい",
+      "en": "Two-point calibration and standard selection",
+      "aliases": ["高純度用校正液", "低純度用校正液", "校正液1", "校正液2"],
+      "definition": "新しいセンサーや不安定な読み値を直すときは、ティーから外して2点校正し、戻して通水後に1点校正する。校正液はサンプルの純度に合わせて2種を組み合わせる。",
+      "formula": "導電率（µS/cm）の組合せ例：高純度 40/200、40/600、600/3000、600/5000、低純度 3000/5000、3000/10,000、5000/10,000。pH：4/7 または 7/10",
+      "field": "入口・出口弁を閉めてフィルター部で圧を抜いてから外す。液ごとに別ビーカー、センサーと液の温度差があれば3〜5分浸ける。気泡が入るので校正液をセンサーでかき混ぜない。温度はポータブル計で測って入力する。",
+      "related": ["3dt-boiler-ph-conductivity-sensor", "3dt-boiler-one-point-calibration", "3dt-cw-sensor-calibration"]
+    },
+    {
+      "id": "3dt-boiler-one-point-calibration",
+      "term": "1点校正（ボイラ用・ブロー導電率含む）",
+      "reading": "いってんこうせい",
+      "en": "One-point calibration",
+      "aliases": ["読み取り値を確認", "トラップ時間"],
+      "definition": "センサーを取り付け通水した状態で、校正済みポータブル計の値に合わせる校正。一致していれば「読み取り値を確認」、ずれていれば「校正する」→「No」→「1点」で値を入力する。",
+      "formula": "読み値が安定するまで最低30分通水してから実施",
+      "field": "ブロー導電率センサーは、1点校正中に常に水が流れている必要がある（ブロー弁を一時的に手動で開くなど）。トラップ時間を設定した採水では、設定と同じ時間だけフラッシュし、トラップ時間だけ流れを止め、読みが安定してから校正する。",
+      "related": ["3dt-boiler-conductivity-standards", "3dt-boiler-timed-blowdown", "3dt-boiler-blowdown-conductivity-sensor"]
+    },
+    {
+      "id": "3dt-boiler-feed-control",
+      "term": "ボイラ薬注ポンプの制御（脱酸素剤・清缶剤）",
+      "reading": "ぼいらやくちゅうぽんぷのせいぎょ",
+      "en": "Chemical feed control (oxygen scavenger / internal treatment)",
+      "aliases": ["PI制御", "4-20mA出力", "NexGuard注入ポンプ", "脱酸素剤注入ポンプ"],
+      "definition": "監視値に基づいて外部の薬注ポンプを制御する機能。設置例では脱酸素剤（OX、防食処理）と清缶剤（IN、内部処理）のポンプをアナログ出力4〜20 mAでPI制御し、ブロー側はリレーで電動ブロー弁を開閉する。",
+      "formula": "アナログ出力8点（DC24V、4〜20 mA、≤600 Ω、非絶縁、PI制御またはデータ出力）、リレー出力8点（合計 ≤12 A＠AC120V、≤6 A＠AC240V）",
+      "field": "信号線は0.3 sq以上のシールド線で施工する。フェールセーフとタイムアウトの考え方は冷却水用と同じで、ボイラ用説明書ではタイムアウト後もフェールセーフ応答に移ると説明されている。",
+      "related": ["oxygen-scavenger", "3dt-boiler-premium-series", "3dt-cw-failsafe-alarm", "3dt-cw-timeout-alarm"]
+    },
+    {
+      "id": "3dt-boiler-operating-modes",
+      "term": "運転モードと手動バルブ（ボイラ用）",
+      "reading": "うんてんもーどとしゅどうばるぶ",
+      "en": "Operating modes and manual valves",
+      "aliases": ["自動モード", "手動モード", "メンテナンスモード"],
+      "definition": "自動モードは水質監視と外部注入ポンプの自動制御、手動モードは監視しつつポンプを強制オン／オフ、メンテナンスモードは監視・制御とも停止。手動バルブはニードル弁01、ボール弁08・10・22・26、減圧弁11など。",
+      "field": "コントローラのサービス画面からは手動制御・校正・メンテナンスモードのほか運転スケジュールも設定できる。メンテナンスモードのままだと出力が止まる。",
+      "related": ["3dt-cw-operating-modes", "3dt-boiler-alarm-priority"]
+    },
+    {
+      "id": "3dt-boiler-alarm-priority",
+      "term": "運転に関わるアラーム（ボイラ用）",
+      "reading": "うんてんにかかわるあらーむ",
+      "en": "Operational alarms (boiler)",
+      "aliases": ["サンプルフロー不足", "インターロック Tripped", "メンテナンスモードアラーム"],
+      "definition": "サンプルフロー不足（フロースイッチが流れを検出しない）、インターロック（客先系統の停止や信号線の断線）、校正によるオーバーライド、メンテナンスモードアラームなど。インターロックとNo Flowは他のすべてのアラームより優先し、インターロックがNo Flowより上位。",
+      "field": "流量不足は流れ・弁の閉め忘れ・フロースイッチ・ストレーナの汚れ・配線を確認。インターロックを使わない場合はコネクタにジャンパー線が正しく入っているか確認する。",
+      "related": ["3dt-cw-alarm-priority", "3dt-boiler-calibration-override", "3dt-boiler-strainer"]
+    },
+    {
+      "id": "3dt-boiler-calibration-override",
+      "term": "校正によるオーバーライド（ボイラ用）",
+      "reading": "こうせいによるおーばーらいど",
+      "en": "Calibration override (failed calibration)",
+      "aliases": ["校正失敗", "工場出荷時の校正データ"],
+      "definition": "ボイラ用説明書では、校正の失敗によって出るアラームとして扱われる。校正をやり直すか、最後の校正データまたは工場出荷時の校正データに戻して復旧する。",
+      "field": "やり直す前に、校正液の種類・混入・期限とセル汚れを確認する。",
+      "related": ["3dt-boiler-fluorometer-calibration", "3dt-boiler-conductivity-standards", "3dt-cw-calibration-override"]
+    },
+    {
+      "id": "3dt-boiler-analog-input-alarm",
+      "term": "センサー・アナログ入力の範囲外アラーム",
+      "reading": "せんさー・あなろぐにゅうりょくのはんいがいあらーむ",
+      "en": "Sensor / analog input out-of-range alarm",
+      "aliases": ["アナログ入力範囲外", "3.5 mA", "21 mA"],
+      "definition": "アナログ入力が3.5 mA以下または21 mA以上で範囲外と判定されるアラーム。NCSM・pH・導電率・TRASARの測定範囲外や、RTD（温度）の異常もセンサーアラームとして出る。",
+      "field": "アナログ入力は接続機器・配線・シールド・外部干渉を確認。NCSM・pH・導電率・TRASARは校正、配線、シールド、外部干渉、センサー交換の順で。RTDは配線確認かポータブル計とのクロスチェックのうえ交換。",
+      "related": ["3dt-boiler-alarm-priority", "3dt-boiler-system-alarms"]
+    },
+    {
+      "id": "3dt-boiler-system-alarms",
+      "term": "システムに関わるアラーム（ボイラ用）",
+      "reading": "しすてむにかかわるあらーむ",
+      "en": "System alarms",
+      "aliases": ["SOM温度レベルアラーム", "入力のコミュニケーションエラー", "フルオロメーターのコミュニケーションエラー"],
+      "definition": "SOM温度レベル（CPU高温）、IOボードとの通信エラー、フルオロメーターと専用ボードの通信エラーなど、コントローラ本体側の異常を示すアラーム。",
+      "field": "CPU高温はコントローラの電源を切って営業担当へ連絡。IOボード通信エラーはボードの取付け直しか交換。フルオロメーター通信エラーはケーブル再接続、だめならケーブルかフルオロメーターを交換。",
+      "related": ["3dt-boiler-analog-input-alarm"]
+    },
+    {
+      "id": "3dt-boiler-strainer",
+      "term": "ストレーナーの清掃（ボイラ用）",
+      "reading": "すとれーなーのせいそう",
+      "en": "Strainer blowdown and cleaning",
+      "aliases": ["高圧ストレーナー", "低圧ストレーナー", "SSフィルター"],
+      "definition": "高圧ストレーナーはドレン弁をゆっくり開けて約2秒後に閉じ、低圧ストレーナーはドレン弁を開けて排出する。推奨は1か月ごと。",
+      "field": "ドレン弁の先が確実にドレン配管につながっていることを必ず確認する（高圧の噴出防止）。閉塞が頻繁なら起動後1週間は毎日清掃する。",
+      "related": ["3dt-boiler-maintenance-schedule", "3dt-cw-strainer-cleaning"]
+    },
+    {
+      "id": "3dt-boiler-maintenance-schedule",
+      "term": "推奨メンテナンス（ボイラ用3D TRASAR）",
+      "reading": "すいしょうめんてなんす",
+      "en": "Recommended maintenance schedule (boiler)",
+      "aliases": ["保守スケジュール", "校正キット", "500-BTSRKIT", "500-BTSR1KIT"],
+      "definition": "ストレーナー清掃、フルオロメーター校正、導電率センサー校正、pHセンサー校正をいずれも1か月ごとに行う（状況に応じて変更）。ストレーナーとフルオロメーターはBR54/55/56/57/60/68、導電率・pHはBR60以外の型式が対象。",
+      "field": "校正キットはT3用（500-BTSRKIT）とT1用（500-BTSR1KIT）があり、校正液・シリンジ2本・ビーカー3個・ブラシが入る。洗浄用に10%硫酸（460-S0800）もある。",
+      "related": ["3dt-boiler-strainer", "3dt-boiler-fluorometer-calibration", "3dt-boiler-conductivity-standards", "3dt-cw-maintenance-schedule"]
+    },
+    {
+      "id": "3dt-boiler-emergency-shutdown",
+      "term": "緊急停止・長期停止（ボイラ用）",
+      "reading": "きんきゅうていし・ちょうきていし",
+      "en": "Emergency and long-term shutdown (boiler)",
+      "aliases": ["シャットダウン", "SIMカード無効"],
+      "definition": "電気的故障時はコントローラの電源を切り、耐熱手袋を着けてサンプル入口・出口弁を閉め、SSフィルター下部の弁が閉じていることを確認する。長期停止ではサンプルを冷却して排水し、pHセンサーを外してKCl溶液に浸けて保管し、最後に電源を切る。",
+      "field": "12か月間通信しないとSIMカードが無効になる。長期停止後に通信できないときはこれを疑い、技術部装置担当へ連絡する。",
+      "related": ["3dt-boiler-safety", "3dt-cw-emergency-shutdown"]
+    },
+    {
+      "id": "3dt-boiler-safety",
+      "term": "ボイラ用3D TRASARの安全上の注意",
+      "reading": "ぼいらようすりーでぃーとれーさーのあんぜんじょうのちゅうい",
+      "en": "Safety precautions (boiler)",
+      "aliases": ["高温・高圧の危険", "電気的な危険", "光学的な危険", "接地"],
+      "definition": "高温・高圧のサンプルを扱うため、漏れ防止の確実な接続、フラッシュラインとドレンの接続確認、センサー・配管を外す前の圧抜き・遮断、高温部での耐熱手袋が必須。コントローラを開けるのと電気配線は有資格者のみ。フルオロメーターにはクラス1の可視・不可視LEDがあり、通電中に開けない。保護接地端子を必ず使う。",
+      "formula": "電源：AC100〜240V・50/60 Hz、定格 15 A＠AC120V／7.5 A＠AC240V。ハードワイヤ配線時はIEC 60947-1/-3準拠の遮断器を装置近くに設け、2.0 mm²ケーブルを使用",
+      "field": "ケーブルはケーブルグランドを使って接続し、保護等級（NEMA 4X/IP65）と防水を保つ。組立完了まで電源ケーブルはつながない。装置は約60 kgで、一人で持てるのは20 kgまで。接地不良はセンサー誤差の原因にもなる。",
+      "related": ["3dt-boiler-cleaning-acid-leak", "3dt-boiler-emergency-shutdown", "3dt-boiler-sample-conditions"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "qeq3-01",
+      "type": "choice",
+      "q": "ボイラ用3D TRASARでブロー水（BD）に設置する型式はどれか。",
+      "choices": ["BR53xx", "BR55xx", "BR68xx", "BR5Dxx"],
+      "answer": 2,
+      "explanation": "ブロー水用はBR60xxとBR68xx。BR53/54/55/56/57/5C/5Dは給水（FW）用。"
+    },
+    {
+      "id": "qeq3-02",
+      "type": "choice",
+      "q": "赤色のT3フルオロメーター（TRASAR 3）の校正に使う校正液はどれか。",
+      "choices": ["S0940", "S0910", "S0980", "S0298"],
+      "answer": 2,
+      "explanation": "T3（赤）はS0980、T1（橙）はS0910。S0940は冷却水用のTRASAR #2校正液、S0298は600 µS/cmの導電率校正液。"
+    },
+    {
+      "id": "qeq3-03",
+      "type": "tf",
+      "q": "連続ブローの導電率制御では、ボイラ運転中、センサー上流の遮断ゲート弁を絞って流量を調整する。",
+      "answer": false,
+      "explanation": "上流のゲート弁は通水不良と誤検知を防ぐため全開に保つ。流量調整と背圧はセンサー下流の流量調整弁で行う。"
+    },
+    {
+      "id": "qeq3-04",
+      "type": "choice",
+      "q": "センサー下流の流量調整弁で配管内に背圧をかける主な目的はどれか。",
+      "choices": ["ブロー量を増やすため", "フラッシュ蒸気の発生による導電率の誤検知を防ぐため", "サンプル温度を上げるため", "薬注量を減らすため"],
+      "answer": 1,
+      "explanation": "減圧で蒸気が発生するとセンサーが誤検知する。背圧をかけて液相を保つ。蒸気や空気の混入は読み値の異常や制御不良、センサー・弁の寿命低下も招く。"
+    },
+    {
+      "id": "qeq3-05",
+      "type": "choice",
+      "q": "取付図で、ボイラから導電率センサーまでの距離の上限はどれか。",
+      "choices": ["1 m", "3 m", "10 m", "30 m"],
+      "answer": 1,
+      "explanation": "ボイラからセンサーまでは最大3 mとし、吹き出し防止のため継手は最小にする。30 mはサンプル用1/4インチSUSチューブの最大長。"
+    },
+    {
+      "id": "qeq3-06",
+      "type": "tf",
+      "q": "取付図では、連続ブロー（サンプリング）はブロー量が2,300 kg/hを超えるボイラに推奨されている。",
+      "answer": true,
+      "explanation": "連続ブローは2,300 kg/h超のボイラで推奨。それ以外は定時ブローで缶水レベルに注意しながら定期的にサンプリングする。"
+    },
+    {
+      "id": "qeq3-07",
+      "type": "choice",
+      "q": "ボイラ用3D TRASAR（BR53の一部型式を除く）のサンプル水条件として正しいものはどれか。",
+      "choices": ["15〜30 L/h、0.1〜13 MPa、5〜200℃", "20 L/min、0.1〜0.69 MPa、4〜60℃", "1〜2 L/h、0.1〜1 MPa、5〜100℃", "100〜200 L/h、0.1〜16.5 MPa、5〜260℃"],
+      "answer": 0,
+      "explanation": "多くの型式は15〜30 L/h、0.1〜13 MPa、5〜200℃。BR53の一部型式は0.1〜16.5 MPa・5〜260℃（流量は同じ15〜30 L/h）。20 L/min・0.69 MPaは冷却水用。"
+    },
+    {
+      "id": "qeq3-08",
+      "type": "tf",
+      "q": "SCS（サンプルコンディショニングシステム）は、水圧が高すぎるとリリーフ弁が開く安全装置を含む。",
+      "answer": true,
+      "explanation": "SCSにはクーラー・減圧弁・リリーフ弁・電磁弁などがあり、過圧時はリリーフ弁が開いてドレンへ逃がす。"
+    },
+    {
+      "id": "qeq3-09",
+      "type": "choice",
+      "q": "BR68xxの薬品洗浄サイクルで、通常運転に戻るのは洗浄開始から何分後か。",
+      "choices": ["0.5分", "2分", "10分", "12分"],
+      "answer": 3,
+      "explanation": "0分で三方弁通電・ポンプ稼働、0.5分でポンプ停止、10分で三方弁切替、12分まではアラーム抑制が続き、12分を過ぎると通常運転に戻る。"
+    },
+    {
+      "id": "qeq3-10",
+      "type": "tf",
+      "q": "フルオロメーター校正中やSCS高温警報の発報中でも、自動洗浄サイクルは予定どおり実行される。",
+      "answer": false,
+      "explanation": "SCS高温警報、校正中、インターロック／フロースイッチ／間欠添加の作動、TRASARリレーのオーバーライド、フルオロメーター通信／センサーエラーのいずれかがあると洗浄はできず、進行中でも中止される。"
+    },
+    {
+      "id": "qeq3-11",
+      "type": "choice",
+      "q": "ブロー導電率センサーの1点校正で注意すべきことはどれか。",
+      "choices": ["ブロー弁を全閉にして流れを止めて校正する", "常に水が流れている状態にする（ブロー弁を一時的に手動で開くなど）", "センサーを外して校正液に浸ける", "校正液40 µS/cmを使う"],
+      "answer": 1,
+      "explanation": "1点校正中はブローラインに常に流れが必要。トラップ時間を設定した採水なら、設定どおりフラッシュとトラップを再現し、安定してから校正する。"
+    },
+    {
+      "id": "qeq3-12",
+      "type": "choice",
+      "q": "アナログ入力が範囲外と判定される電流値はどれか。",
+      "choices": ["4 mA以下または20 mA以上", "3.5 mA以下または21 mA以上", "0 mA以下または24 mA以上", "2 mA以下または22 mA以上"],
+      "answer": 1,
+      "explanation": "3.5 mA以下または21 mA以上で範囲外。接続機器・配線・シールド・外部干渉を確認する。"
+    },
+    {
+      "id": "qeq3-13",
+      "type": "tf",
+      "q": "12か月間通信を行わないとSIMカードが無効になることがある。",
+      "answer": true,
+      "explanation": "長期停止後に通信できない場合はSIM無効を疑い、技術部装置担当へ連絡する。"
+    },
+    {
+      "id": "qeq3-14",
+      "type": "choice",
+      "q": "高圧ストレーナーの清掃（排出）方法として説明書が示すのはどれか。",
+      "choices": ["ドレン弁を全開にして1時間流す", "ドレン弁をゆっくり開け、約2秒後に閉じる", "ストレーナーを分解して毎日洗う", "入口弁を開けたままスクリーンを抜く"],
+      "answer": 1,
+      "explanation": "高圧ストレーナーはドレン弁をゆっくり開けて約2秒で閉じる。ドレン弁の先がドレン配管に確実につながっていることを先に確認する。"
+    },
+    {
+      "id": "qeq3-15",
+      "type": "choice",
+      "q": "低純度（導電率が高い）サンプル用の導電率校正液の組み合わせとして説明書の表にあるものはどれか。",
+      "choices": ["40と200 µS/cm", "40と600 µS/cm", "3000と10,000 µS/cm", "pH4とpH7"],
+      "answer": 2,
+      "explanation": "低純度用は3000/5000、3000/10,000、5000/10,000 µS/cm。40/200、40/600、600/3000、600/5000は高純度側の組み合わせ。"
+    },
+    {
+      "id": "qeq3-16",
+      "type": "tf",
+      "q": "導電率センサーの2点校正では、校正液をセンサーでよくかき混ぜて温度をなじませるとよい。",
+      "answer": false,
+      "explanation": "かき混ぜると気泡が入るので撹拌しない。温度差があればセンサーを3〜5分浸けてなじませ、センサー内の気泡は除く。"
+    },
+    {
+      "id": "qeq3-17",
+      "type": "choice",
+      "q": "フルオロメーターを開けてはいけないのはどんなときか。",
+      "choices": ["通電中（内蔵のクラス1 LEDによる光学的な危険がある）", "サンプル温度が20℃未満のとき", "校正液が新しいとき", "夜間"],
+      "answer": 0,
+      "explanation": "フルオロメーターにはクラス1の可視・不可視LEDがあり、通電中は開けない。"
+    },
+    {
+      "id": "qeq3-18",
+      "type": "choice",
+      "q": "サンプルクーラーの冷却水量として仕様表に示されている一般的な値はどれか。",
+      "choices": ["15〜30 L/h", "115〜450 L/h（15℃）", "20 L/min", "1.1 m³/h"],
+      "answer": 1,
+      "explanation": "冷却水は一般的に115〜450 L/h（15℃）。15〜30 L/hはサンプル水の流量。"
+    },
+    {
+      "id": "qeq3-19",
+      "type": "tf",
+      "q": "フルオロメーターのセル清掃では、酸洗浄とブラシによる物理的な洗浄を組み合わせると効果的である。",
+      "answer": true,
+      "explanation": "ブラシで落ちなければ希塩酸60 mLを2分置く。酸洗浄時のブラッシングは非常に効果的で、激しくこすらない限りセルは傷まない。"
+    }
+  ]
+}

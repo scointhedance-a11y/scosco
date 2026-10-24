@@ -1,0 +1,389 @@
+{
+  "id": "eq-1",
+  "book": "製品・装置資料（薬品・機器）",
+  "section": "1",
+  "title": "TRASAR 2 Pen II / 3 Pen II（ペン型蛍光測定器）",
+  "titleEn": "TRASAR 2 Pen II / TRASAR 3 Pen II Fluorometer",
+  "summary": [
+    "TRASAR Pen は、TRASAR（蛍光トレーサ）入りのNalco製品の濃度を現場で測る電池式のペン型蛍光測定器。防水筐体・操作キー3つ（CAL／SELECT／READ/ENTER）・2段表示LCDで、蛍光の発生・検出に必要な光学部品と回路はすべてプローブ先端に内蔵され、先端は交換できない。",
+    "2 Pen は TRASAR 2 製品専用（冷却塔・RO・プロセス・排水向け）、3 Pen は TRASAR 3 製品専用（ボイラ・プロセス向け）。互いの製品は測れない。",
+    "2 Pen と 3 Pen の主な違い：PF（プロダクトファクター）の初期値（2 Pen＝100、3 Pen＝40）、校正液（2 Pen＝S0920、3 Pen＝S0980）、校正成功の表示範囲（2 Pen＝95〜105 ppm、3 Pen＝38〜42 ppm）、ろ過が必要になる濁度（2 Pen＝20 NTU超、3 Pen＝80 NTU超）。",
+    "初期設定では、使う製品の PF（0〜999、小数1桁）と試料のバックグラウンド蛍光値 trA（0〜100、小数1桁。通常は10未満だが干渉で高くなることがある）を入力する。",
+    "校正は純水（ゼロ）と TRASAR 校正液による2点校正。セルを純水で3回、校正液で3回共洗いし、測定中は必ず手でセルを覆って外光を遮る。CALボタンで中止すれば元の校正定数が残る。",
+    "測定は、底穴にゴムプラグを付けたセルにシリンジで試料を満たし、遮光して READ/ENTER を押すだけ。濁度が基準を超える・不明なときは同梱の 0.45 µm フィルターでろ過する。表示は30秒で消える。",
+    "主な仕様：表示範囲 0〜9999 ppm（分解能 0.1 ppm）、相対精度 読み値の±5%、温度測定 5〜50 ℃（自動温度補償）、防水 IP67、1.55 V 酸化銀電池×4個で約1000回測定。",
+    "不正使用防止のため18か月ごとに再活性化（パスワード入力）が必要。17か月を過ぎると READ/ENTER で残り日数（30 days→0 days）が表示される。",
+    "エラー表示：bAd bAtt（電池交換）、HI conc（蛍光が強すぎる／9999 ppm超）、too hot（試料50 ℃超）、HI LitE（周囲が明るすぎる）、dEt1/dEt2/LEd1 FAIL（検出器・LED異常→清掃して再測定、続けば本体交換）、CAL FAIL（校正液の順番・種類違い）、Unit FAIL（経過時間カウンタ故障）。",
+    "使用後は純水でセルをすすぐ。鉄汚れがひどいときは 1:1 塩酸を含ませた綿棒でレンズを清掃する。ユーザーが修理できる部品はなく、異常時はメーカーへ連絡する。"
+  ],
+  "terms": [
+    {
+      "id": "trasar-pen-fluorometer",
+      "term": "TRASAR Pen 蛍光測定器",
+      "reading": "とれーさーぺんけいこうそくていき",
+      "en": "TRASAR Pen Fluorometer",
+      "aliases": ["TRASAR 2 Pen II", "TRASAR 3 Pen II", "ペン型蛍光光度計", "PEN Fluorometer", "トレーサペン"],
+      "definition": "TRASAR（蛍光トレーサ）を配合したNalco製品の濃度を、現場で手早く測るための電池式・小型のペン型蛍光測定器。試料に励起光を当て、トレーサが出す蛍光の強さから製品濃度（ppm）を求めて表示する。光学部品と電気回路はすべてプローブ先端に内蔵されており、先端はユーザーが交換できない。",
+      "formula": "表示範囲 0〜9999 ppm（製品）／分解能 0.1 ppm／相対精度 読み値の±5%",
+      "field": "オンラインの 3D TRASAR が無い系や、オンライン計の値の確認（クロスチェック）に使う。2 Pen と 3 Pen は測れる製品が違うので、まず手元のペンが現場の製品（TRASAR 2 か 3 か）に合っているかを確認する。",
+      "related": ["trasar", "3d-trasar", "trasar-pen-2-vs-3", "trasar-pen-fluorescence-principle"]
+    },
+    {
+      "id": "trasar-pen-fluorescence-principle",
+      "term": "蛍光トレーサ測定の原理（Pen）",
+      "reading": "けいこうとれーさそくていのげんり",
+      "en": "Fluorescence measurement of TRASAR tracer",
+      "aliases": ["蛍光測定", "fluorometry"],
+      "definition": "製品に一定比率で配合された不活性な蛍光物質（トレーサ）に光を当てると、その濃度に比例した蛍光を出す。Pen はプローブ先端の LED で光を当て、メイン検出器で蛍光を受け（参照用の Ref 検出器も備える）、温度補償したうえで製品濃度に換算する。",
+      "field": "蛍光は外光・濁り・試料の着色や他の蛍光物質（バックグラウンド）の影響を受ける。だから測定時の遮光、濁った試料のろ過、trA（バックグラウンド）の入力が精度を左右する。",
+      "related": ["trasar", "trasar-pen-background-tra", "trasar-pen-light-shielding", "trasar-pen-turbidity-filtration"]
+    },
+    {
+      "id": "trasar-pen-2-vs-3",
+      "term": "2 Pen と 3 Pen の違い",
+      "reading": "つーぺんとすりーぺんのちがい",
+      "en": "Differences between TRASAR 2 Pen II and TRASAR 3 Pen II",
+      "aliases": ["TRASAR 2 と TRASAR 3", "2PEN/3PEN"],
+      "definition": "TRASAR 2 Pen II は TRASAR 2 製品専用で、用途は冷却塔・逆浸透（RO）・プロセス・排水。TRASAR 3 Pen II は TRASAR 3 製品専用で、用途はボイラとプロセス。操作手順・仕様（表示範囲・精度・電池など）は共通で、PF初期値・校正液・校正合格範囲・ろ過が必要な濁度が異なる。",
+      "formula": "PF初期値：2 Pen＝100／3 Pen＝40\n校正液：2 Pen＝S0920（460-S0920.75）／3 Pen＝S0980（460-S0980.75）\n校正後の表示：2 Pen＝95〜105 ppm／3 Pen＝38〜42 ppm\nろ過・希釈の目安：2 Pen＝20 NTU超／3 Pen＝80 NTU超",
+      "field": "校正液を取り違えると CAL FAIL や合格範囲外になる。ボイラ用（3）と冷却水用（2）のキットを混ぜて持ち歩かないこと。本体の型番（060-TSR2PENII.88／060-TSR3PENII.88）でも区別できる。",
+      "related": ["trasar-pen-fluorometer", "trasar-pen-calibration-solution", "trasar-pen-product-factor", "trasar-pen-turbidity-filtration"]
+    },
+    {
+      "id": "trasar-pen-keys-display",
+      "term": "Pen の操作キーと表示",
+      "reading": "ぺんのそうさきーとひょうじ",
+      "en": "Keys and LCD of the Pen Fluorometer",
+      "aliases": ["CAL", "SELECT", "READ/ENTER", "READ/ENT"],
+      "definition": "操作キーは CAL（校正の開始・中止）、SELECT（設定項目の選択・数字のスクロール）、READ/ENTER（測定・決定）の3つ。LCDは上下2段・各4桁で、第1表示部に濃度、第2表示部に試料温度を出し、電池残量・校正モード・自動温度補償・測定モード・濃度単位のアイコンがある。",
+      "field": "通常は電源が切れて何も表示されていない状態が正常。READ/ENTER を押すと起動して測定する。",
+      "related": ["trasar-pen-fluorometer", "trasar-pen-measurement-procedure", "trasar-pen-auto-power-off"]
+    },
+    {
+      "id": "trasar-pen-product-factor",
+      "term": "プロダクトファクター（PF）",
+      "reading": "ぷろだくとふぁくたー",
+      "en": "Product Factor (PF)",
+      "aliases": ["PF", "製品係数"],
+      "definition": "Pen が測ったトレーサ量を、使用中の製品の濃度に換算するための製品ごとの係数。初期設定で SELECT→READ/ENTER で入力画面に入り、SELECT で数字をスクロールし READ/ENTER で桁ごとに確定する。入力範囲は 0〜999（小数1桁まで）。",
+      "formula": "初期値：2 Pen＝100、3 Pen＝40",
+      "field": "製品を切り替えたのに PF を変え忘れると、表示濃度がそのまま誤差になる。使用製品の PF は製品資料・担当者で確認して入力する。電池を交換しても PF は保持される。",
+      "related": ["trasar-pen-background-tra", "trasar-pen-2-vs-3", "trasar-pen-fluorometer"]
+    },
+    {
+      "id": "trasar-pen-background-tra",
+      "term": "バックグラウンド蛍光値（trA）",
+      "reading": "ばっくぐらうんどけいこうち",
+      "en": "Background fluorescence (%TRA, trA)",
+      "aliases": ["trA", "%TRA", "バックグランド蛍光"],
+      "definition": "製品を入れていない状態の試料水が自ら持つ蛍光の大きさ。PF の次に“trA”が点滅したら入力する。入力範囲は 0〜100（小数1桁まで）で、一般には10未満だが、干渉物質があると高くなる。",
+      "field": "補給水や処理水に蛍光を出す有機物などが多い現場では trA が大きくなり、入れないと製品濃度を高めに読む。現場ごとに一度は値を決めて入力しておく。",
+      "related": ["trasar-pen-product-factor", "trasar-pen-fluorescence-principle"]
+    },
+    {
+      "id": "trasar-pen-two-point-calibration",
+      "term": "Pen の2点校正",
+      "reading": "ぺんのにてんこうせい",
+      "en": "Two-point calibration of the Pen",
+      "aliases": ["2-Pt CAL", "2点校正", "Add H2O", "Add Std"],
+      "definition": "純水（ゼロ標準）と TRASAR 校正液の2点で校正する。手順の流れは、①純水・校正液・プラグ・シリンジ・フィルターを用意、②画面を上にして水平に置きセル下側の穴にゴムプラグ、③純水で3回共洗いして純水を満たす、④CAL→“2-Pt CAL”→“Add H2O”、⑤手でセルを覆い READ/ENTER（“MEAS”が約7秒点滅）、⑥“Add Std”が出たら校正液で3回共洗いしてシリンジで校正液を入れる、⑦遮光して60秒以内に READ/ENTER、⑧合格なら校正液の濃度が表示される。",
+      "formula": "合格範囲：2 Pen＝95〜105 ppm、3 Pen＝38〜42 ppm（範囲外なら再校正）",
+      "field": "途中で CAL を押すと中止され、元の校正定数が残る。校正中に90秒操作しないと電源が切れ、これも元の定数のまま。校正後は試料を捨て、同じ校正液の新しい分取でもう一度測る“二重チェック”が推奨されている。",
+      "related": ["trasar-pen-calibration-solution", "trasar-pen-light-shielding", "trasar-pen-error-cal-fail", "trasar-pen-sample-cell"]
+    },
+    {
+      "id": "trasar-pen-calibration-solution",
+      "term": "TRASAR 校正液（S0920／S0980）",
+      "reading": "とれーさーこうせいえき",
+      "en": "TRASAR Calibration Solution",
+      "aliases": ["S0920", "S0980", "460-S0920.75", "460-S0980.75", "校正標準液"],
+      "definition": "Pen の2点校正で、純水の次に使う標準液。2 Pen は TRASAR 2 校正液 S0920（パーツ番号 460-S0920.75、1 L）、3 Pen は TRASAR 3 校正液 S0980（460-S0980.75、1 L）を使う。",
+      "field": "取扱いは各製品のMSDS（SDS）に従う。種類の取り違え、純水と校正液の順番間違いは CAL FAIL の典型原因。",
+      "related": ["trasar-pen-two-point-calibration", "trasar-pen-2-vs-3", "trasar-pen-error-cal-fail"]
+    },
+    {
+      "id": "trasar-pen-sample-cell",
+      "term": "サンプルセルとゴムプラグ",
+      "reading": "さんぷるせるとごむぷらぐ",
+      "en": "Sample cell and calibration plug",
+      "aliases": ["サンプルセル", "Special Calibration Plugs", "500-P1692.88"],
+      "definition": "Pen 先端の、試料を入れて測るセル部分。下側に穴があり、校正・測定の前にゴム製プラグを取り付けて試料が抜けないようにする。本体は画面を上にして水平な場所に置いて使う。",
+      "field": "プラグを付け忘れると試料が抜けて測れない。予備のプラグ（500-P1692.88）やシリンジ（10 mL）、セル用ブラシは消耗品として持っておく。",
+      "related": ["trasar-pen-measurement-procedure", "trasar-pen-two-point-calibration", "trasar-pen-lens-cleaning"]
+    },
+    {
+      "id": "trasar-pen-light-shielding",
+      "term": "測定時の遮光",
+      "reading": "そくていじのしゃこう",
+      "en": "Shielding the sample cell from ambient light",
+      "aliases": ["手で覆う", "HI LitE"],
+      "definition": "校正・測定のたびに、外からの光が入らないようサンプルセルを手で覆ってから READ/ENTER を押す。外光が蛍光の検出に混ざるのを防ぐためで、明るすぎると“HI LitE”エラーになる。",
+      "field": "屋外の直射日光下や照明の真下ではエラーが出やすい。手でしっかり覆うか、日陰に移動して測る。",
+      "related": ["trasar-pen-error-hi-lite", "trasar-pen-fluorescence-principle", "trasar-pen-two-point-calibration"]
+    },
+    {
+      "id": "trasar-pen-turbidity-filtration",
+      "term": "濁った試料のろ過（Pen）",
+      "reading": "にごったしりょうのろか",
+      "en": "Filtering turbid samples",
+      "aliases": ["シリンジフィルター", "0.45ミクロンフィルター", "500-P1424.88"],
+      "definition": "Pen は濁度をチェックしないため、濁度が基準を超える試料は希釈またはろ過してから測る。採水したシリンジに同梱のフィルター（25 mm、0.45 µm、酢酸セルロース）を付けてからセルに満たす。濁度が分からない場合もろ過するのが良い習慣とされる。",
+      "formula": "ろ過・希釈が必要な濁度：2 Pen＝20 NTU超、3 Pen＝80 NTU超",
+      "field": "フィルターは互換性の点で同梱品（500-P1424.88）だけを使う。濁りが残ると散乱光で値が狂う。",
+      "related": ["nephelometric-turbidity", "trasar-pen-measurement-procedure", "trasar-pen-2-vs-3"]
+    },
+    {
+      "id": "trasar-pen-measurement-procedure",
+      "term": "Pen の測定手順",
+      "reading": "ぺんのそくていてじゅん",
+      "en": "Measurement procedure",
+      "aliases": ["測定", "READ"],
+      "definition": "①道具をそろえる、②電源が切れた状態から始める、③画面を上に水平に置き、セル下の穴にゴムプラグを付ける、④シリンジで現場の試料をセルに満たす（必要ならフィルターを付ける）、⑤手でセルを覆う、⑥READ/ENTER を押す、⑦電池残量・製品濃度・試料温度が表示される。",
+      "field": "表示は30秒で消える。値を記録してから、使用後はセルを純水ですすいで汚れの蓄積を防ぐ。",
+      "related": ["trasar-pen-sample-cell", "trasar-pen-turbidity-filtration", "trasar-pen-light-shielding", "trasar-pen-auto-power-off"]
+    },
+    {
+      "id": "trasar-pen-auto-power-off",
+      "term": "自動電源オフ（Pen）",
+      "reading": "じどうでんげんおふ",
+      "en": "Automatic power-off",
+      "aliases": ["30秒表示", "90秒で電源オフ"],
+      "definition": "測定結果は30秒間表示された後、電源が切れて表示が消える。校正中に READ/ENTER を押さずに90秒たつと電源が切れ、元の校正定数が維持される。",
+      "field": "校正の途中で電源が切れたら、校正はされていない（前の定数のまま）。最初からやり直す。",
+      "related": ["trasar-pen-two-point-calibration", "trasar-pen-measurement-procedure"]
+    },
+    {
+      "id": "trasar-pen-atc",
+      "term": "自動温度補償（Pen）",
+      "reading": "じどうおんどほしょう",
+      "en": "Automatic temperature compensation (ATC)",
+      "aliases": ["ATC"],
+      "definition": "蛍光の強さは温度で変わるため、Pen は試料温度を測って濃度を自動補償する。温度測定範囲は 5〜50 ℃、分解能 0.1 ℃。",
+      "formula": "使用温度・測定温度 5〜50 ℃（範囲外では表示が誤る・不安定になることがある）",
+      "field": "ボイラブローなど高温の試料は冷ましてから測る。50 ℃を超えると“too hot”になる。",
+      "related": ["trasar-pen-error-too-hot", "trasar-pen-specifications"]
+    },
+    {
+      "id": "trasar-pen-reactivation",
+      "term": "Pen の再活性化（18か月ごと）",
+      "reading": "ぺんのさいかっせいか",
+      "en": "Reactivation procedure",
+      "aliases": ["Reactivation", "CodE PASS", "CodE FAIL", "再活性化番号", "30 days"],
+      "definition": "他社が Pen を使うのを防ぐため、18か月正常に動いた後は活性化コード（パスワード）を入れないと測定できなくなる。17か月を過ぎると READ/ENTER で残り日数（30 days→0 days）が表示される。手順は、READ/ENTER→5秒以内に SELECT でシリアル番号（30秒表示）を記録→30秒以内に SELECT で再活性化番号を記録→番号とシリアルを伝えてパスワード（0〜9と a〜f の英数字）を入手→再度表示させてパスワードを入力。",
+      "formula": "正しい→“CodE PASS”（次の18か月使用可）／誤り→“CodE FAIL”（5秒待って再入力）",
+      "field": "日本では営業担当またはサポート窓口に連絡してパスワードを入手する。残り日数表示が出始めたら早めに手配しておくと、期限切れで測れない事態を防げる。",
+      "related": ["trasar-pen-fluorometer"]
+    },
+    {
+      "id": "trasar-pen-battery",
+      "term": "Pen の電池と残量表示",
+      "reading": "ぺんのでんちとざんりょうひょうじ",
+      "en": "Battery and battery indicator",
+      "aliases": ["酸化銀電池", "357/303", "bAd bAtt", "601788"],
+      "definition": "電源は 1.55 V 酸化銀ボタン電池4個（Duracell 357/303 や Energizer 357/303 など）で、電池寿命は約1000回の測定。残量表示は3本＝満充電、2本＝約半分、1本点滅＝すぐ交換。“bAd bAtt”は測定前に交換が必要。",
+      "field": "アルカリ電池や空気亜鉛電池ではなく酸化銀電池を使う。キャップを回して電池室を開け、極性に注意して入れ替え、しっかり閉める（防水のため）。電池交換しても校正値・設定は保持される。",
+      "related": ["trasar-pen-specifications", "trasar-pen-error-codes"]
+    },
+    {
+      "id": "trasar-pen-error-codes",
+      "term": "Pen の自己診断メッセージ",
+      "reading": "ぺんのじこしんだんめっせーじ",
+      "en": "Self-diagnostic messages",
+      "aliases": ["エラー表示", "HI conc", "dEt1 FAIL", "dEt2 FAIL", "LEd1 FAIL", "Unit FAIL"],
+      "definition": "Pen が表示するエラーの一覧。bAd bAtt＝電池交換、HI conc＝蛍光が強すぎる／計算濃度が9999 ppm超、too hot＝試料が50 ℃超、HI LitE＝周囲が明るすぎる、dEt1 FAIL＝メイン検出器の信号が低い、dEt2 FAIL＝Ref検出器の信号が低い、LEd1 FAIL＝LED1の不具合、CAL FAIL＝校正エラー、Unit FAIL＝経過時間カウンタの故障。",
+      "field": "dEt1・LEd1 はまず測定部を清掃して再測定、dEt2・Unit FAIL は測定を数回繰り返す。それでも続く検出器・LED・カウンタ系のエラーは本体交換（ユーザー修理不可）。HI conc は純水で希釈して測り直し、希釈倍率を掛けて求めるとよい（一般的な対処）。",
+      "related": ["trasar-pen-error-hi-lite", "trasar-pen-error-too-hot", "trasar-pen-error-cal-fail", "trasar-pen-battery", "trasar-pen-lens-cleaning"]
+    },
+    {
+      "id": "trasar-pen-error-hi-lite",
+      "term": "HI LitE（明るすぎ）",
+      "reading": "はいらいと",
+      "en": "HI LitE error",
+      "aliases": ["HI LitE"],
+      "definition": "測定場所が明るすぎ、測定に適した暗さのしきい値を超えているときの表示。ペン先（セル）を覆い、光が入らないようにして測り直す。",
+      "field": "セルを覆う手がすき間だらけ、または屋外の強い日差しが原因のことが多い。",
+      "related": ["trasar-pen-light-shielding", "trasar-pen-error-codes"]
+    },
+    {
+      "id": "trasar-pen-error-too-hot",
+      "term": "too hot（試料高温）",
+      "reading": "とぅーほっと",
+      "en": "too hot error",
+      "aliases": ["too hot"],
+      "definition": "試料温度が50 ℃を超えているときの表示。試料を冷やしてから測る。",
+      "field": "ボイラ水やブロー水を測るとき（3 Pen）に出やすい。冷却コイルを通した試料や、採水後に冷ました試料を使う。",
+      "related": ["trasar-pen-atc", "trasar-pen-error-codes"]
+    },
+    {
+      "id": "trasar-pen-error-cal-fail",
+      "term": "CAL FAIL（校正エラー）",
+      "reading": "きゃるふぇいる",
+      "en": "CAL FAIL error",
+      "aliases": ["CAL FAIL"],
+      "definition": "校正に失敗したときの表示。使った校正液が正しいかを確認し、必ず最初に純水（ゼロ標準液）、次に TRASAR 標準液の順で校正し直す。",
+      "field": "2 Pen に S0980、3 Pen に S0920 を使う取り違えや、共洗い不足による薄まり、遮光不足も疑う。",
+      "related": ["trasar-pen-two-point-calibration", "trasar-pen-calibration-solution", "trasar-pen-error-codes"]
+    },
+    {
+      "id": "trasar-pen-lens-cleaning",
+      "term": "Pen のセル・レンズ清掃",
+      "reading": "ぺんのせるれんずせいそう",
+      "en": "Cleaning the sample cell and lens",
+      "aliases": ["1:1 HCl", "クリーニング", "460-S0726.74"],
+      "definition": "使用後は純水で Pen をすすぎ、セルの汚れを減らす。高濃度の鉄で汚れた場合は、1:1 塩酸（HCl）を浸した綿棒でレンズを洗浄する。外装はチリ・汚れを湿らせた糸くずの出ない布で拭き、必要なら中性の家庭用洗剤を使う。",
+      "field": "dEt1 FAIL・LEd1 FAIL など信号低下系のエラーは、まず清掃で回復するかを確認。洗浄液として 1:1 HCl（460-S0726.74）や 10% 硫酸（460-S0800.74）、セル用ブラシ（111-P01047.74）が用意されている。酸を使った後は純水で十分すすぐ。",
+      "related": ["trasar-pen-error-codes", "trasar-pen-sample-cell"]
+    },
+    {
+      "id": "trasar-pen-specifications",
+      "term": "TRASAR Pen II の仕様",
+      "reading": "とれーさーぺんつーのしよう",
+      "en": "Technical specifications",
+      "aliases": ["IP67", "仕様"],
+      "definition": "測定範囲（表示範囲）0〜9999 ppm、分解能 0.1 ppm（製品）、相対精度 読み値の±5%、2点校正、温度 5〜50 ℃（分解能0.1 ℃、自動温度補償）、防水 IP67、本体 長さ18 cm×直径4 cm・149 g（箱込み170 g）、電源 1.55 V 酸化銀電池×4、電池寿命 約1000回、LCD 上下2段×各4桁。",
+      "formula": "使用環境：周囲温度 5〜50 ℃、標高 2000 m 以下、屋内・屋外可、相対湿度 95%（結露なし）。EMC：EN 61326。認証：CE、RoHS、WEEE",
+      "field": "極端な温度・高湿度・砂塵・衝撃を避ける。保証は購入から12か月（消耗品を除く）。",
+      "related": ["trasar-pen-fluorometer", "trasar-pen-battery", "trasar-pen-atc"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "qeq1-01",
+      "type": "choice",
+      "q": "TRASAR 3 Pen II の主な用途として挙げられているものはどれか。",
+      "choices": ["ボイラとプロセス", "冷却塔と逆浸透", "排水と冷却塔", "飲料水と排水"],
+      "answer": 0,
+      "explanation": "3 Pen は TRASAR 3 製品専用で、用途はボイラとプロセス。2 Pen が冷却塔・RO・プロセス・排水向け。"
+    },
+    {
+      "id": "qeq1-02",
+      "type": "tf",
+      "q": "TRASAR 2 Pen II で TRASAR 3 製品の濃度も測定できる。",
+      "answer": false,
+      "explanation": "2 Pen は TRASAR 2 製品の濃度測定だけ、3 Pen は TRASAR 3 製品だけに使える。"
+    },
+    {
+      "id": "qeq1-03",
+      "type": "choice",
+      "q": "プロダクトファクター（PF）の初期値の組合せとして正しいものは。",
+      "choices": ["2 Pen＝100、3 Pen＝40", "2 Pen＝40、3 Pen＝100", "どちらも100", "どちらも0"],
+      "answer": 0,
+      "explanation": "PF の初期値は 2 Pen が100、3 Pen が40。使用製品の PF に合わせて 0〜999 の範囲で入力し直す。"
+    },
+    {
+      "id": "qeq1-04",
+      "type": "choice",
+      "q": "バックグラウンド蛍光値（trA）について正しい説明は。",
+      "choices": ["入力範囲は0〜100で、一般に10未満だが干渉で高くなることがある", "常に0に固定される", "入力範囲は0〜999で、通常は100前後", "校正液の濃度を入力する項目である"],
+      "answer": 0,
+      "explanation": "trA は試料水自体の蛍光。入力範囲 0〜100（小数1桁）で、一般に10未満だが干渉物質があると高くなる。"
+    },
+    {
+      "id": "qeq1-05",
+      "type": "choice",
+      "q": "TRASAR 2 Pen II で校正が成功したときに表示される校正液の濃度範囲は。",
+      "choices": ["95〜105 ppm", "38〜42 ppm", "0〜10 ppm", "180〜220 ppm"],
+      "answer": 0,
+      "explanation": "2 Pen（校正液 S0920）は 95〜105 ppm、3 Pen（S0980）は 38〜42 ppm が合格範囲。範囲外なら再校正する。"
+    },
+    {
+      "id": "qeq1-06",
+      "type": "tf",
+      "q": "Pen の2点校正は、最初に TRASAR 校正液、次に純水の順で行う。",
+      "answer": false,
+      "explanation": "最初に純水（ゼロ標準：Add H2O）、次に TRASAR 校正液（Add Std）の順。順番を誤ると CAL FAIL の原因になる。"
+    },
+    {
+      "id": "qeq1-07",
+      "type": "choice",
+      "q": "校正・測定のとき、READ/ENTER を押す前に必ず行うことは。",
+      "choices": ["サンプルセルを手で覆って外光を遮る", "本体を強く振る", "電池を外す", "セルの下側の穴を開けたままにする"],
+      "answer": 0,
+      "explanation": "外光が入るとエラー（HI LitE など）や誤差の原因になるため、手でセルを覆ってから測る。セル下の穴はゴムプラグでふさぐ。"
+    },
+    {
+      "id": "qeq1-08",
+      "type": "choice",
+      "q": "TRASAR 2 Pen II で、試料をろ過または希釈すべき濁度の目安は。",
+      "choices": ["20 NTU超", "80 NTU超", "200 NTU超", "濁度に関係なくろ過は不要"],
+      "answer": 0,
+      "explanation": "2 Pen は20 NTU超、3 Pen は80 NTU超で希釈またはろ過する。Pen は濁度をチェックしないので、不明なときもろ過が望ましい。"
+    },
+    {
+      "id": "qeq1-09",
+      "type": "tf",
+      "q": "試料のろ過には、互換性のため Pen に同梱されたフィルター（0.45 µm）を使うことが重要である。",
+      "answer": true,
+      "explanation": "シリンジに同梱のフィルター（25 mm、0.45 µm）を付けてからセルに満たす。互換性のため同梱品だけを使う。"
+    },
+    {
+      "id": "qeq1-10",
+      "type": "choice",
+      "q": "Pen の再活性化について正しいものは。",
+      "choices": ["18か月ごとに必要で、17か月を過ぎると残り日数が表示される", "12か月ごとに電池交換で自動的に再活性化される", "再活性化は不要", "校正すれば再活性化される"],
+      "answer": 0,
+      "explanation": "不正使用防止のため18か月ごとにパスワード入力が必要。17か月後から READ/ENTER で30 days→0 days のカウントダウンが表示される。"
+    },
+    {
+      "id": "qeq1-11",
+      "type": "choice",
+      "q": "“too hot”の表示が出たときの対処は。",
+      "choices": ["試料を冷やす（50 ℃超が原因）", "電池を交換する", "PF を下げる", "セルを手で覆う"],
+      "answer": 0,
+      "explanation": "too hot は試料温度が50 ℃を超えている表示。Pen の測定温度範囲は 5〜50 ℃。"
+    },
+    {
+      "id": "qeq1-12",
+      "type": "choice",
+      "q": "“HI conc”が意味するものは。",
+      "choices": ["蛍光が強すぎる、または計算濃度が9999 ppmを超えている", "周囲が明るすぎる", "電池残量が少ない", "校正液が違う"],
+      "answer": 0,
+      "explanation": "HI conc は濃度（蛍光）が高すぎる表示。表示範囲は 0〜9999 ppm。周囲が明るすぎる場合は HI LitE。"
+    },
+    {
+      "id": "qeq1-13",
+      "type": "tf",
+      "q": "dEt1 FAIL（メイン検出器の信号低下）が出たら、まず測定部を清掃して再測定し、エラーが続く場合は Pen を交換する。",
+      "answer": true,
+      "explanation": "Pen にはユーザーが修理できる部品がない。清掃・再測定で直らなければ本体交換になる。"
+    },
+    {
+      "id": "qeq1-14",
+      "type": "choice",
+      "q": "高濃度の鉄でレンズが汚れたときの清掃方法は。",
+      "choices": ["1:1 塩酸を浸した綿棒で洗う", "研磨剤でこする", "有機溶剤に一晩浸す", "プローブ先端を交換する"],
+      "answer": 0,
+      "explanation": "鉄汚れには 1:1 HCl を浸した綿棒でレンズを洗浄する。通常は使用後に純水ですすぐだけでよい。先端は交換できない。"
+    },
+    {
+      "id": "qeq1-15",
+      "type": "choice",
+      "q": "Pen に使う電池として指定されているものは。",
+      "choices": ["1.55 V 酸化銀電池×4個", "単3アルカリ電池×2本", "空気亜鉛電池×4個", "9 V 角形電池×1個"],
+      "answer": 0,
+      "explanation": "1.55 V 酸化銀ボタン電池（357/303 など）を4個使う。電池寿命は約1000回の測定。アルカリや空気亜鉛は使わない。"
+    },
+    {
+      "id": "qeq1-16",
+      "type": "tf",
+      "q": "電池を交換すると、Pen の校正値と PF などの設定はすべて初期値に戻る。",
+      "answer": false,
+      "explanation": "電池を交換しても、校正とセットアップのパラメーターはすべて保持される。"
+    },
+    {
+      "id": "qeq1-17",
+      "type": "choice",
+      "q": "TRASAR Pen II の相対精度として示されている値は。",
+      "choices": ["読み値の±5%", "読み値の±0.5%", "フルスケールの±10%", "±0.1 ppm"],
+      "answer": 0,
+      "explanation": "相対精度は読み値の±5%。分解能は0.1 ppm、表示範囲は 0〜9999 ppm。"
+    },
+    {
+      "id": "qeq1-18",
+      "type": "tf",
+      "q": "校正中に CAL ボタンを押して中止すると、元の校正定数が維持される。",
+      "answer": true,
+      "explanation": "CAL で中止した場合や、90秒操作せず電源が切れた場合も、元の校正定数がそのまま残る。"
+    }
+  ]
+}

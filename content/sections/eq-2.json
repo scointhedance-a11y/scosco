@@ -1,0 +1,494 @@
+{
+  "id": "eq-2",
+  "book": "製品・装置資料（薬品・機器）",
+  "section": "2",
+  "title": "3D TRASAR 冷却水用 Premium C200-C300",
+  "titleEn": "3D TRASAR Technology for Cooling Water, Premium C200-C300 Series (OM0328)",
+  "summary": [
+    "中〜大型冷却塔・蒸発凝縮器向けのオールインワン型監視・制御装置。サンプル水の水質と薬剤濃度（TRASAR）を測り、外部の薬注ポンプとブローダウン弁を制御し、データとアラームをECOLAB3D・Ecolab Global Intelligence Center（EGIC）へ送って24時間監視する。",
+    "標準構成はフルオロメーター（TRASAR #2・濁度・セルファウリング）、トロイダル電気伝導率センサー、pH・ORPセンサー、腐食センサー（NCM：軟鋼・銅）とフロースイッチ。型式CW8200（パネルのみ）／8300系（フロア架台付き）／8500系（エンクロージャ付き）に、エアパージ・温水戻りORP・流量計・化学洗浄・加圧エア洗浄のオプションが付く。",
+    "制御の基本：電気伝導率でブロー弁（正動作）、TRASAR濃度で抑制剤ポンプ（逆動作）、ORPまたはタイマーで殺菌剤を制御。補給水量（流量計）やブロー時間に比例した注入もできる。フロースイッチが流れを検出しないと薬注もブローも止まる。",
+    "サンプル水条件：圧力0.1〜0.69 MPa、温度4〜60℃。腐食測定のため流速は系の平均または最も腐食が心配な部位の流速に合わせ、不明なら1 m/s（約1.1 m³/h）にする。接続前にサンプルラインを20分間フラッシュする。",
+    "予防保全：ストレーナ清掃・フルオロメーター／電気伝導率／ORP／pHの校正は毎月、腐食センサーは6か月ごとに交換。ORP・pHセンサーの交換とフロースイッチの機能確認は6〜12か月ごと（いずれも最低限の目安）。",
+    "フルオロメーターは純水（RO透過水は不可）とTRASAR校正液S0940で2点校正。各液60 mLシリンジで3回、計180 mLを気泡なしで注入する。電気伝導率は600＋3000 µS/cm、pHはpH4＋7またはpH7＋10の2点校正、定期的にはポータブル計との比較による1点校正。ORPは復帰が遅いため1点校正のみ。",
+    "アラームは自動クリア型（測定値の上下限・流量なし・センサー／通信エラー等）と、ユーザーがクリアしないと制御が再開しないタイムアウト型がある。インターロックとNo Flowは他のアラームより優先し、インターロックがNo Flowより上位。",
+    "フェールセーフ（測定値が設定限界・時間を超えたとき）とタイムアウト（設定値に届かないまま出力が長時間動き続けたとき）の後の応答は、Historical（過去7日平均）・強制オン／オフ・固定％・応答なしから選ぶ。",
+    "通信：携帯回線（モデム）でクラウドへ。DCSとはModbus（TCP、ポート502/1502、ノード1〜247）でつなぐ。整数スケーリングはできるが浮動小数への変換はできないので、pHを100倍して整数で渡すなどの工夫が要る。",
+    "取扱説明書の9章（エキスパートセクション）は社内向け情報で、客先に提出する場合は外して渡す。"
+  ],
+  "terms": [
+    {
+      "id": "3dt-cw-premium-c200-c300",
+      "term": "3D TRASAR 冷却水用 Premium C200-C300シリーズ",
+      "reading": "すりーでぃーとれーさーれいきゃくすいようぷれみあむしりーず",
+      "en": "3D TRASAR Technology for Cooling Water Premium C200-C300 series",
+      "aliases": ["3DT-CW", "3D TRASAR AIO 冷却水", "CW8200", "冷却水用オールインワン"],
+      "definition": "中〜大型の冷却塔・蒸発凝縮器向けの冷却水処理装置。1台のコントローラ（AIO）で、サンプル水の水質と薬剤濃度の監視、外部薬注ポンプとブロー弁の制御、監視データのクラウド送信を行う。腐食・スケール・微生物の抑制が目的。",
+      "field": "Nalco製薬剤（TRASAR入り）を使う前提のトレーサー技術ライセンス付き装置。他社薬剤では蛍光制御が成り立たない。適用は冷却水系と蒸発凝縮器。",
+      "related": ["3d-trasar", "trasar", "evaporative-condenser", "3dt-cw-model-lineup"]
+    },
+    {
+      "id": "3dt-cw-model-lineup",
+      "term": "冷却水用3D TRASARの型式構成",
+      "reading": "れいきゃくすいようすりーでぃーとれーさーのかたしきこうせい",
+      "en": "Model lineup (CW8200–CW8592)",
+      "aliases": ["CW8300", "CW8312", "CW8322", "CW8500", "CW8522", "CW8542", "CW8592", "部品番号の構成"],
+      "definition": "全型式に電気伝導率・pH・ORP・フルオロメーター・NCM（腐食センサー）が付く。CW8200はパネルのみ、CW8300系はフロア架台付き、CW8500系はフロア架台＋エンクロージャ付き。末尾2桁でオプションが変わり、8312は加圧エア洗浄、8322は化学洗浄＋加圧エア洗浄、8500/8522/8542/8592はデジタル流量計付き、8542と8592は温水戻りORP付き、8592はエアパージも付く。",
+      "formula": "部品番号例：3DT-CW8205A3.88（CW8205＝型式、A3＝モデム L4G1：日本を含む欧米以外の地域）",
+      "field": "重量はCW8200で43 kg、CW8592で117 kg。一人で持つのは20 kgまでなので、開梱・据付は複数人か機材で。",
+      "related": ["3dt-cw-premium-c200-c300", "3dt-cw-hot-return-orp", "3dt-cw-ncm-corrosion-sensor"]
+    },
+    {
+      "id": "3dt-cw-fluorometer",
+      "term": "フルオロメーター（冷却水用・緑）",
+      "reading": "ふるおろめーたー",
+      "en": "Fluorometer (TRASAR #2)",
+      "aliases": ["蛍光光度計", "3DT-CWS520", "T2", "TRASAR #2"],
+      "definition": "スケール抑制剤に入ったTRASAR #2成分の蛍光を測り、コントローラが製品濃度（ppm）を計算する検出器。同じセルで濁度（Nalco濁度単位）とセルファウリング（%）も測る。精度は読み値の±5%、測定範囲はTRASAR #2として製品ファクターの4倍まで。",
+      "formula": "濁度は40 NTUまで比濁法（標準NTU）と一致し、それを超えると外れる。サンプル温度4〜50℃（0.15 MPa時）、保護等級NEMA 4X/IP65",
+      "field": "内部の結露は誤指示の原因。乾燥剤（交換用は乾燥剤セット）と湿度インジケータで管理する。濁度高アラームはサンプルの汚れや気泡が原因で、フィルター追加で対処する。",
+      "related": ["trasar", "3dt-cw-cell-fouling", "3dt-cw-trasar-calibration", "3dt-cw-background-fluorescence", "nephelometric-turbidity"]
+    },
+    {
+      "id": "3dt-cw-background-fluorescence",
+      "term": "バックグラウンド蛍光",
+      "reading": "ばっくぐらうんどけいこう",
+      "en": "Background fluorescence",
+      "aliases": ["外部蛍光", "蛍光バックグラウンド補正"],
+      "definition": "TRASAR以外の物質が出す蛍光。測定値に上乗せされて薬剤濃度を高めに見せるため、コントローラにバックグラウンド値を入力して補正する。",
+      "field": "値はNalco Waterの分析ラボでしか決められない。現地調査の段階でサンプルをラボに送っておく。",
+      "related": ["3dt-cw-fluorometer", "trasar"]
+    },
+    {
+      "id": "3dt-cw-cell-fouling",
+      "term": "セルファウリング（フルオロメーターのセル汚れ）",
+      "reading": "せるふぁうりんぐ",
+      "en": "Cell fouling",
+      "aliases": ["T2 セルファウリング高", "セル汚れ"],
+      "definition": "フルオロメーターの測定セルの汚れ度合い（0〜100%）。値が高いと蛍光が正しく測れないため、アラームが出たら校正前にセルを清掃する。",
+      "formula": "清掃：入口→出口の順にバルブを閉め、フロースイッチを外して付属ブラシで洗う。落ちなければ希塩酸または希硫酸60 mLを注入して2分置き、フラッシュする",
+      "field": "頻発するならサンプルにフィルターを付ける。酸洗浄液・純水・校正液はそれぞれ別の清潔なシリンジとビーカーを使う。",
+      "related": ["3dt-cw-fluorometer", "3dt-cw-trasar-calibration", "fouling"]
+    },
+    {
+      "id": "3dt-cw-trasar-calibration",
+      "term": "フルオロメーターの2点校正（冷却水用）",
+      "reading": "ふるおろめーたーのにてんこうせい",
+      "en": "Fluorometer two-point calibration",
+      "aliases": ["TRASAR校正", "S0940", "ブランク校正"],
+      "definition": "ブランク（純水）とTRASAR校正液S0940の2点でフルオロメーターを校正する作業。サービス→校正→TRASARを選び、初回やセンサー交換時は「Yes」、2回目以降は「No」を選んで「2点」で行う。",
+      "formula": "各液とも60 mLシリンジで3回注入（計180 mL）。3回目は気泡混入を防ぐため約5 mLを残してシリンジを外す",
+      "field": "ブランクにRO透過水は使わない（シール漏れで蛍光を持つことがある）。シリンジの気泡は注入前に抜く。注入中にシリンジが勝手に動くならどこかのバルブが閉まり切っていない。校正済みのポータブル計と一致していれば「読み取り値の確認」で済ませてもよい。",
+      "related": ["3dt-cw-fluorometer", "3dt-cw-cell-fouling", "3dt-cw-calibration-override"]
+    },
+    {
+      "id": "3dt-cw-toroidal-conductivity",
+      "term": "トロイダル電気伝導率センサー（冷却水用）",
+      "reading": "とろいだるでんきでんどうりつせんさー",
+      "en": "Toroidal conductivity sensor",
+      "aliases": ["TCOND", "3DT-COND1", "3DT-CONDT1", "電磁誘導式導電率計"],
+      "definition": "冷却水の電気伝導率を測り、ブロー弁の制御に使うセンサー。内部温度センサー（PT1000）で温度補正する。測定範囲500〜2,000,000 µS/cm（0〜100℃）、精度は読み値の±5%。",
+      "formula": "耐圧：最大1.03 MPa（23℃連続）、0.69 MPa（100℃・2時間未満）。水温0〜105℃（継手は0〜80℃）。2インチスリップ継手、最大配線長10 m、IP66",
+      "field": "補給水用は別型式のコンタクト式（3DT-CONDC1）。TCOND高/低アラームは設定値の見直し・校正・ブロー弁とヒューズの点検で切り分ける。",
+      "related": ["conductivity", "blowdown", "cycles-of-concentration", "3dt-cw-sensor-calibration", "3dt-cw-control-direction"]
+    },
+    {
+      "id": "3dt-cw-ph-orp-sensor",
+      "term": "pH・ORPセンサー（冷却水用）",
+      "reading": "ぴーえいち・おーあーるぴーせんさー",
+      "en": "pH and ORP sensors",
+      "aliases": ["3DT-PHPRB1", "3DT-ORPPRB1", "HIZ1", "HIZ2"],
+      "definition": "pHは水素イオン感応電極と参照電極の電位差を測り、内蔵PT1000で温度補正する。ORPは貴金属電極と参照電極の電位差（mV）で、遊離塩素などの酸化剤濃度を間接的に示す。",
+      "formula": "測定範囲 pH 0〜14／ORP 0〜1000 mV、精度 pH±0.05／ORP 読み値の±5%。pHの使用条件は100〜100,000 µS/cm。耐圧0〜1.03 MPa（80℃）、水温5〜100℃（0.34 MPa）、3/4インチmNPT、配線長最大1.8 m、IP68",
+      "field": "長期停止時は外してKCl溶液（なければ水）に浸けて保管し、乾かさない。ストレーナ清掃が1時間を超えるときもビーカーの水に浸けておく。交換時は新しいセンサーにPTFEテープを巻き直し、校正してから取り付ける。",
+      "related": ["ph", "redox-potential", "3dt-cw-orp-biocide-control", "3dt-cw-sensor-calibration"]
+    },
+    {
+      "id": "3dt-cw-orp-biocide-control",
+      "term": "ORPによる酸化性殺菌剤の制御",
+      "reading": "おーあーるぴーによるさんかせいさっきんざいのせいぎょ",
+      "en": "ORP-based oxidizing biocide control",
+      "aliases": ["ORP制御", "酸化系殺菌剤制御"],
+      "definition": "ORPセンサーの値で酸化性殺菌剤（塩素系など）の注入を制御すること。殺菌剤タイマーの注入時間をORPの到達値や上昇幅で決めることもできる。",
+      "field": "ORPは校正液に浸けた後の復帰が遅いため、2点校正は推奨されず、運転状態でのポータブル計との比較による1点校正を行う。",
+      "related": ["oxidizing-biocide", "oxidant-monitoring", "3dt-cw-ph-orp-sensor", "3dt-cw-biocide-timer"]
+    },
+    {
+      "id": "3dt-cw-hot-return-orp",
+      "term": "温水戻りORP（Hot Return ORP）",
+      "reading": "おんすいもどりおーあーるぴー",
+      "en": "Hot Return ORP",
+      "aliases": ["HRORP", "温水戻りORPモジュール"],
+      "definition": "熱交換器出口などの温かい戻り水を別系統で採水し、ORPを測るオプションモジュール。CW8542・CW8592に付く。",
+      "formula": "温水サンプル流量 4.2〜7.5 L/min（250〜450 L/h）",
+      "field": "このモジュールを使う場合、消耗品キットとは別にORPセンサー（3DT-ORPPRB1）を追加手配する。",
+      "related": ["3dt-cw-ph-orp-sensor", "3dt-cw-model-lineup"]
+    },
+    {
+      "id": "3dt-cw-ncm-corrosion-sensor",
+      "term": "腐食センサー（NCMプローブ）",
+      "reading": "ふしょくせんさー",
+      "en": "Nalco Corrosion Monitor (NCM) probe, LPR",
+      "aliases": ["NCM", "LPR腐食センサー", "3DT-NCMMS1", "3DT-NCMCU1", "NCM1", "NCM2"],
+      "definition": "2つの電極間に電圧をかけて電流を測り、分極抵抗から腐食速度（mpy）を求めるセンサー。抵抗が大きいほど腐食速度は小さい。軟鋼用と銅用があり、腐食の傾向監視に使う（正確な腐食量はクーポンで求める）。",
+      "formula": "範囲：軟鋼（MS1010）0.1〜99.9 mpy、銅 0.01〜9.99 mpy。精度：軟鋼 ±10%（<10 mpy）・±50%（>10 mpy）、銅 ±10%（<1 mpy）・±50%（>1 mpy）。必要導電率 ≥10 µS/cm、0.69 MPa（25℃）、0〜70℃（0.28 MPa）、配線長最大4.5 m",
+      "field": "6か月ごとに交換する消耗品。腐食センサーのアラーム（腐食電位が高い・プローブ腐食・故障）は、系統と配線を確かめたうえでプローブ交換。",
+      "related": ["polarization", "mpy", "3dt-cw-corrosion-coupon", "3dt-cw-sample-conditions", "copper-corrosion"]
+    },
+    {
+      "id": "3dt-cw-corrosion-coupon",
+      "term": "腐食クーポン（3D TRASAR架台）",
+      "reading": "ふしょくくーぽん",
+      "en": "Corrosion coupons on the 3D TRASAR rack",
+      "aliases": ["軟鋼クーポン", "銅クーポン", "500-P5035A", "500-P5038A"],
+      "definition": "サンプル配管に差し込む金属片で、取り出して正確な腐食速度を求める。材質は軟鋼（MS1010）と銅、寸法76×13×2 mm。試験室で事前確認されたクーポンを用いる。",
+      "field": "NCMの値はあくまで傾向。腐食量の判断はクーポンの結果と突き合わせる。流速条件を実機に合わせないと評価がずれる。",
+      "related": ["corrosion-coupon", "3dt-cw-ncm-corrosion-sensor", "3dt-cw-sample-conditions", "mpy"]
+    },
+    {
+      "id": "3dt-cw-sample-conditions",
+      "term": "サンプル水の条件と流速設定（冷却水用）",
+      "reading": "さんぷるすいのじょうけんとりゅうそくせってい",
+      "en": "Sample water requirements and velocity",
+      "aliases": ["サンプル流量", "1 m/s", "サンプル圧力"],
+      "definition": "装置に引き込む冷却水の条件。圧力0.1〜0.69 MPa、温度4〜60℃、サンプル流量20 L/min。流量は腐食測定に必要な流速で決め、系の平均または限界の流速（最も腐食が心配な部位など）に合わせる。",
+      "formula": "実際の流速が不明なら 1 m/s（約1.1 m³/h）に調整",
+      "field": "接液材はuPVC・FKM・EPDM・真鍮・SS・PVDF。サンプル取出しは水平管なら管の中心から（汚れ・空気の混入防止）、垂直管では下向き流れから取らない（気泡防止）。",
+      "related": ["3dt-cw-ncm-corrosion-sensor", "3dt-cw-corrosion-coupon", "3dt-cw-site-survey"]
+    },
+    {
+      "id": "3dt-cw-flow-switch",
+      "term": "フロースイッチとNo Flow",
+      "reading": "ふろーすいっち",
+      "en": "Flow switch / No Flow alarm",
+      "aliases": ["低サンプル流量", "No Flow アラーム", "DIN1"],
+      "definition": "サンプル流れの有無を検出するスイッチ。流れがないと薬注とブローダウンは動かず、No Flowアラームが出る。遅延時間を過ぎるまではアラームにならない。",
+      "field": "アラーム時は客先系統の運転、サンプル流量、バルブ、フロースイッチ、ストレーナ、配線を順に確認。6〜12か月ごとに入口バルブの開閉で流れを止め・流し、デジタル入力が追従するか機能確認する。",
+      "related": ["3dt-cw-alarm-priority", "3dt-cw-strainer-cleaning"]
+    },
+    {
+      "id": "3dt-cw-operating-modes",
+      "term": "運転モード（通常・手動・メンテナンス）",
+      "reading": "うんてんもーど",
+      "en": "Operating modes",
+      "aliases": ["手動オン/オフ/自動", "メンテナンスモード", "Manual control"],
+      "definition": "通常モードは監視と自動制御、手動モードは監視しつつ外部ポンプ・ブロー弁を強制オンまたはオフ、メンテナンスモードは監視を止め出力もオフ。手動設定はサービス→手動コントロールでリレーごとに切り替える。",
+      "field": "メンテナンス後にモードを解除しないと出力が止まったまま（メンテナンスモードアラーム）。「注入ポンプが動かない」ときはリレーが手動オフのままでないかも確認する。",
+      "related": ["3dt-cw-alarm-handling", "3dt-cw-calibration-override"]
+    },
+    {
+      "id": "3dt-cw-alarm-handling",
+      "term": "アラームの認知・クリア",
+      "reading": "あらーむのにんち・くりあ",
+      "en": "Alarm acknowledge and clear",
+      "aliases": ["認知承認", "全て認知承認", "アラームクリア"],
+      "definition": "測定値の高低・停止（リモート停止、流量なし）・センサー/コントローラ/通信エラーは、条件が解消すると自動でクリアされる。フェールセーフやオーバーライドはユーザーが解除できるが、条件が続けば再発報する。薬注ポンプ・ブロー弁のタイムアウトは、ユーザーがクリアしないと制御が再開しない。",
+      "formula": "処置なし：一覧表示あり・アラームリレー作動／認知：一覧に残る・リレー停止／全て認知：一覧に残る・制限時間までリレー停止／クリア：一覧から消える",
+      "field": "タイムアウトは原因（ポンプの空気噛み、弁の故障など）を調べてからクリアする。原因を残したままクリアしても再発報する。",
+      "related": ["3dt-cw-timeout-alarm", "3dt-cw-failsafe-alarm", "3dt-cw-alarm-priority"]
+    },
+    {
+      "id": "3dt-cw-alarm-priority",
+      "term": "インターロックとNo Flowの優先",
+      "reading": "いんたーろっくとのーふろーのゆうせん",
+      "en": "Interlock / No Flow alarm priority",
+      "aliases": ["インターロックアラーム", "リモート停止"],
+      "definition": "インターロック（客先からの停止信号）とNo Flowは他の多くのアラームより優先され、発報中は他のアラームが使えない。インターロックはNo Flowよりさらに上位。",
+      "field": "全出力がオフのときはまずインターロックを疑う。信号ケーブルや、客先信号を使わない場合のブリッジ（ジャンパ）が正しく入っているか確認する。",
+      "related": ["3dt-cw-flow-switch", "3dt-cw-alarm-handling"]
+    },
+    {
+      "id": "3dt-cw-failsafe-alarm",
+      "term": "フェールセーフアラーム",
+      "reading": "ふぇーるせーふあらーむ",
+      "en": "Failsafe alarm",
+      "aliases": ["TCOND フェールセーフ", "フェールセーフ動作"],
+      "definition": "薬注ポンプやブロー弁の制御に使っている測定値が、ユーザー設定の上下限や時間を超えたときに出るアラーム。発報後、出力はあらかじめ設定したフェールセーフ動作に移る。",
+      "field": "「出力がフェールセーフで動いている」ときは有効なアラームを確認し、設定値の妥当性とブロー弁・ヒューズを点検する。",
+      "related": ["3dt-cw-timeout-alarm", "3dt-cw-alarm-handling"]
+    },
+    {
+      "id": "3dt-cw-timeout-alarm",
+      "term": "タイムアウトアラームと応答設定",
+      "reading": "たいむあうとあらーむとおうとうせってい",
+      "en": "Control timeout alarm and response",
+      "aliases": ["コントロールタイムアウト", "Bleed and Feed タイムアウト", "Historical"],
+      "definition": "ポンプや弁が、関連する測定値を設定値に届かせないまま、設定時間より長く動き続けたときのアラーム。アラーム後の出力応答は次から選ぶ：Historical（過去7日間の平均作動率で運転）、強制オフ（0%）、強制オン（100%）、固定（一定%）、応答なし（そのまま継続）。",
+      "formula": "Historicalで7日分のデータがない間は、設定した作動率（説明書の例では10%）で運転",
+      "field": "電子メール送信とアラームリレーを使うにはコントロールタイムアウトを有効にする。オン/オフディレイで発報を秒単位で遅らせられる。デッドバンドは通常デフォルトのまま。",
+      "related": ["3dt-cw-failsafe-alarm", "3dt-cw-bleed-and-feed", "3dt-cw-alarm-handling"]
+    },
+    {
+      "id": "3dt-cw-control-direction",
+      "term": "正動作と逆動作（Direct / Reverse acting）",
+      "reading": "せいどうさとぎゃくどうさ",
+      "en": "Direct acting / Reverse acting control",
+      "aliases": ["Reverse ACTING", "Direct ACTING", "PI制御"],
+      "definition": "制御出力の向きの設定。TRASAR制御は測定値が下がると注入を増やすので逆動作（Reverse）。電気伝導率によるブローは測定値が上がると弁を開けるので正動作（Direct）。",
+      "field": "コントロール追加時の「詳細設定」で確認する。向きを間違えると薬剤が切れても注入しない・濃縮が進んでもブローしない、という逆の動きになる。",
+      "related": ["3dt-cw-toroidal-conductivity", "3dt-cw-fluorometer", "blowdown-control"]
+    },
+    {
+      "id": "3dt-cw-bleed-and-feed",
+      "term": "比例注入（ブロー時間比例・流量比例）",
+      "reading": "ひれいちゅうにゅう",
+      "en": "Bleed and Feed (proportional) / flow-proportional feed",
+      "aliases": ["Bleed and Feed", "ブロー連動注入", "水量メーター比例注入"],
+      "definition": "TRASAR以外の薬剤注入方法。ブロー時間比例は、ブロー弁の開時間に対する薬注時間の比を設定して注入する。流量比例は補給水などの流量計（パルス入力）に比例して注入する。",
+      "field": "Bleed and Feedのタイムアウトは「設定時間内に電気伝導率が設定値に届かない」ことを示す。ブロー弁の故障やブロー量不足を疑う。",
+      "related": ["3dt-cw-timeout-alarm", "blowdown", "makeup-water"]
+    },
+    {
+      "id": "3dt-cw-biocide-timer",
+      "term": "殺菌剤タイマー",
+      "reading": "さっきんざいたいまー",
+      "en": "Biocide timer",
+      "aliases": ["殺菌剤スケジュール", "プレブリード", "ロックアウト", "殺菌剤タイマーのミスフィード"],
+      "definition": "殺菌剤の注入をスケジュールで行う制御（1日1回〜月1回）。スケジュールは毎日・毎週・2週間毎・第n週など。注入時間は固定時間、ORPが目標値に達してからの時間、ORPが指定幅上がってからの時間から選ぶ。注入前のブロー（プレブリード）と注入後のブロー閉止（ロックアウト）を電気伝導率と時間で設定できる。",
+      "field": "予定時刻にNo Flowだと注入されず「ミスフィード」アラームになる。頻発するなら系の停止時間帯を避けてスケジュールを変える。ロックアウトは殺菌剤がブローですぐ捨てられるのを防ぐ。",
+      "related": ["non-oxidizing-biocide", "oxidizing-biocide", "3dt-cw-orp-biocide-control"]
+    },
+    {
+      "id": "3dt-cw-sensor-calibration",
+      "term": "電気伝導率・pHセンサーの2点校正と1点校正",
+      "reading": "でんきでんどうりつ・ぴーえいちせんさーのこうせい",
+      "en": "Two-point and one-point sensor calibration",
+      "aliases": ["1点校正", "2点校正", "読み取り値の確認"],
+      "definition": "新しいセンサーや大きなずれの修正は、取り外して校正液2種で2点校正し、取り付けて通水後に1点校正する。定期校正はポータブル計で確認し、差が大きければ1点校正する。ORPは1点校正のみ。",
+      "formula": "校正液：電気伝導率 600 µS/cm＋3000 µS/cm、pH 4＋7 または 7＋10。センサーと液の温度差が大きいときは液中に3〜5分置く。1点校正前に20〜30分以上通水して平衡させる",
+      "field": "校正中はセンサーをビーカーに触れさせない。液ごとに別のビーカーを使う。温度は外部計器で測って手入力もできる。",
+      "related": ["3dt-cw-toroidal-conductivity", "3dt-cw-ph-orp-sensor", "3dt-cw-calibration-override"]
+    },
+    {
+      "id": "3dt-cw-calibration-override",
+      "term": "校正オーバーライド",
+      "reading": "こうせいおーばーらいど",
+      "en": "Calibration override",
+      "aliases": ["キャリブレーションオーバーライド"],
+      "definition": "センサー校正中であることを示す状態・アラーム。校正中はポンプなどの出力が止まり、校正が終わると自動で解除される。",
+      "field": "注入ポンプが動かない原因の一つ。校正を途中で放置しない。",
+      "related": ["3dt-cw-sensor-calibration", "3dt-cw-trasar-calibration", "3dt-cw-operating-modes"]
+    },
+    {
+      "id": "3dt-cw-strainer-cleaning",
+      "term": "ストレーナの清掃（冷却水用）",
+      "reading": "すとれーなのせいそう",
+      "en": "Strainer cleaning",
+      "aliases": ["Tストレーナー", "20メッシュ"],
+      "definition": "サンプル入口のTストレーナー（PP、20メッシュ）のスクリーンを清掃する作業。入口バルブ→出口バルブの順に閉めてからボウルを外す。",
+      "formula": "標準は1か月ごと。サンプル水の供給が止まっていた場合は、再起動後1週間は毎日清掃",
+      "field": "作業が1時間を超えそうならpH・ORPセンサーを水を入れたビーカーに浸けて乾燥を防ぐ。詰まりは低流量アラームやセンサーの不安定の原因になる。",
+      "related": ["3dt-cw-flow-switch", "3dt-cw-maintenance-schedule"]
+    },
+    {
+      "id": "3dt-cw-maintenance-schedule",
+      "term": "予防保全スケジュール（冷却水用3D TRASAR）",
+      "reading": "よぼうほぜんすけじゅーる",
+      "en": "Preventive maintenance schedule",
+      "aliases": ["PMスケジュール", "保守間隔"],
+      "definition": "毎月：ストレーナ清掃、フルオロメーター・電気伝導率・ORP・pHの校正。6か月：腐食センサー交換。6〜12か月：ORPセンサー交換、pHセンサー交換・校正、フロースイッチの機能確認。",
+      "field": "間隔は最低限の目安で、使用環境によってはさらに短くする。消耗品キット（3DT-CWMKIT1）にNCM・クーポン・pH/ORPセンサー・乾燥剤・校正液・ブラシ等がまとまっている。",
+      "related": ["3dt-cw-strainer-cleaning", "3dt-cw-ncm-corrosion-sensor", "3dt-cw-sensor-calibration", "3dt-cw-trasar-calibration"]
+    },
+    {
+      "id": "3dt-cw-modbus-scada",
+      "term": "Modbus（SCADA）接続",
+      "reading": "もどばすせつぞく",
+      "en": "Modbus / SCADA communication",
+      "aliases": ["Allow SCADA", "Modbusサーバ", "Modbusクライアント", "DCS連携"],
+      "definition": "コントローラと客先DCSをModbus TCP（イーサネット）でつなぐ機能。サーバモードではDCSがコントローラのレジスタを読み、クライアントモードではコントローラがDCSの値を読み込む（書き込みは未対応）。両モードは同時に使える。",
+      "formula": "ポート502または1502、ノード範囲1〜247。データスワップ：なし／バイト／ワード／両方。整数の乗除によるスケーリングは可、ワード→浮動小数変換は不可（例：pH 7.89を×100で789として渡す）",
+      "field": "イーサネット設定で「Allow SCADA」を有効にし、インタフェースはEth-1を選ぶ。RS485-6やUSB-7は内部通信用なので選ばない。ノードアドレス・データスワップ・ポートは客先と取り決める。設定範囲外のレジスタを読むと「無効なアドレス」が返る。",
+      "related": ["3dt-cw-remote-communication"]
+    },
+    {
+      "id": "3dt-cw-remote-communication",
+      "term": "遠隔通信（ECOLAB3D・EGIC）",
+      "reading": "えんかくつうしん",
+      "en": "Remote communication (ECOLAB3D / EGIC)",
+      "aliases": ["ECOLAB3D", "EGIC", "Ecolab Global Intelligence Center", "モデム", "SIMカード", "外部アンテナ"],
+      "definition": "測定値とアラームを携帯回線（モデム）でECOLAB3Dへ送り、EGICの専門家が24時間監視して定期報告する仕組み。アラームメールは複数の受信者に転送できる。設定はタッチパネル、ノートPC、限定的にモバイルアプリから行え、コンフィグはクラウドやUSBに保存・読込できる。",
+      "field": "設置前に、その場所で携帯電話がかけられるかで電波を確認する。弱ければ設置場所を変えるか外部アンテナ（ケーブル7.6 mまたは30 m）を使う。外部ゲートウェイ（IX20）もある。データが見えない・メールが届かないときは無線設定、Web登録、メールアドレス設定を確認。",
+      "related": ["3dt-cw-modbus-scada", "3d-trasar"]
+    },
+    {
+      "id": "3dt-cw-site-survey",
+      "term": "現地調査と設置（冷却水用3D TRASAR）",
+      "reading": "げんちちょうさとせっち",
+      "en": "Site survey and installation",
+      "aliases": ["システムレイアウト", "サインオフ", "設置場所"],
+      "definition": "設置前に系統図（プロセスフロー）を作り、サンプル取出し・戻り位置、薬注点、電源、通信、制御方式を決めて関係者でサインオフする。設置後もスタートアップ（設定確認・校正・通水）のサインオフを行う。",
+      "formula": "設置条件：屋内（屋外はエンクロージャと加温/冷却が必要）、周囲4〜50℃、相対湿度0〜95%（結露なし）、高度2 km未満、NEMA 4X/IP65",
+      "field": "直射日光・大型発電機の近く・振動する場所は避ける。接続前にサンプルラインを20分フラッシュ。薬注点の材質適合と、サンプル戻りへの注入で析出・閉塞しないかを確認。薬注ポンプは想定されるブロー量の変動（最小〜最大、平均の3倍程度）に対応できる容量を選ぶ。",
+      "related": ["3dt-cw-sample-conditions", "3dt-cw-remote-communication", "3dt-cw-electrical-spec"]
+    },
+    {
+      "id": "3dt-cw-electrical-spec",
+      "term": "電源・入出力仕様とヒューズ（冷却水用）",
+      "reading": "でんげん・にゅうしゅつりょくしようとひゅーず",
+      "en": "Power, I/O and fuses",
+      "aliases": ["リレー出力", "アナログ入力", "F9ヒューズ", "BR2032"],
+      "definition": "電源AC100〜200V・50/60 Hz（外部ブレーカ必要）。電流 ≤15 A（AC100V）・≤7.5 A（AC200V）。アナログ入力8点（4〜20 mA）、デジタル入力8点（≤1 kHz）、リレー出力8点、アナログ出力8点（4〜20 mA、≤600 Ω、PI制御または記録）。",
+      "formula": "電源ヒューズF9：AC100V用3.15 A／AC200V用2 A。リレーヒューズF1〜F8：AC100V用4 A／AC200V用2 A（5×20 mm、スロー）。リレー合計最大 12 A＠AC100V／6 A＠AC200V",
+      "field": "電源が入らないときは電源接続とブレーカ・ヒューズを確認。ポンプが動かずリレーヒューズが切れていたらポンプ電流が大きすぎないか確認。コントローラにはBR2032電池1個があり、電源オフ期間が長いほど消耗する（交換は電源を切ってから）。",
+      "related": ["3dt-cw-site-survey", "3dt-cw-emergency-shutdown"]
+    },
+    {
+      "id": "3dt-cw-emergency-shutdown",
+      "term": "緊急停止・長期停止（冷却水用）",
+      "reading": "きんきゅうていし・ちょうきていし",
+      "en": "Emergency and long-term shutdown",
+      "aliases": ["シャットダウン", "停止手順"],
+      "definition": "電気的故障時はコントローラの電源を切り（プラグを抜くかブレーカで遮断）、入口バルブ→出口バルブの順にサンプル水を止める。長期停止ではさらにストレーナを空にし、pH・ORPセンサーを外してKCl溶液（または水）で保管する。",
+      "field": "解体・廃棄の前にも停止手順に従い、薬品に触れた部品は清掃してから回路基板・プラスチック・金属に分別して地域の規則で処分する。薬注が長期に止まる場合の応急対応計画を事前に作っておく。",
+      "related": ["3dt-cw-ph-orp-sensor", "3dt-cw-electrical-spec"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "qeq2-01",
+      "type": "choice",
+      "q": "冷却水用3D TRASAR（Premium C200-C300）で、ブローダウン弁の制御に使う主な測定値はどれか。",
+      "choices": ["電気伝導率", "ORP", "濁度", "腐食速度"],
+      "answer": 0,
+      "explanation": "トロイダル電気伝導率センサーの値でブロー弁を制御する。ORPは酸化性殺菌剤、TRASAR（蛍光）は抑制剤の制御に使う。"
+    },
+    {
+      "id": "qeq2-02",
+      "type": "tf",
+      "q": "フルオロメーター校正のブランク液には、純度の高いRO透過水を使うのがよい。",
+      "answer": false,
+      "explanation": "RO透過水はシールの漏れなどで蛍光を持つことがあるため使わない。ブランクには純水を使う。"
+    },
+    {
+      "id": "qeq2-03",
+      "type": "choice",
+      "q": "冷却水用フルオロメーターの2点校正で、純水と校正液S0940はそれぞれ合計何mL注入するか。",
+      "choices": ["60 mL", "120 mL", "180 mL", "500 mL"],
+      "answer": 2,
+      "explanation": "60 mLシリンジで3回ずつ注入し、計180 mLになる。3回目は気泡を入れないよう約5 mLを残してシリンジを外す。"
+    },
+    {
+      "id": "qeq2-04",
+      "type": "choice",
+      "q": "腐食測定用のサンプル流速が実機で不明な場合、説明書が示す設定値はどれか。",
+      "choices": ["0.3 m/s", "1 m/s（約1.1 m³/h）", "2 m/s", "3 m/s"],
+      "answer": 1,
+      "explanation": "流速は系の平均または最も腐食が心配な部位の流速に合わせるのが原則で、不明なら1 m/s（約1.1 m³/h）に調整する。"
+    },
+    {
+      "id": "qeq2-05",
+      "type": "tf",
+      "q": "ORPセンサーは、校正液を使った2点校正が推奨されている。",
+      "answer": false,
+      "explanation": "ORPは校正液に浸けた後の読み値の復帰が遅いため2点校正は推奨されず、運転状態での1点校正を行う。"
+    },
+    {
+      "id": "qeq2-06",
+      "type": "choice",
+      "q": "腐食センサー（NCMプローブ）の交換間隔として予防保全表に示されているのはどれか。",
+      "choices": ["1か月", "3か月", "6か月", "24か月"],
+      "answer": 2,
+      "explanation": "腐食センサーは6か月ごとの交換。ストレーナ清掃と各センサーの校正は毎月、ORP・pHセンサーの交換とフロースイッチ確認は6〜12か月ごと。"
+    },
+    {
+      "id": "qeq2-07",
+      "type": "tf",
+      "q": "NCM腐食センサーの値は腐食傾向の監視用で、正確な腐食速度の決定には腐食クーポンを用いる。",
+      "answer": true,
+      "explanation": "LPR方式のNCMは傾向監視向き（精度は高い領域で±50%）。正確な腐食速度は76×13×2 mmのクーポンで求める。"
+    },
+    {
+      "id": "qeq2-08",
+      "type": "choice",
+      "q": "TRASARによる抑制剤ポンプの制御で選ぶべき動作方向はどれか。",
+      "choices": ["正動作（Direct acting）", "逆動作（Reverse acting）", "オン/オフ固定", "Historical"],
+      "answer": 1,
+      "explanation": "TRASAR濃度が下がったら注入を増やすので逆動作。電気伝導率によるブロー（値が上がると弁を開く）は正動作。"
+    },
+    {
+      "id": "qeq2-09",
+      "type": "choice",
+      "q": "アラームの優先順位について正しいものはどれか。",
+      "choices": ["No Flowはインターロックより優先する", "インターロックはNo Flowより優先し、両者は他の多くのアラームより優先する", "センサーエラーが最優先", "優先順位はない"],
+      "answer": 1,
+      "explanation": "インターロックとNo Flowは他の多くのアラームより優先され、発報中は他のアラームが使えない。さらにインターロックがNo Flowより上位。"
+    },
+    {
+      "id": "qeq2-10",
+      "type": "tf",
+      "q": "薬注ポンプやブロー弁のタイムアウトアラームは、条件が解消すれば自動でクリアされ制御が再開する。",
+      "answer": false,
+      "explanation": "タイムアウトアラームは、制御を再開するためにユーザーがクリアする必要がある。原因の調査が必要なアラームである。"
+    },
+    {
+      "id": "qeq2-11",
+      "type": "choice",
+      "q": "タイムアウト後の応答「Historical」の説明として正しいものはどれか。",
+      "choices": ["ポンプを強制停止する", "ポンプを100%で運転する", "過去7日間の平均作動率で運転する", "タイムアウト前の動作をそのまま続ける"],
+      "answer": 2,
+      "explanation": "Historicalは過去7日間の平均で作動させる。7日分のデータがない間は設定した作動率（説明書の例は10%）で運転する。"
+    },
+    {
+      "id": "qeq2-12",
+      "type": "choice",
+      "q": "サンプル水の供給が止まっていた後に再起動した場合、ストレーナの清掃はどうするか。",
+      "choices": ["通常どおり月1回", "起動後1週間は毎日", "起動時に1回だけ", "6か月後に1回"],
+      "answer": 1,
+      "explanation": "通常は1か月ごとだが、サンプル水の供給が停止していた場合は起動後1週間は毎日清掃する。"
+    },
+    {
+      "id": "qeq2-13",
+      "type": "choice",
+      "q": "電気伝導率センサーの2点校正に使う校正液の組み合わせはどれか。",
+      "choices": ["40と200 µS/cm", "600と3000 µS/cm", "1000と10,000 µS/cm", "pH4とpH7"],
+      "answer": 1,
+      "explanation": "冷却水用の電気伝導率は600 µS/cm（S0298）と3000 µS/cm（S0297）で2点校正する。pHはpH4＋7またはpH7＋10。"
+    },
+    {
+      "id": "qeq2-14",
+      "type": "tf",
+      "q": "殺菌剤タイマーの予定時刻にサンプル流れがないと、殺菌剤が注入されずミスフィードのアラームが出ることがある。",
+      "answer": true,
+      "explanation": "No Flowで注入されなかったときのアラーム。頻発するならスケジュールを変更する。"
+    },
+    {
+      "id": "qeq2-15",
+      "type": "choice",
+      "q": "DCSにpHを整数で渡したい。Modbusサーバ設定で適切な方法はどれか。",
+      "choices": ["浮動小数に変換して送る", "スケーリング係数100をかけ、7.89を789として渡す", "テキストで送る", "Modbusでは渡せない"],
+      "answer": 1,
+      "explanation": "整数の乗除によるスケーリングはできるが、ワードから浮動小数への変換は実装されていない。pH×100で整数化するのが説明書の例。"
+    },
+    {
+      "id": "qeq2-16",
+      "type": "tf",
+      "q": "Modbus接続のインタフェースには、RS485-6やUSB-7を選んでもよい。",
+      "answer": false,
+      "explanation": "RS485-6とUSB-7はコントローラの内部通信用で、変更すると不具合のおそれがある。客先接続にはEth-1を選び、「Allow SCADA」を有効にする。"
+    },
+    {
+      "id": "qeq2-17",
+      "type": "choice",
+      "q": "フルオロメーターの「Fluorometer Error」（その他のアラーム）の原因として説明書が挙げるのはどれか。",
+      "choices": ["蛍光物質濃度が高すぎる", "サンプル温度が低すぎる", "SIMカードが無効", "フロースイッチの故障"],
+      "answer": 0,
+      "explanation": "蛍光物質濃度が高すぎる場合に出るので、系内のTRASAR量を減らす。通信異常は「Fluorometer comm Error」で、ケーブルの再接続・交換で対処する。"
+    },
+    {
+      "id": "qeq2-18",
+      "type": "choice",
+      "q": "冷却水用3D TRASARのサンプル水条件として正しいものはどれか。",
+      "choices": ["圧力0.1〜0.69 MPa、温度4〜60℃", "圧力0.1〜13 MPa、温度5〜200℃", "圧力1〜2 MPa、温度0〜100℃", "圧力0.01〜0.05 MPa、温度10〜30℃"],
+      "answer": 0,
+      "explanation": "冷却水用はサンプル圧力0.1〜0.69 MPa、温度4〜60℃。0.1〜13 MPa・5〜200℃はボイラ用の値。"
+    },
+    {
+      "id": "qeq2-19",
+      "type": "tf",
+      "q": "長期停止の際、pH・ORPセンサーは取り外して乾燥させて保管する。",
+      "answer": false,
+      "explanation": "取り外したpH・ORPセンサーはKCl溶液（なければ水）に浸けて保管し、乾燥させない。"
+    }
+  ]
+}

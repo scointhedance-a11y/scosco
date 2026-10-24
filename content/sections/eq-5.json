@@ -1,0 +1,562 @@
+{
+  "id": "eq-5",
+  "book": "製品・装置資料（薬品・機器）",
+  "section": "5",
+  "title": "Nalco 酸化剤コントローラ（Oxidant Controller）",
+  "titleEn": "Nalco Oxidant Controller (Operation Manual, SW N1.08)",
+  "summary": [
+    "Nalco 酸化剤コントローラは、遊離塩素・二酸化塩素・オゾン・過酸化水素のいずれかと温度を連続測定し、2つの設定点で注入ポンプやバルブを制御できるドイツ製の計器。センサ・ケーブル・流量調整アセンブリ（フィルター・逆止弁・温度／低水位マルチセンサ付き）を板に組んだ形で納入される。",
+    "測定は Des センサ（膜なしの3電極式：測定・参照・対極）を計器内のポテンショスタットで定電位に保ち、流れる電流から濃度を求める。センサは塩素・二酸化塩素・オゾン用が金/金、過酸化水素用が白金/白金、塩水中の塩素用が白金/カーボン。",
+    "測定範囲：塩素・二酸化塩素 0〜1000 µg/L、0〜5.00／10.00／20.00 mg/L、オゾン 0〜1000 µg/L、0〜5.00／10.00 mg/L、過酸化水素 0〜30.00 mg/L、温度 0〜50.0 ℃。センサをつなぐ前に測定項目と範囲を選ばないと、数分〜数時間の脱分極が起きる。",
+    "測定条件：試料水 35〜400 L/h、水圧 最大6 bar（20 ℃）、導電率 200 µS/cm超、pH は遊離塩素で 6〜8 の一定、その他は 6〜9。採水は注入点の直後やよどみを避け、配管は短くする。",
+    "アクセスコードは 0202（校正レベル）と 1612（フルアクセス）。運転モードは MAN（制御停止）、HOLD（制御停止＋出力凍結＋警報無効）、AUTO（制御運転）。保守は必ず MAN か HOLD で行う。",
+    "校正は、アセンブリ出口で採水し比較法（ポータブル光度計など）で求めた値を入れる1点の参照校正が基本。ゼロ点校正はほとんどの用途で不要で、誤るとかえって測定を壊す。直近10回の傾き（スロープ）の履歴でセンサの劣化を予測できる。",
+    "制御（アドオン）は ON/OFF・P・PI・PID・3点制御から選び、出力はパルス休止型またはパルス周波数型のリレー、または 0/4〜20 mA。投入チェック（100%出力が設定時間続いたら停止）、起動遅延、デジタル入力（低水位・液位・外部停止）による自動停止を備える。",
+    "電源 85〜250 V AC（オプション 24 V DC）、消費電力 10 VA、リレー3個（無電圧a接点）、保護等級 パネル形 前面IP54／壁掛形 IP65、使用温度 0〜50 ℃。アナログ出力は絶縁 0/4〜20 mA（最大負荷500 Ω）で、異常時 22 mA 警報も出せる。",
+    "保守の目安：センサ・アセンブリ・フィルター清掃は2週間ごと、測定値の照合と ガスケット点検は毎週、安全機能の試験は2週間ごと、消耗品交換は半年〜1年。センサは 3M KCl 中で保管し、純水では保管しない。",
+    "トラブル時は、イベントメッセージとイベントヘルプ（SYSTEM→EVENT）、最大100件のイベントログ、生信号を見られる INFO→VIEW、SDカードに保存する診断ファイルを使う。テストプラグや予備センサ・予備ケーブルとの差し替えで切り分ける。"
+  ],
+  "terms": [
+    {
+      "id": "oxidant-controller",
+      "term": "Nalco 酸化剤コントローラ",
+      "reading": "なるこさんかざいこんとろーら",
+      "en": "Nalco Oxidant Controller",
+      "aliases": ["Oxidant Controller Expert", "酸化剤コントローラ", "残留塩素計・制御器"],
+      "definition": "遊離塩素・二酸化塩素・オゾン・過酸化水素のいずれか（メニューで選択）と温度を連続測定し、表示・警報・制御を行う計器。基本構成は測定入力・温度入力・デジタル入力1・警報リレー1で、操作はキーパッドかタッチパネル。第2デジタル入力、アナログ出力2点、データログ、PID制御、流量比例注入、Modbus RTU、自動センサ洗浄 ASR® をアドオン（コード入力）で追加できる。",
+      "field": "計器が監視できるのは入力信号・校正結果・（流量センサがあれば）通水だけで、設定ミスや処理系側の異常の妥当性までは判断できない。系全体の安全は設置・設定する側の責任とされている。",
+      "related": ["oxidant-monitoring", "oxidizing-biocide", "oxidant-controller-des-sensor", "oxidant-controller-flow-assembly", "oxidant-controller-addons"]
+    },
+    {
+      "id": "oxidant-controller-des-sensor",
+      "term": "Des センサ（3電極式酸化剤センサ）",
+      "reading": "ですせんさ",
+      "en": "Des oxidant sensor",
+      "aliases": ["Oxidant Sensor", "酸化剤センサ", "金/金センサ", "Gold/Gold"],
+      "definition": "酸化剤濃度を測る膜なしの3電極式センサ。測定電極（上側の金属リング、茶線）、対極（下側の金属リング、青線）、参照電極（白線、液絡部あり）を持ち、計器内のポテンショスタットで電位を保ったまま流れる電流を測る。電極材は塩素・二酸化塩素・オゾン用が金/金、過酸化水素用が白金/白金、塩水中の塩素用が白金/カーボン。",
+      "formula": "端子：1＝シールド、2＝測定電極（茶）、3＝参照電極（白）、4＝対極（青）",
+      "field": "出荷時は KCl 容器に入っているので外して取り付け、容器は保管用に取っておく。締め付けは手締めのみ（工具を使うと破損）。電極表面は非常に平滑に仕上げてあり、粗らさないように扱う。",
+      "related": ["oxidant-controller-amperometric-principle", "oxidant-controller-sensor-care", "oxidant-controller-polarization"]
+    },
+    {
+      "id": "oxidant-controller-amperometric-principle",
+      "term": "ポテンショスタット式（定電位）測定",
+      "reading": "ぽてんしょすたっとしきそくてい",
+      "en": "Potentiostatic (amperometric) measurement",
+      "aliases": ["ポテンショスタット", "アンペロメトリック", "定電位電解式"],
+      "definition": "参照電極に対して測定電極の電位を一定に保ち（ポテンショスタット）、酸化剤が電極で還元されるときの電流を測る方式。電流は酸化剤濃度に比例するので、参照校正で求めた傾き（mV/0.1 mg）とゼロ点から濃度を算出する。対極は電流を流す役目。",
+      "field": "ORP（酸化還元電位）とは別の原理で、濃度（mg/L）を直接表示できる。測定電極と対極が短絡すると、ポテンショスタットの電流が測定入力に流れ込んで過負荷となり“Check measuring input”になる。",
+      "related": ["oxidant-controller-des-sensor", "redox-potential", "oxidant-monitoring", "oxidant-controller-slope"]
+    },
+    {
+      "id": "oxidant-controller-measuring-ranges",
+      "term": "酸化剤コントローラの測定範囲",
+      "reading": "さんかざいこんとろーらのそくていはんい",
+      "en": "Measuring ranges",
+      "aliases": ["measure", "range", "測定項目"],
+      "definition": "IN/OUT→ANALOG で測定項目と範囲を選ぶ。塩素・二酸化塩素：0〜1000 µg/L、0〜5.00／0〜10.00／0〜20.00 mg/L。オゾン：0〜1000 µg/L、0〜5.00／0〜10.00 mg/L。過酸化水素：0〜30.00 mg/L。表示単位は mg/L⇔ppm、µg/L⇔ppb を切り替えられる。",
+      "formula": "平均化：OFF／low＝5値平均／medium＝10値平均／high＝20値平均",
+      "field": "範囲を変えると電流出力・制御・リミットの設定が自動的に変わるので、変更後は必ず確認する。範囲外の値は“トレンドの目安”としてしか使えないので、超えるようなら一段上の範囲を選ぶ。",
+      "related": ["chlorine", "chlorine-dioxide", "ozone-treatment", "peroxide-biocide", "oxidant-controller-polarization"]
+    },
+    {
+      "id": "oxidant-controller-polarization",
+      "term": "センサの分極（ポラリゼーション）",
+      "reading": "せんさのぶんきょく",
+      "en": "Sensor polarization / depolarization",
+      "aliases": ["脱分極", "再分極", "polarization time"],
+      "definition": "Des センサは電位をかけてから安定するまで時間（分極時間）がかかる。センサを接続する前に測定項目と範囲を選んでおかないと脱分極が起き、回復に数分〜数時間かかる。項目を後から変えても再分極で時間が延びる。",
+      "field": "停電直後に値がずれているのは、分極が終わっていないだけのことがある。イベントログで電源断（start）の時刻を確認してから判断する。立上げ時は値が安定するまで待ってから校正する。",
+      "related": ["oxidant-controller-des-sensor", "oxidant-controller-startup", "polarization"]
+    },
+    {
+      "id": "oxidant-controller-flow-assembly",
+      "term": "流量調整アセンブリ（測定ボード）",
+      "reading": "りゅうりょうちょうせいあせんぶり",
+      "en": "Flow regulating assembly / measuring board",
+      "aliases": ["アセンブリ", "フローセル", "マルチセンサ", "multisensor"],
+      "definition": "Des センサ1本のホルダー、入口・出口のコック、採水口、流量調整、逆止弁、フィルター、マルチセンサ（Pt100 3線式の温度測定＋通水監視）を持つ測定ユニット。配管圧や流量が変わっても一定流量を保つ。PVC板に組み付けて納入され、壁に450 mm 間隔の穴2つで取り付ける。",
+      "formula": "試料水 35〜400 L/h（5〜105 gph）、水圧 最大 6 bar（20 ℃）、導電率 >200 µS/cm、pH：遊離塩素 6〜8（一定）、二酸化塩素・オゾン・過酸化水素 6〜9、使用温度 0〜50 ℃",
+      "field": "入口は下部左のコック、出口は右上のコック。出口は開放でも配管・槽へ戻してもよい。通水前に採水口のコックが閉、出口が開であることを確認する。フィルターは入口を外して取り出し、水ですすぐ。",
+      "related": ["oxidant-controller", "oxidant-controller-sampling-point", "oxidant-controller-digital-input"]
+    },
+    {
+      "id": "oxidant-controller-sampling-point",
+      "term": "測定水の採り方（酸化剤計）",
+      "reading": "そくていすいのとりかた",
+      "en": "Selecting the sample water",
+      "aliases": ["採水位置", "サンプリング"],
+      "definition": "測定値の良し悪しは、測っている水が制御したい水をどれだけ代表しているかで決まる。注入点の直後やよどんだ部分から採水せず、測定系までの配管は長く時間がかかるものを避ける。",
+      "field": "注入直後で混合不十分だと値がハンチングし、制御が不安定になる。遊離塩素は pH の影響を受けるので、pH が変動する位置も避ける（遊離塩素は pH 6〜8 で一定が条件）。",
+      "related": ["oxidant-controller-flow-assembly", "chlorine-demand", "ph"]
+    },
+    {
+      "id": "oxidant-controller-specifications",
+      "term": "酸化剤コントローラの仕様",
+      "reading": "さんかざいこんとろーらのしよう",
+      "en": "Technical data (controller)",
+      "aliases": ["IP65", "IP54", "電源仕様"],
+      "definition": "パネル取付形 138×138×83 mm・0.6 kg（前面 IP54）、壁掛形 144×144×156 mm・1.0 kg（IP65）。電源 85〜250 V AC（+6/−10%、40〜60 Hz）、オプション 24 V DC、消費電力 10 VA。リレー3個（無電圧a接点、最大 250 V・6 A・550 VA）。使用温度 0〜50 ℃、保管 −20〜+65 ℃、湿度 最大90%RH（40 ℃、結露なし）。",
+      "formula": "パネル開口 138×138 mm（板厚5 mm以下、M4×25ねじで固定）。壁掛形は80 mm 間隔の穴2つ",
+      "field": "電源をつなぐ前に本体ラベルを確認する。入出力・制御ケーブルは互いに、特に動力線から離して配線し、シールド線は片側だけ接地する。誘導負荷をリレーで開閉する場合は RC フィルター（DCならフリーホイールダイオード）でノイズを抑える。センサの保管温度は 0〜30 ℃。",
+      "related": ["oxidant-controller", "oxidant-controller-alarm-relay", "oxidant-controller-ma-output"]
+    },
+    {
+      "id": "oxidant-controller-access-code",
+      "term": "アクセスコード（0202／1612）",
+      "reading": "あくせすこーど",
+      "en": "Access codes",
+      "aliases": ["code", "0202", "1612", "autolock", "オートロック"],
+      "definition": "操作レベルを分けるコード。0202＝校正レベル（校正、設定・イベント・診断ファイルの保存、設定の閲覧）、1612＝フルアクセス（すべての設定変更）。有効なコードがないとメインメニューには MODE と CODE しか出ない。オートロックを有効にすると、無操作が設定時間続いたときや電源が切れたときにコードが 0000 に戻る。",
+      "field": "タッチしても画面が空白になるのはコード不足のことが多い。作業後にコードを戻し忘れても、オートロックを設定しておけば第三者に設定を変えられにくい。システム設定はフルアクセスでのみ変更可。",
+      "related": ["oxidant-controller-operation-modes", "oxidant-controller"]
+    },
+    {
+      "id": "oxidant-controller-operation-modes",
+      "term": "運転モード（MAN／HOLD／AUTO）",
+      "reading": "うんてんもーど",
+      "en": "Operation modes",
+      "aliases": ["MAN", "HOLD", "AUTO", "mode"],
+      "definition": "MAN：制御は停止するが警報リレー・リミット・テスト機能・データログ・mA出力は有効。HOLD：制御停止に加え、警報リレーとリミットを無効化し、mA出力・データログ・Modbus を最後の値で凍結。AUTO：制御が動作（制御またはボリューム注入アドオンがある場合のみ）。",
+      "field": "保守作業は AUTO のまま行わない。PLC との配線確認や警報試験は MAN、フィルター清掃など警報を出したくない作業は HOLD が向く。HOLD では警報機能が無効になるので、作業後に戻し忘れないこと。モード変更だけでは起動遅延は働かない。",
+      "related": ["oxidant-controller-access-code", "oxidant-controller-test-menu", "oxidant-controller-auto-stop"]
+    },
+    {
+      "id": "oxidant-controller-reference-calibration",
+      "term": "参照校正（1点校正）",
+      "reading": "さんしょうこうせい",
+      "en": "Calibration against reference",
+      "aliases": ["reference", "CAL", "スロープ校正", "1点校正"],
+      "definition": "モードを MAN か HOLD にし、CAL→REFERENCE を選ぶ。アセンブリ出口または採水口で採水し、比較法（ポータブル光度計など）で求めた濃度を Reference に入力して OK。結果画面で傾き（slope）・ゼロ点・日時を確認し、SAVE で保存、DISCARD で破棄（前の校正値を維持）。",
+      "field": "校正はセンサを取り付けたまま、値が安定してから行う。温度補償の設定を先に済ませておく。傾き不足のイベントが出たら、手順が正しければセンサ摩耗のサインで早めの交換が必要。",
+      "related": ["oxidant-controller-slope", "oxidant-controller-zeropoint-calibration", "oxidant-controller-temperature-compensation", "chlorine-demand"]
+    },
+    {
+      "id": "oxidant-controller-zeropoint-calibration",
+      "term": "ゼロ点校正（酸化剤計）",
+      "reading": "ぜろてんこうせい",
+      "en": "Zeropoint calibration",
+      "aliases": ["zeropoint", "ゼロ校正"],
+      "definition": "酸化剤を含まないが、それ以外は測定水と同じ条件の水を流して行う校正。ほとんどの用途では不要で、むしろ測定や参照校正の障害になりうる。酸化剤と反応しない水中成分による大きく一定のゼロずれがある場合にだけ意味がある。実施後は必ず参照校正を行う。",
+      "field": "酸化剤を消費する物質によるずれをゼロ点校正で消すのは誤りで、反応が終わった位置に測定点を移すべき。薬品で酸化剤を消すと水質とゼロ点が変わるので不可。確認だけなら試料を開放して（できれば攪拌して）酸化剤を飛ばし、その中でセンサを動かして目安を見る。誤ったゼロ点校正は、ケーブルを外して信号が 0 mV に下がった状態で校正し直して取り消す。",
+      "related": ["oxidant-controller-reference-calibration", "oxidant-controller-slope", "chlorine-demand"]
+    },
+    {
+      "id": "oxidant-controller-slope",
+      "term": "傾き（スロープ）とスロープエラー",
+      "reading": "かたむきとすろーぷえらー",
+      "en": "Slope and slope error",
+      "aliases": ["slope", "Slope", "mV/0.1 mg"],
+      "definition": "濃度0.1 mg あたりのセンサ信号（mV）。参照校正後に許容範囲を外れると“Slope”イベントになる。理想値と最小値は範囲ごとに決まっている。",
+      "formula": "理想／最小：0〜1000 µg/L＝100／20 mV、0〜5.00 mg/L＝20／4 mV、0〜10.00 mg/L＝10／2 mV、0〜20.00 mg/L＝5／1 mV、0〜30.00 mg/L＝3.3／0.66 mV（いずれも 0.1 mg あたり）",
+      "field": "傾きが0〜最小値の間ならセンサ出力不足。過去の推移に合わないなら手順・設定ミスを疑う（温度補償の誤り・ゼロ点校正の誤りなど）。傾きが500なら、誰かがその濃度でゼロ点校正をしてしまった可能性。傾きがちょうど0なら校正中に信号がなかった（通水なし・接触不良）。イベントは許容内の校正が成功するか工場出荷リセットまで消えない。",
+      "related": ["oxidant-controller-reference-calibration", "oxidant-controller-calibration-history", "oxidant-controller-zeropoint-calibration", "oxidant-controller-test-plug"]
+    },
+    {
+      "id": "oxidant-controller-calibration-history",
+      "term": "校正履歴（CAL→INFO）",
+      "reading": "こうせいりれき",
+      "en": "Calibration info (last 10 results)",
+      "aliases": ["calibration info", "INFO"],
+      "definition": "直近10回の校正結果（日時・傾き・ゼロ点）の一覧。傾きの低下傾向を見ることで、センサの寿命を予測した保守（予知保全）ができる。",
+      "field": "傾きが許容下限に近づいてきたら、近いうちに校正エラーになるので交換センサを手配しておく。センサ交換後や計器交換後は再校正が必要。",
+      "related": ["oxidant-controller-slope", "oxidant-controller-maintenance-intervals"]
+    },
+    {
+      "id": "oxidant-controller-temperature-compensation",
+      "term": "温度測定と温度補償（酸化剤計）",
+      "reading": "おんどそくていとおんどほしょう",
+      "en": "Temperature measurement and compensation",
+      "aliases": ["Pt100", "Pt1000", "temp. coeff.", "Tauto", "Tman"],
+      "definition": "IN/OUT→TEMP で設定。温度センサは Pt100 か Pt1000（2線式・3線式）だけが使える。2線式のずれは −10〜+10 ℃の補正値で合わせる。温度係数は %/K で、多くの用途で 2%/K が有利、低濃度で25 ℃付近なら 0%/K のままでよい。基準温度に換算し、モードは自動（実測温度）か手動（設定値）。",
+      "formula": "抵抗の目安：Pt100 約109 Ω、Pt1000 約1080 Ω（室温）。2線式は端子9と10を短絡",
+      "field": "消毒用途では温度変動は小さく、温度補償の主な役目は冷水で傾きが低く出てスロープエラーになるのを防ぐこと。温度センサがないのに自動にしていると“Check temperature input”。補償をやめるには手動にして手動値を基準温度と同じにする。",
+      "related": ["oxidant-controller-slope", "oxidant-controller-event-check-temperature"]
+    },
+    {
+      "id": "oxidant-controller-digital-input",
+      "term": "デジタル入力（低水位・液位・外部停止）",
+      "reading": "でじたるにゅうりょく",
+      "en": "Digital inputs",
+      "aliases": ["low water", "no water", "level", "ext. controller stop", "NO/NC"],
+      "definition": "デジタル入力1（基本）と2（アドオン）は、流量センサ・液位センサ・外部スイッチをつなぎ、閉じたときの表示文を“低水位（no water）”“液位（level）”“外部制御停止”から選ぶ。接点は NO／NC を選べる。どの文を選んでも、入力が切り替わると制御は自動停止する。",
+      "formula": "端子：入力1＝50(+)/51(−)、入力2＝53(+)/54(−)/55(+15 VDC)",
+      "field": "流量比例注入アドオンを使うと入力2は流量計パルス用になる。定期的に通水を止める・液位センサを持ち上げるなどして、メッセージ表示と制御停止が実際に起きるか試験する。",
+      "related": ["oxidant-controller-auto-stop", "oxidant-controller-flow-assembly", "oxidant-controller-volume-dosing"]
+    },
+    {
+      "id": "oxidant-controller-alarm-relay",
+      "term": "警報リレー（リレー3）",
+      "reading": "けいほうりれー",
+      "en": "Alarm relay (relay 3)",
+      "aliases": ["relay 3", "alarm action", "limit low", "limit high", "警報動作"],
+      "definition": "ALARM→SETTINGS で遅延時間、接点機能（a接点→b接点化）、下限・上限値を設定し、ALARM→ACTION で警報を出す事象（ゼロ点、傾き、範囲外、下限、上限、デジタル入力、投入チェック）にチェックを付ける。通信エラーと不明な測定モジュールは常に警報になる。",
+      "formula": "端子 76/77",
+      "field": "b接点（通常閉・警報時開）にすると停電も警報として伝わる。遅延はリレーにだけ効き、画面表示と22 mA 出力は即時。下限を下回ってもリレーが動かないときは、ACTION で下限にチェックがあるか確認。定常的な一時超過は遅延で抑える。",
+      "related": ["oxidant-controller-ma-output", "oxidant-controller-operation-modes", "oxidant-controller-specifications"]
+    },
+    {
+      "id": "oxidant-controller-ma-output",
+      "term": "アナログ出力と22 mA 警報",
+      "reading": "あなろぐしゅつりょくとにじゅうにみりあんぺあけいほう",
+      "en": "mA outputs and 22 mA alarm current",
+      "aliases": ["mA out", "4-20 mA", "0-20 mA", "22mA alarm"],
+      "definition": "アドオンで最大2点。絶縁 0/4〜20 mA、最大負荷 500 Ω。出力する量（測定値・温度・流量・制御出力）と、0/4 mA と 20 mA に対応させる値（反転も可）を設定する。22 mA 警報を有効にすると、測定入力に正常な信号がないとき出力が22 mA になる。",
+      "formula": "端子：出力1＝30(+)/31(−)、出力2＝32(+)/33(−)",
+      "field": "4〜20 mA は分解能がやや落ちるが、断線を見分けやすい。制御出力に割り当てると22 mA 警報はなくなり、測定値に戻したら再度有効化が必要。設定範囲を超えると“mA out of range”。端子で電流計を当てれば実出力を確認できる。",
+      "related": ["oxidant-controller-alarm-relay", "oxidant-controller-test-menu"]
+    },
+    {
+      "id": "oxidant-controller-control-types",
+      "term": "制御方式（ON/OFF・P・PI・PID・3点）",
+      "reading": "せいぎょほうしき",
+      "en": "Controller types",
+      "aliases": ["S1 control", "S2 control", "setpoint", "hysteresis", "P range", "integral time", "differential time"],
+      "definition": "制御アドオンは設定点S1（リレー1）・S2（リレー2）の2つ。ON/OFF：設定点まで100%注入して止める（ヒステリシスの半分を超えて離れたら切替）。P：偏差が P 範囲内なら偏差に比例して注入を減らす。PI：積分で定常偏差をなくす。PID：微分で大きな偏差に素早く反応。3点：電動弁など開・停止・閉の3状態をもつ操作端用（リレー1＝開、リレー2＝閉、S2は使用不可）。",
+      "formula": "積分時間 0〜2000 s、微分時間 0〜2000 s、起動遅延 0〜200 s、投入チェック 0〜99 min",
+      "field": "P 範囲が大きいほど制御は穏やか。立上げ直後に上限・下限警報が頻発するなら、P 範囲を大きくして過剰注入を防ぐ。",
+      "related": ["oxidant-controller-pid-tuning", "oxidant-controller-pulse-output", "oxidant-controller-relay-direction"]
+    },
+    {
+      "id": "oxidant-controller-pid-tuning",
+      "term": "P／PI／PID の調整方法",
+      "reading": "ぴーあいでぃーのちょうせいほうほう",
+      "en": "Tuning P / PI / PID controllers",
+      "aliases": ["チューニング", "限界感度法"],
+      "definition": "まず P 制御にして大きな P 範囲から小さくしていき、測定値が設定点の周りで一定に振動し始める値を見つける（その時の山と山の間隔＝振動周期も測る）。その値を基に各パラメーターを決める。",
+      "formula": "P：P範囲＝振動時の2倍\nPI：P範囲＝2.2倍、積分時間＝周期×0.85\nPID：P範囲＝1.66倍、積分時間＝周期×0.5、微分時間＝周期×0.12",
+      "field": "それでも振動するときは、P と I を少し大きく、D を少し小さくする。積分時間は短いほど I 作用が強く、微分時間は長いほど D 作用が強い。",
+      "related": ["oxidant-controller-control-types"]
+    },
+    {
+      "id": "oxidant-controller-pulse-output",
+      "term": "パルス休止型／パルス周波数型出力",
+      "reading": "ぱるすきゅうしがたぱるすしゅうはすうがたしゅつりょく",
+      "en": "Pulse-pause and pulse-frequency output",
+      "aliases": ["S1 config", "pulse pause", "pulse frequency", "pulse min", "motor run time"],
+      "definition": "リレーで比例制御を実現する2つの方法。パルス休止型は一定の周期（パルス＋休止時間）の中でオン時間の割合を変える。パルス周波数型はリレーの開閉回数を変え、最大注入に対応する周波数を設定する（定量ポンプのパルス入力向き）。3点制御では最小パルスと、弁の全閉→全開にかかるモーター動作時間を設定する。",
+      "formula": "最小パルス 0.2〜9.9 s、パルス＋休止時間 2〜99 s（最小パルスの2倍以上）、最大周波数 1〜7200 パルス/h",
+      "field": "ON/OFF 制御では CONFIG は不要。mA出力で制御するなら CONFIG は無視し、リレーを OFF にして摩耗を防げる。",
+      "related": ["oxidant-controller-control-types", "oxidant-controller-ma-output"]
+    },
+    {
+      "id": "oxidant-controller-relay-direction",
+      "term": "制御の作動方向（RAISE／REDUCE）",
+      "reading": "せいぎょのさどうほうこう",
+      "en": "Relay acting direction",
+      "aliases": ["direction", "raise", "reduce"],
+      "definition": "CONTROL→RELAY で設定。RAISE は注入で測定値が上がる場合（例：塩素注入）で、測定値が設定点より低いと注入する。REDUCE は注入で測定値が下がる場合（例：還元剤による脱塩素）で、測定値が設定点より高いと注入する。",
+      "field": "方向を逆に設定すると、濃度が高いのにさらに注入する暴走になる。立上げ時に必ず実動作で確認する。",
+      "related": ["oxidant-controller-control-types", "effluent-dechlorination"]
+    },
+    {
+      "id": "oxidant-controller-dosage-check",
+      "term": "投入チェック（Dosage check）",
+      "reading": "とうにゅうちぇっく",
+      "en": "Dosage check",
+      "aliases": ["dosage check", "注入監視"],
+      "definition": "制御出力100%の状態が設定時間続いても設定点（または P 範囲）に届かないとき、警報を出してその設定点の制御を止める安全機能。注入ラインの破損で薬品が水に届かず漏れている可能性を想定している。0 min で無効。",
+      "formula": "設定範囲 0〜99 min",
+      "field": "P 範囲が設定点と測定値の最大差より大きいと出力が100%にならず、この機能は永久に働かない。メッセージが出たら注入ライン・ポンプからの危険薬品の漏洩を疑って点検する。止まるのは該当する設定点の制御だけで、もう一方は動き続ける。",
+      "related": ["oxidant-controller-auto-stop", "oxidant-controller-control-types"]
+    },
+    {
+      "id": "oxidant-controller-auto-stop",
+      "term": "制御の自動停止と起動遅延",
+      "reading": "せいぎょのじどうていしときどうちえん",
+      "en": "Automatic controller stop and start delay",
+      "aliases": ["controller stop", "start delay", "delay"],
+      "definition": "AUTO 中でも、①測定入力・温度入力に信号がない、②デジタル入力が切り替わった（低水位・液位・外部停止）、③投入チェック作動、④自動洗浄中、のときは制御が自動的に止まる。制御停止（停電を含む）から復帰後、注入を再開するまでの待ち時間が起動遅延（0〜200 s）。",
+      "field": "通水が戻った直後はセンサが安定していないので、起動遅延で過剰注入を防ぐ。これらの安全機能が実際に働くかを定期試験で確かめるのは使用者の責任。",
+      "related": ["oxidant-controller-dosage-check", "oxidant-controller-digital-input", "oxidant-controller-operation-modes"]
+    },
+    {
+      "id": "oxidant-controller-volume-dosing",
+      "term": "流量比例注入（アドオン）",
+      "reading": "りゅうりょうひれいちゅうにゅう",
+      "en": "Volume based dosing",
+      "aliases": ["flow-dos", "dosage", "pump relay", "循環ポンプ"],
+      "definition": "処理する水の流量に比例して注入する方式。流量計のパルス（NPN、最大180 Hz）をデジタル入力2に入れ、ポンプ吐出量（L/h）、流量計のパルス数（L/パルス）、目標濃度、薬液濃度から必要注入量を計算する。リレー1が注入ポンプ、リレー2が測定用バイパスの循環ポンプ。",
+      "field": "この方式では濃度測定と温度は制御に影響しない。測定関連のイベントやリミット警報でも注入が止まるよう別途対策する。リレーをb接点に反転すると、停電時にリレーが開いてポンプへ注入パルスが出たり、循環ポンプが空運転したりするので要注意。",
+      "related": ["oxidant-controller-digital-input", "oxidant-controller-pulse-output"]
+    },
+    {
+      "id": "oxidant-controller-asr",
+      "term": "自動センサ洗浄 ASR®",
+      "reading": "じどうせんさせんじょうえーえすあーる",
+      "en": "Automatic sensor cleaning ASR®",
+      "aliases": ["ASR", "base load", "ベースロード注入", "Cleaning in progress"],
+      "definition": "汚れの多い用途でもセンサ電極を清浄に保つ自動洗浄機能（アドオン）。IN/OUT→ANALOG で回数（週0〜7回、0で無効）、開始時刻、開始日を設定する。洗浄中の数分間は測定が止まり、表示・出力は最後の値で凍結、制御は停止する。ベースロードを有効にすると、直前30分の平均出力で一定注入を続ける。",
+      "field": "多くの用途では週1回が最適。開始時刻は注入がないか一定の時間帯を選ぶ。ベースロード注入は測定で監視されないので、害がない場合だけ使う。“no water”“Check measuring input”表示中や校正メニュー中は洗浄が延期される。",
+      "related": ["oxidant-controller-sensor-care", "oxidant-controller-auto-stop"]
+    },
+    {
+      "id": "oxidant-controller-sd-card",
+      "term": "SD カード機能（設定保存・診断ファイル・データログ）",
+      "reading": "えすでぃーかーどきのう",
+      "en": "SD card functions",
+      "aliases": ["save", "load", "diagnosis", ".dia", ".set", "datalog", "log set"],
+      "definition": "本体背面のスロットに SD カード（最大2 GB）を挿し、IN/OUT→MEMORY から設定の保存・読込（同型・同項目の計器のみ）、診断ファイル（.dia、設定・現在値・イベントログ入り）の保存、ソフト更新（送られた2ファイルをルートに置く）ができる。データログ（アドオン）は 1秒〜24時間間隔で CSV に記録し、STOP（満杯で停止）か RING（古いデータを上書き）を選ぶ。",
+      "field": "ログ中にカードを抜かない。抜く前にモードを OFF（STOP ではない）にしないとデータが失われエラーになる。FAT16 のルートは最大512エントリなので、空のカードを使う。トラブル時は診断ファイルを保存して担当者に送る。",
+      "related": ["oxidant-controller-event-messages", "oxidant-controller-addons"]
+    },
+    {
+      "id": "oxidant-controller-addons",
+      "term": "アドオン機能と Modbus RTU",
+      "reading": "あどおんきのうともどばす",
+      "en": "Add-ons and Modbus RTU",
+      "aliases": ["add-on", "addon", "Modbus RTU", "RS 485"],
+      "definition": "SYSTEM→ADD-ON で購入時のコードを入力して有効化する（大文字小文字を区別）。第2デジタル入力、アナログ出力1・2、データログ、PID制御または流量比例注入、Modbus RTU（RS485 基板が必要）、ASR® がある。Modbus は 19200 bps、8ビット、ストップビット1、偶数パリティ、アドレス 1〜31（初期値1）。",
+      "field": "アドオン有効化後は工場出荷リセットが推奨。Modbus は機器を一筆書き（ライン）でつなぎ、両端だけで終端抵抗（120 Ω、メニューでON）を有効にする。PLC 側の警報には HOLD 値（HOLD 中は凍結）を使うと保守中に誤警報が出ない。",
+      "related": ["oxidant-controller", "oxidant-controller-sd-card", "oxidant-controller-reset"]
+    },
+    {
+      "id": "oxidant-controller-test-menu",
+      "term": "テストメニュー（酸化剤コントローラ）",
+      "reading": "てすとめにゅー",
+      "en": "Test menu",
+      "aliases": ["test", "手動操作"],
+      "definition": "IN/OUT→TEST。MAN モードでのみ表示され、リレー1〜3を手動でON/OFFし、mA 出力に 0.00〜22.00 mA の任意値を出せる。メニューを抜けると元の状態に戻る。",
+      "field": "立上げ時や、中央監視の警報と測定値が食い違うときに、計器と監視側の通信・配線確認に使う。デスクトップのリレー表示から手動でオンにしたリレーは、手動で切るか AUTO にするまでオンのままなので注意。",
+      "related": ["oxidant-controller-operation-modes", "oxidant-controller-ma-output", "oxidant-controller-alarm-relay"]
+    },
+    {
+      "id": "oxidant-controller-event-messages",
+      "term": "イベントメッセージとイベントログ",
+      "reading": "いべんとめっせーじといべんとろぐ",
+      "en": "Event messages, event help and eventlog",
+      "aliases": ["event", "eventlog", "event help", "INFO VIEW"],
+      "definition": "異常はデスクトップにイベントメッセージで表示され（複数なら交互）、SYSTEM→EVENT（タッチ式はメッセージに触れる）で原因と対策が示される。イベントログは最大100件を発生（*）・解消（#）時刻つきで保存し、停電・校正なども記録する。SYSTEM→INFO→VIEW では校正や温度補償の影響を受けないセンサ生信号を見られる。",
+      "field": "対策は表示された順に試す。生信号が妥当なのにスロープエラーなら温度測定の不具合を疑い、センサ交換は無駄になる。全イベントが警報リレーを動かすわけではない。通信エラー・不明な測定モジュールは現場で直せず修理送り。",
+      "related": ["oxidant-controller-event-check-input", "oxidant-controller-event-check-temperature", "oxidant-controller-slope", "oxidant-controller-sd-card"]
+    },
+    {
+      "id": "oxidant-controller-event-check-input",
+      "term": "Check measuring input（測定入力異常）",
+      "reading": "ちぇっくめじゃりんぐいんぷっと",
+      "en": "Check measuring input",
+      "aliases": ["Check measuring input", "測定入力過負荷"],
+      "definition": "測定入力に正常な信号がない（電流が強すぎて入力が過負荷）ときの表示。まずセンサを水から出し、原因が設置状況や単なる酸化剤過剰でないか確認する。消えなければ、測定電極と対極の短絡（センサ内またはケーブル内）が疑われる。",
+      "field": "切り分け：センサをケーブルから外しても表示が残る→ケーブルを計器から外して消えればケーブル交換。センサを外した瞬間に消える→センサ側の問題。乾かしたセンサの2電極間は導通がないのが正常で、本体破損で内部ガラス棒に浸水すると短絡する。この表示中は校正できない（ポップアップが出る）。",
+      "related": ["oxidant-controller-amperometric-principle", "oxidant-controller-test-plug", "oxidant-controller-event-messages"]
+    },
+    {
+      "id": "oxidant-controller-event-check-temperature",
+      "term": "Check temperature input（温度入力異常）",
+      "reading": "ちぇっくてんぱらちゃーいんぷっと",
+      "en": "Check temperature input",
+      "aliases": ["Check temperature input"],
+      "definition": "温度入力に正常な信号がないときの表示。温度センサがないのに自動補償にしている、Pt100 なのに Pt1000 設定（またはその逆）、端子間違い、ケーブル・センサ不良が原因。",
+      "formula": "室温での抵抗：Pt100 約109 Ω、Pt1000 約1080 Ω",
+      "field": "センサがなければ手動補償に切り替える。この表示中は校正できないが、手動補償にすれば校正可能になる。",
+      "related": ["oxidant-controller-temperature-compensation", "oxidant-controller-event-messages"]
+    },
+    {
+      "id": "oxidant-controller-test-plug",
+      "term": "テストプラグと切り分け用品",
+      "reading": "てすとぷらぐときりわけようひん",
+      "en": "Test plug and trouble-shooting accessories",
+      "aliases": ["test plug", "テストプラグ", "予備センサ", "予備ケーブル", "ポータブル光度計"],
+      "definition": "テストプラグを Des センサ用ケーブルにつなぐと、生信号としてプラグに表示された mV 付近が出れば測定入力は正常。ほかに、比較測定・校正用のポータブル光度計（塩素・二酸化塩素・オゾン試薬付き）、予備センサ、予備ケーブルが切り分けに役立つ。",
+      "field": "テストプラグ接続中はデスクトップの測定値はふつう0になる（mVが測定と合わないため）。プラグがなければ、Des センサの2つの金属電極を導線やドライバーで短絡させ“Check measuring input”が出れば接続は生きている。テスタでは測定電極（上リング）〜茶線、対極（下リング）〜青線がともに 0〜10 Ω なら正常、参照はkΩ台。",
+      "related": ["oxidant-controller-event-check-input", "oxidant-controller-slope", "oxidant-controller-des-sensor"]
+    },
+    {
+      "id": "oxidant-controller-startup",
+      "term": "酸化剤コントローラの立上げ手順",
+      "reading": "さんかざいこんとろーらのたちあげてじゅん",
+      "en": "Start-up procedure",
+      "aliases": ["start-up", "試運転", "restarting"],
+      "definition": "①センサ取付け済み・採水口コック閉・出口コック開・接続部の気密を確認、②電源ON（自己診断→時刻→測定値、約20秒）、③IN/OUT→ANALOG で項目と範囲を確認、④入口コックを開き通水（“no water”が消える）、⑤数分待って測定・温度を安定させる、⑥温度補償を設定、⑦採水・比較法で参照校正、⑧出力・リミット・制御を設定、⑨妥当性を確認してから制御を有効化、⑩ASR の設定。",
+      "field": "再起動も同じ手順。複数センサ用アセンブリは空きホルダーを盲栓でふさぐ。値が妥当で、注入ラインが正しくつながり破損がないことを確認してから AUTO にし、正常に制御されるのを見届けてから現場を離れる。",
+      "related": ["oxidant-controller-polarization", "oxidant-controller-reference-calibration", "oxidant-controller-operation-modes"]
+    },
+    {
+      "id": "oxidant-controller-maintenance-intervals",
+      "term": "酸化剤計の保守間隔の目安",
+      "reading": "さんかざいけいのほしゅかんかくのめやす",
+      "en": "Maintenance interval suggestions",
+      "aliases": ["保守", "maintenance"],
+      "definition": "センサ・アセンブリの清掃：2週間、弁・フィルター・チューブ類の清掃：2週間、KCl 補充：容器の大きさによる、測定値の照合（クロスチェック）：毎週、校正：必要に応じて、ガスケット点検：毎週、安全機能の試験：2週間、消耗品交換：半年〜1年。",
+      "field": "用途・設置・要求精度で間隔は変わる。消耗品はシールリング、KCl 液、そしてセンサ。ケーブルも抜き差しが多いと劣化する。圧力をかける前にシールの位置を確認する。",
+      "related": ["oxidant-controller-sensor-care", "oxidant-controller-calibration-history"]
+    },
+    {
+      "id": "oxidant-controller-sensor-care",
+      "term": "Des センサの清掃と保管",
+      "reading": "ですせんさのせいそうとほかん",
+      "en": "Sensor cleaning, KCl refilling and storage",
+      "aliases": ["センサ清掃", "3M KCl", "KCl補充"],
+      "definition": "清掃は水と柔らかいティッシュが基本。石灰・水酸化物の皮膜は希塩酸、油脂は市販洗剤、有機物の皮膜は塩酸＋ペプシンまたはチオ尿素が有効（詰まった液絡部の回復にも）。セラミック液絡部は機械的にこすってもよい。アセンブリやチューブ類は水と柔らかいブラシだけで洗う（樹脂は酸・溶剤に弱い）。",
+      "field": "清掃後は測定が戻るまで時間がかかる。補充式センサは内部液面を常に水面より高く、内圧を水圧よりわずかに高く保つ。長期停止時のセンサは必ず液中（できれば 3M KCl）で保管し、純水や攻撃性の液には入れない。保管容器はガラスより樹脂製。参照電位を pH/ORP 計で比べて 0 mV 付近でなければ、3M KCl を入れ替え気泡を抜く。",
+      "related": ["oxidant-controller-des-sensor", "oxidant-controller-asr", "oxidant-controller-maintenance-intervals"]
+    },
+    {
+      "id": "oxidant-controller-reset",
+      "term": "工場出荷リセット（酸化剤コントローラ）",
+      "reading": "こうじょうしゅっかりせっと",
+      "en": "Reset to factory settings",
+      "aliases": ["reset", "初期化"],
+      "definition": "SYSTEM→RESET で、測定項目・範囲を含むすべての設定を工場出荷値に戻す（時刻・日付・連絡先は残り、有効化済みアドオンも残る）。誤った校正など、測定値の評価を妨げる設定を消す最後の手段。",
+      "field": "タッチパネル機はリセット後にタッチ校正が自動で始まる。実行前に SD カードへ設定を保存しておくと復旧が早い。",
+      "related": ["oxidant-controller-sd-card", "oxidant-controller-addons"]
+    }
+  ],
+  "quiz": [
+    {
+      "id": "qeq5-01",
+      "type": "choice",
+      "q": "Nalco 酸化剤コントローラで測定項目として選べないものはどれか。",
+      "choices": ["臭素", "遊離塩素", "二酸化塩素", "過酸化水素"],
+      "answer": 0,
+      "explanation": "選べるのは遊離塩素・二酸化塩素・オゾン・過酸化水素（＋温度）。臭素は測定項目に含まれていない。"
+    },
+    {
+      "id": "qeq5-02",
+      "type": "choice",
+      "q": "Des センサの3つの電極の組合せとして正しいものは。",
+      "choices": ["測定電極・参照電極・対極", "pH電極・参照電極・温度センサ", "陽極・陰極・接地極", "ガラス電極・金電極・白金電極"],
+      "answer": 0,
+      "explanation": "Des センサは測定電極（茶）・参照電極（白）・対極（青）の3電極で、計器内のポテンショスタットで電位を保って電流を測る。"
+    },
+    {
+      "id": "qeq5-03",
+      "type": "choice",
+      "q": "過酸化水素の測定に使うセンサの電極材は。",
+      "choices": ["白金/白金", "金/金", "白金/カーボン", "銀/塩化銀"],
+      "answer": 0,
+      "explanation": "塩素・二酸化塩素・オゾン用は金/金、過酸化水素用は白金/白金、塩水中の塩素用は白金/カーボン。"
+    },
+    {
+      "id": "qeq5-04",
+      "type": "tf",
+      "q": "センサを接続する前に測定項目と測定範囲を選んでおかないと、脱分極が起きて回復に数分〜数時間かかることがある。",
+      "answer": true,
+      "explanation": "マニュアルの警告どおり。項目を後から変えても再分極で分極時間が延びる。"
+    },
+    {
+      "id": "qeq5-05",
+      "type": "choice",
+      "q": "測定アセンブリに供給する試料水の流量範囲は。",
+      "choices": ["35〜400 L/h", "5〜30 L/h", "500〜1000 L/h", "1〜5 L/min 固定"],
+      "answer": 0,
+      "explanation": "試料水は 35〜400 L/h（5〜105 gph）、水圧は最大 6 bar（20 ℃）。導電率は 200 µS/cm 超が必要。"
+    },
+    {
+      "id": "qeq5-06",
+      "type": "choice",
+      "q": "遊離塩素を測定する場合の pH 条件は。",
+      "choices": ["pH 6〜8 で一定", "pH 6〜9 であれば変動してよい", "pH 9〜11", "pH の制約はない"],
+      "answer": 0,
+      "explanation": "遊離塩素は pH 6〜8 で一定が条件。二酸化塩素・オゾン・過酸化水素は pH 6〜9。遊離塩素は HOCl/OCl⁻ の比が pH で変わるため。"
+    },
+    {
+      "id": "qeq5-07",
+      "type": "choice",
+      "q": "すべての設定を変更できるフルアクセスのコードは。",
+      "choices": ["1612", "0202", "0000", "9999"],
+      "answer": 0,
+      "explanation": "0202 は校正レベル、1612 がフルアクセス。オートロックでは 0000（無効コード）に戻る。"
+    },
+    {
+      "id": "qeq5-08",
+      "type": "choice",
+      "q": "HOLD モードの説明として正しいものは。",
+      "choices": ["制御停止、出力は最後の値で凍結、警報リレーは無効", "制御停止だが警報リレーとテスト機能は有効", "制御が動作し、すべての出力が有効", "電源が切れた状態"],
+      "answer": 0,
+      "explanation": "HOLD は制御停止＋出力凍結＋警報無効で、警報を出さずにフィルター清掃などをするのに向く。警報リレーとテスト機能が有効なのは MAN。"
+    },
+    {
+      "id": "qeq5-09",
+      "type": "tf",
+      "q": "ゼロ点校正は、定期保守のたびに必ず行うべきである。",
+      "answer": false,
+      "explanation": "ほとんどの用途でゼロ点校正は不要で、誤ると測定や参照校正の障害になる。酸化剤と反応しない成分による大きく一定のずれがある場合だけ行い、その後は必ず参照校正をする。"
+    },
+    {
+      "id": "qeq5-10",
+      "type": "choice",
+      "q": "参照校正で入力する Reference 値はどのように求めるか。",
+      "choices": ["アセンブリ出口などで採水し、比較法（光度計など）で測った濃度", "計器の表示値をそのまま入力", "注入ポンプの設定値から計算した濃度", "常に 1.00 mg/L"],
+      "answer": 0,
+      "explanation": "アセンブリ出口または採水口で採った試料を比較法で測り、その値を入力する。SAVE で保存、DISCARD で前の校正値を維持。"
+    },
+    {
+      "id": "qeq5-11",
+      "type": "choice",
+      "q": "測定範囲 0〜5.00 mg/L での傾き（スロープ）の理想値と最小値の組合せは。",
+      "choices": ["理想 20 mV、最小 4 mV（0.1 mg あたり）", "理想 100 mV、最小 20 mV", "理想 10 mV、最小 2 mV", "理想 5 mV、最小 1 mV"],
+      "answer": 0,
+      "explanation": "0〜5.00 mg/L は理想20 mV/0.1 mg、最小4 mV。0〜1000 µg/L は100/20、0〜10.00 mg/L は10/2、0〜20.00 mg/L は5/1 mV。"
+    },
+    {
+      "id": "qeq5-12",
+      "type": "tf",
+      "q": "参照校正後の傾きがちょうど0の場合、校正中に測定信号がなかった（通水なし・接触不良など）ことが考えられる。",
+      "answer": true,
+      "explanation": "傾き0は校正中に信号がなかった証拠。接続をテストプラグや電極短絡で確認する。傾き500はその濃度でゼロ点校正をしてしまった疑い。"
+    },
+    {
+      "id": "qeq5-13",
+      "type": "choice",
+      "q": "温度補償の温度係数について、マニュアルで多くの用途に有利とされている値は。",
+      "choices": ["2 %/K", "0.2 %/K", "10 %/K", "−2 %/K"],
+      "answer": 0,
+      "explanation": "多くの用途で 2 %/K が有利。低濃度で25 ℃付近なら 0 %/K のままでもよい。温度補償の主な役目は冷水で傾きが低く出てエラーになるのを防ぐこと。"
+    },
+    {
+      "id": "qeq5-14",
+      "type": "choice",
+      "q": "PID 制御の調整で、振動時の P 範囲と振動周期を基準にした推奨値として正しいものは。",
+      "choices": ["P範囲1.66倍、積分時間0.5倍、微分時間0.12倍", "P範囲2倍、積分時間1倍、微分時間0.5倍", "P範囲2.2倍、積分時間0.85倍、微分時間0.12倍", "P範囲0.5倍、積分時間2倍、微分時間1倍"],
+      "answer": 0,
+      "explanation": "PID は P範囲1.66倍・積分0.5倍・微分0.12倍。PI は P範囲2.2倍・積分0.85倍、P のみは2倍。"
+    },
+    {
+      "id": "qeq5-15",
+      "type": "tf",
+      "q": "注入で測定値が上がる薬品（例：次亜塩素酸ナトリウム）を制御するときは、リレーの作動方向を REDUCE にする。",
+      "answer": false,
+      "explanation": "注入で測定値が上がる場合は RAISE（測定値が設定点より低いと注入）。REDUCE は注入で測定値が下がる場合（脱塩素剤など）。"
+    },
+    {
+      "id": "qeq5-16",
+      "type": "choice",
+      "q": "投入チェック（Dosage check）が作動するのはどんなときか。",
+      "choices": ["制御出力100%が設定時間続いても設定点（P範囲）に届かないとき", "測定値が上限を一瞬でも超えたとき", "SDカードがいっぱいになったとき", "停電から復帰したとき"],
+      "answer": 0,
+      "explanation": "注入ラインの破損などで薬品が水に届いていない可能性を想定した安全機能。設定は 0〜99 分（0で無効）。P範囲が大きすぎると100%にならず働かない点に注意。"
+    },
+    {
+      "id": "qeq5-17",
+      "type": "choice",
+      "q": "“Check measuring input”が表示され、センサをケーブルから外した瞬間に消えた。最も疑わしいのは。",
+      "choices": ["センサ内部の測定電極と対極の短絡（浸水など）", "ケーブルの断線", "温度センサの設定違い", "SDカードの不良"],
+      "answer": 0,
+      "explanation": "センサを外して消えるならセンサ側の問題。乾かして2電極間の導通を確認し、本体破損による浸水短絡を疑う。センサを外しても残り、ケーブルを計器から外して消えるならケーブル交換。"
+    },
+    {
+      "id": "qeq5-18",
+      "type": "choice",
+      "q": "マニュアルが示す保守間隔の目安として正しいものは。",
+      "choices": ["測定値の照合は毎週、センサ清掃は2週間ごと", "測定値の照合は年1回、センサ清掃は半年ごと", "センサ清掃は毎日、照合は不要", "消耗品交換は5年ごと"],
+      "answer": 0,
+      "explanation": "照合（クロスチェック）とガスケット点検は毎週、センサ・アセンブリ・フィルター清掃と安全機能試験は2週間、消耗品交換は半年〜1年が目安。"
+    },
+    {
+      "id": "qeq5-19",
+      "type": "tf",
+      "q": "長期停止時の Des センサは、純水（脱イオン水）に浸して保管するのがよい。",
+      "answer": false,
+      "explanation": "センサは必ず液中、できれば 3M KCl で保管し、純水や攻撃性の液には入れない。容器はガラスより樹脂製がよい。"
+    },
+    {
+      "id": "qeq5-20",
+      "type": "choice",
+      "q": "データログ中に SD カードを抜くときの正しい操作は。",
+      "choices": ["ログのモードを OFF にしてから抜く", "モードを STOP にしてから抜く", "そのまま抜いてよい", "電源を切らずに RING にしてから抜く"],
+      "answer": 0,
+      "explanation": "必ずモードを OFF（STOP ではない）にしてから抜く。そうしないとデータが失われ、エラーメッセージが出る。"
+    }
+  ]
+}
