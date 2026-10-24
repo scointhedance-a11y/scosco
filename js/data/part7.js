@@ -100,5 +100,139 @@ The first of the new shops is scheduled to open in June near Westfield Central S
       { id: "p7-04-3", q: "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong? \"This location is expected to attract many commuters.\"",
         choices: ["[1]", "[2]", "[3]", "[4]"], a: 2, fixed: true,
         exp: "This location は直前の「駅の近く (near Westfield Central Station)」を指す。通勤客 (commuters) とも整合する。" }
+    ] },
+  { id: "p7-05", title: "お知らせ", type: "Notice",
+    passage:
+`NOTICE TO TENANTS
+Greenfield Tower Management
+
+Beginning Monday, March 3, the main entrance on Pine Street will be closed for approximately two weeks while the lobby floor is replaced. During this time, please use the side entrance on Harbor Avenue. The security desk will be temporarily relocated next to the Harbor Avenue entrance, and all visitors must sign in there.
+
+Deliveries will continue to be accepted at the loading dock behind the building. Tenants expecting large deliveries should inform the management office at least 24 hours in advance so that the freight elevator can be reserved.
+
+We apologize for any inconvenience. Questions may be directed to the management office at extension 400.`,
+    questions: [
+      { id: "p7-05-1", q: "Why will the main entrance be closed?",
+        choices: ["Flooring work will be done.", "The security desk is being upgraded.", "A new elevator is being installed.", "The street is being repaved."], a: 0,
+        exp: "the lobby floor is replaced = flooring work の言い換え。" },
+      { id: "p7-05-2", q: "What are visitors required to do during the closure?",
+        choices: ["Sign in near the Harbor Avenue entrance", "Use the loading dock", "Call extension 400", "Show a tenant ID card"], a: 0,
+        exp: "警備デスクが Harbor Avenue 側に移り、visitors must sign in there。" },
+      { id: "p7-05-3", q: "What should tenants do before receiving a large delivery?",
+        choices: ["Notify the management office in advance", "Move their vehicles", "Pay an additional fee", "Use the main entrance"], a: 0,
+        exp: "inform the management office at least 24 hours in advance の言い換え。" }
+    ] },
+  { id: "p7-06", title: "商品レビュー", type: "Online review",
+    passage:
+`Rating: 4 out of 5 stars
+Reviewed by Paulo Mendes, June 8
+
+I recently bought the Vexa X2 portable speaker for a weekend camping trip, and it exceeded my expectations. The sound quality is impressive for such a small device, and the battery lasted the full two days on a single charge. It also survived a sudden rainstorm without any problems, which I was glad about, since the manufacturer describes it only as "water-resistant."
+
+My one complaint is the companion app. Connecting the speaker to my phone took several attempts, and the app's instructions were difficult to follow. Once it was connected, though, everything worked smoothly. I would still recommend the X2, especially for people who spend a lot of time outdoors.`,
+    questions: [
+      { id: "p7-06-1", q: "Why did Mr. Mendes purchase the speaker?",
+        choices: ["To use it on a camping trip", "To replace a broken speaker", "To give it as a gift", "To review it for a magazine"], a: 0,
+        exp: "for a weekend camping trip。" },
+      { id: "p7-06-2", q: "What is suggested about the speaker?",
+        choices: ["It kept working after getting wet.", "It is the manufacturer's newest model.", "Its battery needed to be recharged daily.", "It is larger than similar products."], a: 0,
+        exp: "survived a sudden rainstorm without any problems から推測できる。電池は2日もった。" },
+      { id: "p7-06-3", q: "What problem did Mr. Mendes have?",
+        choices: ["He had trouble connecting the speaker to his phone.", "The sound quality was poor.", "The speaker arrived late.", "The app was not free."], a: 0,
+        exp: "Connecting the speaker to my phone took several attempts。" }
+    ] },
+  { id: "p7-07", title: "案内とEメール（ダブルパッセージ）", type: "Invitation + E-mail",
+    passage:
+`[Document 1: Invitation]
+Northbridge Business Association
+Annual Networking Luncheon
+Thursday, November 13, 12:00 - 2:00 P.M.
+Riverside Hotel, Crystal Ballroom
+
+Keynote speaker: Dr. Hannah Cho, author of Small Firms, Big Markets
+Tickets: $45 for members, $60 for non-members
+Register by November 5 at www.northbridgeba.org. Registrations received after this date will be charged an additional $10 per ticket.
+
+[Document 2: E-mail]
+To: events@northbridgeba.org
+From: Victor Elling <velling@ellingdesign.com>
+Date: November 7
+Subject: Luncheon registration
+
+Hello,
+
+I would like to register two people from my company for the luncheon on November 13: myself and my colleague, Ana Ruiz. We joined the association last month, so I assume we qualify for the member price. Ms. Ruiz is a vegetarian, so please let me know whether a meat-free meal can be arranged.
+
+I am especially looking forward to Dr. Cho's talk, as I have read her book.
+
+Best regards,
+Victor Elling`,
+    questions: [
+      { id: "p7-07-1", q: "What is indicated about the luncheon?",
+        choices: ["It will feature a talk by an author.", "It is held every month.", "It is open only to members.", "It will take place in the evening."], a: 0,
+        exp: "基調講演者は本の著者 (author of Small Firms, Big Markets)。非会員料金があるので (C) は誤り。" },
+      { id: "p7-07-2", q: "How much will Mr. Elling most likely pay for each ticket?",
+        choices: ["$45", "$55", "$60", "$70"], a: 1,
+        exp: "2つの文書の照合問題。会員料金 $45 だが、申込日 (11月7日) が締切 (11月5日) より後なので $10 加算され $55。" },
+      { id: "p7-07-3", q: "What does Mr. Elling ask about?",
+        choices: ["A special meal option", "Parking at the hotel", "A membership discount", "The length of the talk"], a: 0,
+        exp: "a meat-free meal can be arranged かどうかを問い合わせている。" }
+    ] },
+  { id: "p7-08", title: "プレスリリース（文挿入問題つき）", type: "Press release",
+    passage:
+`FOR IMMEDIATE RELEASE
+Tavora Foods Opens Research Kitchen in Lisbon
+
+LISBON, May 20 - Tavora Foods, a leading producer of frozen meals, today opened a new research kitchen at its Lisbon headquarters. - [1] -. The facility will allow the company's team of twelve chefs and food scientists to develop and test new recipes more quickly.
+
+"In the past, we relied on outside test kitchens, which often meant waiting weeks for results," said Ines Duarte, Tavora's head of product development. - [2] -. "Now we can move from an idea to a finished product in half the time."
+
+The company plans to introduce at least ten new products next year, with a focus on low-sodium and plant-based meals. - [3] -. Tavora's products are currently sold in more than 4,000 supermarkets across Europe. - [4] -.`,
+    questions: [
+      { id: "p7-08-1", q: "What is the purpose of the press release?",
+        choices: ["To announce the opening of a facility", "To introduce a new head chef", "To report annual sales figures", "To advertise a cooking class"], a: 0,
+        exp: "研究用キッチンの開設を発表するプレスリリース。" },
+      { id: "p7-08-2", q: "According to Ms. Duarte, what was a drawback of the previous arrangement?",
+        choices: ["It caused long delays.", "It was too expensive.", "It required extra staff.", "It produced inaccurate results."], a: 0,
+        exp: "waiting weeks for results = long delays の言い換え。" },
+      { id: "p7-08-3", q: "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong? \"These reflect growing consumer demand for healthier options.\"",
+        choices: ["[1]", "[2]", "[3]", "[4]"], a: 2, fixed: true,
+        exp: "These は直前の low-sodium and plant-based meals（減塩・植物性の食事）を指し、healthier options と内容が合う。" }
+    ] },
+  { id: "p7-09", title: "オンラインチャット", type: "Online chat discussion",
+    passage:
+`Kevin Park [2:05 P.M.]
+Has anyone booked a venue for the sales training on the 24th?
+
+Maria Lopez [2:07 P.M.]
+I called the Fairmont Conference Center yesterday. Their large room is already reserved that day.
+
+Kevin Park [2:08 P.M.]
+That's a shame. We'll have about 60 attendees.
+
+Dev Shah [2:10 P.M.]
+What about using our own building? The cafeteria holds 80 people if we move some tables.
+
+Maria Lopez [2:11 P.M.]
+That could work. We'd need a projector and microphones, though.
+
+Dev Shah [2:12 P.M.]
+I'll take care of that. Our IT department has both.
+
+Kevin Park [2:14 P.M.]
+Perfect. Maria, can you let the cafeteria staff know we'll need the space from 9 to 4?
+
+Maria Lopez [2:15 P.M.]
+Will do.`,
+    questions: [
+      { id: "p7-09-1", q: "What are the writers mainly discussing?",
+        choices: ["Where to hold a training session", "How to reduce event costs", "When to hire new salespeople", "What to serve at lunch"], a: 0,
+        exp: "研修の会場をどこにするかの相談。" },
+      { id: "p7-09-2", q: "At 2:08 P.M., what does Mr. Park mean when he writes, \"That's a shame\"?",
+        choices: ["He is disappointed that a room is unavailable.", "He thinks the training is too long.", "He regrets booking the wrong venue.", "He is unhappy with the number of attendees."], a: 0,
+        exp: "意図問題。希望の会場が埋まっていたことへの落胆。" },
+      { id: "p7-09-3", q: "What will Mr. Shah most likely do?",
+        choices: ["Arrange for some equipment", "Contact the Fairmont Conference Center", "Move tables in the cafeteria", "Lead the sales training"], a: 0,
+        exp: "プロジェクターとマイクについて I'll take care of that と引き受けている。" }
     ] }
 ];

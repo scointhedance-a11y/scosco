@@ -221,14 +221,14 @@
     }
     return '<section class="setup"><div class="eyebrow">Listening</div><h1>Part 3/4 会話・説明文</h1>' +
       '<p class="lead">音声が流れる前に3つの設問を先読みし、「何を聞き取るか」を決めてから聞きます。正解の選択肢は本文の言い換えになっていることがほとんどです。</p>' +
-      listeningSettings() + "<h3>セット数</h3>" + countPicker("p34n", [2, 3, D.part34.length], 2) +
+      listeningSettings() + "<h3>セット数</h3>" + countPicker("p34n", [2, 3, 5], 2) +
       '<div class="actions"><button class="primary" data-act="start-p34">始める</button></div></section>';
   }
 
   function viewPart7() {
     return '<section class="setup"><div class="eyebrow">Reading</div><h1>Part 7 読解</h1>' +
       '<p class="lead">本番では 54 問を約 55 分で解きます。1問1分が目安です。最初の設問に答えるまでの時間から、本文を読む速度（WPM: 1分あたりの語数）を計測します。960点を狙うなら 150 WPM 以上が目標です。</p>' +
-      "<h3>文書数</h3>" + countPicker("p7n", [1, 2, D.part7.length], 2) +
+      "<h3>文書数</h3>" + countPicker("p7n", [1, 2, 3], 2) +
       '<div class="actions"><button class="primary" data-act="start-p7">始める</button></div></section>';
   }
 

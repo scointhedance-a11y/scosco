@@ -88,5 +88,145 @@ window.TOEIC_DATA.part34 = [
       { id: "p4-02-3", q: "What does the speaker suggest?",
         choices: ["Postponing the patio opening", "Completing the project in stages", "Hiring a different contractor", "Sending more photos"], a: 1,
         exp: "先にプランターと照明、小道は後で、という段階的な進め方を提案している。" }
+    ] },
+  { id: "p3-04", part: 3, title: "会食の予約変更",
+    lines: [
+      { s: "W", t: "Hello, I'm calling about a reservation for a business dinner on Friday. It's under the name Hartley, for eight people." },
+      { s: "M", t: "Yes, I see it here, Ms. Hartley. Seven-thirty in our private dining room." },
+      { s: "W", t: "That's right. Unfortunately, two more colleagues will be joining us. Is the room big enough for ten?" },
+      { s: "M", t: "It can seat up to twelve, so that's no problem. Would you like to pre-order from our set menu? It's often easier for larger groups." },
+      { s: "W", t: "Yes, that would be great. Could you e-mail me the menu options?" }
+    ],
+    questions: [
+      { id: "p3-04-1", q: "Why is the woman calling?",
+        choices: ["To increase the size of a reservation", "To cancel a dinner", "To change a reservation time", "To complain about a meal"], a: 0,
+        exp: "参加者が2人増えるので、8人の予約を10人にしたいという電話。" },
+      { id: "p3-04-2", q: "What does the man say about the private dining room?",
+        choices: ["It can hold up to twelve people.", "It is already booked.", "It has a view of the river.", "It requires a deposit."], a: 0,
+        exp: "It can seat up to twelve の言い換え。" },
+      { id: "p3-04-3", q: "What will the man most likely do next?",
+        choices: ["Send some menu options", "Call the woman's colleagues", "Prepare a bill", "Move the reservation to Saturday"], a: 0,
+        exp: "女性がメニューをメールで送るよう頼み、男性がそれに対応すると考えられる。" }
+    ] },
+  { id: "p3-05", part: 3, title: "サンプルの色違い",
+    lines: [
+      { s: "M", t: "Akiko, the samples of the new water bottle just arrived from the factory, but the color doesn't match what we approved." },
+      { s: "W", t: "Really? The launch event is in three weeks. How different is it?" },
+      { s: "M", t: "It's noticeably darker. Our customers will definitely see the difference." },
+      { s: "W", t: "Well, the factory did say the new paint supplier might cause some variation." },
+      { s: "M", t: "I'll call them this morning and ask them to send another batch using the original paint." },
+      { s: "W", t: "Good. And let's push back the photo shoot for the press kit until the corrected samples arrive." }
+    ],
+    questions: [
+      { id: "p3-05-1", q: "What problem does the man report?",
+        choices: ["Some samples are the wrong color.", "A shipment was lost.", "A launch event was canceled.", "A factory has closed."], a: 0,
+        exp: "the color doesn't match what we approved。" },
+      { id: "p3-05-2", q: "Why does the woman say, \"the factory did say the new paint supplier might cause some variation\"?",
+        choices: ["To suggest a possible cause of the problem", "To recommend a different factory", "To praise the new supplier", "To explain a delay in payment"], a: 0,
+        exp: "意図問題。色が違う原因として、新しい塗料業者の可能性を示している。" },
+      { id: "p3-05-3", q: "What does the woman suggest doing?",
+        choices: ["Postponing a photo shoot", "Changing the product's color", "Moving the launch date", "Contacting customers"], a: 0,
+        exp: "push back the photo shoot = postpone a photo shoot の言い換え。" }
+    ] },
+  { id: "p3-06", part: 3, title: "採用面接",
+    lines: [
+      { s: "W", t: "Mr. Barnes, thanks for coming in. Before we start, I'd like to confirm that you'd be available to start in September." },
+      { s: "M", t: "Yes, that works. My current contract ends at the end of August." },
+      { s: "W", t: "Great. As you know, the position involves managing our online store, and you'd work closely with our warehouse staff in Riverton." },
+      { s: "M", t: "I noticed that in the job posting. Would I need to travel there often?" },
+      { s: "W", t: "About twice a month. The company covers all travel costs, and you'd be able to use one of our company cars." }
+    ],
+    questions: [
+      { id: "p3-06-1", q: "Where most likely are the speakers?",
+        choices: ["At a job interview", "At a car dealership", "At a warehouse", "At a training session"], a: 0,
+        exp: "Before we start ... the position involves ... から採用面接の場面。" },
+      { id: "p3-06-2", q: "What will the man's job mainly involve?",
+        choices: ["Managing an online store", "Driving delivery trucks", "Hiring warehouse staff", "Designing a Web site"], a: 0,
+        exp: "the position involves managing our online store。" },
+      { id: "p3-06-3", q: "According to the woman, what will the company provide?",
+        choices: ["A vehicle for business travel", "A relocation bonus", "Free accommodation", "A new laptop"], a: 0,
+        exp: "use one of our company cars = a vehicle の言い換え。" }
+    ] },
+  { id: "p3-07", part: 3, title: "ソフトウェアの契約更新",
+    lines: [
+      { s: "M", t: "Hi, Lena. Our subscription to the design software expires next week. Should I renew it for another year?" },
+      { s: "W", t: "Actually, I've been comparing it with a newer program. It has most of the same features, and it's about thirty percent cheaper." },
+      { s: "M", t: "That sounds promising, but switching would mean training the whole team." },
+      { s: "W", t: "True, but the company offers free online training sessions. I've already signed up for a trial so we can test it first." },
+      { s: "M", t: "OK. Let's try it on the brochure project and make a decision by Friday." }
+    ],
+    questions: [
+      { id: "p3-07-1", q: "What are the speakers mainly discussing?",
+        choices: ["Whether to renew a software subscription", "How to design a brochure", "When to hire new staff", "Where to hold a training session"], a: 0,
+        exp: "契約を更新するか、新しいソフトに切り替えるかの相談。" },
+      { id: "p3-07-2", q: "What advantage of the newer program does the woman mention?",
+        choices: ["It is less expensive.", "It is easier to install.", "It has more features.", "It was recommended by a client."], a: 0,
+        exp: "about thirty percent cheaper の言い換え。機能は「ほぼ同じ」なので (C) は誤り。" },
+      { id: "p3-07-3", q: "What does the man suggest?",
+        choices: ["Testing the program on a current project", "Canceling the trial", "Asking for a discount", "Postponing the brochure project"], a: 0,
+        exp: "Let's try it on the brochure project。" }
+    ] },
+  { id: "p3-08", part: 3, title: "ジムの退会手続き",
+    lines: [
+      { s: "W", t: "Hi, I'd like to cancel my gym membership. I'm moving to Denver next month." },
+      { s: "M", t: "I'm sorry to hear you're leaving. Actually, we have a branch in Denver, on Fifth Avenue. Your membership would be valid there at no extra cost." },
+      { s: "W", t: "Oh, I didn't know that. Is it open early in the morning? I usually work out before work." },
+      { s: "M", t: "It opens at five A.M. on weekdays. I can transfer your membership right now if you'd like. I'll just need your new address." }
+    ],
+    questions: [
+      { id: "p3-08-1", q: "Why does the woman want to cancel her membership?",
+        choices: ["She is relocating.", "The fees have increased.", "She is unhappy with the service.", "She has a new work schedule."], a: 0,
+        exp: "I'm moving to Denver = relocating。" },
+      { id: "p3-08-2", q: "What does the man tell the woman about?",
+        choices: ["Another location of the business", "A special discount", "A new fitness class", "A change in opening hours"], a: 0,
+        exp: "デンバーにも支店があることを伝えている。" },
+      { id: "p3-08-3", q: "What does the man ask the woman for?",
+        choices: ["Her new address", "A membership card", "A cancellation fee", "Her work schedule"], a: 0,
+        exp: "I'll just need your new address。" }
+    ] },
+  { id: "p4-03", part: 4, title: "ラジオの交通情報",
+    lines: [
+      { s: "N", t: "This is Kelly Ross with your Channel 8 traffic update. If you're heading downtown this morning, expect delays on Highway 9, where one lane is closed for bridge repairs near Exit 14. The work is expected to continue through Thursday, so drivers are advised to use Lakeside Road instead. Also, because of tonight's basketball game at Central Arena, parking near the arena will be limited after five P.M. To help, the city will run extra trains on the Green Line this evening. Stay tuned for the weather forecast after this short break." }
+    ],
+    questions: [
+      { id: "p4-03-1", q: "What is causing delays on Highway 9?",
+        choices: ["Bridge repairs", "An accident", "Bad weather", "A sports event"], a: 0,
+        exp: "one lane is closed for bridge repairs。" },
+      { id: "p4-03-2", q: "What will the city do this evening?",
+        choices: ["Provide additional train service", "Close Lakeside Road", "Open a new parking garage", "Offer free bus rides"], a: 0,
+        exp: "run extra trains on the Green Line の言い換え。" },
+      { id: "p4-03-3", q: "What will listeners most likely hear next?",
+        choices: ["Some advertisements", "A sports report", "An interview", "A news summary"], a: 0,
+        exp: "after this short break（短い休憩＝CMのあと）に天気予報。つまり次に流れるのは広告。" }
+    ] },
+  { id: "p4-04", part: 4, title: "工場見学ツアー",
+    lines: [
+      { s: "N", t: "Welcome to the Hollis Chocolate Factory tour. My name is Martin, and I'll be your guide for the next hour. We'll begin in the roasting room, where the cocoa beans are prepared, and finish in our tasting room, where you can sample five of our most popular flavors. Please note that photography is not permitted inside the production area to protect our recipes. Also, for safety reasons, everyone must wear the hairnet you were given at the entrance. At the end of the tour, you'll each receive a coupon for fifteen percent off any purchase at our gift shop." }
+    ],
+    questions: [
+      { id: "p4-04-1", q: "Who most likely is the speaker?",
+        choices: ["A tour guide", "A store manager", "A chef", "A safety inspector"], a: 0,
+        exp: "I'll be your guide for the next hour。" },
+      { id: "p4-04-2", q: "What are listeners asked not to do?",
+        choices: ["Take pictures in the production area", "Eat in the tasting room", "Remove their hairnets outside", "Touch the cocoa beans"], a: 0,
+        exp: "photography is not permitted inside the production area。" },
+      { id: "p4-04-3", q: "What will listeners receive at the end of the tour?",
+        choices: ["A discount coupon", "A box of chocolates", "A recipe book", "A free drink"], a: 0,
+        exp: "a coupon for fifteen percent off の言い換え。" }
+    ] },
+  { id: "p4-05", part: 4, title: "会議：顧客アンケートの結果",
+    lines: [
+      { s: "N", t: "Before we finish today's meeting, I want to share the results of our customer survey. Overall satisfaction with our delivery service rose to eighty-five percent, up from seventy-two percent last year. Customers especially appreciated the new text-message updates that tell them when their package will arrive. However, many people commented that our return process is too complicated. So starting next month, customers will be able to print return labels directly from our Web site. I'd like each team leader to explain this change to their staff by the end of the week." }
+    ],
+    questions: [
+      { id: "p4-05-1", q: "What has improved, according to the speaker?",
+        choices: ["Customer satisfaction with deliveries", "The speed of the Web site", "The number of employees", "Product prices"], a: 0,
+        exp: "satisfaction with our delivery service rose to eighty-five percent。" },
+      { id: "p4-05-2", q: "What did many customers complain about?",
+        choices: ["The return process", "Text-message updates", "Delivery times", "Packaging"], a: 0,
+        exp: "our return process is too complicated。text-message updates は好評だった点。" },
+      { id: "p4-05-3", q: "What are team leaders asked to do?",
+        choices: ["Inform their staff about a change", "Conduct another survey", "Print return labels", "Contact unhappy customers"], a: 0,
+        exp: "explain this change to their staff の言い換え。" }
     ] }
 ];
