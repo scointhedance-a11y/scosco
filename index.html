@@ -34,6 +34,11 @@
   input:focus { outline: 2px solid var(--accent-soft); border-color: var(--accent); }
   .items .row { display: grid; grid-template-columns: 1fr 130px 28px; gap: 6px; margin-bottom: 6px; align-items: center; }
   .items.pct .row { grid-template-columns: 1fr 90px 28px; }
+  .items.alloc .row { grid-template-columns: 1fr 124px 72px 24px; gap: 4px; }
+  .items.alloc .row .unit { display: none; }
+  .items.alloc input[data-f=ratio] { padding-left: 4px; padding-right: 4px; }
+  .items.alloc .row.head { margin-bottom: 2px; font-size: .75rem; color: var(--muted); }
+  .items.alloc .row.head span:not(:first-child) { text-align: center; }
   .del { border: none; background: none; color: var(--muted); cursor: pointer; font-size: 1.1rem; }
   .del:hover { color: var(--bad); }
   .add { margin-top: 4px; background: none; border: 1px dashed var(--accent); color: var(--accent);
@@ -101,6 +106,14 @@
     .items .row { grid-template-columns: 1fr 112px 36px; gap: 4px; }
     .items.pct .row { grid-template-columns: 1fr 84px 36px; }
     .items .row .unit { display: none; }
+    .items.alloc .row { grid-template-columns: 1fr 104px 36px; row-gap: 4px;
+      padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed var(--line); }
+    .items.alloc .row > :nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
+    .items.alloc .row > :nth-child(4) { grid-column: 3; grid-row: 1; }
+    .items.alloc .row > :nth-child(2) { grid-column: 1; grid-row: 2; }
+    .items.alloc .row > :nth-child(3) { grid-column: 2; grid-row: 2; }
+    .items.alloc .row .unit { display: inline; min-width: auto !important; }
+    .items.alloc .row.head { display: none; }
     .del { font-size: 1.3rem; height: 40px; }
     .add, .btn { padding: 10px; font-size: .9rem; }
     .btns .btn { flex: 1 1 45%; }
@@ -162,11 +175,13 @@
 
     <div class="card">
       <h2>② 固定費（<span class="perLabel">1か月</span>あたり）</h2>
-      <div class="items" id="fixedItems"></div>
+      <div class="items alloc" id="fixedItems"></div>
+      <datalist id="allocList"><option value="100"><option value="80"><option value="75"><option value="60"><option value="50"><option value="40"><option value="30"><option value="25"><option value="20"><option value="10"></datalist>
       <button class="add" data-add="fixed">＋ 固定費を追加</button>
-      <div class="subtotal"><span class="perLabel">1か月</span>あたり合計：<b id="fixedPer">0</b> 円</div>
+      <div class="subtotal" id="fixedRawLine"><span class="perLabel">1か月</span>あたり合計（按分前）：<b id="fixedRaw">0</b> 円</div>
+      <div class="subtotal"><span class="perLabel">1か月</span>あたり合計（按分後）：<b id="fixedPer">0</b> 円</div>
       <div class="subtotal">× <span id="periodText">12か月</span> ＝ 計算期間の固定費：<b id="fixedTotal">0</b> 円</div>
-      <div class="hint">家賃・人件費・減価償却費・広告費など、販売数量に関係なく発生する費用</div>
+      <div class="hint">家賃・人件費・減価償却費・広告費など、販売数量に関係なく発生する費用。<br>「按分」には、その費用のうちこの商品に負担させる割合（％）を入力します（全額なら100%）。</div>
     </div>
 
     <div class="card">
@@ -236,7 +251,7 @@
 
     <div class="card">
       <h2>計算式</h2>
-      <div class="formula">固定費 = 1期間あたり固定費 × 計算期間
+      <div class="formula">固定費 = Σ(各費目の1期間あたり金額 × 按分割合) × 計算期間
 販売価格 = (固定費 ÷ 販売数量 ＋ 1個あたり変動費) ÷ (1 − 売上連動費率 − 目標営業利益率)
 
 営業利益 = 売上高 − 変動費 − 固定費
@@ -264,10 +279,10 @@
     quantity: 10000,
     rounding: "10",
     fixed: [
-      { name: "人件費", value: 400000 },
-      { name: "家賃", value: 100000 },
-      { name: "広告宣伝費", value: 50000 },
-      { name: "減価償却費", value: 35000 },
+      { name: "人件費", value: 400000, ratio: 100 },
+      { name: "家賃", value: 200000, ratio: 50 },
+      { name: "広告宣伝費", value: 50000, ratio: 100 },
+      { name: "減価償却費", value: 35000, ratio: 100 },
     ],
     var: [
       { name: "材料費", value: 800 },
@@ -305,6 +320,8 @@
 
   // ---------- 計算 ----------
   const sum = (arr) => arr.reduce((a, b) => a + num(b.value), 0);
+  const allocRatio = (it) => Math.min(100, Math.max(0, it.ratio == null ? 100 : num(it.ratio))) / 100;
+  const allocated = (it) => num(it.value) * allocRatio(it);
 
   function roundUp(p, unit) {
     if (!unit || !isFinite(p)) return p;
@@ -328,7 +345,8 @@
   }
 
   function compute() {
-    const Fper = sum(state.fixed);
+    const Fraw = sum(state.fixed);
+    const Fper = state.fixed.reduce((a, it) => a + allocated(it), 0);
     const N = num(state.periodCount);
     const F = Fper * N;
     const v = sum(state.var);
@@ -342,10 +360,10 @@
     if (M < 0) errors.push("目標営業利益率は0%以上を入力してください。");
     if (r >= 1) errors.push("売上連動費率の合計が100%以上のため、価格を算出できません。");
     else if (r + M >= 1) errors.push(`目標営業利益率（${(M * 100).toFixed(1)}%）と売上連動費率（${(r * 100).toFixed(1)}%）の合計が100%以上のため、価格を算出できません。`);
-    if (errors.length) return { errors, F, Fper, N, v, r, M, Q };
+    if (errors.length) return { errors, F, Fraw, Fper, N, v, r, M, Q };
     const rawPrice = priceFor({ F, M, Q, v, r });
     const price = roundUp(rawPrice, unit);
-    const ctx = { F, Fper, N, M, Q, v, r, unit };
+    const ctx = { F, Fraw, Fper, N, M, Q, v, r, unit };
     const res = evaluate(price, ctx);
     const bePrice = priceFor({ F, M: 0, Q, v, r }); // 利益ゼロとなる価格
     return { errors, ...ctx, rawPrice, bePrice, ...res };
@@ -353,7 +371,7 @@
 
   // ---------- 入力リスト描画 ----------
   const LISTS = {
-    fixed: { el: "fixedItems", unit: "円", step: 10000, placeholder: "費目（例：家賃）" },
+    fixed: { el: "fixedItems", unit: "円", step: 10000, placeholder: "費目（例：家賃）", alloc: true },
     var:   { el: "varItems",   unit: "円", step: 1,     placeholder: "費目（例：材料費）" },
     rate:  { el: "rateItems",  unit: "%",  step: 0.1,   placeholder: "費目（例：決済手数料）" },
   };
@@ -361,10 +379,13 @@
   function renderLists() {
     for (const [key, cfg] of Object.entries(LISTS)) {
       const box = $(cfg.el);
-      box.innerHTML = state[key].map((it, i) => `
+      const head = cfg.alloc && state[key].length
+        ? `<div class="row head"><span>費目</span><span>金額（円）</span><span>按分（%）</span><span></span></div>` : "";
+      box.innerHTML = head + state[key].map((it, i) => `
         <div class="row">
           <input type="text" value="${esc(it.name)}" placeholder="${cfg.placeholder}" data-list="${key}" data-i="${i}" data-f="name">
           <div class="field"><input type="number" inputmode="decimal" value="${it.value}" step="${cfg.step}" min="0" data-list="${key}" data-i="${i}" data-f="value"><span class="unit" style="min-width:1.2em">${cfg.unit}</span></div>
+          ${cfg.alloc ? `<div class="field"><input type="number" inputmode="decimal" value="${it.ratio ?? 100}" step="5" min="0" max="100" list="allocList" title="按分割合" aria-label="按分割合" data-list="${key}" data-i="${i}" data-f="ratio"><span class="unit" style="min-width:1em">%</span></div>` : ""}
           <button class="del" title="削除" data-del="${key}" data-i="${i}">×</button>
         </div>`).join("");
     }
@@ -385,6 +406,8 @@
     const c = compute();
     $("fixedTotal").textContent = yen(c.F);
     $("fixedPer").textContent = yen(c.Fper);
+    $("fixedRaw").textContent = yen(c.Fraw);
+    $("fixedRawLine").style.display = Math.abs(c.Fraw - c.Fper) > 1e-9 ? "" : "none";
     $("periodText").textContent = periodText();
     document.querySelectorAll(".perLabel").forEach((e) => (e.textContent = PER[state.periodUnit] || "1か月"));
     $("qtyPer").textContent = c.N > 0 && c.Q > 0
@@ -434,7 +457,11 @@
     rows += row("　変動費（1個あたり分）", c.unitVarCost);
     if (c.r > 0) rows += row("　変動費（売上連動分）", c.rateCost);
     rows += row("限界利益", c.contribution, "total");
-    state.fixed.forEach((f) => (rows += row("　" + esc(f.name || "固定費"), num(f.value) * c.N)));
+    state.fixed.forEach((f) => {
+      const ra = allocRatio(f);
+      const note = ra < 1 ? `<span style="font-size:.72rem;color:var(--muted)">（按分 ${+(ra * 100).toFixed(1)}%）</span>` : "";
+      rows += row("　" + esc(f.name || "固定費") + note, allocated(f) * c.N);
+    });
     rows += row(`固定費合計<span class="pctnote" style="display:block;font-size:.72rem;color:var(--muted);font-weight:400">${PER[state.periodUnit]} ${yen(c.Fper)}円 × ${periodText()}</span>`, c.F);
     rows += row("営業利益", c.profit, "total");
     $("plTable").innerHTML = `<thead><tr><th>項目</th><th>金額</th><th>構成比</th></tr></thead><tbody>${rows}</tbody>`;
@@ -536,8 +563,13 @@
       ["項目", "値"],
       ["目標営業利益率(%)", c.M * 100], ["販売数量", c.Q],
       ["計算期間", periodText()],
-      ...state.fixed.map((f) => [`固定費(${PER[state.periodUnit]}あたり)：` + f.name, num(f.value)]),
-      [`固定費(${PER[state.periodUnit]}あたり)合計`, c.Fper],
+      ...state.fixed.flatMap((f) => [
+        [`固定費(${PER[state.periodUnit]}あたり)：` + f.name, num(f.value)],
+        [`　按分割合(%)：` + f.name, +(allocRatio(f) * 100).toFixed(2)],
+        [`　按分後(${PER[state.periodUnit]}あたり)：` + f.name, Math.round(allocated(f))],
+      ]),
+      [`固定費(${PER[state.periodUnit]}あたり)合計・按分前`, c.Fraw],
+      [`固定費(${PER[state.periodUnit]}あたり)合計・按分後`, c.Fper],
       ["固定費合計(計算期間)", c.F],
       ...state.var.map((f) => ["変動費(1個)：" + f.name, num(f.value)]),
       ["1個あたり変動費合計", c.v],
@@ -569,8 +601,14 @@
     const t = e.target;
     if (!t.dataset.list) return;
     const item = state[t.dataset.list][+t.dataset.i];
-    item[t.dataset.f] = t.dataset.f === "value" ? num(t.value) : t.value;
+    item[t.dataset.f] = t.dataset.f === "name" ? t.value : num(t.value);
     render();
+  });
+  document.addEventListener("change", (e) => {
+    const t = e.target;
+    if (t.dataset.f !== "ratio") return;
+    const v = Math.min(100, Math.max(0, num(t.value)));
+    if (String(v) !== t.value) { t.value = v; state[t.dataset.list][+t.dataset.i].ratio = v; render(); }
   });
   document.addEventListener("click", (e) => {
     const t = e.target;
@@ -578,7 +616,7 @@
       state[t.dataset.del].splice(+t.dataset.i, 1);
       renderLists(); render();
     } else if (t.dataset.add) {
-      state[t.dataset.add].push({ name: "", value: 0 });
+      state[t.dataset.add].push(t.dataset.add === "fixed" ? { name: "", value: 0, ratio: 100 } : { name: "", value: 0 });
       renderLists(); render();
       const rows = $(LISTS[t.dataset.add].el).querySelectorAll("input[type=text]");
       rows[rows.length - 1]?.focus();
