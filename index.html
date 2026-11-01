@@ -18,6 +18,7 @@
   header p { margin: 4px 0 0; opacity: .9; font-size: .9rem; }
   main { max-width: 1200px; margin: 0 auto; padding: 20px; display: grid;
          grid-template-columns: minmax(320px, 420px) 1fr; gap: 20px; }
+  main > section { min-width: 0; }
   @media (max-width: 860px) { main { grid-template-columns: 1fr; } }
   .card { background: var(--card); border-radius: 10px; padding: 18px 20px;
           box-shadow: 0 1px 3px rgba(0,0,0,.06); margin-bottom: 20px; }
@@ -65,6 +66,8 @@
   tr.hl td { background: var(--accent-soft); font-weight: 700; }
   .pos { color: var(--good); } .neg { color: var(--bad); }
   .scroll { overflow-x: auto; }
+  tfoot td { white-space: normal; }
+  th { vertical-align: bottom; }
   .chart-wrap { position: relative; }
   svg text { font-family: inherit; }
   .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); margin-top: 6px; }
@@ -76,6 +79,43 @@
   .tab { padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: #fff;
          cursor: pointer; font-size: .85rem; }
   .tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  #stickyBar { display: none; }
+  @media (max-width: 860px) {
+    body { padding-bottom: calc(64px + env(safe-area-inset-bottom)); }
+    #stickyBar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+      align-items: center; justify-content: space-between; gap: 10px;
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+      background: #1e40af; color: #fff; box-shadow: 0 -2px 10px rgba(0,0,0,.15); }
+    #stickyBar .sp { font-size: 1.3rem; font-weight: 700; line-height: 1.2; }
+    #stickyBar .sl { font-size: .72rem; opacity: .85; }
+    #stickyBar button { background: #fff; color: #1e40af; border: none; border-radius: 6px;
+      padding: 9px 12px; font-size: .85rem; font-weight: 600; font-family: inherit; white-space: nowrap; }
+  }
+  @media (max-width: 600px) {
+    header { padding: 14px 16px; }
+    header h1 { font-size: 1.2rem; }
+    header p { font-size: .8rem; }
+    main { padding: 12px; gap: 0; }
+    .card { padding: 14px; margin-bottom: 12px; }
+    input[type=text], input[type=number], .roundsel { font-size: 16px; padding: 9px 8px; }
+    .items .row { grid-template-columns: 1fr 112px 36px; gap: 4px; }
+    .items.pct .row { grid-template-columns: 1fr 84px 36px; }
+    .items .row .unit { display: none; }
+    .del { font-size: 1.3rem; height: 40px; }
+    .add, .btn { padding: 10px; font-size: .9rem; }
+    .btns .btn { flex: 1 1 45%; }
+    .price { font-size: 2.1rem; }
+    .kpis { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .kpi .v { font-size: 1rem; }
+    table { font-size: .78rem; }
+    th, td { padding: 6px 4px; }
+    th { font-size: .72rem; }
+    td:first-child { white-space: normal; }
+    .pctnote { display: block; font-size: .72rem; color: var(--muted); font-weight: 400; }
+    .formula { white-space: pre-wrap; font-size: .78rem; }
+    .tabs { flex-wrap: wrap; }
+    .tab { flex: 1; padding: 8px 6px; font-size: .8rem; }
+  }
   .roundsel { padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; font-size: .85rem; font-family: inherit; }
 </style>
 </head>
@@ -91,11 +131,11 @@
     <div class="card">
       <h2>① 目標と販売計画</h2>
       <label for="targetRate">目標営業利益率（売上高に対する％）</label>
-      <div class="field"><input type="number" id="targetRate" min="0" max="99" step="0.5"><span class="unit">%</span></div>
+      <div class="field"><input type="number" inputmode="decimal" id="targetRate" min="0" max="99" step="0.5"><span class="unit">%</span></div>
       <div class="hint">例：15% と入力すると、売上高の15%が営業利益として残る価格を計算します。</div>
 
       <label for="quantity">販売数量（期間合計）</label>
-      <div class="field"><input type="number" id="quantity" min="1" step="1"><span class="unit">個</span></div>
+      <div class="field"><input type="number" inputmode="decimal" id="quantity" min="1" step="1"><span class="unit">個</span></div>
 
       <label for="rounding">価格の端数処理</label>
       <select id="rounding" class="roundsel">
@@ -144,7 +184,7 @@
   </section>
 
   <!-- ===== 結果 ===== -->
-  <section>
+  <section id="results">
     <div class="card hero">
       <h2>必要な販売価格（1個あたり・税抜）</h2>
       <div id="heroBody"></div>
@@ -191,6 +231,11 @@
     </div>
   </section>
 </main>
+
+<div id="stickyBar">
+  <div><div class="sl">必要な販売価格（税抜）</div><div class="sp" id="stickyPrice">—</div><div class="sl" id="stickySub"></div></div>
+  <button id="btnJump">結果を見る ↓</button>
+</div>
 
 <script>
 (() => {
@@ -294,7 +339,7 @@
       box.innerHTML = state[key].map((it, i) => `
         <div class="row">
           <input type="text" value="${esc(it.name)}" placeholder="${cfg.placeholder}" data-list="${key}" data-i="${i}" data-f="name">
-          <div class="field"><input type="number" value="${it.value}" step="${cfg.step}" min="0" data-list="${key}" data-i="${i}" data-f="value"><span class="unit" style="min-width:1.2em">${cfg.unit}</span></div>
+          <div class="field"><input type="number" inputmode="decimal" value="${it.value}" step="${cfg.step}" min="0" data-list="${key}" data-i="${i}" data-f="value"><span class="unit" style="min-width:1.2em">${cfg.unit}</span></div>
           <button class="del" title="削除" data-del="${key}" data-i="${i}">×</button>
         </div>`).join("");
     }
@@ -317,6 +362,8 @@
 
     if (c.errors.length) {
       $("heroBody").innerHTML = `<div class="error">${c.errors.join("<br>")}</div>`;
+      $("stickyPrice").textContent = "計算できません";
+      $("stickySub").textContent = "入力内容を確認してください";
       ["kpis", "plTable", "sensTable", "chart"].forEach((id) => ($(id).innerHTML = ""));
       lastResult = null;
       return;
@@ -328,6 +375,9 @@
       <div class="price">${yen(c.price, c.unit ? 0 : 2)} <small>円 / 個</small></div>
       <div class="sub">${roundedNote}</div>
       <div class="sub">税込（10%）参考：${yen(Math.round(c.price * 1.1))} 円 ／ 損益分岐価格：${yen(c.bePrice, 2)} 円</div>`;
+
+    $("stickyPrice").textContent = yen(c.price, c.unit ? 0 : 2) + " 円";
+    $("stickySub").textContent = `営業利益率 ${pct(c.profit / c.sales)}（目標 ${pct(c.M)}）`;
 
     const kpi = (k, v, cls = "") => `<div class="kpi"><div class="k">${k}</div><div class="v ${cls}">${v}</div></div>`;
     const varRatio = c.varCost / c.sales;
@@ -372,29 +422,32 @@
         const Q = Math.max(1, Math.round(c.Q * f));
         const p = roundUp(priceFor({ ...c, Q }), c.unit);
         const e = evaluate(p, { ...c, Q });
-        return `<tr class="${f === 1 ? "hl" : ""}"><td>${yen(Q)} 個 (${Math.round(f * 100)}%)</td>
-          <td>${yen(p, c.unit ? 0 : 2)} 円</td><td>${pct((p - c.price) / c.price)}</td>
-          <td>${yen(e.sales)} 円</td><td class="${e.profit >= 0 ? "pos" : "neg"}">${yen(e.profit)} 円</td></tr>`;
+        return `<tr class="${f === 1 ? "hl" : ""}"><td>${yen(Q)} <span class="pctnote">(${Math.round(f * 100)}%)</span></td>
+          <td>${yen(p, c.unit ? 0 : 2)}</td><td>${pct((p - c.price) / c.price)}</td>
+          <td>${yen(e.sales)}</td><td class="${e.profit >= 0 ? "pos" : "neg"}">${yen(e.profit)}</td></tr>`;
       }).join("");
-      $("sensTable").innerHTML = `<thead><tr><th>販売数量</th><th>必要価格</th><th>基準比</th><th>売上高</th><th>営業利益</th></tr></thead><tbody>${rows}</tbody>`;
+      $("sensTable").innerHTML = `<thead><tr><th>販売数量<br>（個）</th><th>必要価格<br>（円）</th><th>基準比</th><th>売上高<br>（円）</th><th>営業利益<br>（円）</th></tr></thead><tbody>${rows}</tbody>`;
     } else {
       const pf = [0.8, 0.9, 0.95, 1, 1.05, 1.1, 1.2];
       const rows = pf.map((f) => {
         const p = c.price * f;
         const e = evaluate(p, c);
-        return `<tr class="${f === 1 ? "hl" : ""}"><td>${yen(p, c.unit ? 0 : 2)} 円 (${Math.round(f * 100)}%)</td>
-          <td>${yen(e.sales)} 円</td><td class="${e.profit >= 0 ? "pos" : "neg"}">${yen(e.profit)} 円</td>
+        return `<tr class="${f === 1 ? "hl" : ""}"><td>${yen(p, c.unit ? 0 : 2)} <span class="pctnote">(${Math.round(f * 100)}%)</span></td>
+          <td>${yen(e.sales)}</td><td class="${e.profit >= 0 ? "pos" : "neg"}">${yen(e.profit)}</td>
           <td>${pct(e.profit / e.sales)}</td>
-          <td>${isFinite(e.beQty) ? yen(Math.ceil(e.beQty)) + " 個" : "達成不可"}</td></tr>`;
+          <td>${isFinite(e.beQty) ? yen(Math.ceil(e.beQty)) : "達成不可"}</td></tr>`;
       }).join("");
-      $("sensTable").innerHTML = `<thead><tr><th>販売価格</th><th>売上高</th><th>営業利益</th><th>利益率</th><th>損益分岐点数量</th></tr></thead><tbody>${rows}</tbody>
+      $("sensTable").innerHTML = `<thead><tr><th>販売価格<br>（円）</th><th>売上高<br>（円）</th><th>営業利益<br>（円）</th><th>利益率</th><th>損益分岐点<br>数量（個）</th></tr></thead><tbody>${rows}</tbody>
         <tfoot><tr><td colspan="5" style="text-align:left;color:var(--muted);font-size:.8rem;border:none">販売数量 ${yen(c.Q)} 個を前提とした場合</td></tr></tfoot>`;
     }
   }
 
   // ---------- グラフ（SVG） ----------
   function renderChart(c) {
-    const W = 640, H = 320, m = { l: 70, r: 20, t: 16, b: 40 };
+    const cw = $("chart").clientWidth || 640;
+    const narrow = cw < 500;
+    const W = Math.max(300, Math.round(cw)), H = narrow ? Math.round(W * 0.75) : 320;
+    const m = narrow ? { l: 52, r: 12, t: 22, b: 40 } : { l: 70, r: 20, t: 22, b: 40 };
     const maxQ = Math.max(c.Q * 1.5, isFinite(c.beQty) ? c.beQty * 1.2 : 0, 1);
     const salesAt = (q) => c.price * q;
     const costAt = (q) => c.F + (c.v + c.price * c.r) * q;
@@ -413,7 +466,7 @@
       g += `<text x="${xx}" y="${H - m.b + 16}" font-size="11" fill="#616e7c" text-anchor="middle">${short(q)}</text>`;
     }
     g += `<text x="${(W + m.l) / 2}" y="${H - 6}" font-size="11" fill="#616e7c" text-anchor="middle">販売数量（個）</text>`;
-    g += `<text x="14" y="${(H - m.b + m.t) / 2}" font-size="11" fill="#616e7c" text-anchor="middle" transform="rotate(-90 14 ${(H - m.b + m.t) / 2})">金額（円）</text>`;
+    g += `<text x="${m.l - 6}" y="12" font-size="11" fill="#616e7c" text-anchor="end">（円）</text>`;
 
     // 損失・利益エリア
     if (isFinite(c.beQty) && c.beQty <= maxQ) {
@@ -513,6 +566,12 @@
     state = structuredClone(EMPTY); renderInputs(); render();
   });
   $("btnCsv").addEventListener("click", exportCsv);
+  $("btnJump").addEventListener("click", () => $("results").scrollIntoView({ behavior: "smooth" }));
+  let lastW = 0;
+  window.addEventListener("resize", () => {
+    const w = $("chart").clientWidth;
+    if (lastResult && w !== lastW) { lastW = w; renderChart(lastResult); }
+  });
 
   renderInputs();
   render();
