@@ -135,9 +135,10 @@
       <div class="btns">
         <button class="btn" id="btnSample">サンプルを読み込む</button>
         <button class="btn" id="btnClear">すべてクリア</button>
-        <button class="btn" id="btnCsv">結果をCSV出力</button>
+        <button class="btn" id="btnCsv">結果をCSVでコピー</button>
       </div>
-      <div class="hint">入力内容はブラウザに自動保存されます。</div>
+      <div class="hint" id="dataMsg">入力内容はブラウザに自動保存されます。</div>
+      <textarea id="csvOut" readonly style="display:none;width:100%;height:120px;margin-top:8px;font-size:.75rem"></textarea>
     </div>
   </section>
 
@@ -219,7 +220,7 @@
   let sensMode = "qty";
 
   // ---------- 書式 ----------
-  const yen = (n, d = 0) => isFinite(n)
+  const yen = (n, d = 0) => isFinite(n) && (n = n + 0 || 0, true)
     ? n.toLocaleString("ja-JP", { minimumFractionDigits: d, maximumFractionDigits: d }) : "—";
   const pct = (n) => isFinite(n) ? (n * 100).toFixed(1) + "%" : "—";
   const num = (v) => { const n = parseFloat(v); return isFinite(n) ? n : 0; };
@@ -238,7 +239,7 @@
 
   function roundUp(p, unit) {
     if (!unit || !isFinite(p)) return p;
-    return Math.ceil(p / unit - 1e-9) * unit;
+    return Math.ceil(p / unit - 1e-9) * unit + 0;
   }
 
   function priceFor({ F, P, Q, v, r }) {
@@ -440,7 +441,7 @@
   // ---------- CSV ----------
   function exportCsv() {
     const c = lastResult;
-    if (!c) return alert("計算結果がありません。");
+    if (!c) { $("dataMsg").textContent = "計算結果がありません。入力内容を確認してください。"; return; }
     const lines = [
       ["項目", "値"],
       ["目標営業利益", c.P], ["販売数量", c.Q],
@@ -454,12 +455,15 @@
       ["売上高", Math.round(c.sales)], ["営業利益", Math.round(c.profit)],
       ["損益分岐点数量", isFinite(c.beQty) ? Math.ceil(c.beQty) : ""],
     ];
-    const csv = "﻿" + lines.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\r\n");
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
-    a.download = "販売価格シミュレーション.csv";
-    a.click();
-    URL.revokeObjectURL(a.href);
+    const csv = lines.map((r) => r.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(",")).join("\r\n");
+    const out = $("csvOut");
+    out.value = csv;
+    const showBox = () => { out.style.display = "block"; out.select(); $("dataMsg").textContent = "下の欄のCSVを選択してコピーし、Excelなどに貼り付けてください。"; };
+    try {
+      navigator.clipboard.writeText(csv).then(
+        () => { out.style.display = "none"; $("dataMsg").textContent = "CSVをクリップボードにコピーしました。Excelなどに貼り付けてください。"; },
+        showBox);
+    } catch { showBox(); }
   }
 
   // ---------- イベント ----------
@@ -491,8 +495,17 @@
     }
   });
   $("btnSample").addEventListener("click", () => { state = structuredClone(SAMPLE); renderInputs(); render(); });
-  $("btnClear").addEventListener("click", () => {
-    if (!confirm("入力内容をすべてクリアしますか？")) return;
+  let clearArmed = null;
+  $("btnClear").addEventListener("click", (e) => {
+    const btn = e.currentTarget;
+    if (!clearArmed) {
+      btn.textContent = "もう一度押すとクリア";
+      btn.style.color = "var(--bad)";
+      clearArmed = setTimeout(() => { clearArmed = null; btn.textContent = "すべてクリア"; btn.style.color = ""; }, 3000);
+      return;
+    }
+    clearTimeout(clearArmed); clearArmed = null;
+    btn.textContent = "すべてクリア"; btn.style.color = "";
     state = structuredClone(EMPTY); renderInputs(); render();
   });
   $("btnCsv").addEventListener("click", exportCsv);
