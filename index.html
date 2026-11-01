@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>診断士フレームワーク・ワークベンチ</title>
+  <meta name="description" content="中小企業診断士試験に登場するビジネスフレームワークを、実際に書き込んで活用できるWebアプリ">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn menu-btn" id="menuBtn" aria-label="メニューを開く">☰</button>
+    <a href="#/" class="brand">
+      <span class="brand-mark">診</span>
+      <span class="brand-text">診断士フレームワーク・ワークベンチ</span>
+    </a>
+    <div class="project-bar">
+      <label for="projectSelect" class="sr-only">事例（プロジェクト）</label>
+      <select id="projectSelect" title="分析対象の事例企業を切り替え"></select>
+      <button class="btn btn-ghost" data-global="new-project" title="新しい事例を作成">＋<span class="hide-sm"> 新規</span></button>
+      <button class="btn btn-ghost" data-global="rename-project" title="名前を変更">✎</button>
+      <button class="btn btn-ghost" data-global="menu-toggle" title="その他" aria-haspopup="true">⋯</button>
+      <div class="dropdown" id="globalMenu" hidden>
+        <button data-global="export-md">事例全体をMarkdownで保存</button>
+        <button data-global="export-json">バックアップ（JSON）を保存</button>
+        <button data-global="import-json">バックアップ（JSON）を読み込む</button>
+        <button data-global="load-sample">サンプル事例を追加</button>
+        <hr>
+        <button data-global="delete-project" class="danger">この事例を削除</button>
+      </div>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar" id="sidebar" aria-label="フレームワーク一覧">
+      <div class="search-box">
+        <input type="search" id="searchInput" placeholder="フレームワークを検索…" autocomplete="off">
+      </div>
+      <div id="navList"></div>
+    </nav>
+    <div class="scrim" id="scrim"></div>
+    <main class="main" id="main" tabindex="-1"></main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/frameworks.js"></script>
+  <script src="js/tools.js"></script>
+  <script src="js/sample.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
