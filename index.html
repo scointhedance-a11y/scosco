@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>販売価格シミュレーター｜目標営業利益から逆算</title>
+<title>販売価格シミュレーター｜目標営業利益率から逆算</title>
 <style>
   :root {
     --bg: #f5f7fa; --card: #fff; --text: #1f2933; --muted: #616e7c;
@@ -82,7 +82,7 @@
 <body>
 <header>
   <h1>販売価格シミュレーター</h1>
-  <p>目標営業利益・固定費・変動費・販売数量から、必要な販売価格を逆算します。</p>
+  <p>目標営業利益率・固定費・変動費・販売数量から、必要な販売価格を逆算します。</p>
 </header>
 
 <main>
@@ -90,8 +90,9 @@
   <section>
     <div class="card">
       <h2>① 目標と販売計画</h2>
-      <label for="targetProfit">目標営業利益（期間合計）</label>
-      <div class="field"><input type="number" id="targetProfit" min="0" step="10000"><span class="unit">円</span></div>
+      <label for="targetRate">目標営業利益率（売上高に対する％）</label>
+      <div class="field"><input type="number" id="targetRate" min="0" max="99" step="0.5"><span class="unit">%</span></div>
+      <div class="hint">例：15% と入力すると、売上高の15%が営業利益として残る価格を計算します。</div>
 
       <label for="quantity">販売数量（期間合計）</label>
       <div class="field"><input type="number" id="quantity" min="1" step="1"><span class="unit">個</span></div>
@@ -181,9 +182,10 @@
 
     <div class="card">
       <h2>計算式</h2>
-      <div class="formula">販売価格 = { (固定費 ＋ 目標営業利益) ÷ 販売数量 ＋ 1個あたり変動費 } ÷ (1 − 売上連動費率)
+      <div class="formula">販売価格 = (固定費 ÷ 販売数量 ＋ 1個あたり変動費) ÷ (1 − 売上連動費率 − 目標営業利益率)
 
 営業利益 = 売上高 − 変動費 − 固定費
+営業利益率 = 営業利益 ÷ 売上高
 損益分岐点数量 = 固定費 ÷ 1個あたり限界利益
 限界利益 = 販売価格 × (1 − 売上連動費率) − 1個あたり変動費</div>
     </div>
@@ -193,10 +195,10 @@
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const STORAGE_KEY = "price-simulator-v1";
+  const STORAGE_KEY = "price-simulator-v2";
 
   const SAMPLE = {
-    targetProfit: 3000000,
+    targetRate: 15,
     quantity: 10000,
     rounding: "10",
     fixed: [
@@ -214,7 +216,7 @@
       { name: "決済手数料", value: 3.6 },
     ],
   };
-  const EMPTY = { targetProfit: 0, quantity: 1, rounding: "1", fixed: [], var: [], rate: [] };
+  const EMPTY = { targetRate: 0, quantity: 1, rounding: "1", fixed: [], var: [], rate: [] };
 
   let state = load() || structuredClone(SAMPLE);
   let sensMode = "qty";
@@ -242,8 +244,8 @@
     return Math.ceil(p / unit - 1e-9) * unit + 0;
   }
 
-  function priceFor({ F, P, Q, v, r }) {
-    return ((F + P) / Q + v) / (1 - r);
+  function priceFor({ F, M, Q, v, r }) {
+    return (F / Q + v) / (1 - r - M);
   }
 
   function evaluate(price, { F, Q, v, r }) {
@@ -262,18 +264,20 @@
     const F = sum(state.fixed);
     const v = sum(state.var);
     const r = sum(state.rate) / 100;
-    const P = num(state.targetProfit);
+    const M = num(state.targetRate) / 100;
     const Q = num(state.quantity);
     const unit = num(state.rounding);
     const errors = [];
     if (Q <= 0) errors.push("販売数量は1以上を入力してください。");
+    if (M < 0) errors.push("目標営業利益率は0%以上を入力してください。");
     if (r >= 1) errors.push("売上連動費率の合計が100%以上のため、価格を算出できません。");
-    if (errors.length) return { errors, F, v, r, P, Q };
-    const rawPrice = priceFor({ F, P, Q, v, r });
+    else if (r + M >= 1) errors.push(`目標営業利益率（${(M * 100).toFixed(1)}%）と売上連動費率（${(r * 100).toFixed(1)}%）の合計が100%以上のため、価格を算出できません。`);
+    if (errors.length) return { errors, F, v, r, M, Q };
+    const rawPrice = priceFor({ F, M, Q, v, r });
     const price = roundUp(rawPrice, unit);
-    const ctx = { F, P, Q, v, r, unit };
+    const ctx = { F, M, Q, v, r, unit };
     const res = evaluate(price, ctx);
-    const bePrice = priceFor({ F, P: 0, Q, v, r }); // 利益ゼロとなる価格
+    const bePrice = priceFor({ F, M: 0, Q, v, r }); // 利益ゼロとなる価格
     return { errors, ...ctx, rawPrice, bePrice, ...res };
   }
 
@@ -297,7 +301,7 @@
   }
 
   function renderInputs() {
-    $("targetProfit").value = state.targetProfit;
+    $("targetRate").value = state.targetRate;
     $("quantity").value = state.quantity;
     $("rounding").value = state.rounding;
     renderLists();
@@ -351,9 +355,9 @@
     rows += row("固定費合計", c.F);
     rows += row("営業利益", c.profit, "total");
     $("plTable").innerHTML = `<thead><tr><th>項目</th><th>金額</th><th>構成比</th></tr></thead><tbody>${rows}</tbody>`;
-    const diff = c.profit - c.P;
+    const actual = c.profit / c.sales;
     $("plTable").innerHTML += `<tfoot><tr><td colspan="3" style="text-align:left;color:var(--muted);font-size:.8rem;border:none">
-      目標営業利益 ${yen(c.P)} 円に対し ${diff >= 0 ? "+" : ""}${yen(diff)} 円（端数処理による差額）</td></tr></tfoot>`;
+      目標営業利益率 ${pct(c.M)} に対し、実際の営業利益率は ${pct(actual)}（差は端数処理によるもの）</td></tr></tfoot>`;
 
     renderSens(c);
     renderChart(c);
@@ -444,7 +448,7 @@
     if (!c) { $("dataMsg").textContent = "計算結果がありません。入力内容を確認してください。"; return; }
     const lines = [
       ["項目", "値"],
-      ["目標営業利益", c.P], ["販売数量", c.Q],
+      ["目標営業利益率(%)", c.M * 100], ["販売数量", c.Q],
       ...state.fixed.map((f) => ["固定費：" + f.name, num(f.value)]),
       ["固定費合計", c.F],
       ...state.var.map((f) => ["変動費(1個)：" + f.name, num(f.value)]),
@@ -467,7 +471,7 @@
   }
 
   // ---------- イベント ----------
-  $("targetProfit").addEventListener("input", (e) => { state.targetProfit = num(e.target.value); render(); });
+  $("targetRate").addEventListener("input", (e) => { state.targetRate = num(e.target.value); render(); });
   $("quantity").addEventListener("input", (e) => { state.quantity = num(e.target.value); render(); });
   $("rounding").addEventListener("change", (e) => { state.rounding = e.target.value; render(); });
 
