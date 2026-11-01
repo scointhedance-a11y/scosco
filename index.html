@@ -134,8 +134,21 @@
       <div class="field"><input type="number" inputmode="decimal" id="targetRate" min="0" max="99" step="0.5"><span class="unit">%</span></div>
       <div class="hint">例：15% と入力すると、売上高の15%が営業利益として残る価格を計算します。</div>
 
-      <label for="quantity">販売数量（期間合計）</label>
+      <label for="periodCount">計算期間</label>
+      <div class="field">
+        <input type="number" inputmode="decimal" id="periodCount" min="1" step="1">
+        <select id="periodUnit" class="roundsel" style="flex:0 0 auto">
+          <option value="day">日</option>
+          <option value="week">週</option>
+          <option value="month">か月</option>
+          <option value="year">年</option>
+        </select>
+      </div>
+      <div class="hint">固定費は「<span class="perLabel">1か月</span>あたりの金額 × 計算期間」で計算します。</div>
+
+      <label for="quantity">販売数量（計算期間の合計）</label>
       <div class="field"><input type="number" inputmode="decimal" id="quantity" min="1" step="1"><span class="unit">個</span></div>
+      <div class="hint" id="qtyPer"></div>
 
       <label for="rounding">価格の端数処理</label>
       <select id="rounding" class="roundsel">
@@ -148,10 +161,11 @@
     </div>
 
     <div class="card">
-      <h2>② 固定費（期間合計）</h2>
+      <h2>② 固定費（<span class="perLabel">1か月</span>あたり）</h2>
       <div class="items" id="fixedItems"></div>
       <button class="add" data-add="fixed">＋ 固定費を追加</button>
-      <div class="subtotal">固定費合計：<b id="fixedTotal">0</b> 円</div>
+      <div class="subtotal"><span class="perLabel">1か月</span>あたり合計：<b id="fixedPer">0</b> 円</div>
+      <div class="subtotal">× <span id="periodText">12か月</span> ＝ 計算期間の固定費：<b id="fixedTotal">0</b> 円</div>
       <div class="hint">家賃・人件費・減価償却費・広告費など、販売数量に関係なく発生する費用</div>
     </div>
 
@@ -222,7 +236,8 @@
 
     <div class="card">
       <h2>計算式</h2>
-      <div class="formula">販売価格 = (固定費 ÷ 販売数量 ＋ 1個あたり変動費) ÷ (1 − 売上連動費率 − 目標営業利益率)
+      <div class="formula">固定費 = 1期間あたり固定費 × 計算期間
+販売価格 = (固定費 ÷ 販売数量 ＋ 1個あたり変動費) ÷ (1 − 売上連動費率 − 目標営業利益率)
 
 営業利益 = 売上高 − 変動費 − 固定費
 営業利益率 = 営業利益 ÷ 売上高
@@ -244,13 +259,15 @@
 
   const SAMPLE = {
     targetRate: 15,
+    periodCount: 12,
+    periodUnit: "month",
     quantity: 10000,
     rounding: "10",
     fixed: [
-      { name: "人件費", value: 4800000 },
-      { name: "家賃", value: 1200000 },
-      { name: "広告宣伝費", value: 600000 },
-      { name: "減価償却費", value: 400000 },
+      { name: "人件費", value: 400000 },
+      { name: "家賃", value: 100000 },
+      { name: "広告宣伝費", value: 50000 },
+      { name: "減価償却費", value: 35000 },
     ],
     var: [
       { name: "材料費", value: 800 },
@@ -261,9 +278,10 @@
       { name: "決済手数料", value: 3.6 },
     ],
   };
-  const EMPTY = { targetRate: 0, quantity: 1, rounding: "1", fixed: [], var: [], rate: [] };
+  const EMPTY = { targetRate: 0, periodCount: 1, periodUnit: "month", quantity: 1, rounding: "1", fixed: [], var: [], rate: [] };
 
   let state = load() || structuredClone(SAMPLE);
+  if (state.periodCount == null) { state.periodCount = 1; state.periodUnit = "month"; }
   let sensMode = "qty";
 
   // ---------- 書式 ----------
@@ -274,6 +292,10 @@
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
   // ---------- 保存 ----------
+  const UNITS = { day: "日", week: "週", month: "か月", year: "年" };
+  const PER = { day: "1日", week: "1週", month: "1か月", year: "1年" };
+  const periodText = () => `${yen(num(state.periodCount))}${UNITS[state.periodUnit] || "か月"}`;
+
   function load() {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { return null; }
   }
@@ -306,21 +328,24 @@
   }
 
   function compute() {
-    const F = sum(state.fixed);
+    const Fper = sum(state.fixed);
+    const N = num(state.periodCount);
+    const F = Fper * N;
     const v = sum(state.var);
     const r = sum(state.rate) / 100;
     const M = num(state.targetRate) / 100;
     const Q = num(state.quantity);
     const unit = num(state.rounding);
     const errors = [];
+    if (N <= 0) errors.push("計算期間は1以上を入力してください。");
     if (Q <= 0) errors.push("販売数量は1以上を入力してください。");
     if (M < 0) errors.push("目標営業利益率は0%以上を入力してください。");
     if (r >= 1) errors.push("売上連動費率の合計が100%以上のため、価格を算出できません。");
     else if (r + M >= 1) errors.push(`目標営業利益率（${(M * 100).toFixed(1)}%）と売上連動費率（${(r * 100).toFixed(1)}%）の合計が100%以上のため、価格を算出できません。`);
-    if (errors.length) return { errors, F, v, r, M, Q };
+    if (errors.length) return { errors, F, Fper, N, v, r, M, Q };
     const rawPrice = priceFor({ F, M, Q, v, r });
     const price = roundUp(rawPrice, unit);
-    const ctx = { F, M, Q, v, r, unit };
+    const ctx = { F, Fper, N, M, Q, v, r, unit };
     const res = evaluate(price, ctx);
     const bePrice = priceFor({ F, M: 0, Q, v, r }); // 利益ゼロとなる価格
     return { errors, ...ctx, rawPrice, bePrice, ...res };
@@ -348,6 +373,8 @@
   function renderInputs() {
     $("targetRate").value = state.targetRate;
     $("quantity").value = state.quantity;
+    $("periodCount").value = state.periodCount;
+    $("periodUnit").value = state.periodUnit;
     $("rounding").value = state.rounding;
     renderLists();
   }
@@ -357,6 +384,11 @@
     save();
     const c = compute();
     $("fixedTotal").textContent = yen(c.F);
+    $("fixedPer").textContent = yen(c.Fper);
+    $("periodText").textContent = periodText();
+    document.querySelectorAll(".perLabel").forEach((e) => (e.textContent = PER[state.periodUnit] || "1か月"));
+    $("qtyPer").textContent = c.N > 0 && c.Q > 0
+      ? `＝ ${PER[state.periodUnit]}あたり 約${yen(c.Q / c.N, c.Q / c.N < 10 ? 1 : 0)}個` : "";
     $("varTotal").textContent = yen(c.v, 2).replace(/\.00$/, "");
     $("rateTotal").textContent = (c.r * 100).toFixed(2).replace(/\.?0+$/, "");
 
@@ -374,6 +406,7 @@
     $("heroBody").innerHTML = `
       <div class="price">${yen(c.price, c.unit ? 0 : 2)} <small>円 / 個</small></div>
       <div class="sub">${roundedNote}</div>
+      <div class="sub">計算期間 ${periodText()}・販売数量 ${yen(c.Q)}個の場合</div>
       <div class="sub">税込（10%）参考：${yen(Math.round(c.price * 1.1))} 円 ／ 損益分岐価格：${yen(c.bePrice, 2)} 円</div>`;
 
     $("stickyPrice").textContent = yen(c.price, c.unit ? 0 : 2) + " 円";
@@ -401,8 +434,8 @@
     rows += row("　変動費（1個あたり分）", c.unitVarCost);
     if (c.r > 0) rows += row("　変動費（売上連動分）", c.rateCost);
     rows += row("限界利益", c.contribution, "total");
-    state.fixed.forEach((f) => (rows += row("　" + esc(f.name || "固定費"), num(f.value))));
-    rows += row("固定費合計", c.F);
+    state.fixed.forEach((f) => (rows += row("　" + esc(f.name || "固定費"), num(f.value) * c.N)));
+    rows += row(`固定費合計<span class="pctnote" style="display:block;font-size:.72rem;color:var(--muted);font-weight:400">${PER[state.periodUnit]} ${yen(c.Fper)}円 × ${periodText()}</span>`, c.F);
     rows += row("営業利益", c.profit, "total");
     $("plTable").innerHTML = `<thead><tr><th>項目</th><th>金額</th><th>構成比</th></tr></thead><tbody>${rows}</tbody>`;
     const actual = c.profit / c.sales;
@@ -438,7 +471,7 @@
           <td>${isFinite(e.beQty) ? yen(Math.ceil(e.beQty)) : "達成不可"}</td></tr>`;
       }).join("");
       $("sensTable").innerHTML = `<thead><tr><th>販売価格<br>（円）</th><th>売上高<br>（円）</th><th>営業利益<br>（円）</th><th>利益率</th><th>損益分岐点<br>数量（個）</th></tr></thead><tbody>${rows}</tbody>
-        <tfoot><tr><td colspan="5" style="text-align:left;color:var(--muted);font-size:.8rem;border:none">販売数量 ${yen(c.Q)} 個を前提とした場合</td></tr></tfoot>`;
+        <tfoot><tr><td colspan="5" style="text-align:left;color:var(--muted);font-size:.8rem;border:none">計算期間 ${periodText()}・販売数量 ${yen(c.Q)} 個を前提とした場合</td></tr></tfoot>`;
     }
   }
 
@@ -502,8 +535,10 @@
     const lines = [
       ["項目", "値"],
       ["目標営業利益率(%)", c.M * 100], ["販売数量", c.Q],
-      ...state.fixed.map((f) => ["固定費：" + f.name, num(f.value)]),
-      ["固定費合計", c.F],
+      ["計算期間", periodText()],
+      ...state.fixed.map((f) => [`固定費(${PER[state.periodUnit]}あたり)：` + f.name, num(f.value)]),
+      [`固定費(${PER[state.periodUnit]}あたり)合計`, c.Fper],
+      ["固定費合計(計算期間)", c.F],
       ...state.var.map((f) => ["変動費(1個)：" + f.name, num(f.value)]),
       ["1個あたり変動費合計", c.v],
       ...state.rate.map((f) => ["売上連動費(%)：" + f.name, num(f.value)]),
@@ -525,6 +560,8 @@
 
   // ---------- イベント ----------
   $("targetRate").addEventListener("input", (e) => { state.targetRate = num(e.target.value); render(); });
+  $("periodCount").addEventListener("input", (e) => { state.periodCount = num(e.target.value); render(); });
+  $("periodUnit").addEventListener("change", (e) => { state.periodUnit = e.target.value; render(); });
   $("quantity").addEventListener("input", (e) => { state.quantity = num(e.target.value); render(); });
   $("rounding").addEventListener("change", (e) => { state.rounding = e.target.value; render(); });
 
